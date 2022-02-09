@@ -1,0 +1,22 @@
+{
+  "name": "unhcr-dataviz-platform",
+  "version": "1.0.0",
+  "description": "UNHCR Data Visualization Guidance and Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GDS-ODSSS/unhcr-dataviz-platform.git"
+  },
+  "author": "Cedric Vidonne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GDS-ODSSS/unhcr-dataviz-platform/issues"
+  },
+  "homepage": "https://github.com/GDS-ODSSS/unhcr-dataviz-platform#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

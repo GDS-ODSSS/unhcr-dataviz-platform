@@ -1,0 +1,69 @@
+// UNHCR colors
+$unhcr-blue: #0072BC;
+$unhcr-white: #FFFFFF;
+$unhcr-black: #000000;
+$unhcr-yellow: #FAEB00;
+$unhcr-grey: #666666;
+$unhcr-navy: #18375F;
+$unhcr-green: #00B398;
+$unhcr-red: #EF4A60;
+$unhcr-lightblue: #DCE9FF;
+$unhcr-mediumblue: #8EBEFF;
+$unhcr-darkblue: #044F85;
+$unhcr-lightgrey: #E6E6E6;
+$unhcr-mediumgrey: #CCCCCC;
+$unhcr-darkgrey: #222222;
+$unhcr-lightyellow: #FFF9CB;
+$unhcr-mediumyellow: #FFF483;
+$unhcr-darkyellow: #E1CC0D;
+
+// Bootstrap default variable overrides
+
+// CSS variables prefix
+$variable-prefix: unhcr-;
+// Remove rounded per UNHCR style
+$enable-rounded: false;
+
+// Grays
+$gray-100: #f2f2f2;
+$gray-200: $unhcr-lightgrey;
+$gray-300: $unhcr-mediumgrey;
+$gray-400: #b3b3b3;
+$gray-500: #999999;
+$gray-600: $unhcr-grey;
+$gray-700: #4d4d4d;
+$gray-800: #333333;
+$gray-900: $unhcr-darkgrey;
+
+// Main
+$blue: $unhcr-blue;
+$yellow: $unhcr-yellow;
+$green: $unhcr-green;
+$red: $unhcr-red;
+
+// Theme
+$info: $unhcr-mediumblue;
+$warning: $unhcr-darkyellow;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro&display=swap');
+$font-family-base: 'Lato', Arial, sans-serif;
+$font-family-code: 'Source Code Pro', monospace;
+
+// Link
+$link-decoration: none;
+$link-hover-color: $unhcr-darkgrey;
+$link-hover-decoration: underline;
+
+// Type
+$blockquote-footer-color: $unhcr-darkgrey;
+$mark-bg: $unhcr-lightyellow;
+
+// Navbar
+$navbar-light-active-color: $unhcr-blue;
+
+// Breadcrumb
+$breadcrumb-divider: quote(">");
+
+// Buttons
+$btn-link-hover-color: $unhcr-darkgrey;
