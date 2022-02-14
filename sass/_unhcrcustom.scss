@@ -1,4 +1,9 @@
-// Custom UNHCR CSS
+/* General */
+.container{
+  width: 90%;
+  margin: auto
+}
+
 li::marker {
     color: $primary;
-  };
+  }; 
