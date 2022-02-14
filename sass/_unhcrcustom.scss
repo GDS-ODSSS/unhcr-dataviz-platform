@@ -1,6 +1,6 @@
 /* General */
 .container{
-  width: 80%;
+  width: 90%;
   margin: auto
 }
 
@@ -9,3 +9,61 @@ li::marker {
   }; 
 
 // Navigation
+.navbar-brand img {
+  height: 2.5rem;
+}
+
+.navbar {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+
+  .nav-link {
+    color: #333333;
+  }
+}
+
+.navbar-toggler{
+  border: 0px;
+
+  :hover{
+    border:#0072BC;
+  }
+}
+
+.nav-item {
+  padding: 4px;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #0072BC;
+}
+
+.dropdown-item {
+  font-size: 12px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: relative;
+  background-color:#f4f5f6;
+  z-index: 1;
+  border: 0rem;
+  transition: 1000;
+
+  a:hover {
+    color: #fff;
+    background-color: #0072BC;
+  }
+}
+
+.nav-menu > ul > li {
+  position: relative;
+  white-space: nowrap;
+  float: left;
+}
