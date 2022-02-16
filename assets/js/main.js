@@ -17,7 +17,7 @@ class hcrHeader extends HTMLElement {
                                 <a class="nav-link" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Chart gallery</a>
+                                <a class="nav-link" href="#">Chart gallery</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">General guidance</a>
@@ -50,7 +50,7 @@ class hcrHeader extends HTMLElement {
     `
     }
 }
-customElements.define ('hcr-header', hcrHeader)
+customElements.define ('hcr-header', hcrHeader);
 
 
 // Footer template
@@ -88,4 +88,24 @@ class hcrFooter extends HTMLElement {
     `
     }
 }
-customElements.define ('hcr-footer', hcrFooter)
+customElements.define ('hcr-footer', hcrFooter);
+
+
+
+// Porfolio isotope and filter
+$(window).on('load', function() {
+    var chartIsotope = $('.chart-container').isotope({
+      itemSelector: '.chart-item'
+    });
+
+    $('#chart-flters li').on('click', function() {
+      $("#chart-flters li").removeClass('filter-active');
+      $(this).addClass('filter-active');
+
+      chartIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+    });
+
+  });
