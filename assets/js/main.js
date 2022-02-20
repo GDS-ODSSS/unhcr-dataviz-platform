@@ -8,7 +8,7 @@ class hcrHeader extends HTMLElement {
                     <a class="navbar-brand" href="index.html">
                         <img src="assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo"/>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler ml-auto custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -98,14 +98,14 @@ $(window).on('load', function() {
       itemSelector: '.chart-item'
     });
 
-    $('#chart-flters li').on('click', function() {
-      $("#chart-flters li").removeClass('filter-active');
+    $('#chart-filters li').on('click', function() {
+      $("#chart-filters li").removeClass('filter-active');
       $(this).addClass('filter-active');
 
       chartIsotope.isotope({
         filter: $(this).data('filter')
       });
-      aos_init();
+    //   aos_init();
     });
 
   });
