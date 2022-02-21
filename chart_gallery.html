@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="assets/img/unhcr_logo_vertical_blue.png">
+    <link href="assets/css/main.min.css" rel="stylesheet" />
+    <!-- <link href="assets/css/aos.css" rel="stylesheet"> -->
+
+    <title>UNHCR Data Visualization Platform</title>
+    
+</head>
+
+<body>
+<!-- Navigation -->
+<hcr-header></hcr-header>
+<!-- End Navigation -->
+
+<!-- Chart Gallery section -->
+<section id="chart" class="chart">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Chart Gallery</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+        <ul id="chart-filters" class="chart-menu text-center justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <li data-filter="*" class="filter-active">All</li>
+          <li data-filter=".filter-comparison">Comparison</li>
+          <li data-filter=".filter-correlation">Correlation</li>
+          <li data-filter=".filter-change-over-time">Change over time</li>
+          <li data-filter=".filter-distribution">Distribution</li>
+          <li data-filter=".filter-part-to-a-whole">Part-to-a-whole</li>
+          <li data-filter=".filter-flow">Flow</li>
+          <li data-filter=".filter-geospatial">Geospatial</li>
+          <li data-filter=".filter-ranking">Ranking</li>
+        </ul>
+
+      <div class="row chart-container text-center justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Column Chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Bar chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Grouped column chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Grouped bar chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Stacked column chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-comparison">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Stacked bar chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- correlation -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-correlation">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/correlation/bubble_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Bubble chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-correlation">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/correlation/heatmap_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Heatmap</button>
+              </div>
+            </div>
+          </a>
+          </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-correlation">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/correlation/scatterplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Scatterplot</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-correlation">
+          <a>
+            <div class="chart-img"><img src="assets/img/correlation/scatterplot_connected_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Connected scatterplot</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-correlation">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/correlation/venn_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Venn diagram</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Change over time -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/line_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Line chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Area chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Stacked area chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Stream graph</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/line_column_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Line column chart</button>
+              </div>
+            </div> 
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-change-over-time">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/change_over_time/slope_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Slope chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Distribution -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-distribution">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/distribution/histogram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Histogram</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-distribution">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/distribution/population_pyramid_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Population pyramid</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-distribution">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Boxplot</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-distribution">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/distribution/dotplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Dot plot</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Part-to-a-whole -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Pie chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Donut chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">100% stacked column chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Grid plot</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Treemap</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-part-to-a-whole">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Waterfall</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Flow -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-flow">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/flow/sankey_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Sankey diagram</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-flow">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/flow/chord_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Chord diagram</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-flow">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/flow/flow_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Flow map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-flow">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/flow/arc_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Arc diagram</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-flow">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/flow/flow_chart_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Flow chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Geospatial -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Choropleth map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Bubble map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Flow map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Icon map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Dot density map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item ffilter-geospatial">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Pie chart map</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Ranking -->
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-ranking">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/ranking/column_ordered_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Ordered column chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-ranking">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/ranking/bar_ordered_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Ordered bar chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-ranking">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/ranking/lollipop_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Lollipop chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 chart-item filter-ranking">
+          <a href="#">
+            <div class="chart-img"><img src="assets/img/ranking/slope_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info">
+                <button class="btn">Slope chart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- End Chart Gallery Section -->
+
+
+<!-- Footer -->
+<hcr-footer></hcr-footer>
+<!-- End footer -->
+
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Main JS file -->
+<script type="module" src="assets/js/main.js"></script>
+
+<!-- Vendor JS file -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- <script src="assets/js/jquery.easing.min.js"></script> -->
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/aos.js"></script>
+
+
+
+</body>
+
+</html>
