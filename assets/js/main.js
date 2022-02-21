@@ -92,7 +92,7 @@ customElements.define ('hcr-footer', hcrFooter);
 
 
 
-// Porfolio isotope and filter
+// Chart gallery isotope and filter
 $(window).on('load', function() {
     var chartIsotope = $('.chart-container').isotope({
       itemSelector: '.chart-item'
