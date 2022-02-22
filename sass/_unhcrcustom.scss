@@ -40,9 +40,7 @@ li::marker {
     .nav-link {
       color: $unhcr-grey;
     }
-    .nav-link:hover {
-      color: $unhcr-blue;
-    }
+    .nav-link:hover,
     .nav-link.active {
       color: $unhcr-blue;
       border-bottom: 2pt solid $unhcr-blue;
@@ -86,40 +84,57 @@ footer {
   }
 }
 
+// Home banner
+.banner {
+  background-image: url(/assets/img/home_banner.svg);
+  background-color: $unhcr-mediumgrey;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+}
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
 // TODO Review
 //Sections General
-section {
-  padding-top: 60px;
-  overflow: hidden;
-  .section-title {
-    text-align: center;
-    padding-bottom: 30px;
-    h2 {
-      font-size: 32px;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      position: relative;
-      color: $gray-900;
-    }
-    p {
-      font-size: 14px;
-      color: $gray-800;
-      margin-bottom: 0;
-    }
-    h2::after {
-      content: "";
-      position: absolute;
-      display: block;
-      width: 40px;
-      height: 3px;
-      background: $blue;
-      bottom: 0;
-      left: calc(50% - 20px);
-    }
-  }
-}
+// section {
+//   padding-top: 60px;
+//   overflow: hidden;
+//   .section-title {
+//     text-align: center;
+//     padding-bottom: 30px;
+//     h2 {
+//       font-size: 32px;
+//       font-weight: bold;
+//       text-transform: uppercase;
+//       margin-bottom: 20px;
+//       padding-bottom: 20px;
+//       position: relative;
+//       color: $gray-900;
+//     }
+//     p {
+//       font-size: 14px;
+//       color: $gray-800;
+//       margin-bottom: 0;
+//     }
+//     h2::after {
+//       content: "";
+//       position: absolute;
+//       display: block;
+//       width: 40px;
+//       height: 3px;
+//       background: $blue;
+//       bottom: 0;
+//       left: calc(50% - 20px);
+//     }
+//   }
+// }
 
 // Chart gallery
 .chart {

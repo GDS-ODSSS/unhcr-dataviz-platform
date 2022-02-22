@@ -15,19 +15,19 @@ class hcrHeader extends HTMLElement {
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="/">Home</a>
+                  <a class="nav-link" data-active="home" href="/index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/chart_gallery">Chart gallery</a>
+                  <a class="nav-link" data-active="chart_gallery" href="/chart_gallery/index.html">Chart gallery</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/general_guidance">General guidance</a>
+                  <a class="nav-link" data-active="general_guidance" href="/general_guidance/index.html">General guidance</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/tools">Tools</a>
+                  <a class="nav-link" data-active="tools" href="/tools/index.html">Tools</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/products">Products</a>
+                  <a class="nav-link" data-active="products" href="/products/index.html">Products</a>
                 </li>
               </ul>
             </div>
@@ -49,19 +49,19 @@ class hcrFooter extends HTMLElement {
           <div class="d-flex flex-wrap justify-content-between">
             <ul class="nav">
               <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/chart_gallery">Chart gallery</a>
+                <a class="nav-link" href="/chart_gallery/index.html">Chart gallery</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/general_guidance">General guidance</a>
+                <a class="nav-link" href="/general_guidance/index.html">General guidance</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/tools">Tools</a>
+                <a class="nav-link" href="/tools/index.html">Tools</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/products">Products</a>
+                <a class="nav-link" href="/products/index.html">Products</a>
               </li>
             </ul>
             <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
@@ -75,7 +75,15 @@ class hcrFooter extends HTMLElement {
 }
 customElements.define ('hcr-footer', hcrFooter);
 
+// Active state for header
+let navLinks = document.querySelectorAll(".navbar .nav-item .nav-link");
+let bodyId = document.querySelector("body").id;
 
+for (let navLink of navLinks) {
+    if(navLink.dataset.active == bodyId) {
+        navLink.classList.add("active");
+    }
+}
 
 // Chart gallery isotope and filter
 $(window).on('load', function() {
