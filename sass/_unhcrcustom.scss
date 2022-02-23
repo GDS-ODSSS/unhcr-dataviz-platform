@@ -74,7 +74,6 @@ li::marker {
 footer {
   .nav {
     font-size: 0.875rem;
-    letter-spacing: 0.075rem;
   }
   .nav-link {
     color: $gray-100;
@@ -88,8 +87,8 @@ footer {
 .banner {
   background-image: url(/assets/img/home_banner.svg);
   background-color: $unhcr-mediumgrey;
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 .main-title {
@@ -101,40 +100,26 @@ footer {
   font-weight: 300;
 }
 
-// TODO Review
-//Sections General
-// section {
-//   padding-top: 60px;
-//   overflow: hidden;
-//   .section-title {
-//     text-align: center;
-//     padding-bottom: 30px;
-//     h2 {
-//       font-size: 32px;
-//       font-weight: bold;
-//       text-transform: uppercase;
-//       margin-bottom: 20px;
-//       padding-bottom: 20px;
-//       position: relative;
-//       color: $gray-900;
-//     }
-//     p {
-//       font-size: 14px;
-//       color: $gray-800;
-//       margin-bottom: 0;
-//     }
-//     h2::after {
-//       content: "";
-//       position: absolute;
-//       display: block;
-//       width: 40px;
-//       height: 3px;
-//       background: $blue;
-//       bottom: 0;
-//       left: calc(50% - 20px);
-//     }
-//   }
-// }
+// Main page title
+.section-title {
+  h2 {
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+  }
+  h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 3rem;
+    height: 0.2rem;
+    background: $unhcr-blue;
+    bottom: 0;
+    left: calc(50% - 1.5rem);
+  }
+}
 
 // Chart gallery
 .chart {
