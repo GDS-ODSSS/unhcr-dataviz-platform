@@ -1,4 +1,7 @@
 // General
+body{
+  margin-bottom: 8rem;
+}
 .container {
   max-width: 1200px;
 }
@@ -185,5 +188,58 @@ footer {
   }
   .chart-item:hover .chart-info {
     opacity: 1;
+  }
+}
+
+// Chart page with sidebar
+.sidebar-area{
+  margin: 0px;
+  .p-3{
+    padding-top: 5rem!important;
+  }
+  .nav-pills{
+    margin-left: 0em;
+    .navbar-title{
+      color: $gray-800;
+      padding: 0.25rem 0.5rem;
+    }
+    .navbar-title:hover{
+      color: $unhcr-blue;
+    }
+    .nav-link{
+      font-size: small;
+      color:$unhcr-grey;
+      padding: 0.25rem 0.5rem;
+    }
+    .nav-link.active,
+    .nav-link:hover,
+    .show>.nav-link {
+    background-color: $gray-200;
+    color: $unhcr-blue;
+    }
+  }
+}
+
+.chart-area{
+  .chart-img img {
+    width: 12rem;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+  h2{
+    margin-bottom: 5rem;
+  }
+  h3{
+    margin-top: 2rem;
+  }
+  .card{
+    border: none;
+    .card-body{
+      padding:0.75rem 0rem 3rem;
+      p{
+        color: $gray-600;
+      }
+  }
+  
   }
 }

@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="/assets/css/main.min.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <title>UNHCR Data Visualization Platform</title>
   <!-- TODO change icon link with final URL -->
   <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
@@ -15,14 +16,331 @@
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
-
-  <!-- Main -->
-  <main id="chart" class="flex-shrink-0 chart">
-    <div class="container my-5">
-
+  <main class="flex-shrink-0">
+    <div class="scrolling" data-bs-spy="scroll" data-bs-target="#sidebar">
+      <div class="container">
+        <div class="row">
+          <div class="sidebar-area col-lg-3">
+              <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                <nav class="nav nav-pills flex-column">
+                  <a class="navbar-title" href="#">Comparison</a>
+                  <a class="nav-link" href="#column">Column chart</a>
+                  <!-- <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+                  </nav> -->
+                  <a class="nav-link" href="#bar">Bar chart</a>
+                  <a class="nav-link" href="#column-grouped">Grouped column chart</a>
+                  <!-- <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+                    <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+                  </nav> -->
+                  <a class="nav-link" href="#bar-grouped">Grouped bar chart</a>
+                  <a class="nav-link" href="#column-stacked">Stacked column chart</a>
+                  <a class="nav-link" href="#bar-stacked">Stacked bar chart</a>
+                </nav>
+              </nav>
+          </div>
+          <div class="chart-area col-lg-9">
+            <div data-bs-spy="scroll" data-bs-target="#sidebar" data-bs-offset="0" tabindex="0">
+                <div id="column" class="chart-img text-center">
+                  <img src="/assets/img/comparison/column_icon.svg" class="col" alt="">
+                  <h2>Column chart</h2>
+                </div>
+                <h3>Description</h3>
+                  <p>In a column chart, each category is represented by a vertical rectangle,
+                      with the height of the rectangle being proportional to the values being plotted.
+                      It’s a vertical version of the <a href="#bar">bar chart</a> ,
+                      also sometimes called a vertical bar chart.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      The column chart is widely used to show comparison among categories and
+                      sometimes to visualize time-based data.
+                      It’s effective for showing the difference between values.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Choose either axis label or data label.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Use horizontal labels to improve readability.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Space between bars should be roughly half of the bar width.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div id="bar" class="chart-img text-center">
+                  <img src="/assets/img/comparison/bar_icon.svg" class="col" alt="">
+                  <h2 >Bar chart</h2>
+                </div> 
+                <h3>Description</h3>
+                  <p>
+                     A bar chart is a chart in which each category is represented by a horizontal rectangle,
+                     with the length of the rectangle proportional to the values being plotted.
+                     The horizontal axis shows data value, and the vertical axis displays the categories being compared.
+                     It’s a horizontal version of the <a href="#column">column chart</a>.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      The bar chart is widely used to show comparison among categories and sometimes to visualize time-based data.
+                      It’s effective for showing the difference between values.
+                      It’s an alternative to the <a href="#column">column chart</a> when the category name is long.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Choose either axis label or data label.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Sort the data in descending order before charting for non-ordinal data.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Space between bars should be roughly half of the bar width.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_dosdonts_6.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Avoid using bar charts if most of the values are negative. It is better to use column charts unless the labels do not fit underneath the bars.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div id="column-grouped" class="chart-img text-center">
+                  <img src="/assets/img/comparison/column_grouped_icon.svg" class="col" alt="">
+                  <h2> Grouped column chart</h2>
+                </div>
+                <h3>Description</h3>
+                  <p>
+                      Grouped column charts are a type of colour-coded column chart used to represent and compare different
+                      categories of two or more groups.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      It’s used when two or more categories are grouped and arranged side-by-side, the grouped vertical bars make
+                      it easy to interpret the differences inside a group, and even between the same category across groups.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Order of the elements in a legend should be in the same sequence as the bars for easy reference.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Don’t plot more than 3 groups.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Leave enough space between two groups of bar charts in order to easily differentiate between the groups.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>                 
+                <div id="bar-grouped" class="chart-img text-center">
+                  <img src="/assets/img/comparison/bar_grouped_icon.svg" class="col" alt="">
+                  <h2> Grouped bar chart</h2>
+                </div>
+                <h3>Description</h3>
+                  <p>
+                      Grouped bar charts are a type of colour-coded bar chart that is used to represent and
+                      compare different categories of two or more groups.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      Grouped bar charts are used when two or more categories are grouped and arranged side-by-side.
+                      The grouped bars make it easy to interpret the differences inside a group,
+                      and even between the same category across groups. It’s an alternative to grouped column charts when the category names are long.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Order of the elements in a legend should be in the same sequence as the bars for easy reference.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Don’t plot more than 3 groups.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Leave enough space between two groups of bar charts in order to easily differentiate between the groups.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div id="column-stacked" class="chart-img text-center">
+                  <img src="/assets/img/comparison/column_stacked_icon.svg" class="col" alt="">
+                  <h2> Stacked column chart</h2>
+                </div>
+                <h3>Description</h3>
+                  <p>
+                      The stacked column chart stacks vertical bars that represent different groups on top of each other.
+                      The height of the stacked bar shows the combined value of the groups.
+                      They show the cumulative values of a data item and compare parts to the whole.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      It’s particularly useful when comparing relative and absolute changes over time. However,
+                      stacked column charts are not suited to datasets where some groups have negative values.
+                      In such cases, grouped column charts are preferable.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Elements in the legend should be in the same sequence as the bars.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Don’t stack too many groups at once (five or fewer is ideal).</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Use horizontal labels to improve readability.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/column_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Space between bars should be roughly half of the bar width.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div id="bar-stacked" class="chart-img text-center">
+                  <img src="/assets/img/comparison/bar_stacked_icon.svg" class="col" alt="">
+                  <h2>Stacked bar chart</h2>
+                </div>
+                <h3>Description</h3>
+                  <p>
+                      Stacked bar charts stack horizontal bars that represent different groups one after another.
+                      The length of the stacked bar shows the combined value of the groups.
+                      They show the cumulative values of data items and compare parts to the whole.
+                  </p>
+                <h3>When to use</h3>
+                  <p>
+                      Stacked bar charts are used to show how a larger group is divided into smaller subgroups and what
+                      the relationship of each part has on the total amount. It’s particularly useful when comparing relative
+                      and absolute differences across categories. It’s a better option when the category names are long and do
+                      not fit underneath of vertical stacked bar chart <a href="#column-stacked">stacked column chart</a>.
+                  </p>
+                <h3>Dos and donts</h3>
+                <div class="dosdonts row">
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Always start at a zero baseline.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Elements in the legend should be in the same sequence as the bars.</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Don’t stack too many groups at once (five or fewer is ideal).</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">The data should be sorted by total value in descending order when using a stacked bar chart for categorical variables (non ordinal variables).</p>
+                    </div>
+                  </div>
+                  <div class="card col-md-6">
+                    <img src="/assets/img/comparison/bar_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Space between bars should be roughly half of the bar width.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
-  <!-- End Main -->
 
   <!-- Footer -->
   <hcr-footer></hcr-footer>
