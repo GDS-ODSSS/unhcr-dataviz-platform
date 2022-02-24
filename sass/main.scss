@@ -8,7 +8,6 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
-
 // 4. Simplify colors map to include only UNHCR colors
 // remove from colors map
 $colors: map-remove($colors, "indigo", "purple", "pink", "orange", "teal", "cyan");
@@ -20,8 +19,9 @@ $custom-colors: (
 // Merge the color maps
 $colors: map-merge($colors, $custom-colors);
 
-// 5. Include all bs
+// 5. Include all Bootstrap CSS
 @import "../node_modules/bootstrap/scss/bootstrap";
+
 
 
 // 5. Include any optional Bootstrap CSS as needed
