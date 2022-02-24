@@ -203,9 +203,6 @@ footer {
       color: $gray-800;
       padding: 0.25rem 0.5rem;
     }
-    .navbar-title:hover{
-      color: $unhcr-blue;
-    }
     .nav-link{
       font-size: small;
       color:$unhcr-grey;
@@ -222,18 +219,19 @@ footer {
 
 .chart-area{
   .chart-img img {
-    width: 12rem;
+    width: 10rem;
     padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
   h2{
     margin-bottom: 5rem;
   }
-  h3{
+  h4{
     margin-top: 2rem;
   }
   .card{
     border: none;
+    margin-top: 1rem;
     .card-body{
       padding:0.75rem 0rem 3rem;
       p{
@@ -243,3 +241,42 @@ footer {
   
   }
 }
+
+//Back to top button
+#button {
+  display: inline-block;
+  background-color: $unhcr-grey;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  position: fixed;
+  bottom: 8rem;
+  right: 1rem;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight:400;
+  font-style: normal;
+  font-size: 1.5em;
+  line-height: 2.2rem;
+  color: $unhcr-white;
+}
+#button:hover,
+#button:active {
+  cursor: pointer;
+  background-color: $unhcr-blue;
+  text-decoration: none;
+}
+#button.show {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+
+
