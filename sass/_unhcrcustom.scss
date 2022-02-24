@@ -262,6 +262,7 @@ footer {
   visibility: hidden;
   z-index: 1000;
 }
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css);
 #button::after {
   content: "\f077";
   font-family: FontAwesome;
