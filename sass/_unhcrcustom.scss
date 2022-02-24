@@ -2,6 +2,9 @@
 .container {
   max-width: 1200px;
 }
+.bg-navy {
+    background-color: $unhcr-navy;
+}
 
 // Typography
 li::marker {
