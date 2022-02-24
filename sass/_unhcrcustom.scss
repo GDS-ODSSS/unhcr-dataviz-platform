@@ -5,6 +5,9 @@ body{
 .container {
   max-width: 1200px;
 }
+.bg-navy {
+    background-color: $unhcr-navy;
+}
 
 // Typography
 li::marker {
@@ -27,6 +30,7 @@ li::marker {
 
   .navbar-brand img {
     height: 3rem;
+    max-height: 2.75rem;
   }
   .navbar-toggler {
     border: none;
