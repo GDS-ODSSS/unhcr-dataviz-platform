@@ -129,7 +129,7 @@ footer {
 }
 
 // Chart gallery
-.chart {
+#chart {
   overflow: hidden;
   .chart-menu {
     margin-bottom: 40px;
@@ -198,9 +198,6 @@ footer {
 // Chart page with sidebar
 .sidebar-area{
   margin: 0px;
-  .p-3{
-    padding-top: 5rem!important;
-  }
   .nav-pills{
     margin-left: 0em;
     .navbar-title{
@@ -285,6 +282,31 @@ hr{
 #button.show {
   opacity: 0.5;
   visibility: visible;
+}
+
+//Product page
+#product {
+  overflow: hidden;
+  .product-menu {
+    margin-bottom: 40px;
+    li {
+      cursor: pointer;
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1;
+      color: #333333;
+      transition: all 0.3s;
+      padding: 8px 10px;
+    }
+    li:hover,
+    li.filter-active {
+      background: $blue;
+      color: #fff;
+    }
+  }
 }
 
 

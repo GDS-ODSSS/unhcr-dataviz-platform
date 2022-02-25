@@ -11,13 +11,13 @@
   <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
 </head>
 
-<body class="d-flex flex-column vh-100" id="products">
+<body class="flex-column vh-100" id="products">
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
 
   <!-- Main -->
-  <main class="flex-shrink-0">
+  <main id="product" class="flex-shrink-0">
     <div class="container my-5">
       <div class="section-title mb-5 text-center">
         <h2>Products</h2>
@@ -31,9 +31,17 @@
         </div>
       </div>
 
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <ul id="product-filters" class="product-menu text-center justify-content-center" data-aos="fade-up"
+        data-aos-delay="100">
+        <li data-filter="*" class="filter-active">All</li>
+        <li data-filter=".filter-gotm">Graphic of the Month</li>
+        <li data-filter=".filter-power-bi">Power BI</li>
+        <li data-filter=".filter-storymap">Storymap</li>
+      </ul>
+
+      <div class="row product-container row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <!-- GOTM Jan 2022 -->
-        <div class="col">
+        <div class="col product-item filter-gotm">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/gotm_covid.png" alt="Thumbnail No home away from home"
               class="card-img-top mb-3">
@@ -61,7 +69,7 @@
         <!-- END GOTM Jan 2022 -->
 
         <!-- No home away from home -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/r4v_venezuelan-1@2x.jpg" alt="Thumbnail No home away from home"
               class="card-img-top mb-3">
@@ -91,7 +99,7 @@
         <!-- END No home away from home -->
 
         <!-- COVID-19 deepens threats for displaced women and children -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_sgbv-1@2x.jpg"
               alt="Thumbnail COVID-19 deepens threats for displaced women and children" class="card-img-top mb-3">
@@ -119,7 +127,7 @@
         <!-- END COVID-19 deepens threats for displaced women and children -->
 
         <!-- Inclusion of pocs in COVID-19 vaccine rollout -->
-        <div class="col">
+        <div class="col product-item filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_vaccine-1@2x.jpg" alt="Thumbnail Public health inclusion of refugees"
               class="card-img-top mb-3">
@@ -144,7 +152,7 @@
         <!-- END Inclusion of pocs in COVID-19 vaccine rollout -->
 
         <!-- Displaced on the frontlines of the climate emergency -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/climate_change-1@2x.jpg"
               alt="Thumbnail Displaced on the frontlines of the climate emergency" class="card-img-top mb-3">
@@ -174,7 +182,7 @@
         <!-- END Displaced on the frontlines of the climate emergency -->
 
         <!-- Uprooted in their own land -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/uprooted_idp-1@2x.jpg" alt="Thumbnail Uprooted in their own land"
               class="card-img-top mb-3">
@@ -202,7 +210,7 @@
         <!-- Uprooted in their own land -->
 
         <!-- Public health inclusion of refugees -->
-        <div class="col">
+        <div class="col product-item filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/health_inclusion-1@2x.jpg"
               alt="Thumbnail Public health inclusion of refugees" class="card-img-top mb-3">
@@ -226,7 +234,7 @@
         <!-- END Public health inclusion of refugees -->
 
         <!-- Livelihoods, food and futures: COVID-19 and the displaced -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_livelihoods-1@2x.jpg"
               alt="Thumbnail Livelihoods, food and futures: COVID-19 and the displaced" class="card-img-top mb-3">
@@ -254,7 +262,7 @@
         <!-- END Livelihoods, food and futures: COVID-19 and the displaced -->
 
         <!-- Space, shelter and scarce resources - coping with COVID-19 -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_sector-1@2x.jpg"
               alt="Thumbnail Space, shelter and scarce resources - coping with COVID-19" class="card-img-top mb-3">
@@ -282,7 +290,7 @@
         <!-- END Space, shelter and scarce resources - coping with COVID-19 -->
 
         <!-- COVID-19 and refugees -->
-        <div class="col">
+        <div class="col product-item filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_refugees-1@2x.jpg" alt="Thumbnail COVID-19 and refugees"
               class="card-img-top mb-3">
@@ -310,7 +318,7 @@
         <!-- END COVID-19 and refugees -->
 
         <!-- COVID-19 Platform -->
-        <div class="col">
+        <div class="col product-item filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_platform-1@2x.jpg" alt="Thumbnail COVID-19 Platform"
               class="card-img-top mb-3">

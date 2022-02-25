@@ -104,24 +104,39 @@ $(window).on('load', function() {
   });
 
 
-  //Sidebar scrolling
-  var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-    target: '#sidebar'
-  })
+//Sidebar scrolling
+var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  target: '#sidebar'
+})
+//Back to top
+var btn = $('#button');
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
 
 
-  //Back to top
-  var btn = $('#button');
-
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > 300) {
-      btn.addClass('show');
-    } else {
-      btn.removeClass('show');
-    }
+// Product catalogue isotope and filter
+$(window).on('load', function() {
+  var chartIsotope = $('.product-container').isotope({
+    itemSelector: '.product-item'
   });
-  
-  btn.on('click', function(e) {
-    e.preventDefault();
-    $('html, body').animate({scrollTop:0}, '300');
+
+  $('#product-filters li').on('click', function() {
+    $("#product-filters li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+
+    chartIsotope.isotope({
+      filter: $(this).data('filter'),
+    });
+  //   aos_init();
   });
+});
