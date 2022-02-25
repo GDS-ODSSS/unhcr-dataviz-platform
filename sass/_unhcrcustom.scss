@@ -222,6 +222,7 @@ footer {
 }
 
 .chart-area{
+  margin-bottom: 5rem;
   .chart-img img {
     width: 10rem;
     padding-top: 5rem;
@@ -237,13 +238,16 @@ footer {
     border: none;
     margin-top: 1rem;
     .card-body{
-      padding:0.75rem 0rem 3rem;
+      padding:0.5rem 0rem 1rem;
       p{
         color: $gray-600;
       }
+    }
   }
-  
-  }
+}
+
+hr{
+  margin-top: 5rem;
 }
 
 //Back to top button
