@@ -125,3 +125,23 @@ $(window).on('load', function() {
     e.preventDefault();
     $('html, body').animate({scrollTop:0}, '300');
   });
+
+
+// Product catalogue isotope and filter
+$(window).on('load', function() {
+  var chartIsotope = $('.product-container').isotope({
+    itemSelector: '.product-item',
+    layoutMode: 'fitRows'
+  });
+
+  $('#product-filters li').on('click', function() {
+    $("#product-filters li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+
+    chartIsotope.isotope({
+      filter: $(this).data('filter'),
+    });
+  //   aos_init();
+  });
+
+});
