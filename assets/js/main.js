@@ -127,7 +127,8 @@ btn.on('click', function(e) {
 // Product catalogue isotope and filter
 $(window).on('load', function() {
   var chartIsotope = $('.product-container').isotope({
-    itemSelector: '.product-item'
+    itemSelector: '.product-item',
+    layoutMode: 'fitRows'
   });
 
   $('#product-filters li').on('click', function() {
