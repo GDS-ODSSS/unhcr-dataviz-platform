@@ -141,18 +141,18 @@ footer {
       font-size: 15px;
       font-weight: 500;
       line-height: 1;
-      color: #333333;
+      color: $gray-800;
       transition: all 0.3s;
       padding: 8px 10px;
     }
     li:hover,
     li.filter-active {
-      background: $blue;
-      color: #fff;
+      background: $unhcr-blue;
+      color: $unhcr-white;
     }
   }
   .chart-item {
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     .chart-img {
       overflow: hidden;
       transition: 0.3s;
@@ -171,19 +171,12 @@ footer {
       bottom: 0;
       z-index: 3;
       transition: all ease-in-out 0.5s;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      background: rgba(35, 35, 35, 0.5);
-      padding: 10px;
+      background: rgba(35, 35, 35, 0.6);
+      padding: 0.6rem;
       .btn {
         font-size: 14px;
-        color: #fff;
-        font-weight: 500;
+        color: $unhcr-white;
         background: none;
-        padding: 4px;
-        border-radius: 0px;
       }
     }
   }
@@ -284,7 +277,7 @@ hr{
   visibility: visible;
 }
 
-//Product page
+//Product page filter
 #product {
   overflow: hidden;
   .product-menu {
@@ -297,14 +290,14 @@ hr{
       font-size: 15px;
       font-weight: 500;
       line-height: 1;
-      color: #333333;
+      color: $gray-800;
       transition: all 0.3s;
       padding: 8px 10px;
     }
     li:hover,
     li.filter-active {
-      background: $blue;
-      color: #fff;
+      background: $unhcr-blue;
+      color: $unhcr-white;
     }
   }
 }
