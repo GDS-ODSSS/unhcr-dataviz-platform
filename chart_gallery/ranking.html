@@ -20,7 +20,6 @@
         <!-- Back to top button -->
         <a id="button"></a>
 
-        <div class="scrolling" data-bs-spy="scroll" data-bs-target="#sidebar">
             <div class="container">
                 <div class="row">
                     <div class="sidebar-area col-lg-3">
@@ -39,220 +38,208 @@
                         </nav>
                     </div>
                     <div class="chart-area col-lg-9">
-                        <div data-bs-spy="scroll" data-bs-target="#sidebar" data-bs-offset="0" tabindex="0">
-                            <div id="column-ordered" class="chart-img text-center">
-                                <img src="/assets/img/ranking/column_ordered_icon.svg" class="col" alt="">
-                                <h2>Ordered column chart</h2>
-                            </div>
-                            <h4>Description</h4>
-                            <p>An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.
-                            </p>
-                            <h4>When to use</h4>
-                            <p>An ordered column is widely used to display the rank of each category being plotted. It’s an alternative to the ordered column chart when the category name is long.
-                            </p>
-                            <h4>Dos and donts</h4>
-                            <div class="dosdonts row row-cols-1 row-cols-md-2">
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/column_ordered_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Order values in descending order.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/column_ordered_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Always start with a zero baseline.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/column_ordered_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use consistent colours throughout the chart, accent colours can be used to highlight meaningful data points.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/column_ordered_dosdonts_4.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Space between bars should be roughly half of the bar width.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/column_ordered_dosdonts_5.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use horizontal labels to improve readability.</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <h4 class="tools">Tools available</h4>
-                            <a class="btn btn-primary" href="#">R</a>
-                            <a class="btn btn-primary" href="#">D3.js</a>
-                            <a class="btn btn-primary" href="#">Python</a>
-                            <a class="btn btn-primary" href="#">Power BI</a>
-                            <a class="btn btn-primary" href="#">Illustrator</a>
-                            <a class="btn btn-primary" href="#">Excel</a>
-                            <hr>
-                            <div id="bar-ordered" class="chart-img text-center">
-                                <img src="/assets/img/ranking/bar_ordered_icon.svg" class="col" alt="">
-                                <h2>Ordered bar chart</h2>
-                            </div>
-                            <h4>Description</h4>
-                            <p>An ordered bar chart is a chart in which each category is represented by a horizontal rectangle, with the length of the rectangle being ordered and proportional to the values being plotted.
-                            </p>
-
-                            <h4>When to use</h4>
-                            <p>An ordered bar is widely used to display the rank of each category being plotted.
-                            </p>
-                            <h4>Dos and donts</h4>
-                            <div class="dosdonts row row row-cols-1 row-cols-md-2">
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/bar_ordered_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Order values in descending order.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/bar_ordered_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Always start with a zero baseline.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/bar_ordered_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use consistent colours throughout the chart, accent colours can be used to highlight meaningful data points.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/bar_ordered_dosdonts_4.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Space between bars should be roughly half of the bar width.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/bar_ordered_dosdonts_5.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use horizontal labels to improve readability.
-                                        </p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <h4 class="tools">Tools available</h4>
-                            <a class="btn btn-primary" href="#">R</a>
-                            <a class="btn btn-primary" href="#">D3.js</a>
-                            <a class="btn btn-primary" href="#">Python</a>
-                            <a class="btn btn-primary" href="#">Power BI</a>
-                            <a class="btn btn-primary" href="#">Illustrator</a>
-                            <a class="btn btn-primary" href="#">Excel</a>
-                            <hr>
-                            <div id="lollipop" class="chart-img text-center">
-                                <img src="/assets/img/ranking/lollipop_icon.svg" class="col" alt="">
-                                <h2>Lollipop chart</h2>
-                            </div>
-                            <h4>Description</h4>
-                            <p>As a variant of the bar/column chart, the lollipop chart consists of lines and dots at the end to highlight the values. Like a bar chart, a lollipop chart is used to compare categorical data.
-                            </p>
-                            <h4>When to use</h4>
-                            <p>A lollipop chart is used when there is a large number of categorical data to show and compare. It can be used as an alternative to bar/column charts. It should be used only when the fine difference between values is not important. This is because the exact value is at the middle of the dot which can be difficult to identify. 
-                            </p>
-                            <h4>Dos and donts</h4>
-                            <div class="dosdonts row row-cols-1 row-cols-md-2">
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/lollipop_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Order values in descending order.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/lollipop_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Always start with a zero baseline.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/lollipop_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/lollipop_dosdonts_4.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use a horizontal lollipop chart when the category name is long.</p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <h4 class="tools">Tools available</h4>
-                            <a class="btn btn-primary" href="#">R</a>
-                            <a class="btn btn-primary" href="#">D3.js</a>
-                            <a class="btn btn-primary" href="#">Python</a>
-                            <a class="btn btn-primary" href="#">Power BI</a>
-                            <a class="btn btn-primary" href="#">Illustrator</a>
-                            <a class="btn btn-primary" href="#">Excel</a>
-                            <hr>
-                            <div id="slope" class="chart-img text-center">
-                                <img src="/assets/img/ranking/slope_icon.svg" class="col" alt="">
-                                <h2>Slope chart</h2>
-                            </div>
-                            <h4>Description</h4>
-                            <p>A slope chart looks like a <a href="/chart_gallery/change_over_time.html#line">line chart</a>, but unlike the line chart, it has only two data points for each line. The change of two data points can be easily identified with those connected lines (slope up means increase, slope down means decrease).
-                            </p>
-                            <h4>When to use</h4>
-                            <p>Slope charts can be used to show a change in a ‘before and after’ story by comparing their values at different points in time. It is a great way to show change or difference when there are only two data points. It works well with both continuous data and categorical data.
-                            </p>
-                            <h4>Dos and donts</h4>
-                            <div class="dosdonts row row-cols-1 row-cols-md-2">
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/slope_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Don’t plot too many data series, especially if similar values and slopes make it difficult to read.</p>
-                                    </div>
-                                </div>
-                                <div class="card col">
-                                    <img src="/assets/img/ranking/slope_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <h4 class="tools">Tools available</h4>
-                            <a class="btn btn-primary" href="#">R</a>
-                            <a class="btn btn-primary" href="#">D3.js</a>
-                            <a class="btn btn-primary" href="#">Python</a>
-                            <a class="btn btn-primary" href="#">Power BI</a>
-                            <a class="btn btn-primary" href="#">Illustrator</a>
-                            <a class="btn btn-primary" href="#">Excel</a>
-
+                        <div id="column-ordered" class="chart-img text-center">
+                            <img src="/assets/img/ranking/column_ordered_icon.svg" class="col" alt="">
+                            <h2>Ordered column chart</h2>
                         </div>
+                        <h4>Description</h4>
+                        <p>An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>An ordered column is widely used to display the rank of each category being plotted. It’s an alternative to the ordered column chart when the category name is long.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="card col">
+                                <img src="/assets/img/ranking/column_ordered_dosdonts_1.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Order values in descending order.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/column_ordered_dosdonts_2.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Always start with a zero baseline.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/column_ordered_dosdonts_3.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use consistent colours throughout the chart, accent colours can be used to highlight meaningful data points.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/column_ordered_dosdonts_4.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Space between bars should be roughly half of the bar width.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/column_ordered_dosdonts_5.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use horizontal labels to improve readability.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="#">R</a>
+                        <a class="btn btn-primary" href="#">D3.js</a>
+                        <a class="btn btn-primary" href="#">Python</a>
+                        <a class="btn btn-primary" href="#">Power BI</a>
+                        <a class="btn btn-primary" href="#">Illustrator</a>
+                        <a class="btn btn-primary" href="#">Excel</a>
+                        <hr>
+                        <div id="bar-ordered" class="chart-img text-center">
+                            <img src="/assets/img/ranking/bar_ordered_icon.svg" class="col" alt="">
+                            <h2>Ordered bar chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>An ordered bar chart is a chart in which each category is represented by a horizontal rectangle, with the length of the rectangle being ordered and proportional to the values being plotted.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>An ordered bar is widely used to display the rank of each category being plotted.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row row-cols-1 row-cols-md-2">
+                            <div class="card col">
+                                <img src="/assets/img/ranking/bar_ordered_dosdonts_1.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Order values in descending order.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/bar_ordered_dosdonts_2.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Always start with a zero baseline.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/bar_ordered_dosdonts_3.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use consistent colours throughout the chart, accent colours can be used to highlight meaningful data points.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/bar_ordered_dosdonts_4.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Space between bars should be roughly half of the bar width.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/bar_ordered_dosdonts_5.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use horizontal labels to improve readability.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="#">R</a>
+                        <a class="btn btn-primary" href="#">D3.js</a>
+                        <a class="btn btn-primary" href="#">Python</a>
+                        <a class="btn btn-primary" href="#">Power BI</a>
+                        <a class="btn btn-primary" href="#">Illustrator</a>
+                        <a class="btn btn-primary" href="#">Excel</a>
+                        <hr>
+                        <div id="lollipop" class="chart-img text-center">
+                            <img src="/assets/img/ranking/lollipop_icon.svg" class="col" alt="">
+                            <h2>Lollipop chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>As a variant of the bar/column chart, the lollipop chart consists of lines and dots at the end to highlight the values. Like a bar chart, a lollipop chart is used to compare categorical data.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>A lollipop chart is used when there is a large number of categorical data to show and compare. It can be used as an alternative to bar/column charts. It should be used only when the fine difference between values is not important. This is because the exact value is at the middle of the dot which can be difficult to identify. 
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="card col">
+                                <img src="/assets/img/ranking/lollipop_dosdonts_1.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Order values in descending order.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/lollipop_dosdonts_2.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Always start with a zero baseline.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/lollipop_dosdonts_3.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/lollipop_dosdonts_4.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use a horizontal lollipop chart when the category name is long.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="#">R</a>
+                        <a class="btn btn-primary" href="#">D3.js</a>
+                        <a class="btn btn-primary" href="#">Python</a>
+                        <a class="btn btn-primary" href="#">Power BI</a>
+                        <a class="btn btn-primary" href="#">Illustrator</a>
+                        <a class="btn btn-primary" href="#">Excel</a>
+                        <hr>
+                        <div id="slope" class="chart-img text-center">
+                            <img src="/assets/img/ranking/slope_icon.svg" class="col" alt="">
+                            <h2>Slope chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>A slope chart looks like a <a href="/chart_gallery/change_over_time.html#line">line chart</a>, but unlike the line chart, it has only two data points for each line. The change of two data points can be easily identified with those connected lines (slope up means increase, slope down means decrease).
+                        </p>
+                        <h4>When to use</h4>
+                        <p>Slope charts can be used to show a change in a ‘before and after’ story by comparing their values at different points in time. It is a great way to show change or difference when there are only two data points. It works well with both continuous data and categorical data.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="card col">
+                                <img src="/assets/img/ranking/slope_dosdonts_1.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Don’t plot too many data series, especially if similar values and slopes make it difficult to read.</p>
+                                </div>
+                            </div>
+                            <div class="card col">
+                                <img src="/assets/img/ranking/slope_dosdonts_2.svg"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight meaningful data points.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="#">R</a>
+                        <a class="btn btn-primary" href="#">D3.js</a>
+                        <a class="btn btn-primary" href="#">Python</a>
+                        <a class="btn btn-primary" href="#">Power BI</a>
+                        <a class="btn btn-primary" href="#">Illustrator</a>
+                        <a class="btn btn-primary" href="#">Excel</a>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <!-- Footer -->
