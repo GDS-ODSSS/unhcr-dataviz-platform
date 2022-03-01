@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/assets/css/main.min.css" rel="stylesheet" />
+    <title>UNHCR Data Visualization Platform</title>
+    <!-- TODO change icon link with final URL -->
+    <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+</head>
+
+<body class="d-flex flex-column vh-100" id="chart_gallery">
+    <!-- Navigation -->
+    <hcr-header></hcr-header>
+    <!-- End Navigation -->
+    <main class="flex-shrink-0">
+
+        <!-- Back to top button -->
+        <a id="button"></a>
+
+        <div class="scrolling" data-bs-spy="scroll" data-bs-target="#sidebar">
+            <div class="container">
+                <div class="row">
+                    <div class="sidebar-area col-lg-3">
+                        <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                            <nav class="nav nav-pills flex-column">
+                                <h5 class="navbar-title">Part-to-a-whole</h5>
+                                <a class="nav-link" href="#pie">Pie chart</a>
+                                <!-- <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+                  </nav> -->
+                                <a class="nav-link" href="#donut">Donut chart</a>
+                                <a class="nav-link" href="#100percent-column-stacked">100% stacked column chart</a>
+                                <a class="nav-link" href="#grid-plot">Grid plot</a>
+                                <a class="nav-link" href="#treemap">Treemapp</a>
+                                <a class="nav-link" href="#waterfall">Waterfall</a>
+                            </nav>
+                        </nav>
+                    </div>
+                    <div class="chart-area col-lg-9">
+                        <div data-bs-spy="scroll" data-bs-target="#sidebar" data-bs-offset="0" tabindex="0">
+                            <div id="pie" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/pie_icon.svg" class="col" alt="">
+                                <h2>Pie chart</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments. Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                Pie charts are best used for making part-to-whole comparisons with discrete or continuous data. The primary objective of a pie chart should be to compare each group’s contribution to the whole, as opposed to comparing groups to each other. If the above points are not satisfied, the pie chart is not appropriate, and a different plot type should be used instead. Furthermore, they only work well with a small number of slices, so they have a fairly narrow use case.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/pie_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure percentages add up to 100%.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/pie_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Include between two to five categories. If there are more than five, combine the smaller and less significant segments to create a fifth slice and label it “Other”. If the segments have to be represented separately, use a 100% stacked bar chart or horizontal bar chart instead.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/pie_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Sort data in descending order, starting at the 12 o'clock point and moving clockwise.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/pie_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid legend and use direct labeling.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="donut" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/donut_icon.svg" class="col" alt="">
+                                <h2>Donut chart</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                The donut chart is a variation of a <a href="#pie">pie charts</a>, with the total amount divided into categories based on a proportional value. For the most part, there aren’t significant differences between a pie chart and a donut chart, so the choice of a donut over a standard circle is mostly aesthetic. One small advantage for the ring shape is that the central area can be used to show additional information such as the total amount figure. As with pie charts, donut charts can only display a small number of slices before becoming confusing
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                Donut charts are used for the same purpose as pie charts, to make part-to-whole comparisons. Donut charts are more space-efficient than pie charts because the blank space inside a donut chart can be used to display information inside it.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/donut_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure percentages add up to 100%.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/donut_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Include between two to five categories. Include between two to five categories. If there are more than five, combine the smaller and less significant segments to create a fifth slice and label it “Other”. If the segments have to be represented separately, use a 100% stacked bar chart or horizontal bar chart instead.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/donut_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Sort data in descending order, starting at the 12 o'clock point and moving clockwise.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/donut_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid legend and use direct labeling..</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="100percent-column-stacked" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="col" alt="">
+                                <h2>100% stacked column chart</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                100% stacked column charts are similar to stacked column charts in that categories are represented as vertical bars and series as components of those bars. However, in a 100% stacked column chart, each series bar represents the percentage of the whole to which it belongs, where the total (cumulative) of each stacked bar always equals 100%. Can be a good alternative to <a href="#pie">pie charts</a>.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                100% stacked column charts can not be used for part-to-whole comparisons like pie charts but can be used to show the relative percentage of multiple data series such as how proportions change over time.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/column_stacked_100perc_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure percentages add up to 100%.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/column_stacked_100perc_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Stack no more than five categories.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/column_stacked_100perc_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Sort the data for easy comparing.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/column_stacked_100perc_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use the horizontal version with long category labels.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="grid-plot" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/gridplot_icon.svg" class="col" alt="">
+                                <h2>Grid plot</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A grid plot is a type of visualization that shows progress towards a target or a completion percentage. The value (percentage) is represented by a grid of coloured small cells. Multiple gridplot can be put together to show the differences among percentages.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                The grid plot can be used as an alternative to <a href="#pie">pie-charts</a>. It’s an easy approach to percentages that’s easier for readers to digest by eye than the angles in a pie wedge.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/gridplot_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure percentages add up to 100%</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/gridplot_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t include too many categories (ideally two categories).</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/gridplot_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid legend and use direct labelling.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="treemap" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/treemap_icon.svg" class="col" alt="">
+                                <h2>Treemap</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other. The area of the parent category is thus a sum of its sub-categories, with a clear part-to-whole relationship displayed.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                A treemap can be used to display relative expenditures within a total budget, with the area of the squares representing the percentage of amounts allocated to each budget category.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/treemap_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure percentages add up to 100%.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/treemap_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Treemaps work well only when they contain data on one level.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/treemap_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid legend and use direct labelling.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="waterfall" class="chart-img text-center">
+                                <img src="/assets/img/part_to_a_whole/waterfall_icon.svg" class="col" alt="">
+                                <h2>waterfall</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A waterfall chart shows how an initial value is affected by a series of intermediate positive or negative values. It is also known as a bridge chart, cascade chart, flying bricks chart, or Mario chart. Conventionally, the initial and the final value columns often start on the horizontal axis, while the intermediate values are floating columns. 
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                A waterfall chart is useful for understanding the gradual transition in the quantitative value of an entity that is subject to incremental changes. It can be used for various types of quantitative analysis, ranging from inventory analysis to performance analysis.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/waterfall_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Colour the floating columns properly to  distinguish diverging values (e.g. green for positive values, red for negative values).</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/waterfall_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Connect columns with dotted lines.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/part_to_a_whole/waterfall_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Label the values exactly.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <hcr-footer></hcr-footer>
+    <!-- End footer -->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main JS file -->
+    <script type="module" src="/assets/js/main.js"></script>
+
+    <!-- Vendor JS file -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/aos.js"></script>
+</body>
+
+</html>
