@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/assets/css/main.min.css" rel="stylesheet" />
+    <title>UNHCR Data Visualization Platform</title>
+    <!-- TODO change icon link with final URL -->
+    <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+</head>
+
+<body class="d-flex flex-column vh-100" id="chart_gallery">
+    <!-- Navigation -->
+    <hcr-header></hcr-header>
+    <!-- End Navigation -->
+    <main class="flex-shrink-0">
+
+        <!-- Back to top button -->
+        <a id="button"></a>
+
+        <div class="scrolling" data-bs-spy="scroll" data-bs-target="#sidebar">
+            <div class="container">
+                <div class="row">
+                    <div class="sidebar-area col-lg-3">
+                        <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                            <nav class="nav nav-pills flex-column">
+                                <h5 class="navbar-title">Comparison</h5>
+                                <a class="nav-link" href="#bubble">Bubble chart</a>
+                                <!-- <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+                  </nav> -->
+                                <a class="nav-link" href="#heatmap">Heatmap</a>
+                                <a class="nav-link" href="#scatterplot">Scatterplot</a>
+                                <a class="nav-link" href="#scatterplot-connected">Connected scatterplot</a>
+                                <a class="nav-link" href="#tree-diagram">Tree diagram</a>
+                                <a class="nav-link" href="#venn">Venn diagram</a>
+                            </nav>
+                        </nav>
+                    </div>
+                    <div class="chart-area col-lg-9">
+                        <div data-bs-spy="scroll" data-bs-target="#sidebar" data-bs-offset="0" tabindex="0">
+                            <div id="bubble" class="chart-img text-center">
+                                <img src="/assets/img/correlation/bubble_icon.svg" class="col" alt="">
+                                <h2>Bubble chart</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>A bubble chart displays multi-dimensional data in a two-dimensional plot. It can be
+                                considered as a variation of the scatterplot, in which the dots are replaced with
+                                bubbles. However, unlike a scatterplot which has only two variables defined by the X and
+                                Y axis, on a bubble chart each data point (bubble) can be assigned with a third variable
+                                (by size of bubble) and a fourth variable (by colour of bubble). Furthermore, a fifth
+                                variable (usually, time) can also be assigned by animating the data variables changing
+                                over time.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                A bubble chart is primarily used to compare and show the relationships between numeric
+                                variables, by the use of positioning and proportions. It allows the analysis of patterns
+                                or correlations of a given data set.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/bubble_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Try to limit the number of points to plot.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/bubble_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Draw bubbles with transparency.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/bubble_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t draw the size of the circle based on its radius or
+                                            diameter; use the circle’s area instead.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/bubble_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use legend and/or interactivity (by clicking or hovering
+                                            over bubble) to improve readability and understanding of the chart.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="heatmap" class="chart-img text-center">
+                                <img src="/assets/img/correlation/heatmap_icon.svg" class="col" alt="">
+                                <h2>Heatmap</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A heatmap is a type of visualization that values are depicted through variations in
+                                colour within a two-dimensional matrix of cells. It allows us to visualize complex data
+                                and understand it at a glance.
+                            </p>
+
+                            <h4>When to use</h4>
+                            <p>
+                                Heatmaps are useful for visualizing variance across multiple variables to show patterns
+                                in correlations.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/heatmap_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use an appropriate colour palette to match the data: use a
+                                            sequential palette to differentiate high values from low values; use a
+                                            diverging palette when a reference value is in the middle of the data range
+                                            such as zero.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/heatmap_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Include a legend to support the understanding of the chart.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/heatmap_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Include values in cells for static versions, when the fine
+                                            differences between variables are important..</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="scatterplot" class="chart-img text-center">
+                                <img src="/assets/img/correlation/scatterplot_icon.svg" class="col" alt="">
+                                <h2>Scatterplot</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A scatterplot is a type of visualization using Cartesian Coordinates to display two
+                                variables for a set of data. The data are displayed as a collection of dots. The
+                                position of each dot on the horizontal and vertical axis indicates the values for an
+                                individual data point.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                Scatterplots are commonly used to observe the relationship or correlation between two
+                                numeric variables. The relationships between variables can be described in many ways:
+                                positive or negative, strong or weak, linear or nonlinear. In a scatterplot, we can not
+                                only see the values through individual data points but also patterns when the data are
+                                taken as a whole.
+                            </p>
+                            <p>
+                                Typically, a scatterplot displays only two numeric variables, however additional
+                                variables can also be displayed by assigning values through colour (categorical
+                                variable), size (numeric variable), and animation (time series variable).
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid overplotting (when lots of data points overlap each other, relationships between variables will not be easy to identify).</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">If overplotting can’t be avoided, use transparency to help the reading.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t interpret correlation as causation.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">To help the analysis you could add a regression line.</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="scatterplot-connected" class="chart-img text-center">
+                                <img src="/assets/img/correlation/scatterplot_connected_icon.svg" class="col" alt="">
+                                <h2>Connectd scatterplot</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A connected scatterplot is a type of visualization that displays the evolution of a series of data points that are connected by straight line segments. In some cases, it is not the most intuitive to read; but it is impressive for storytelling.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                A connected scatterplot is often used to show a trend in data and the relationship between two variables over intervals of time. It has similar functionality as the line chart, except data points of connected scatterplot are highlighted with markers (dots). Spend more time on the design (a well-designed connected scatterplot can be a powerful tool for storytelling).
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_connected_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use an arrow line to indicate the direction of evolution when a third ordered variable (very often time) is assigned.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_connected_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use an appropriate measurement interval.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/scatterplot_connected_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t plot too many data series.</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="tree-diagram" class="chart-img text-center">
+                                <img src="/assets/img/correlation/tree_diagram_icon.svg" class="col" alt="">
+                                <h2>Tree diagram</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A tree diagram is a graphical representation that displays hierarchical data in a tree-like structure. The diagram has connecting lines extending from a root node, a member that has no superior/parent. Then the connecting lines (also called “branches”) link other nodes together to show the relationship between the members. Finally, there are the leaf nodes (also called “end-nodes”) being the members with no further extensions.
+
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                Tree diagrams are often used to display organizational hierarchy such as organization charts which give clear information on reporting lines and structure. They can also be used to show family relations and descent (known as a “family tree”).
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/tree_diagram_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use simple shapes such as rectangles or circles as nodes.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/tree_diagram_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use consistent colours throughout the chart.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/tree_diagram_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Build the diagram from the root node from top to bottom or from left to right.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/tree_diagram_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Each node can only have one connection in the hierarchy to the top (except the root node).</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                            <hr>
+                            <div id="venn" class="chart-img text-center">
+                                <img src="/assets/img/correlation/venn_diagram_icon.svg" class="col" alt="">
+                                <h2>Venn diagram</h2>
+                            </div>
+                            <h4>Description</h4>
+                            <p>
+                                A Venn diagram (or set diagram) is a type of diagram that displays overlapping shapes (typically circles) to illustrate all possible logical relationships between two or more sets of items. The area of overlap is known as the area of intersection. This is where items are in common between the sets.
+                            </p>
+                            <h4>When to use</h4>
+                            <p>
+                                Venn diagrams are widely used in mathematics, statistics, computer science, and business to show relationships between multiple sets. It is an effective way to organize things graphically, and highlight how the items are similar and different.
+                            </p>
+                            <h4>Dos and donts</h4>
+                            <div class="dosdonts row row-cols-1 row-cols-md-2">
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/venn_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use contrasting colours for different sets.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/venn_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use transparency to allow clear distinction of the intersections.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/venn_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure text labels are clear and visible.</p>
+                                    </div>
+                                </div>
+                                <div class="card col">
+                                    <img src="/assets/img/correlation/venn_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t display too many sets in a single diagram.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="tools">Tools available</h4>
+                            <a class="btn btn-primary" href="#">R</a>
+                            <a class="btn btn-primary" href="#">D3.js</a>
+                            <a class="btn btn-primary" href="#">Python</a>
+                            <a class="btn btn-primary" href="#">Power BI</a>
+                            <a class="btn btn-primary" href="#">Illustrator</a>
+                            <a class="btn btn-primary" href="#">Excel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <hcr-footer></hcr-footer>
+    <!-- End footer -->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main JS file -->
+    <script type="module" src="/assets/js/main.js"></script>
+
+    <!-- Vendor JS file -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/aos.js"></script>
+</body>
+
+</html>
