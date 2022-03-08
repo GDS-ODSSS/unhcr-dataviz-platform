@@ -5,59 +5,68 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/assets/css/main.min.css" rel="stylesheet" />
-    <title>UNHCR Data Visualization Platform</title>
-    <!-- TODO change icon link with final URL -->
-    <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+    <meta name="author" content="IPDA/GDS">
+    <title>UNHCR Dataviz - Flow</title>
+    <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+    <!-- prism CSS file -->
+    <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+    <!-- prism JS file -->
+    <script src="/assets/js/vendor/prism.min.js"></script>
+    <!-- jquery JS file -->
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <!-- d3 JS file -->
+    <script src="/assets/js/vendor/d3.min.js"></script>
+    <!-- parser JS file -->
+    <script src="/assets/js/vendor/parser.js"></script>
 </head>
 
-<body class="d-flex flex-column vh-100" id="chart_gallery">
+<body class="d-flex flex-column vh-100">
     <!-- Navigation -->
     <hcr-header></hcr-header>
     <!-- End Navigation -->
-    <main class="flex-shrink-0">
+
+    <!-- Main -->
+    <main id="chart_gallery" class="d-flex flex-column min-vh-100 flex-shrink-0">
 
         <!-- Back to top button -->
-        <a id="button"></a>
+        <a id="back-to-top"></a>
 
-            <div class="container">
-                <div class="row">
-                    <div class="sidebar-area col-lg-3">
-                        <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
-                            <nav class="nav nav-pills flex-column">
-                                <h5 class="navbar-title">Flow</h5>
-                                <a class="nav-link" href="#sankey-diagram">Sankey diagram</a>
-                                <!-- <nav class="nav nav-pills flex-column">
-                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
-                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
-                  </nav> -->
-                                <a class="nav-link" href="#chord-diagram">Chord diagram</a>
-                                <a class="nav-link" href="#flow-map">Flow map</a>
-                                <a class="nav-link" href="#arc-diagram">Arc diagram</a>
-                                <a class="nav-link" href="#flow-diagram">Flow diagram</a>
-                            </nav>
+        <div class="container my-5">
+            <div class="row">
+                <div class="sidebar-area col-lg-3">
+                    <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                        <nav class="nav nav-pills flex-column">
+                            <h5 class="navbar-title">Flow</h5>
+                            <a class="nav-link" href="#sankey-diagram">Sankey diagram</a>
+                            <a class="nav-link" href="#chord-diagram">Chord diagram</a>
+                            <a class="nav-link" href="#flow-map">Flow map</a>
+                            <a class="nav-link" href="#arc-diagram">Arc diagram</a>
+                            <a class="nav-link" href="#flow-diagram">Flow diagram</a>
                         </nav>
-                    </div>
-                    <div class="chart-area col-lg-9">
-                        <div id="sankey-diagram" class="chart-img text-center">
-                            <img src="/assets/img/flow/sankey_diagram_icon.svg" class="col" alt="">
+                    </nav>
+                </div>
+                <div class="chart-area col-lg-9">
+                    <section id="sankey-diagram" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/flow/sankey_diagram_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Sankey diagram</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>Sankey diagrams are a type of flow diagram that shows movement direction and flow
-                            quantity through arrows or lines. The width of the arrow or line shows magnitude; the
-                            thicker the arrow or line, the larger the quantity of flow. Flow arrows or lines can
-                            combine or separate their paths as they move along a process, and colours may be used to
-                            show different categories of movement or to divide different stages in a process.
-                        </p>
-                        <h4>When to use</h4>
-                        <p>Sankey Diagrams are commonly used to visually show the movement of population from one
-                            place to another, but they can also be used to show the flow of any isolated system
-                            process.
-                        </p>
-                        <h4>Dos and donts</h4>
-                        <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
+                    <p>Sankey diagrams are a type of flow diagram that shows movement direction and flow
+                        quantity through arrows or lines. The width of the arrow or line shows magnitude; the
+                        thicker the arrow or line, the larger the quantity of flow. Flow arrows or lines can
+                        combine or separate their paths as they move along a process, and colours may be used to
+                        show different categories of movement or to divide different stages in a process.
+                    </p>
+                    <h4>When to use</h4>
+                    <p>Sankey Diagrams are commonly used to visually show the movement of population from one
+                        place to another, but they can also be used to show the flow of any isolated system
+                        process.
+                    </p>
+                    <h4>Dos and donts</h4>
+                    <div class="dosdonts row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/sankey_diagram_dosdonts_1.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
@@ -65,14 +74,18 @@
                                         categories, which helps in making comparisons and distinguishing groups.</p>
                                 </div>
                             </div>
-                            <div class="card col">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/sankey_diagram_dosdonts_2.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Apply transparency to the colours.</p>
                                 </div>
                             </div>
-                            <div class="card col">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/sankey_diagram_dosdonts_3.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
@@ -82,165 +95,167 @@
                                         chart.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/sankey_diagram_dosdonts_4.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Keep it simple. Since not everyone is familiar with this
-                                        visualization type, complex Sankey diagrams may require explanation. </p>
-                                </div>
-                            </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/sankey_diagram_dosdonts_5.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Minimise the number of crossing arcs by carefully ordering
-                                        the groups on either side of the diagram.</p>
-                                </div>
-                            </div>
                         </div>
-                        <h4 class="tools">Tools available</h4>
-                        <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a>
-                        <a class="btn btn-primary" href="#">Python</a>
-                        <a class="btn btn-primary" href="#">Power BI</a>
-                        <a class="btn btn-primary" href="#">Illustrator</a>
-                        <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="chord-diagram" class="chart-img text-center">
-                            <img src="/assets/img/flow/chord_diagram_icon.svg" class="col" alt="">
+                        <div class="col">
+                            <ul>
+                                <li>Keep it simple. Since not everyone is familiar with this
+                                    visualization type, complex Sankey diagrams may require explanation.</li>
+                                <li>Minimise the number of crossing arcs by carefully ordering
+                                    the groups on either side of the diagram.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 class="tools">Tools available</h4>
+                    <a class="btn btn-primary" href="#">R</a>
+                    <a class="btn btn-primary" href="#">D3.js</a>
+                    <a class="btn btn-primary" href="#">Python</a>
+                    <a class="btn btn-primary" href="#">Power BI</a>
+                    <a class="btn btn-primary" href="#">Illustrator</a>
+                    <a class="btn btn-primary" href="#">Excel</a>
+                    </section>
+                    <hr>
+                    <section id="chord-diagram" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/flow/chord_diagram_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Chord diagram</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>Chord diagrams visualize flows and relationships between multiple entities. Entities are
-                            arranged radially around a circle, with the relationships between them connected to each
-                            other using arcs. Values are assigned to each connection, which is represented
-                            proportionally by the size of each arc.
-                        </p>
-                        <h4>When to use</h4>
-                        <p>Chord diagrams can be used to show the flows and relationship between the datasets such
-                            as displacement of refugees from one country to another. Chord diagrams are eye-catching
-                            which makes them popular among different visualization types. However, they could become
-                            quickly cluttered and unreadable when visualizing larger datasets.
-                        </p>
-                        <h4>Dos and donts</h4>
-                        <div class="dosdonts row row row-cols-1 row-cols-md-2">
-                            <div class="card col">
+                    <p>Chord diagrams visualize flows and relationships between multiple entities. Entities are
+                        arranged radially around a circle, with the relationships between them connected to each
+                        other using arcs. Values are assigned to each connection, which is represented
+                        proportionally by the size of each arc.
+                    </p>
+                    <h4>When to use</h4>
+                    <p>Chord diagrams can be used to show the flows and relationship between the datasets such
+                        as displacement of refugees from one country to another. Chord diagrams are eye-catching
+                        which makes them popular among different visualization types. However, they could become
+                        quickly cluttered and unreadable when visualizing larger datasets.
+                    </p>
+                    <h4>Dos and donts</h4>
+                    <div class="dosdonts row row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/chord_diagram_dosdonts_1.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Apply transparency to the colours.</p>
                                 </div>
                             </div>
-                            <div class="card col">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/chord_diagram_dosdonts_2.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Use distinct colours to group the entities into different
-                                        categories, which helps in making comparisons and distinguishing groups.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/chord_diagram_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Minimize the number of crossing arcs, by carefully ordering
-                                        groups around the circle.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/chord_diagram_dosdonts_4.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Keep it simple. Since not everyone is familiar with this
-                                        visualization type, complex chord diagrams may require explanation.
-                                    </p>
+                                        categories, which helps in making comparisons and distinguishing groups.</p>
                                 </div>
                             </div>
                         </div>
-                        <h4 class="tools">Tools available</h4>
-                        <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a>
-                        <a class="btn btn-primary" href="#">Python</a>
-                        <a class="btn btn-primary" href="#">Power BI</a>
-                        <a class="btn btn-primary" href="#">Illustrator</a>
-                        <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="flow-map" class="chart-img text-center">
-                            <img src="/assets/img/flow/flow_map_icon.svg" class="col" alt="">
+                        <div class="col">
+                            <ul>
+                                <li>Minimize the number of crossing arcs, by carefully ordering
+                                    groups around the circle.</li>
+                                <li>Keep it simple. Since not everyone is familiar with this
+                                    visualization type, complex chord diagrams may require explanation.</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <h4 class="tools">Tools available</h4>
+                    <a class="btn btn-primary" href="#">R</a>
+                    <a class="btn btn-primary" href="#">D3.js</a>
+                    <a class="btn btn-primary" href="#">Python</a>
+                    <a class="btn btn-primary" href="#">Power BI</a>
+                    <a class="btn btn-primary" href="#">Illustrator</a>
+                    <a class="btn btn-primary" href="#">Excel</a>
+                    </section>
+                    <hr>
+                    <section id="flow-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/flow/flow_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Flow map</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>Flow maps show the flow of objects from one geographical location to another and their
-                            quantity. The arrows show direction, while the width illustrates the quantity. This
-                            helps to show how objects move geographically.
-                        </p>
-                        <h4>When to use</h4>
-                        <p>Flow maps are most frequently used to show the movement of population, but also animal
-                            migrations, money flow, the traffic of goods, etc.
-                        </p>
-                        <h4>Dos and donts</h4>
-                        <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_map_dosdonts_1.svg" class="card-img-top img-fluid"
-                                    alt="...">
+                    <p>Flow maps show the flow of objects from one geographical location to another and their
+                        quantity. The arrows show direction, while the width illustrates the quantity. This
+                        helps to show how objects move geographically.
+                    </p>
+                    <h4>When to use</h4>
+                    <p>Flow maps are most frequently used to show the movement of population, but also animal
+                        migrations, money flow, the traffic of goods, etc.
+                    </p>
+                    <h4>Dos and donts</h4>
+                    <div class="dosdonts row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_map_dosdonts_1.svg"
+                                    class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Use curved lines to show movement instead of straight
                                         lines.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_map_dosdonts_2.svg" class="card-img-top img-fluid"
-                                    alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_map_dosdonts_2.svg"
+                                    class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
-                                    <p class="card-text">​​​​Use headed arrows.</p>
+                                    <p class="card-text">Use headed arrows.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_map_dosdonts_3.svg" class="card-img-top img-fluid"
-                                    alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_map_dosdonts_3.svg"
+                                    class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Make the arrows’ width proportional to flow rate.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_map_dosdonts_4.svg" class="card-img-top img-fluid"
-                                    alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_map_dosdonts_4.svg"
+                                    class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Make sure flows and arrowheads don’t overlap.</p>
                                 </div>
                             </div>
                         </div>
-                        <h4 class="tools">Tools available</h4>
-                        <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a>
-                        <a class="btn btn-primary" href="#">Python</a>
-                        <a class="btn btn-primary" href="#">Power BI</a>
-                        <a class="btn btn-primary" href="#">Illustrator</a>
-                        <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="arc-diagram" class="chart-img text-center">
-                            <img src="/assets/img/flow/arc_diagram_icon.svg" class="col" alt="">
+                        
+                    </div>
+                    <h4 class="tools">Tools available</h4>
+                    <a class="btn btn-primary" href="#">R</a>
+                    <a class="btn btn-primary" href="#">D3.js</a>
+                    <a class="btn btn-primary" href="#">Python</a>
+                    <a class="btn btn-primary" href="#">Power BI</a>
+                    <a class="btn btn-primary" href="#">Illustrator</a>
+                    <a class="btn btn-primary" href="#">Excel</a>
+                    </section>
+                    <hr>
+                    <section id="arc-diagram" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/flow/arc_diagram_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Arc diagram</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>Arc diagrams are two-dimensional informative network diagrams showing the connection and
-                            flow between entities (nodes). It consists of two elements i.e. nodes and links. Nodes
-                            represent the entities of the data. It is presented on a single horizontal line (a
-                            one-dimensional axis). Arcs are used as links intended to show flow or connection
-                            between the nodes. The width of the arc line and the size of nodes can be used to add
-                            further details such as quantity or frequency of connection or movement between
-                            entities.
-                        </p>
-                        <h4>When to use</h4>
-                        <p>Arc Diagrams are ideal for visualizing networks, connections, and flow between different
-                            entities of information and the distribution of connections.
-                        </p>
-                        <h4>Dos and donts</h4>
-                        <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
+                    <p>Arc diagrams are two-dimensional informative network diagrams showing the connection and
+                        flow between entities (nodes). It consists of two elements i.e. nodes and links. Nodes
+                        represent the entities of the data. It is presented on a single horizontal line (a
+                        one-dimensional axis). Arcs are used as links intended to show flow or connection
+                        between the nodes. The width of the arc line and the size of nodes can be used to add
+                        further details such as quantity or frequency of connection or movement between
+                        entities.
+                    </p>
+                    <h4>When to use</h4>
+                    <p>Arc Diagrams are ideal for visualizing networks, connections, and flow between different
+                        entities of information and the distribution of connections.
+                    </p>
+                    <h4>Dos and donts</h4>
+                    <div class="dosdonts row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card border-0">
                                 <img src="/assets/img/flow/arc_diagram_dosdonts_1.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
@@ -248,84 +263,96 @@
                                         might make the diagram too cluttered to understand.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/arc_diagram_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Don’t use arc diagrams to show the exact structure or
-                                        connections between nodes.</p>
-                                </div>
-                            </div>
                         </div>
-                        <h4 class="tools">Tools available</h4>
-                        <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a>
-                        <a class="btn btn-primary" href="#">Python</a>
-                        <a class="btn btn-primary" href="#">Power BI</a>
-                        <a class="btn btn-primary" href="#">Illustrator</a>
-                        <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="flow-diagram" class="chart-img text-center">
-                            <img src="/assets/img/flow/flow_chart_icon.svg" class="col" alt="">
+                        <div class="col">
+                            <ul>
+                                <li>Don’t use arc diagrams to show the exact structure or
+                                    connections between nodes.</li>
+                            </ul>
+                        </div> 
+                    </div>
+                    <h4 class="tools">Tools available</h4>
+                    <a class="btn btn-primary" href="#">R</a>
+                    <a class="btn btn-primary" href="#">D3.js</a>
+                    <a class="btn btn-primary" href="#">Python</a>
+                    <a class="btn btn-primary" href="#">Power BI</a>
+                    <a class="btn btn-primary" href="#">Illustrator</a>
+                    <a class="btn btn-primary" href="#">Excel</a>
+                    </section>
+                    <hr>
+                    <section id="flow-diagram" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/flow/flow_diagram_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Flow diagram</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>Flow charts show the sequential steps of a defined process. Flow charts can effectively simplify complex or abstract procedures for communication. The process is mapped out using connected symbols, such as arrows, indicating the direction of the next step. Boxes around steps sometimes use different shapes to differentiate the type of step. These symbols are standardized in order to make interpretation of these charts easier. Details of each step are written within the symbols to clarify and explain the process.
-                        </p>
-                        <h4>When to use</h4>
-                        <p>Flow charts are widely used in multiple fields to document, study, plan, improve and communicate complex processes in clear, easy-to-understand diagrams. 
-                        </p>
-                        <h4>Dos and donts</h4>
-                        <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_chart_dosdonts_1.svg"
+                    <p>Flow charts show the sequential steps of a defined process. Flow charts can effectively simplify
+                        complex or abstract procedures for communication. The process is mapped out using connected
+                        symbols, such as arrows, indicating the direction of the next step. Boxes around steps sometimes
+                        use different shapes to differentiate the type of step. These symbols are standardized in order
+                        to make interpretation of these charts easier. Details of each step are written within the
+                        symbols to clarify and explain the process.
+                    </p>
+                    <h4>When to use</h4>
+                    <p>Flow charts are widely used in multiple fields to document, study, plan, improve and communicate
+                        complex processes in clear, easy-to-understand diagrams.
+                    </p>
+                    <h4>Dos and donts</h4>
+                    <div class="dosdonts row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_diagram_dosdonts_1.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
-                                    <p class="card-text">Use consistent design elements (shapes, lines and texts) within a flowchart. </p>
+                                    <p class="card-text">Use consistent design elements (shapes, lines and texts) within a
+                                        flowchart.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_chart_dosdonts_2.svg"
+                        </div>
+                        <div class="col">
+                            <div class="card border-0">
+                                <img src="/assets/img/flow/flow_diagram_dosdonts_2.svg"
                                     class="card-img-top img-fluid" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Flow data from left to right.</p>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/flow/flow_chart_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Keep it simple and avoid complicated flow charts (one-page maximum).</p>
-                                </div>
-                            </div>
                         </div>
-                        <h4 class="tools">Tools available</h4>
-                        <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a>
-                        <a class="btn btn-primary" href="#">Python</a>
-                        <a class="btn btn-primary" href="#">Power BI</a>
-                        <a class="btn btn-primary" href="#">Illustrator</a>
-                        <a class="btn btn-primary" href="#">Excel</a>
+                        <div class="col">
+                            <ul>
+                                <li>Keep it simple and avoid complicated flow charts (one-page
+                                    maximum).</li>
+                            </ul>
+                        </div>
                     </div>
+                    <h4 class="tools">Tools available</h4>
+                    <a class="btn btn-primary" href="#">R</a>
+                    <a class="btn btn-primary" href="#">D3.js</a>
+                    <a class="btn btn-primary" href="#">Python</a>
+                    <a class="btn btn-primary" href="#">Power BI</a>
+                    <a class="btn btn-primary" href="#">Illustrator</a>
+                    <a class="btn btn-primary" href="#">Excel</a>
+                    </section>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- Footer -->
     <hcr-footer></hcr-footer>
     <!-- End footer -->
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <!-- bs/popper bundle -->
+    <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- UNHCR includes header/footer JS file -->
+    <script type="module" src="/assets/js/unhcrincludes.js"></script>
+    <!-- UNHCR main JS file -->
+    <script type="module" src="/assets/js/unhcrmain.js"></script>
 
-    <!-- Main JS file -->
-    <script type="module" src="/assets/js/main.js"></script>
+    <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <!-- End scripts -->
 
-    <!-- Vendor JS file -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
-    <script src="/assets/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/js/aos.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,57 @@
+// General
+body {
+  position: relative;
+}
+.container {
+  max-width: 1200px;
+}
+.title,
+.author,
+.date {
+  display: none;
+}
+.bg-navy {
+  background-color: $unhcr-navy;
+}
+.bg-yellow {
+  background-color: $unhcr-yellow;
+}
+
+.short-hr {
+  width: 3rem;
+  height: 0.2rem !important;
+  border: none;
+  color: $unhcr-blue;
+  background-color: $unhcr-blue;
+  opacity: 1;
+  margin: 0 auto 1rem;
+}
+
+// Typography
+li::marker {
+  color: $unhcr-blue;
+}
+
+// Button
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: $unhcr-white;
+  background-color: $unhcr-darkgrey;
+  border-color: $unhcr-white;
+}
+
+// Chart description page
+.chart-area {
+  h4 {
+    margin-top: 2rem;
+  }
+  .card-body{
+    padding: 0.5rem 0rem 1rem;
+  }
+  .card-body,
+  ul {
+    color: $gray-600;
+  }
+}
+

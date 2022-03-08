@@ -5,77 +5,103 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/assets/css/main.min.css" rel="stylesheet" />
-    <title>UNHCR Data Visualization Platform</title>
-    <!-- TODO change icon link with final URL -->
-    <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+    <meta name="author" content="IPDA/GDS">
+    <title>UNHCR Dataviz - Distribution</title>
+    <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+    <!-- prism CSS file -->
+    <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+    <!-- prism JS file -->
+    <script src="/assets/js/vendor/prism.min.js"></script>
+    <!-- jquery JS file -->
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <!-- d3 JS file -->
+    <script src="/assets/js/vendor/d3.min.js"></script>
+    <!-- parser JS file -->
+    <script src="/assets/js/vendor/parser.js"></script>
 </head>
 
-<body class="d-flex flex-column vh-100" id="chart_gallery">
+<body class="d-flex flex-column vh-100">
     <!-- Navigation -->
     <hcr-header></hcr-header>
     <!-- End Navigation -->
-    <main class="flex-shrink-0">
+
+    <!-- Main -->
+    <main id="chart_gallery" class="d-flex flex-column min-vh-100 flex-shrink-0">
 
         <!-- Back to top button -->
-        <a id="button"></a>
+        <a id="back-to-top"></a>
 
-            <div class="container">
-                <div class="row">
-                    <div class="sidebar-area col-lg-3">
-                        <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
-                            <nav class="nav nav-pills flex-column">
-                                <h5 class="navbar-title">Distribution</h5>
-                                <a class="nav-link" href="#histogram">Histogram</a>
-                                <!-- <nav class="nav nav-pills flex-column">
-                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
-                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
-                  </nav> -->
-                                <a class="nav-link" href="#population-pyramid">Population pyramid</a>
-                                <a class="nav-link" href="#boxplot">Boxplot</a>
-                                <a class="nav-link" href="#dotplot">Dot plot</a>
-                            </nav>
+        <div class="container my-5">
+            <div class="row">
+                <div class="sidebar-area col-lg-3">
+                    <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                        <nav class="nav nav-pills flex-column">
+                            <h5 class="navbar-title">Distribution</h5>
+                            <a class="nav-link" href="#histogram">Histogram</a>
+                            <a class="nav-link" href="#population-pyramid">Population pyramid</a>
+                            <a class="nav-link" href="#boxplot">Boxplot</a>
+                            <a class="nav-link" href="#dotplot">Dot plot</a>
                         </nav>
-                    </div>
-                    <div class="chart-area col-lg-9">
-                        <div id="histogram" class="chart-img text-center">
-                            <img src="/assets/img/distribution/histogram_icon.svg" class="col" alt="">
+                    </nav>
+                </div>
+                <div class="chart-area col-lg-9">
+                    <section id="histogram" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/distribution/histogram_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Histogram</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>A histogram displays the distribution of data over a continuous interval or specific time period. The height of each bar in a histogram indicates the frequency of data points within the interval/bin. It’s a great tool to identify where values are concentrated, or if there are extreme values or gaps in the dataset.
+                        <p>A histogram displays the distribution of data over a continuous interval or specific time
+                            period.
+                            The height of each bar in a histogram indicates the frequency of data points within the
+                            interval/bin. It’s a great tool to identify where values are concentrated, or if there are
+                            extreme values or gaps in the dataset.
                         </p>
                         <h4>When to use</h4>
-                        <p>Histograms are good for showing the general distribution of dataset variables. You can see roughly where the peaks of the distribution are, whether the distribution is skewed or symmetric and if there are any outliers.
+                        <p>Histograms are good for showing the general distribution of dataset variables. You can see
+                            roughly where the peaks of the distribution are, whether the distribution is skewed or
+                            symmetric
+                            and if there are any outliers.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/distribution/histogram_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Always start at a zero baseline.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/histogram_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Always start at a zero baseline.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/histogram_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use an appropriate number of bins and interpretable bin boundaries.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/histogram_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use an appropriate number of bins and interpretable bin
+                                            boundaries.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/histogram_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Don’t use unequal bin sizes.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/histogram_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t use unequal bin sizes.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/histogram_dosdonts_4.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Don’t use histograms for non-continuous data (use bar/column chart instead).</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/histogram_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t use histograms for non-continuous data (use
+                                            bar/column chart
+                                            instead).</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,32 +112,46 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="population-pyramid" class="chart-img text-center">
-                            <img src="/assets/img/distribution/population_pyramid_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="population-pyramid" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/distribution/population_pyramid_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Population pyramid</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>A population pyramid consists of two histograms, one for each gender (conventionally, males on the left and females on the right) where the population numbers are shown horizontally (X-axis) and the age vertically (Y-axis). The values can be displayed either as a percentage of the total population or as a raw number.
+                        <p>A population pyramid consists of two histograms, one for each gender (conventionally, males
+                            on
+                            the left and females on the right) where the population numbers are shown horizontally
+                            (X-axis)
+                            and the age vertically (Y-axis). The values can be displayed either as a percentage of the
+                            total
+                            population or as a raw number.
                         </p>
                         <h4>When to use</h4>
-                        <p>Population pyramids are the most effective visualization to analyze changes or differences in population groups. From the population pyramid, information about the population broken down by age and sex can be identified, which can also lead to other aspects of the population.
+                        <p>Population pyramids are the most effective visualization to analyze changes or differences in
+                            population groups. From the population pyramid, information about the population broken down
+                            by
+                            age and sex can be identified, which can also lead to other aspects of the population.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/distribution/population_pyramid_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use consistent colour to represent the same gender.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/population_pyramid_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use consistent colour to represent the same gender.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/population_pyramid_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Sort value in descending order by age group.
-                                    </p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/population_pyramid_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Sort value in descending order by age group.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,38 +162,66 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="boxplot" class="chart-img text-center">
-                            <img src="/assets/img/distribution/boxplot_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="boxplot" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/distribution/boxplot_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Boxplot</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>The boxplot (also known as a box and whisker plot) uses boxes and lines to show the distributions of one or more groups of numeric data based on a 5-point summary of data points: the upper extreme (“maximum”), upper quartile (Q3), median, lower quartile(Q1), and lower extreme (minimum) values. Through these five values, the boxplot provides information regarding the variability and skewness of the distribution. Box limits indicate the range of the central 50% of the data, with a central line marking the median value. Lines extend from each box to capture the range of the remaining data, with dots placed past the line edges to indicate outliers.
+                        <p>The boxplot (also known as a box and whisker plot) uses boxes and lines to show the
+                            distributions
+                            of one or more groups of numeric data based on a 5-point summary of data points: the upper
+                            extreme (“maximum”), upper quartile (Q3), median, lower quartile(Q1), and lower extreme
+                            (minimum) values. Through these five values, the boxplot provides information regarding the
+                            variability and skewness of the distribution. Box limits indicate the range of the central
+                            50%
+                            of the data, with a central line marking the median value. Lines extend from each box to
+                            capture
+                            the range of the remaining data, with dots placed past the line edges to indicate outliers.
                         </p>
                         <h4>When to use</h4>
-                        <p>Boxplots are used to show distributions of numeric data values, especially when you want to compare them between multiple groups. They are built to provide high-level information at a glance, offering general information about a dataset’s symmetry, skew, variance, and outliers. They allow for a comparison of data from different categories for easier, more effective decision-making.
+                        <p>Boxplots are used to show distributions of numeric data values, especially when you want to
+                            compare them between multiple groups. They are built to provide high-level information at a
+                            glance, offering general information about a dataset’s symmetry, skew, variance, and
+                            outliers.
+                            They allow for a comparison of data from different categories for easier, more effective
+                            decision-making.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/distribution/boxplot_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Order the groups when they don’t have inherent order (for example, sorting groups by median).</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/boxplot_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Order the groups when they don’t have inherent order (for
+                                            example,
+                                            sorting groups by median).</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/boxplot_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use horizontal boxplot when there are a lot of groups to plot, or if the group names are long.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/boxplot_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use horizontal boxplot when there are a lot of groups to
+                                            plot, or
+                                            if the group names are long.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/distribution/boxplot_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Avoid using boxplots if you want to show the distribution in only one group. A histogram is recommended in this case.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/boxplot_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid using boxplots if you want to show the distribution
+                                            in only
+                                            one group. A histogram is recommended in this case.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,24 +232,30 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="dotplot" class="chart-img text-center">
-                            <img src="/assets/img/distribution/dotplot_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="dotplot" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/distribution/dotplot_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Dot plot</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>A dot plot is a type of graph in which the dots are connected to show changes or differences. It’s an alternative to the grouped bar chart or slope chart.
+                        <p>A dot plot is a type of graph in which the dots are connected to show changes or differences.
+                            It’s an alternative to the grouped bar chart or slope chart.
                         </p>
                         <h4>When to use</h4>
-                        <p>Dot plot can be used for displaying changes between two points in time, two conditions, or differences between two groups.
+                        <p>Dot plot can be used for displaying changes between two points in time, two conditions, or
+                            differences between two groups.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/distribution/dotplot_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use a horizontal dot plot if the category name is long.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/distribution/dotplot_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use a horizontal dot plot if the category name is long.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,26 +266,27 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                    </div>
+                    </section>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- Footer -->
     <hcr-footer></hcr-footer>
     <!-- End footer -->
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <!-- bs/popper bundle -->
+    <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- UNHCR includes header/footer JS file -->
+    <script type="module" src="/assets/js/unhcrincludes.js"></script>
+    <!-- UNHCR main JS file -->
+    <script type="module" src="/assets/js/unhcrmain.js"></script>
 
-    <!-- Main JS file -->
-    <script type="module" src="/assets/js/main.js"></script>
+    <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <!-- End scripts -->
 
-    <!-- Vendor JS file -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
-    <script src="/assets/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/js/aos.js"></script>
 </body>
 
 </html>

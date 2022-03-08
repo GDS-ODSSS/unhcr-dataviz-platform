@@ -5,89 +5,110 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/assets/css/main.min.css" rel="stylesheet" />
-    <title>UNHCR Data Visualization Platform</title>
-    <!-- TODO change icon link with final URL -->
-    <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+    <meta name="author" content="IPDA/GDS">
+    <title>UNHCR Dataviz - Geospatial</title>
+    <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+    <!-- prism CSS file -->
+    <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+    <!-- prism JS file -->
+    <script src="/assets/js/vendor/prism.min.js"></script>
+    <!-- jquery JS file -->
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <!-- d3 JS file -->
+    <script src="/assets/js/vendor/d3.min.js"></script>
+    <!-- parser JS file -->
+    <script src="/assets/js/vendor/parser.js"></script>
 </head>
 
-<body class="d-flex flex-column vh-100" id="chart_gallery">
+<body class="d-flex flex-column vh-100">
     <!-- Navigation -->
     <hcr-header></hcr-header>
     <!-- End Navigation -->
-    <main class="flex-shrink-0">
+
+    <!-- Main -->
+    <main id="chart_gallery" class="d-flex flex-column min-vh-100 flex-shrink-0">
 
         <!-- Back to top button -->
-        <a id="button"></a>
+        <a id="back-to-top"></a>
 
-            <div class="container">
-                <div class="row">
-                    <div class="sidebar-area col-lg-3">
-                        <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
-                            <nav class="nav nav-pills flex-column">
-                                <h5 class="navbar-title">Geospatial</h5>
-                                <a class="nav-link" href="#choropleth">Choropleth map</a>
-                                <!-- <nav class="nav nav-pills flex-column">
-                    <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
-                    <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
-                  </nav> -->
-                                <a class="nav-link" href="#bubble-map">Bubble map</a>
-                                <a class="nav-link" href="#flow-map">Flow map</a>
-                                <a class="nav-link" href="#icon-map">Icon map</a>
-                                <a class="nav-link" href="#dot-density-map">Dot density map</a>
-                                <a class="nav-link" href="#pie-map">Pie chart map</a>
-                            </nav>
+        <div class="container my-5">
+            <div class="row">
+                <div class="sidebar-area col-lg-3">
+                    <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                        <nav class="nav nav-pills flex-column">
+                            <h5 class="navbar-title">Geospatial</h5>
+                            <a class="nav-link" href="#choropleth">Choropleth map</a>
+                            <a class="nav-link" href="#bubble-map">Bubble map</a>
+                            <a class="nav-link" href="#flow-map">Flow map</a>
+                            <a class="nav-link" href="#icon-map">Icon map</a>
+                            <a class="nav-link" href="#dot-density-map">Dot density map</a>
+                            <a class="nav-link" href="#pie-map">Pie chart map</a>
                         </nav>
-                    </div>
-                    <div class="chart-area col-lg-9">
-                        <div id="choropleth" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/choropleth_map_icon.svg" class="col" alt="">
+                    </nav>
+                </div>
+                <div class="chart-area col-lg-9">
+                    <section id="choropleth" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/choropleth_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Choropleth map</h2>
                         </div>
                         <h4>Description</h4>
-                        <p>A choropleth map is a type of thematic map in which areas are shaded or patterned according to a data variable. The variable is categorized into intervals, with each interval represented by a colour, and the map filled accordingly. Colour progression is used to represent the differences, often blending from dark to light or one colour to another. The choropleth map provides an easy way to show how a measurement varies across a geographic area, or the level of variability within a region.
+                        <p>A choropleth map is a type of thematic map in which areas are shaded or patterned according
+                            to a
+                            data variable. The variable is categorized into intervals, with each interval represented by
+                            a
+                            colour, and the map filled accordingly. Colour progression is used to represent the
+                            differences,
+                            often blending from dark to light or one colour to another. The choropleth map provides an
+                            easy
+                            way to show how a measurement varies across a geographic area, or the level of variability
+                            within a region.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            Choropleth maps are great to show geographical patterns in the data. If the data doesn’t show a clear geographical pattern, consider another chart type for the data. Choropleth maps work best when geographic regions are fairly consistent in size. Otherwise, larger areas appear more emphasized, which could result in misinterpretation.
+                            Choropleth maps are great to show geographical patterns in the data. If the data doesn’t
+                            show a
+                            clear geographical pattern, consider another chart type for the data. Choropleth maps work
+                            best
+                            when geographic regions are fairly consistent in size. Otherwise, larger areas appear more
+                            emphasized, which could result in misinterpretation.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/choropleth_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure the legend is present.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/choropleth_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure the legend is present.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/choropleth_map_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Limit the steps of progression that are easily distinguishable by the human eye in order to make the map easy to read.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/choropleth_map_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Limit the steps of progression that are easily distinguishable
+                                            by
+                                            the human eye in order to make the map easy to read.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure to use normalized values (population per square kilometre) instead of raw data values (raw population figure) to show population density.</p>
-                                </div>
+                            <div class="col col-md-12">
+                                <ul>
+                                    <li>Make sure to use normalized values (population per square
+                                        kilometre) instead of raw data values (raw population figure) to show population
+                                        density.</li>
+                                    <li>Don’t use choropleth maps for accurate comparison of the
+                                        values.</li>
+                                        <li>Make sure to use the right colour scheme for your data, using a
+                                            sequential colour scheme to drive the attention to higher values. Use a
+                                            diverging
+                                            scheme to drive the attention to both extremes of the scale.</li>
+                                </ul>
                             </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Don’t use choropleth maps for accurate comparison of the values.</p>
-                                </div>
-                            </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure to use the right colour scheme for your data, using a sequential colour scheme to drive the attention to higher values. Use a diverging scheme to drive the attention to both extremes of the scale.</p>
-                                </div>
-                            </div>
+                            
                         </div>
                         <h4 class="tools">Tools available</h4>
                         <a class="btn btn-primary" href="#">R</a>
@@ -96,49 +117,74 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="bubble-map" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/bubble_map_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="bubble-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/bubble_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Bubble map</h2>
                         </div>
                         <h4>Description</h4>
                         <p>
-                            As a variation of a <a href="/chart_gallery/correlation.html#bubble">bubble chart</a>, bubble maps display bubbles over geographical regions rather than the cartesian plane. The size or area of the bubble indicates the value of the particular variable, with the position on the map indicating location. Bubble maps are useful for comparing proportions against geographic regions without the issues caused by the size of different areas, as you would have in choropleth maps. 
+                            As a variation of a <a href="/chart_gallery/correlation.html#bubble">bubble chart</a>,
+                            bubble
+                            maps display bubbles over geographical regions rather than the cartesian plane. The size or
+                            area
+                            of the bubble indicates the value of the particular variable, with the position on the map
+                            indicating location. Bubble maps are useful for comparing proportions against geographic
+                            regions
+                            without the issues caused by the size of different areas, as you would have in choropleth
+                            maps.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            The bubble map can be effective when analyzing and comparing a particular variable by geographical location. For example, displaying the number of refugees by country of asylum on a bubble map can provide useful insights on international displacement.
+                            The bubble map can be effective when analyzing and comparing a particular variable by
+                            geographical location. For example, displaying the number of refugees by country of asylum
+                            on a
+                            bubble map can provide useful insights on international displacement.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/bubble_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Avoid having too many bubbles overlap on the map, which will make the comparison between bubbles difficult. Grouping data ranges into specifically sized bubbles or tying with another chart type can be an alternative.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/bubble_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid having too many bubbles overlap on the map, which will
+                                            make the comparison between bubbles difficult. Grouping data ranges into specifically
+                                            sized bubbles or tying with another chart type can be an alternative.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/bubble_map_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Apply transparency to the colour of bubbles.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/bubble_map_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Apply transparency to the colour of bubbles.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/bubble_map_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure the legend is present.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/bubble_map_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure the legend is present.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/bubble_map_dosdonts_4.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure the size of bubbles is mapped to its area, not to its radius.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/bubble_map_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure the size of bubbles is mapped to its area, not to its
+                                            radius.</p>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                         <h4 class="tools">Tools available</h4>
                         <a class="btn btn-primary" href="#">R</a>
@@ -147,47 +193,61 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="flow-map" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/flow_map_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="flow-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/flow_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Flow map</h2>
                         </div>
                         <h4>Description</h4>
                         <p>
-                            Flow maps show the flow of objects from one geographical location to another and their quantity. The arrows show direction, while the width illustrates the quantity. This helps to show how objects move geographically.
+                            Flow maps show the flow of objects from one geographical location to another and their
+                            quantity.
+                            The arrows show direction, while the width illustrates the quantity. This helps to show how
+                            objects move geographically.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            Flow maps are most frequently used to show the movement of population, but also animal migrations, money flow, the traffic of goods, etc.
+                            Flow maps are most frequently used to show the movement of population, but also animal
+                            migrations, money flow, the traffic of goods, etc.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/flow_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use curved lines to show movement instead of straight lines.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/flow_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use curved lines to show movement instead of straight lines.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/flow_map_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Use headed arrows.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/flow_map_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Use headed arrows.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/flow_map_dosdonts_3.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make the arrows’ width proportional to flow rate.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/flow_map_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make the arrows’ width proportional to flow rate.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/flow_map_dosdonts_4.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure flows and arrowheads don’t overlap.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/flow_map_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure flows and arrowheads don’t overlap.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,33 +258,44 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="icon-map" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/icon_map_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="icon-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/icon_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Icon map</h2>
                         </div>
                         <h4>Description</h4>
                         <p>
-                            Icon maps use icons to show geographical locations over a map. The shape or colour of the icon indicates the value of the particular variable, with the position on the map indicating location.
+                            Icon maps use icons to show geographical locations over a map. The shape or colour of the
+                            icon
+                            indicates the value of the particular variable, with the position on the map indicating
+                            location.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            Icon maps can be used for indicating different kinds of geographical locations on the map such as cities, offices, ports, etc.
+                            Icon maps can be used for indicating different kinds of geographical locations on the map
+                            such
+                            as cities, offices, ports, etc.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/icon_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Avoid overlapping symbols that make the map difficult to read.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/icon_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Avoid overlapping symbols that make the map difficult to read.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/icon_map_dosdonts_2.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure the legend is present.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/icon_map_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure the legend is present.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -235,35 +306,45 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="dot-density-map" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/dot_density_map_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="dot-density-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/dot_density_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Dot density map</h2>
                         </div>
                         <h4>Description</h4>
                         <p>
-                            A dot density map, also called dot map, uses dots to show spatial patterns or the distribution of data by placing equally sized points over a geographical region. Different shapes can also be used on a single map to indicate additional information.
+                            A dot density map, also called dot map, uses dots to show spatial patterns or the
+                            distribution
+                            of data by placing equally sized points over a geographical region. Different shapes can
+                            also be
+                            used on a single map to indicate additional information.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            Dot Maps can be used to show how things are distributed over a geographical region and give an overview of the data. It will provide useful information based on the pattern of clusters formed.
+                            Dot Maps can be used to show how things are distributed over a geographical region and give
+                            an
+                            overview of the data. It will provide useful information based on the pattern of clusters
+                            formed.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/dot_density_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Apply transparency to the dots.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/dot_density_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Apply transparency to the dots.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Don’t use dot density maps to show exact values.</p>
-                                </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Don’t use dot density maps to show exact values.</li>
+                                </ul>
                             </div>
+                           
                         </div>
                         <h4 class="tools">Tools available</h4>
                         <a class="btn btn-primary" href="#">R</a>
@@ -272,42 +353,46 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                        <hr>
-                        <div id="pie-map" class="chart-img text-center">
-                            <img src="/assets/img/geospatial/pie_map_icon.svg" class="col" alt="">
+                    </section>
+                    <hr>
+                    <section id="pie-map" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="/assets/img/geospatial/pie_map_icon.svg" class="w-25 mb-3" alt="">
                             <h2>Pie chart map</h2>
                         </div>
                         <h4>Description</h4>
                         <p>
-                            Pie chart maps are basically a combination of a map and a pie chart. It is used to visualize the location and numerical proportion in a simple way.
+                            Pie chart maps are basically a combination of a map and a pie chart. It is used to visualize
+                            the
+                            location and numerical proportion in a simple way.
                         </p>
                         <h4>When to use</h4>
                         <p>
-                            Pie chart maps are used to show the proportion of categorical data together with their geographical locations. One more variable can be further added to the visualization by assigning values to the size of the pie chart circle.
+                            Pie chart maps are used to show the proportion of categorical data together with their
+                            geographical locations. One more variable can be further added to the visualization by
+                            assigning
+                            values to the size of the pie chart circle.
                         </p>
                         <h4>Dos and donts</h4>
                         <div class="dosdonts row row-cols-1 row-cols-md-2">
-                            <div class="card col">
-                                <img src="/assets/img/geospatial/pie_map_dosdonts_1.svg"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Make sure the legend is present.</p>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="/assets/img/geospatial/pie_map_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Make sure the legend is present.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Show no more than five categories on a pie chart. See more on the <a href="/chart_gallery/part_to_a_whole.html#pie">pie chart</a>.</p>
-                                </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Show no more than five categories on a pie chart. See more on
+                                        the <a href="/chart_gallery/part_to_a_whole.html#pie">pie chart</a>.</li>
+                                    <li>Order the values of the pie properly before charting. See more
+                                        on the <a href="/chart_gallery/part_to_a_whole.html#pie">pie chart</a>.</li>
+                                </ul>
                             </div>
-                            <div class="card col">
-                                <img src="#"
-                                    class="card-img-top img-fluid" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Order the values of the pie properly before charting. See more on the <a href="/chart_gallery/part_to_a_whole.html#pie">pie chart</a>.</p>
-                                </div>
-                            </div>
+                            
                         </div>
                         <h4 class="tools">Tools available</h4>
                         <a class="btn btn-primary" href="#">R</a>
@@ -316,26 +401,27 @@
                         <a class="btn btn-primary" href="#">Power BI</a>
                         <a class="btn btn-primary" href="#">Illustrator</a>
                         <a class="btn btn-primary" href="#">Excel</a>
-                    </div>
+                    </section>
                 </div>
             </div>
+        </div>
     </main>
 
     <!-- Footer -->
     <hcr-footer></hcr-footer>
     <!-- End footer -->
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <!-- bs/popper bundle -->
+    <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- UNHCR includes header/footer JS file -->
+    <script type="module" src="/assets/js/unhcrincludes.js"></script>
+    <!-- UNHCR main JS file -->
+    <script type="module" src="/assets/js/unhcrmain.js"></script>
 
-    <!-- Main JS file -->
-    <script type="module" src="/assets/js/main.js"></script>
+    <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <!-- End scripts -->
 
-    <!-- Vendor JS file -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
-    <script src="/assets/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/js/aos.js"></script>
 </body>
 
 </html>

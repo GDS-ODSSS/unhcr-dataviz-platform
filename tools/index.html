@@ -5,22 +5,32 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/assets/css/main.min.css" rel="stylesheet" />
-  <title>UNHCR Data Visualization Platform</title>
-  <!-- TODO change icon link with final URL -->
-  <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Tools</title>
+  <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="/assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="/assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="/assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="/assets/js/vendor/parser.js"></script>
 </head>
 
-<body class="d-flex flex-column vh-100" id="tools">
+<body class="d-flex flex-column vh-100">
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
 
   <!-- Main -->
-  <main class="flex-shrink-0">
+  <main id="tools" class="d-flex flex-column min-vh-100 flex-shrink-0">
     <div class="container my-5">
-      <div class="section-title mb-5 text-center">
-        <h2>Tools</h2>
+      <div class="text-center mb-5">
+        <h2 class="text-uppercase">Tools</h2>
+        <hr class="short-hr">
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
@@ -29,129 +39,137 @@
               in iste officiis commodi quidem hic quas.</p>
           </div>
         </div>
-      </div>  
-      <hr>
-      <div class="container my-5">
+      </div>
+
+      <hr >
+
+      <section class="my-5">
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_excel.svg" alt="Tool excel" >
-                <h3 class="p-2" >Excel</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                  tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                  consequat.</p>
-                <a href="#" class="btn btn-primary mt-2">Learn more</a>
-                <a href="#" class="btn btn-primary mt-2">Download template</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_excel.svg" alt="Tool excel">
+              <h3 class="p-2">Excel</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+              tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+              consequat.</p>
+            <a href="#" class="btn btn-primary mt-2">Learn more</a>
+            <a href="#" class="btn btn-primary mt-2">Download template</a>
           </div>
           <div class="col md-5">
-            <img src="/assets/img/tools/tool_excel.png" alt="Tool excel icon" class="img-fluid border" >
+            <img src="/assets/img/tools/tool_excel.png" alt="Tool excel icon" class="img-fluid border">
           </div>
         </div>
-      </div>
+      </section>
+
       <hr>
-      <div class="container my-5">
+
+      <section class="my-5">
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_powerbi.svg" alt="Tool powerbi icon">
-                <h3 class="p-2" >Power BI</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                  tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                  consequat.</p>
-                <a href="#" class="btn btn-primary mt-2">Learn more</a>
-                <a href="#" class="btn btn-primary mt-2">Download template</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_powerbi.svg" alt="Tool powerbi icon">
+              <h3 class="p-2">Power BI</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+              tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+              consequat.</p>
+            <a href="#" class="btn btn-primary mt-2">Learn more</a>
+            <a href="#" class="btn btn-primary mt-2">Download template</a>
           </div>
           <div class="col md-5">
-            <img src="/assets/img/tools/tool_powerbi.png" alt="Tool excel" class="img-fluid border" >
+            <img src="/assets/img/tools/tool_powerbi.png" alt="Tool excel" class="img-fluid border">
           </div>
         </div>
-      </div>
+      </section>
+
       <hr>
-      <div class="container my-5">
+
+      <section class="my-5">
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_illustrator.svg" alt="Tool illustrator icon">
-                <h3 class="p-2" >Illustrator</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                  tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                  consequat.</p>
-                <a href="#" class="btn btn-primary mt-2">Learn more</a>
-                <a href="#" class="btn btn-primary mt-2">Download template</a>
-                <a href="#" class="btn btn-primary mt-2">Download colour swatches</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_illustrator.svg" alt="Tool illustrator icon">
+              <h3 class="p-2">Illustrator</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+              tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+              consequat.</p>
+            <a href="#" class="btn btn-primary mt-2">Learn more</a>
+            <a href="#" class="btn btn-primary mt-2">Download template</a>
+            <a href="#" class="btn btn-primary mt-2">Download colour swatches</a>
           </div>
           <div class="col- md-5">
-            <img src="/assets/img/tools/tool_illustrator.png" alt="Tool excel" class="img-fluid border" >
+            <img src="/assets/img/tools/tool_illustrator.png" alt="Tool excel" class="img-fluid border">
           </div>
         </div>
-      </div>
-      <hr>
-    </div>
+      </section>
 
-      <div class="container my-5">
+      <hr>
+
+      <section class="my-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_r.svg" alt="Tool excel">
-                <h3 class="p-2" >R</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam
-                </p>
-                <a href="/tools/r/" class="btn btn-primary">Learn more</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_r.svg" alt="Tool excel">
+              <h3 class="p-2">R</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam
+            </p>
+            <a href="#" class="btn btn-primary">Learn more</a>
           </div>
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_python.svg" alt="Tool powerbi icon">
-                <h3 class="p-2" >Python</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam
-                </p>
-                <a href="#" class="btn btn-primary">Learn more</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_python.svg" alt="Tool powerbi icon">
+              <h3 class="p-2">Python</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam
+            </p>
+            <a href="#" class="btn btn-primary">Learn more</a>
           </div>
           <div class="col mb-5">
-              <div class="d-flex justify-content-start mb-3">
-                <img src="/assets/img/tools/icon_d3.svg" alt="Tool powerbi icon">
-                <h3 class="p-2" >D3</h3>
-              </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                  erat volutpat. Ut wisi enim ad minim veniam
-                </p>
-                <a href="#" class="btn btn-primary">Learn more</a>
+            <div class="d-flex justify-content-start mb-3">
+              <img src="/assets/img/tools/icon_d3.svg" alt="Tool powerbi icon">
+              <h3 class="p-2">D3</h3>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+              erat volutpat. Ut wisi enim ad minim veniam
+            </p>
+            <a href="#" class="btn btn-primary">Learn more</a>
           </div>
         </div>
-      </div>
+      </section>
+    </div>
 
   </main>
-  <!--  End Main -->  
-  <!--Footer -->
+  <!--  End Main -->
+
+  <!-- Footer -->
   <hcr-footer></hcr-footer>
   <!-- End footer -->
 
-  <!-- JavaScript Bundle with Popper -->
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="/assets/js/unhcrmain.js"></script>
 
-  <!-- Main JS file -->
-  <script type="module" src="/assets/js/main.js"></script>
+  <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- End scripts -->
 
-  <!-- Vendor JS file -->
-  <script src="/assets/js/jquery.min.js"></script>
-  <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
-  <script src="/assets/js/isotope.pkgd.min.js"></script>
-  <script src="/assets/js/aos.js"></script>
 </body>
 
 </html>
