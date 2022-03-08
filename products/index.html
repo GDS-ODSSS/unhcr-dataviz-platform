@@ -5,22 +5,32 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/assets/css/main.min.css" rel="stylesheet" />
-  <title>UNHCR Data Visualization Platform</title>
-  <!-- TODO change icon link with final URL -->
-  <link rel="shortcut icon" href="http://127.0.0.1:5500//favicon.ico">
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Products</title>
+  <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="/assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="/assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="/assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="/assets/js/vendor/parser.js"></script>
 </head>
 
-<body class="flex-column vh-100" id="products">
+<body class="d-flex flex-column vh-100">
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
 
   <!-- Main -->
-  <main id="product" class="d-flex flex-column min-vh-100 flex-shrink-0">
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
     <div class="container my-5">
-      <div class="section-title mb-5 text-center">
-        <h2>Products</h2>
+      <div class="text-center mb-5">
+        <h2 class="text-uppercase">Products</h2>
+        <hr class="short-hr">
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
@@ -31,17 +41,16 @@
         </div>
       </div>
 
-      <ul id="product-filters" class="product-menu text-center justify-content-center" data-aos="fade-up"
-        data-aos-delay="100">
-        <li data-filter="*" class="filter-active">All</li>
-        <li data-filter=".filter-gotm">Graphic of the Month</li>
-        <li data-filter=".filter-power-bi">Power BI</li>
-        <li data-filter=".filter-storymap">Storymap</li>
+      <ul id="list-filter" class="chart-menu text-center list-inline text-secondary">
+        <li data-filter="*" class="filter-active list-inline-item">All</li>
+        <li data-filter=".filter-gotm" class="list-inline-item">Graphic of the Month</li>
+        <li data-filter=".filter-power-bi" class="list-inline-item">Power BI</li>
+        <li data-filter=".filter-storymap" class="list-inline-item">Storymap</li>
       </ul>
 
-      <div class="row product-container row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="row container-filter row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-5">
         <!-- GOTM Jan 2022 -->
-        <div class="col product-item filter-gotm">
+        <div class="col item-filter filter-gotm">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/gotm_covid.png" alt="Thumbnail No home away from home"
               class="card-img-top mb-3">
@@ -69,7 +78,7 @@
         <!-- END GOTM Jan 2022 -->
 
         <!-- No home away from home -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/r4v_venezuelan-1@2x.jpg" alt="Thumbnail No home away from home"
               class="card-img-top mb-3">
@@ -99,7 +108,7 @@
         <!-- END No home away from home -->
 
         <!-- COVID-19 deepens threats for displaced women and children -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_sgbv-1@2x.jpg"
               alt="Thumbnail COVID-19 deepens threats for displaced women and children" class="card-img-top mb-3">
@@ -127,7 +136,7 @@
         <!-- END COVID-19 deepens threats for displaced women and children -->
 
         <!-- Inclusion of pocs in COVID-19 vaccine rollout -->
-        <div class="col product-item filter-power-bi">
+        <div class="col item-filter filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_vaccine-1@2x.jpg" alt="Thumbnail Public health inclusion of refugees"
               class="card-img-top mb-3">
@@ -152,7 +161,7 @@
         <!-- END Inclusion of pocs in COVID-19 vaccine rollout -->
 
         <!-- Displaced on the frontlines of the climate emergency -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/climate_change-1@2x.jpg"
               alt="Thumbnail Displaced on the frontlines of the climate emergency" class="card-img-top mb-3">
@@ -182,7 +191,7 @@
         <!-- END Displaced on the frontlines of the climate emergency -->
 
         <!-- Uprooted in their own land -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/uprooted_idp-1@2x.jpg" alt="Thumbnail Uprooted in their own land"
               class="card-img-top mb-3">
@@ -210,7 +219,7 @@
         <!-- Uprooted in their own land -->
 
         <!-- Public health inclusion of refugees -->
-        <div class="col product-item filter-power-bi">
+        <div class="col item-filter filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/health_inclusion-1@2x.jpg"
               alt="Thumbnail Public health inclusion of refugees" class="card-img-top mb-3">
@@ -234,7 +243,7 @@
         <!-- END Public health inclusion of refugees -->
 
         <!-- Livelihoods, food and futures: COVID-19 and the displaced -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_livelihoods-1@2x.jpg"
               alt="Thumbnail Livelihoods, food and futures: COVID-19 and the displaced" class="card-img-top mb-3">
@@ -262,7 +271,7 @@
         <!-- END Livelihoods, food and futures: COVID-19 and the displaced -->
 
         <!-- Space, shelter and scarce resources - coping with COVID-19 -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_sector-1@2x.jpg"
               alt="Thumbnail Space, shelter and scarce resources - coping with COVID-19" class="card-img-top mb-3">
@@ -290,7 +299,7 @@
         <!-- END Space, shelter and scarce resources - coping with COVID-19 -->
 
         <!-- COVID-19 and refugees -->
-        <div class="col product-item filter-storymap">
+        <div class="col item-filter filter-storymap">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_refugees-1@2x.jpg" alt="Thumbnail COVID-19 and refugees"
               class="card-img-top mb-3">
@@ -318,7 +327,7 @@
         <!-- END COVID-19 and refugees -->
 
         <!-- COVID-19 Platform -->
-        <div class="col product-item filter-power-bi">
+        <div class="col item-filter filter-power-bi">
           <div class="card p-4 bg-light border-0 h-100">
             <img src="/assets/img/products/covid_platform-1@2x.jpg" alt="Thumbnail COVID-19 Platform"
               class="card-img-top mb-3">
@@ -349,17 +358,17 @@
   <hcr-footer></hcr-footer>
   <!-- End footer -->
 
-  <!-- JavaScript Bundle with Popper -->
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="/assets/js/unhcrmain.js"></script>
 
-  <!-- Main JS file -->
-  <script type="module" src="/assets/js/main.js"></script>
+  <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- End scripts -->
 
-  <!-- Vendor JS file -->
-  <script src="/assets/js/jquery.min.js"></script>
-  <!-- <script src="assets/js/jquery.easing.min.js"></script> -->
-  <script src="/assets/js/isotope.pkgd.min.js"></script>
-  <script src="/assets/js/aos.js"></script>
 </body>
 
 </html>

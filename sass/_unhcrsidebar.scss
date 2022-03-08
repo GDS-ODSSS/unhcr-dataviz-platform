@@ -1,0 +1,56 @@
+// Sidebar
+.sidebar-area {
+  .navbar-title {
+    color: $gray-800;
+    // padding: 0.25rem 0.5rem;
+  }
+  .nav-link {
+    font-size: small;
+    color: $unhcr-grey;
+    // padding: 0.25rem 0.5rem;
+  }
+  .nav-link.active,
+  .nav-link:hover,
+  .show > .nav-link {
+    background-color: $gray-200;
+    color: $unhcr-blue;
+    border-right: 2px solid $unhcr-blue;
+  }
+}
+
+// Back to top button
+#back-to-top {
+  display: inline-block;
+  background-color: $unhcr-grey;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  position: fixed;
+  bottom: 8rem;
+  right: 1rem;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  padding-top: 0.2rem;
+}
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css);
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5em;
+  line-height: 2.2rem;
+  color: $unhcr-white;
+}
+#back-to-top:hover,
+#back-to-top:active {
+  cursor: pointer;
+  background-color: $unhcr-blue;
+  text-decoration: none;
+}
+#back-to-top.show {
+  opacity: 0.5;
+  visibility: visible;
+}
