@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Grouped column chart with D3</title>
+  <link href="/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="/assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="/assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="/assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="/assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="/assets/js/vendor/parser.js"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main class="flex-shrink-0">
+    <div class="container my-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/tools/index.html">Tools</a></li>
+                <li class="breadcrumb-item"><a href="/tools/d3/index.html">D3</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Grouped column chart</li>
+            </ol>
+        </nav>
+        <div class="my-5 text-center">
+            <h2>Grouped column chart with D3</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
+                        Sit sint
+                        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
+                        Quia fugiat
+                        sit
+                        in iste officiis commodi quidem hic quas.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <p>Category: <a href="/chart_gallery/comparison.html">Comparison</a></p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <p>More about: <a href="/chart_gallery/comparison.html#column">Grouped column chart</a></p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="row row-cols-1 row-cols-lg-2 g-4">
+                <!-- Code chunk section-->
+            <div class="col text-center">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
+                    <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                    <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab" data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript" aria-selected="false">JavaScript</button>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab">
+                    <!-- html code chunk -->
+                    <pre class="language-html d3-code-chunk" style="height: 30em">
+                      <code id="code-html" contenteditable="true">
+                        &lt!DOCTYPE html>
+                        &ltmeta charset="utf-8">
+  
+                        &lt!-- Include d3 library -->
+                        &ltscript src="https://d3js.org/d3.v7.min.js">&lt/script>
+  
+                        &lt!-- Create a container to host the chart -->
+                        &ltdiv id="viz_container">&lt/div>
+                      </code>
+                    </pre>
+                    <!-- End html code chunk -->
+                  </div>
+                  <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab">
+                    <!-- css code chunk -->
+                    <pre class="language-css d3-code-chunk" style="height: 30em" tabindex="0">
+                      <code id="code-css" contenteditable="true">
+                        <style>
+                          svg {
+                            width: 100%;
+                            height: 100%;
+                          }
+                          .bar {
+                            fill: #0072BC;
+                          }
+                          text {
+                            font-size: 11px;
+                            fill: #666666;
+                          }
+                          .grid path {
+                            stroke-width: 0;
+                            stroke: #333333;
+                          }
+                          .grid .tick line {
+                            stroke: #333333;
+                            stroke-width: 0.3px;
+                            stroke-opacity: 0.3;
+                          }
+                          text.chart-title {
+                            font-size: 15px;
+                            font-weight: 600;
+                            fill:#222222
+                          }
+                          text.chart-label {
+                            font-size: 11px;
+                            font-weight: 400;
+                            fill: #999999;
+                          }
+                          text.chart-source {
+                            font-size: 9px;
+                            fill: #999999;
+                          }
+                          text.copyright {
+                            font-size: 9px;
+                            fill: #999999;
+                          }
+                          .tooltip {
+                            background-color: #ffffff;
+                            font-size: 11px;
+                            padding: 4px;
+                            color: #666666;
+                            border: none;
+                            box-shadow: 0px 0px 3px 0px #E6E6E6;
+                          }
+                        </style>               
+                      </code>
+                    </pre>
+                    <!-- End css code chunk -->
+                  </div>
+                  <div class="tab-pane fade" id="nav-javascript" role="tabpanel" aria-labelledby="nav-javascript-tab">
+                    <!-- js code chunk -->
+                    <pre class="language-js d3-code-chunk" style="height: 30em">
+                      <code id="code-js" contenteditable="true">
+                        
+                        // set the dimensions and margins of the graph
+                        const margin = {top: 80, right: 20, bottom: 50, left: 40};
+                        const width = 600 - margin.left - margin.right;
+                        const height = 400 - margin.top - margin.bottom;
+                    
+                        // append the svg object to the body of the page
+                        const svg = d3.select("#viz-container")
+                        .append("svg")
+                            .attr("width", "100%")
+                            .attr("height", "100%")
+                            .attr("viewBox","0 0  600 400")
+                            .attr("preserveAspectRatio","xMinYMin")
+                        .append("g")
+                            .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                    
+                        // parse the data
+                        d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv", function(d){
+                            return{
+                                year: +d.Year,
+                                office: d.main_office,
+                                population: +d.REF_num
+                            }
+                        }).then(function(data) {
+                            console.log(data)
+                            const years = data.map(d => d.year)
+                            console.log(years)
+                            
+                            const yearMap = d3.group(data, d => d.year)
+                            console.log(yearMap)
+
+                            const officeMap = d3.group(data, d => d.office)
+                            console.log(officeMap)
+
+                        // X scale and axis
+                        const xScale = d3.scaleBand()
+                            .domain(yearMap)
+                            .range([0, width])
+                            .padding(.2);
+                        svg
+                            .append("g")
+                                .attr("transform", `translate(0, ${height})`)
+                            .call(d3.axisBottom(xScale)
+                                .tickSize(0)
+                                .tickPadding(8)
+                            )
+                        
+                            
+                            
+                        })
+                
+                      </code>
+                    </pre>
+                    <!-- End js code chunk -->
+                  </div>
+                </div>
+              </div>
+              <!-- End code chunk section -->
+            <!-- Chart section -->
+              <div class="col">
+                  <div id="result" ></div>
+              </div>
+            <!-- End chart section -->
+            </div>
+        </section>
+    </div>
+</main>
+  <!--  End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="/assets/js/unhcrmain.js"></script>
+
+  <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>
