@@ -165,8 +165,8 @@
                         // parse the Data
                         d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv", function(d) {
                           return {
-                            year: +d.Year,
-                            displacement: +d.Displaced_num
+                            year: +d.year,
+                            displacedNumber: +d.displacedNumber
                           };
                         }).then(function(data){
     
@@ -183,7 +183,7 @@
                         // Y scale and Axis
                         const formater =  d3.format(".2s")
                         const yScale = d3.scaleLinear()
-                            .domain([0, d3.max(data, function(d){ return d.displacement; })]).nice()
+                            .domain([0, d3.max(data, function(d){ return d.displacedNumber; })]).nice()
                             .range([height, 0]);
                         svg
                           .append('g')
@@ -204,7 +204,7 @@
                         const tooltip = d3.select("body")
                           .append("div")
                             .attr("id", "chart")
-                            .attr("class", "chart-tooltip");
+                            .attr("class", "tooltip");
                         
                         // Three function that change the tooltip when user hover / move / leave a cell
                         const mouseover = function(d) {
@@ -216,7 +216,7 @@
                         const mousemove = function(event, d) {
                           const formater =  d3.format(",")
                             tooltip
-                              .html(formater(d.displacement))
+                              .html(formater(d.displacedNumber))
                               .style("top", event.pageY - 10 + "px")
                               .style("left", event.pageX + 10 + "px");
                         }
@@ -237,9 +237,9 @@
                           .append("rect")
                             .attr("class", "bar")
                             .attr("x", function(d) { return xScale(d.year); })
-                            .attr("y", function(d) { return yScale(d.displacement); })
+                            .attr("y", function(d) { return yScale(d.displacedNumber); })
                             .attr("width", xScale.bandwidth())
-                            .attr("height", function(d) { return height - yScale(d.displacement); })
+                            .attr("height", function(d) { return height - yScale(d.displacedNumber); })
                           .on("mouseover", mouseover)
                           .on("mousemove", mousemove)
                           .on("mouseleave", mouseleave);
@@ -251,7 +251,7 @@
                             .attr("x", -(margin.left)*0.9)
                             .attr("y", -(margin.top)/1.5)
                             .attr("text-anchor", "start")
-                          .text("Trend of global displacement | 2011 - 2021")
+                          .text("Trend of global displacedNumber | 2011 - 2021")
       
                         // set Y axis label
                         svg

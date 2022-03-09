@@ -165,8 +165,8 @@
                         // parse the data
                         d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv", function(d) {
                             return {
-                              country: d.CountryOriginName,
-                              displacement: +d.Displaced_num
+                              country: d.countryOrigin,
+                              refNumber: +d.refNumber
                             }
                         }).then(function(data) {
                         
@@ -174,7 +174,7 @@
                         // set X scale and axis
                         const formater =  d3.format(".1s")
                         const xScale = d3.scaleLinear()
-                            .domain([0, d3.max(data, function(d){ return d.displacement; })]).nice()
+                            .domain([0, d3.max(data, function(d){ return d.refNumber; })]).nice()
                             .range([0, width]);
                         svg
                             .append("g")
@@ -218,7 +218,7 @@
                         const mousemove = function(event, d) {
                           const formater =  d3.format(",")
                             tooltip
-                              .html(formater(d.displacement))
+                              .html(formater(d.refNumber))
                               .style("top", event.pageY - 10 + "px")
                               .style("left", event.pageX + 10 + "px");
                         };
@@ -240,7 +240,7 @@
                               .attr("class", "bar")
                               .attr("x", xScale(0))
                               .attr("y", function(d) { return yScale(d.country); })
-                              .attr("width", function(d) { return xScale(d.displacement); })
+                              .attr("width", function(d) { return xScale(d.refNumber); })
                               .attr("height", yScale.bandwidth())
                               .on("mouseover", mouseover)
                               .on("mousemove", mousemove)

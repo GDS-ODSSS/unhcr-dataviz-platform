@@ -28,7 +28,7 @@ function jsParser(divOrig){
 }
     
 // Load chart
-$.getScript("https://d3js.org/d3.v6.min.js", function(){
+$.getScript("https://d3js.org/d3.v7.min.js", function(){
   // Run the according code to update the graph
   htmlParser('code-html', 'result')
   cssParser('code-css','result')

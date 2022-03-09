@@ -165,24 +165,31 @@
                         // parse the data
                         d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv", function(d){
                             return{
-                                year: +d.Year,
-                                office: d.main_office,
-                                population: +d.REF_num
+                                year: +d.year,
+                                office: d.mainOffice,
+                                refNumber: +d.refNumber
                             }
                         }).then(function(data) {
                             console.log(data)
-                            const years = data.map(d => d.year)
-                            console.log(years)
+                            <!-- const years = data.map(d => d.year)
+                            console.log(years) -->
                             
                             const yearMap = d3.group(data, d => d.year)
+                            
                             console.log(yearMap)
 
-                            const officeMap = d3.group(data, d => d.office)
-                            console.log(officeMap)
+                            const sumbyYearOffice = d3.rollups(data, v => d3.sum(v, d => d.refNumber), d => d.year, d => d.office)
+                            console.log(sumbyYearOffice)
 
-                        // X scale and axis
+                            const yearkeys= Object.keys(yearMap)
+
+                            console.log(yearkeys)
+
+                            
+
+                        <!-- // X scale and axis
                         const xScale = d3.scaleBand()
-                            .domain(yearMap)
+                            .domain(yearkeys)
                             .range([0, width])
                             .padding(.2);
                         svg
@@ -191,7 +198,7 @@
                             .call(d3.axisBottom(xScale)
                                 .tickSize(0)
                                 .tickPadding(8)
-                            )
+                            ) -->
                         
                             
                             
