@@ -175,13 +175,13 @@
                             console.log(years) -->
                             
                             const yearMap = d3.group(data, d => d.year)
-                            
                             console.log(yearMap)
+                            const yearkeys= Object.keys(yearMap)
 
-                            const sumbyYearOffice = d3.rollups(data, v => d3.sum(v, d => d.refNumber), d => d.year, d => d.office)
+                            <!-- const sumbyYearOffice = d3.rollups(data, v => d3.sum(v, d => d.refNumber), d => d.year, d => d.office)
                             console.log(sumbyYearOffice)
 
-                            const yearkeys= Object.keys(yearMap)
+                            const yearkeys= Object.keys(yearMap) -->
 
                             console.log(yearkeys)
 
