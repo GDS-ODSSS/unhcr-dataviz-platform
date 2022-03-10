@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Chart gallery</title>
-  <link href="../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <title>UNHCR Dataviz - D3 Chart gallery</title>
+  <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- jquery JS file -->
-  <script src="../assets/js/vendor/jquery.min.js"></script>
+  <script src="../../assets/js/vendor/jquery.min.js"></script>
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -21,7 +21,7 @@
   <main id="chart_gallery" class="d-flex flex-column min-vh-100 flex-shrink-0">
     <div class="container my-5">
       <div class="mb-5 text-center">
-        <h2 class="text-uppercase">Chart Gallery</h2>
+        <h2 class="text-uppercase">D3 Chart Gallery</h2>
         <hr class="short-hr">
         <div class="row justify-content-center">
           <div class="col-lg-8">
@@ -48,7 +48,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 container-filter text-center my-5">
         <!-- Comparison -->
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html">
+          <a href="/tools/d3/d3_column_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -57,8 +57,9 @@
             </div>
           </a>
         </div>
+        
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#bar">
+          <a href="/tools/d3/d3_bar_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -68,7 +69,7 @@
           </a>
         </div>
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#column-grouped">
+          <a href="/tools/d3/d3_grouped_column_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -77,6 +78,7 @@
             </div>
           </a>
         </div>
+        <!-- 
         <div class="col item-filter filter-comparison chart-item">
           <a href="/chart_gallery/comparison.html#bar-grouped">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -107,9 +109,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Comparison -->
 
         <!-- Correlation -->
+        <!--
         <div class="col item-filter filter-correlation chart-item">
           <a href="/chart_gallery/correlation.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -170,9 +174,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Correlation -->
 
         <!-- Change over time -->
+        <!--
         <div class="col item-filter filter-change-over-time chart-item">
           <a href="/chart_gallery/change_over_time.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -233,9 +239,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Change over time -->
 
         <!-- Distribution -->
+        <!--
         <div class="col item-filter filter-distribution chart-item">
           <a href="/chart_gallery/distribution.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -276,9 +284,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Distribution -->
 
         <!-- Part-to-a-whole -->
+        <!--
         <div class="col item-filter filter-part-to-a-whole chart-item">
           <a href="/chart_gallery/part_to_a_whole.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -339,9 +349,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Part-to-a-whole -->
 
         <!-- Flow -->
+        <!--
         <div class="col item-filter filter-flow chart-item">
           <a href="/chart_gallery/flow.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -392,9 +404,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Flow -->
 
         <!-- Geospatial -->
+        <!--
         <div class="col item-filter filter-geospatial chart-item">
           <a href="/chart_gallery/geospatial.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -455,9 +469,11 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Geospatial -->
 
         <!-- Ranking -->
+        <!--
         <div class="col item-filter filter-ranking chart-item">
           <a href="/chart_gallery/ranking.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -498,6 +514,7 @@
             </div>
           </a>
         </div>
+        -->
         <!-- End Ranking -->
       </div>
 
@@ -511,15 +528,15 @@
 
   <!-- Scripts -->
   <!-- bs/popper bundle -->
-  <script src="../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
   <!-- UNHCR includes header/footer JS file -->
-  <script type="module" src="../assets/js/unhcrincludes.js"></script>
+  <script type="module" src="../../assets/js/unhcrincludes.js"></script>
   <!-- UNHCR main JS file -->
-  <script type="module" src="../assets/js/unhcrmain.js"></script>
+  <script type="module" src="../../assets/js/unhcrmain.js"></script>
   <!-- UNHCR filter JS file -->
-  <script type="module" src="../assets/js/unhcrfilter.js"></script>
+  <script type="module" src="../../assets/js/unhcrfilter.js"></script>
   <!-- isotope JS file -->
-  <script src="../assets/js/vendor/isotope.pkgd.min.js"></script>
+  <script src="../../assets/js/vendor/isotope.pkgd.min.js"></script>
   <!-- End scripts -->
 
 </body>

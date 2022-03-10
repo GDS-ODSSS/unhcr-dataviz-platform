@@ -33,7 +33,8 @@
     bottom: 0;
     z-index: 3;
     transition: all ease-in-out 0.5s;
-    background: rgba(35, 35, 35, 0.6);
+    color: $unhcr-darkgrey;
+    font-weight: 500;
     .chart-name {
       text-align: start;
       line-height: 1.2;
@@ -44,6 +45,8 @@
 @media (min-width: 576px) {
   .chart-item .chart-info {
     opacity: 0;
+    color: $unhcr-white;
+    background: rgba(35, 35, 35, 0.6);
   }
   .chart-item:hover .chart-img img {
     transform: scale(1.1);
