@@ -1,4 +1,4 @@
-countryOrigin,year,ref,idp
+country_origin,year,refugee_number,idp_number
 Afghanistan,2001,3809763,1200000
 Afghanistan,2002,2510294,665156
 Afghanistan,2003,2136039,184269

@@ -1,8 +1,8 @@
-mainOffice,ref,idp,tot
-"Asia and the Pacific",4042147,4019207,8061354
-"Europe",6847995,1985307,8833302
-"Southern Africa",767970,6016556,6784526
-"Americas",740143,8462348,9202491
-"East and Horn of Africa, and Great Lakes",4550192,11204799,15754991
-"Middle East and North Africa",2474464,12252571,14727035
-"West and Central Africa",1412456,6932113,8344569
+region,refugee_number,idp_number,total_number
+Asia and the Pacific,4042147,4019207,8061354
+Europe,6847995,1985307,8833302
+Southern Africa,767970,6016556,6784526
+Americas,740143,8462348,9202491
+East and Horn of Africa and Great Lakes,4550192,11204799,15754991
+Middle East and North Africa,2474464,12252571,14727035
+West and Central Africa,1412456,6932113,8344569

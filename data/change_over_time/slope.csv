@@ -1,4 +1,4 @@
-countryOrigin,year,popNumber
+country_origin,year,refugee_number
 Burundi,2016,408066
 Burundi,2021,323149
 Djibouti,2016,1437
@@ -19,5 +19,5 @@ Sudan,2016,650391
 Sudan,2021,805874
 Uganda,2016,6229
 Uganda,2021,7840
-United Republic of Tanzania,2016,579
-United Republic of Tanzania,2021,710
+Tanzania,2016,579
+Tanzania,2021,710
