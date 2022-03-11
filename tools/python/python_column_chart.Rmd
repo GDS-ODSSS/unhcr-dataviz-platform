@@ -1,0 +1,173 @@
+---
+title: "Column chart with python"
+title-prefix: "UNHCR Dataviz"
+author: "IPDA/GDS"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header: "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Column chart
+  url_cat: comparison
+  url_chart: column
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
+        <li class="breadcrumb-item"><a href="/tools/`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Basic column chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# show static image in the notebook
+%matplotlib inline
+
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+
+x = df.loc[:, 'year'].values
+y = df.loc[:, 'displaced_number'].values
+
+fig, ax = plt.subplots(nrows = 1, ncols = 1)
+
+bar_plot = ax.bar(x, y, color = '#0072BC', linestyle = '-', linewidth=1, label = 'Legend2')
+
+ax.set_title('Global IDP displacement | 2010 - 2020', fontsize=15, fontweight='bold', loc='left', pad=40, color = '#444444')
+
+ax.set_ylabel('Displaced population (millions)', color = '#333333', fontsize = 10).set_visible(True)
+
+ax.tick_params(axis='both', which='both', 
+               labelsize=12, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, color = '#333333', labelcolor = '#333333')
+
+ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_visible(True)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+# yaxis label formarter
+def millions(x, pos):
+    return '{:1.0f}M'.format(x*1e-6)
+ax.yaxis.set_major_formatter(millions)
+
+fig.tight_layout()
+
+plt.show()
+
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+
+x = df.loc[:, 'year'].values
+y = df.loc[:, 'displaced_number'].values
+
+fig, ax = plt.subplots(nrows = 1, ncols = 1)
+
+bar_plot = ax.bar(x, y, color = '#0072BC', linestyle = '-', linewidth=1, label = 'Legend2')
+
+ax.set_title('Global IDP displacement | 2010 - 2020',loc='left', fontsize=15, fontweight='bold', pad=30, color = '#444444')
+
+ax.set_ylabel('Displaced population (millions)', color = '#333333', fontsize = 10).set_visible(True)
+
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, color = '#333333', labelcolor = '#333333')
+
+ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_visible(True)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+def millions(x, pos):
+    return '{:1.0f}M'.format(x*1e-6)
+ax.yaxis.set_major_formatter(millions)
+
+fig.tight_layout()
+
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

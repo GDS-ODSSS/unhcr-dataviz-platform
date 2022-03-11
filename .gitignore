@@ -1,2 +1,6 @@
 node_modules
 .Rproj.user
+.Rprofile
+.RData
+.Rhistory
+
