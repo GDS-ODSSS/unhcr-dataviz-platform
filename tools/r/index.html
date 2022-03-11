@@ -20,9 +20,15 @@
   <!-- Main -->
   <main id="tools" class="d-flex flex-column min-vh-100 flex-shrink-0">
     <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
+            <li class="breadcrumb-item active" aria-current="page">R</li>
+        </ol>
+    </nav>
       <div class="mb-5 text-center">
-        <h2 class="text-uppercase">R Charts</h2>
-        <hr class="short-hr">
+        <h2>R charts</h2>
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
@@ -36,6 +42,7 @@
       <ul id="list-filter" class="chart-menu text-center list-inline text-secondary">
         <li data-filter="*" class="filter-active list-inline-item">All</li>
         <li data-filter=".filter-comparison" class="list-inline-item">Comparison</li>
+        <!--
         <li data-filter=".filter-correlation" class="list-inline-item">Correlation</li>
         <li data-filter=".filter-change-over-time" class="list-inline-item">Change over time</li>
         <li data-filter=".filter-distribution" class="list-inline-item">Distribution</li>
@@ -43,6 +50,7 @@
         <li data-filter=".filter-flow" class="list-inline-item">Flow</li>
         <li data-filter=".filter-geospatial" class="list-inline-item">Geospatial</li>
         <li data-filter=".filter-ranking" class="list-inline-item">Ranking</li>
+        -->
       </ul>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 container-filter text-center my-5">
@@ -57,9 +65,8 @@
             </div>
           </a>
         </div>
-        <!-- 
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#bar">
+          <a href="/tools/r/r_bar_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -69,7 +76,7 @@
           </a>
         </div>
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#column-grouped">
+          <a href="/tools/r/r_column_grouped_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -79,7 +86,7 @@
           </a>
         </div>
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#bar-grouped">
+          <a href="/tools/r/r_bar_grouped_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -89,7 +96,7 @@
           </a>
         </div>
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#column-stacked">
+          <a href="/tools/r/r_column_stacked_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -99,7 +106,7 @@
           </a>
         </div>
         <div class="col item-filter filter-comparison chart-item">
-          <a href="/chart_gallery/comparison.html#bar-stacked">
+          <a href="/tools/r/r_bar_stacked_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="/assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
               <div class="chart-info d-flex align-items-end p-3">
@@ -108,7 +115,6 @@
             </div>
           </a>
         </div>
-        -->
         <!-- End Comparison -->
 
         <!-- Correlation -->

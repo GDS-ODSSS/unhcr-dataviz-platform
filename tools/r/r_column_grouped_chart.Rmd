@@ -1,5 +1,5 @@
 ---
-title: "Column chart with R"
+title: "Grouped column chart with R"
 title-prefix: "UNHCR  Dataviz"
 author: "IPDA/GDS"
 output:
@@ -16,9 +16,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: R
-  chart_type: Column chart
+  chart_type: Grouped column chart
   url_cat: comparison
-  url_chart: column
+  url_chart: column-grouped
 ---
 
 ```{r setup, include=FALSE}
@@ -60,7 +60,7 @@ library(scales)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-In a column chart, each category is represented by a vertical rectangle, with the height of the rectangle being proportional to the values being plotted.
+Grouped column charts are a type of colour-coded column chart used to represent and compare different categories of two or more groups.
 
 More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -74,34 +74,39 @@ More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Column chart
+### Grouped column chart
 
 <div class="row">
 
 <!-- First column for large screen --> 
 <div class="col-lg-6">
 
-```{r column_code, echo=TRUE, eval=FALSE}
+```{r column_grouped_code, echo=TRUE, eval=FALSE}
 # Loading required packages
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
 
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv")
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = year, y = displaced_number),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  labs(title = "Total displaced population | 2011 - 2021",
+  geom_col(aes(x = year, y = refugee_number,
+               fill = main_office),
+           position = position_dodge(width = 0.7),
+           width = 0.6) +
+  scale_fill_unhcr_d(palette = "pal_unhcr",
+                     nmax = 3, order = c(2, 3, 1)) +
+  labs(title = "Refugees in Africa region | 2018-2021",
        y = "Number of people (in million)",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n = 10)) +
+  scale_x_continuous(breaks = pretty_breaks(n = 4)) +
   scale_y_continuous(expand = expansion(c(0, 0.1)),
                      labels = label_number_si()) +
-  theme_unhcr(grid = "Y", axis = "x", axis_title = "y")
+  theme_unhcr(grid = "Y", axis = "x", axis_title = "y") +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+  # Long legend labels so force in 2 rows
 ```
 
 </div>
@@ -111,21 +116,23 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_column_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_column_grouped_chart, echo=FALSE, out.width="100%", fig.height=5.85}
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv")
 
 ggplot(df) +
-  geom_col(aes(x = year, y = displaced_number),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  labs(title = "Total displaced population | 2011 - 2021",
+  geom_col(aes(x = year, y = refugee_number, fill = main_office),
+           position = position_dodge(width = 0.7),
+           width = 0.6) +
+  scale_fill_unhcr_d(palette = "pal_unhcr", nmax = 3, order = c(2, 3, 1)) +
+  labs(title = "Refugees in Africa region | 2018-2021",
        y = "Number of people (in million)",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n = 10)) +
+  scale_x_continuous(breaks = pretty_breaks(n = 4)) +
   scale_y_continuous(expand = expansion(c(0, 0.1)),
                      labels = label_number_si()) +
-  theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = "y")
+  theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = "y") +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 ```
 
 </div>
@@ -140,35 +147,44 @@ ggplot(df) +
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Column chart with labels
+### Grouped column chart with labels
 
 <div class="row">
 
 <!-- First column for large screen --> 
 <div class="col-lg-6">
 
-```{r column_labels_code, echo=TRUE, eval=FALSE}
+```{r column_grouped_label_code, echo=TRUE, eval=FALSE}
 # Loading required packages
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
 
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv")
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = year, y = displaced_number),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  geom_text(aes(x = year, y = displaced_number, label = round(displaced_number / 1e6, 1)),
-            vjust = -1, size = 8/.pt) +
-  labs(title = "Total displaced population | 2011 - 2021",
+  geom_col(aes(x = year, y = refugee_number,
+               fill = main_office),
+           position = position_dodge(width = 0.7),
+           width = 0.6) +
+  geom_text(aes(x = year, y = refugee_number,
+                group = main_office,
+                label = round(refugee_number / 1e6, 1)),
+            position = position_dodge(width = 0.7),
+            vjust = -1,
+            size = 8/.pt) +
+  scale_fill_unhcr_d(palette = "pal_unhcr",
+                     nmax = 3, order = c(2, 3, 1)) +
+  labs(title = "Refugees in Africa region | 2018-2021",
        subtitle = "Number of people (in million)",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n = 10)) +
+  scale_x_continuous(breaks = pretty_breaks(n = 4)) +
   scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_unhcr(grid = FALSE, axis = "x", axis_title = FALSE, axis_text = "x")
+  theme_unhcr(grid = FALSE, axis = "x", axis_title = FALSE, axis_text = "x") +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+  # Long legend labels so force in 2 rows
 ```
 
 </div>
@@ -178,22 +194,29 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_column_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_column_grouped_label_chart, echo=FALSE, out.width="100%", fig.height=5.85}
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv")
 
 ggplot(df) +
-  geom_col(aes(x = year, y = displaced_number),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  geom_text(aes(x = year, y = displaced_number, label = round(displaced_number / 1e6, 1)),
-            vjust = -1, size = 11.5/.pt) +
-  labs(title = "Total displaced population | 2011 - 2021",
+  geom_col(aes(x = year, y = refugee_number,
+               fill = main_office),
+           position = position_dodge(width = 0.7),
+           width = 0.6) +
+  geom_text(aes(x = year, y = refugee_number, group = main_office,
+                label = round(refugee_number / 1e6, 1)),
+            position = position_dodge(width = 0.7),
+            vjust = -1,
+            size = 11.5/.pt) +
+  scale_fill_unhcr_d(palette = "pal_unhcr",
+                     nmax = 3, order = c(2, 3, 1)) +
+  labs(title = "Refugees in Africa region | 2018-2021",
        subtitle = "Number of people (in million)",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n = 10)) +
+  scale_x_continuous(breaks = pretty_breaks(n = 4)) +
   scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_unhcr(font_size = 13, grid = FALSE, axis = "x", axis_title = FALSE, axis_text = "x")
+  theme_unhcr(font_size = 13, grid = FALSE, axis = "x", axis_title = FALSE, axis_text = "x") +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 ```
 
 </div>
