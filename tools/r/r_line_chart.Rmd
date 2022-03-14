@@ -204,7 +204,8 @@ ggplot(df, aes(x = year, y = population_number, color = population_type)) +
   scale_color_unhcr_d(palette = "pal_unhcr",
                       nmax = 10, order = c(5, 1)) +
   coord_cartesian(clip = "off") +
-  theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = "y", legend = FALSE)
+  theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = "y", legend = FALSE) +
+  theme(plot.margin = margin(r = 50))
 ```
 
 </div>
