@@ -50,9 +50,6 @@
             </div>
             <div class="row justify-content-center mt-4">
                 <div class="col-6 col-md-4 col-lg-3">
-                    <p>Category: <a href="/chart_gallery/comparison.html">Comparison</a></p>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
                     <p>More about: <a href="/chart_gallery/comparison.html#column">Bar chart</a></p>
                 </div>
             </div>
@@ -165,8 +162,8 @@
                         // parse the data
                         d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv", function(d) {
                             return {
-                              country: d.countryOrigin,
-                              refNumber: +d.refNumber
+                              country: d.country_origin,
+                              refNumber: +d.displaced_number
                             }
                         }).then(function(data) {
                         
