@@ -193,7 +193,7 @@ rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
 rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=35, fontsize=16)
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
@@ -281,7 +281,7 @@ fig, ax = plt.subplots()
 bar_plot = ax.bar(x, y, color = '#0072BC')
 
 #set chart title
-ax.set_title('Global IDP displacement | 2010 - 2020 (millions)',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Refugee in Africa region | 2018-2021',loc='left', fontsize=16, fontweight='bold', pad=20, color = '#000000')
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', labelsize=10, labelcolor = '#333333', bottom=False, labelbottom=True, left=False, right=False, labelleft=False)
@@ -355,12 +355,13 @@ width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
-rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
+plt.suptitle('Number of people in millions', x=0.144, y=0.88, fontsize=10, color='#666666')
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
@@ -378,11 +379,9 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_visible(False)
 
-label = "{:.1f}M".format(category1*1e-6)
-
-ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
 
 
 #set chart source and copyright
@@ -391,7 +390,7 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
+plt.margins(x=0.02, y=0.2)
 
 #show chart
 plt.show()
