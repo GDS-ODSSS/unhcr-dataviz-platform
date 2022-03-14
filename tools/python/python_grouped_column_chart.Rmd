@@ -1,5 +1,5 @@
 ---
-title: "Column chart with python"
+title: "Grouped column chart with python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -15,9 +15,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: Python
-  chart_type: Column chart
+  chart_type: Grouped column chart
   url_cat: comparison
-  url_chart: column
+  url_chart: column-grouped
 ---
 
 ```{r setup, include=FALSE}
@@ -61,7 +61,7 @@ More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Basic column chart
+### Basic grouped column chart
 
 <div class="row">
 
@@ -82,27 +82,46 @@ rcParams['font.family'] = 'lato'
 %matplotlib inline
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='main_office', values='refugee_number')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df.loc[:, 'year'].values
-y = df.loc[:, 'displaced_number'].values
+labels = df['year']
+category1 = df['East and Horn of Africa and Great Lakes']
+category2 = df['Southern Africa']
+category3 = df['West and Central Africa']
+
+#set x-axis ticks label location
+x = np.arange(len(labels))
+
+#set bar width
+width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.bar(x, y, color = '#0072BC')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
+rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Global IDP displacement | 2010 - 2020',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set y-axis label
-ax.set_ylabel('Displaced population (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
                labelsize=10, bottom=False, top=False, labelbottom=True, 
                left=False, right=False, labelleft=True, labelcolor = '#333333')
-ax.set_xticks(x)
+
+#set x-axis tick and label
+ax.set_xticks(x, labels)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -149,27 +168,46 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='main_office', values='refugee_number')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df.loc[:, 'year'].values
-y = df.loc[:, 'displaced_number'].values
+labels = df['year']
+category1 = df['East and Horn of Africa and Great Lakes']
+category2 = df['Southern Africa']
+category3 = df['West and Central Africa']
+
+#set x-axis ticks label location
+x = np.arange(len(labels))
+
+#set bar width
+width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.bar(x, y, color = '#0072BC')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
+rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Global IDP displacement | 2010 - 2020',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set y-axis label
-ax.set_ylabel('Displaced population (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
                labelsize=10, bottom=False, top=False, labelbottom=True, 
                left=False, right=False, labelleft=True, labelcolor = '#333333')
-ax.set_xticks(x)
+
+#set x-axis tick and label
+ax.set_xticks(x, labels)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -211,7 +249,7 @@ plt.show()
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Column chart with data label
+### Grouped column chart with data label
 
 <div class="row">
 
@@ -297,38 +335,55 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='main_office', values='refugee_number')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df.loc[:, 'year'].values
-y = df.loc[:, 'displaced_number'].values
+labels = df['year']
+category1 = df['East and Horn of Africa and Great Lakes']
+category2 = df['Southern Africa']
+category3 = df['West and Central Africa']
+
+#set x-axis ticks label location
+x = np.arange(len(labels))
+
+#set bar width
+width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.bar(x, y, color = '#0072BC')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Global IDP displacement | 2010 - 2020 (millions)',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, labelcolor = '#333333', bottom=False, labelbottom=True, left=False, right=False, labelleft=False)
-ax.set_xticks(x)
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=False, labelcolor = '#333333')
 
-#remove unnecessary spines  
+#set x-axis tick and label
+ax.set_xticks(x, labels)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
+
+#remove unnecessary spines 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_visible(False)
 
-# set formatted data label
-for x,y in zip(x,y):
-    label = "{:.1f}M".format(y*1e-6)
-    plt.annotate(label,
-                 (x,y),
-                 textcoords="offset points",
-                 xytext=(0,6), 
-                 ha='center',
-                 fontsize=10, 
-                 color='#333333')
+label = "{:.1f}M".format(category1*1e-6)
+
+ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects1, labels=[f'{x:,.0f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
+
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
