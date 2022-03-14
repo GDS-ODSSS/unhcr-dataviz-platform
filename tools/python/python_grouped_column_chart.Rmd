@@ -102,9 +102,9 @@ width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
-rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
+rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
 ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
@@ -188,12 +188,12 @@ width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-rects1 = ax.bar(x - width, category1, width, color='#18375F', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', label='Southern Africa')
-rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', label='West and Central Africa')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
+rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=35, fontsize=16)
+ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
@@ -270,39 +270,56 @@ rcParams['font.family'] = 'lato'
 %matplotlib inline
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='main_office', values='refugee_number')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df.loc[:, 'year'].values
-y = df.loc[:, 'displaced_number'].values
+labels = df['year']
+category1 = df['East and Horn of Africa and Great Lakes']
+category2 = df['Southern Africa']
+category3 = df['West and Central Africa']
+
+#set x-axis ticks label location
+x = np.arange(len(labels))
+
+#set bar width
+width = 0.28
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.bar(x, y, color = '#0072BC')
+rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021',loc='left', fontsize=16, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
+
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.144, y=0.88, fontsize=10, color='#666666')
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, labelcolor = '#333333', bottom=False, labelbottom=True, left=False, right=False, labelleft=False)
-ax.set_xticks(x)
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=False, labelcolor = '#333333')
 
-#remove unnecessary spines  
+#set x-axis tick and label
+ax.set_xticks(x, labels)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
+
+#remove unnecessary spines 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_visible(False)
 
 # set formatted data label
-for x,y in zip(x,y):
-    label = "{:.1f}M".format(y*1e-6)
-    
-    plt.annotate(label,
-                 (x,y),
-                 textcoords="offset points",
-                 xytext=(0,6), 
-                 ha='center',
-                 fontsize=10, 
-                 color='#333333')
+ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -310,7 +327,7 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
+plt.margins(x=0.02, y=0.2)
 
 #show chart
 plt.show()
@@ -361,6 +378,8 @@ rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white',
 
 #set chart title
 ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
+
+#set subtitle
 plt.suptitle('Number of people in millions', x=0.144, y=0.88, fontsize=10, color='#666666')
 
 #set tick parameters 
@@ -379,10 +398,10 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_visible(False)
 
+# set formatted data label
 ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
 ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
 ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
-
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
