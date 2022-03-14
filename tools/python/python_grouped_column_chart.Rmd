@@ -47,7 +47,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-In a column chart, each category is represented by a vertical rectangle, with the height of the rectangle being proportional to the values being plotted.
+Grouped column charts are a type of colour-coded column chart used to represent and compare different categories of two or more groups.
 
 More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
