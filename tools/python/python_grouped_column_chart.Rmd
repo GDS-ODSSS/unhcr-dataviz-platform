@@ -107,7 +107,7 @@ rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='
 rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Title here', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
@@ -190,7 +190,7 @@ width = 0.28
 fig, ax = plt.subplots()
 rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
 rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
-rects2 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
+rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
 
 #set chart title
 ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=35, fontsize=14)
