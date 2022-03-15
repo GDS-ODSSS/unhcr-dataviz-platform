@@ -61,7 +61,7 @@ library(directlabels)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-A bar chart is a chart in which each category is represented by a horizontal rectangle, with the length of the rectangle proportional to the values being plotted.
+A line chart is a type of chart that displays the evolution of one or several numeric variables over a continuous interval or time period.
 
 More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
