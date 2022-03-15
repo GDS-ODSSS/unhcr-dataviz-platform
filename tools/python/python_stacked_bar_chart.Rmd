@@ -70,6 +70,7 @@ More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`
 
 ```{python python_code, echo=TRUE, eval=FALSE}
 # import libraries
+# import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -86,28 +87,32 @@ df = df.pivot(index='country_origin', columns='population_type', values='populat
 df = df.reset_index()
 
 #sort by total descending order
-df['Total'] = df.sum(axis=1)
+df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
+df= df.fillna(0)
+
 
 #compute data array for plotting
 x = df['country_origin']
-y1 = df['ASY']
+y1 = df['VDA']
 y2 = df['REF']
-y3 = df['VDA']
+y3 = df['ASY']
+
 
 b_y3 = np.add(y1, y2)
 
 #plot the chart
 fig, ax = plt.subplots()
-rect3=ax.barh(x, y1, color='#18375F', label='Asylum-seekers')
+rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
-rect1=ax.barh(x, y3, color='#EF4A60', left=b_y3, label='Venezuelans dispalced abrod')
+rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
+
 
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=60, fontsize=14)
+ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
 
-#set subtitle
-plt.suptitle('Number of people in thousands', x=0.345, y=0.88, fontsize=10, color='#333333')
+#set y-axis label
+ax.set_xlabel('Number of people (millions)', color = '#666666', fontsize=10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
@@ -141,8 +146,8 @@ def number_formatter(x, pos):
 ax.xaxis.set_major_formatter(number_formatter)
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -50), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
@@ -178,27 +183,26 @@ df = df.pivot(index='country_origin', columns='population_type', values='populat
 df = df.reset_index()
 
 #sort by total descending order
-#df['Total'] = df.sum(axis=1)
-df.loc[ : , 'Total'] = df.sum(axis=1)
-#df['Total'] = pd.Series(df.sum(axis=1), index=df.index)
-
-#df['Total'] = pd.Series(df.sum(axis=1)).values
+df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
+df= df.fillna(0)
 
 
 #compute data array for plotting
 x = df['country_origin']
-y1 = df['ASY']
+y1 = df['VDA']
 y2 = df['REF']
-y3 = df['VDA']
+y3 = df['ASY']
+
 
 b_y3 = np.add(y1, y2)
 
 #plot the chart
 fig, ax = plt.subplots()
-rect3=ax.barh(x, y1, color='#18375F', label='Asylum-seekers')
+rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
-rect1=ax.barh(x, y3, color='#EF4A60', left=b_y3, label='Venezuelans dispalced abrod')
+rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
+
 
 #set chart title
 ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
@@ -370,22 +374,24 @@ df = df.pivot(index='country_origin', columns='population_type', values='populat
 df = df.reset_index()
 
 #sort by total descending order
-df['Total'] = df.sum(axis=1)
+df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
+df= df.fillna(0)
 
 #compute data array for plotting
 x = df['country_origin']
-y1 = df['ASY']
+y1 = df['VDA']
 y2 = df['REF']
-y3 = df['VDA']
+y3 = df['ASY']
+
 
 b_y3 = np.add(y1, y2)
 
 #plot the chart
 fig, ax = plt.subplots()
-rect1=ax.barh(x, y1, color='#18375F', label='Asylum-seekers')
+rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
-rect3=ax.barh(x, y3, color='#EF4A60', left=b_y3, label='Venezuelans dispalced abrod')
+rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
 
 #set chart title
 ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=60, fontsize=14)
@@ -413,6 +419,8 @@ ax.spines['bottom'].set_visible(False)
 ax.bar_label(rect1, labels=[f'{x*1e-6:,.1f}' for x in rect1.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
 ax.bar_label(rect2, labels=[f'{x*1e-6:,.1f}' for x in rect2.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
 ax.bar_label(rect3, labels=[f'{x*1e-6:,.1f}' for x in rect3.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
+
+  
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
