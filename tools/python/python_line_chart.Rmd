@@ -61,7 +61,7 @@ More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Basic line chart
+### Single line chart
 
 <div class="row">
 
@@ -166,19 +166,14 @@ df = df.reset_index()
 
 #compute data for plotting
 x = df['year']
-category1 = df['IDPs']
 category2 = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.plot(x, category1, linestyle = '-', linewidth=2.5, color='#00B398', label = 'IDPs')
 bar_plot = ax.plot(x, category2, linestyle = '-', linewidth=2.5, color='#0072BC', label = 'Refugees')
 
-#set chart legend
-ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
-
 #set chart title
-ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
@@ -196,6 +191,7 @@ ax.spines['left'].set_visible(False)
 #show grid below the bars
 ax.grid(axis='y', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
+
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -234,7 +230,7 @@ plt.show()
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Line chart with direct labeling
+### Multiple line chart
 
 <div class="row">
 

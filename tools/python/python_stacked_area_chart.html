@@ -13,9 +13,9 @@
 <meta name="author" content="IPDA/GDS" />
 
 
-<title>UNHCR Dataviz - Area chart with python</title>
+<title>UNHCR Dataviz - Stacked area chart with python</title>
 
-<script src="python_area_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<script src="python_stacked_area_chart_files/header-attrs-2.10/header-attrs.js"></script>
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
 
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Area chart with python</h1>
+<h1 class="title toc-ignore">Stacked area chart with python</h1>
 <h4 class="author">IPDA/GDS</h4>
 
 
@@ -190,18 +190,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="/tools/python/">Python</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Area chart with python
+Stacked area chart with python
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="area-chart-with-python" class="section level2 my-5 text-center">
-<h2>Area chart with python</h2>
+<div id="stacked-area-chart-with-python" class="section level2 my-5 text-center">
+<h2>Stacked area chart with python</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
 <p>An area chart, like a line chart, displays the evolution of numeric variables over a continuous period of time. However, in an area chart, the area between the line and x-axis is filled with colour or texture.</p>
-<p>More about: <a href="/chart_gallery/change_over_time.html#area">Area chart</a></p>
+<p>More about: <a href="/chart_gallery/change_over_time.html#area-stacked">Stacked area chart</a></p>
 </div>
 </div>
 </div>
@@ -223,64 +223,59 @@ Area chart with python
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">&#39;font.family&#39;</span>] <span class="op">=</span> <span class="st">&#39;lato&#39;</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load and reshape the data</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area.csv&#39;</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">&#39;year&#39;</span>, columns<span class="op">=</span><span class="st">&#39;population_type&#39;</span>, values<span class="op">=</span><span class="st">&#39;population_number&#39;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv&#39;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.pivot_table(index<span class="op">=</span><span class="st">&#39;months&#39;</span>, columns<span class="op">=</span><span class="st">&#39;funding_type&#39;</span>, values<span class="op">=</span><span class="st">&#39;funding_million&#39;</span>, sort<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#compute data for plotting</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">&#39;year&#39;</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">&#39;Refugees&#39;</span>]</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax.stackplot(x, y, color <span class="op">=</span> <span class="st">&#39;#0072BC&#39;</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Number of refugees | 1990-2021&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>, fontsize<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">&#39;#000000&#39;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">&#39;months&#39;</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> df[<span class="st">&#39;Earmarked&#39;</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> df[<span class="st">&#39;Softly earmarked&#39;</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>y3 <span class="op">=</span> df[<span class="st">&#39;Tightly earmarked&#39;</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y4 <span class="op">=</span> df[<span class="st">&#39;Unearmarked&#39;</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax.stackplot(x, y1, y2, y3, y4, labels <span class="op">=</span> [<span class="st">&#39;Earmarked&#39;</span>, <span class="st">&#39;Softly earmarked&#39;</span>, <span class="st">&#39;Tightly earmarked&#39;</span>, <span class="st">&#39;Unearmarked&#39;</span>], colors <span class="op">=</span> [<span class="st">&#39;#00B398&#39;</span>, <span class="st">&#39;#8EBEFF&#39;</span>, <span class="st">&#39;#0072BC&#39;</span>,<span class="st">&#39;#18375F&#39;</span>])</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#set y-axis label</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Number of people (millions)&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize <span class="op">=</span> <span class="dv">10</span>).set_visible(<span class="va">True</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart legend</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span>(<span class="dv">0</span>,<span class="fl">1.05</span>), ncol<span class="op">=</span><span class="dv">4</span>, borderpad<span class="op">=</span><span class="dv">0</span>, frameon<span class="op">=</span><span class="va">False</span>, fontsize<span class="op">=</span><span class="dv">10</span>, labelcolor<span class="op">=</span><span class="st">&#39;#333333&#39;</span>, columnspacing<span class="op">=</span><span class="fl">1.5</span>, handletextpad<span class="op">=</span><span class="fl">0.4</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#set tick parameters </span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;both&#39;</span>, </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>               labelsize<span class="op">=</span><span class="dv">10</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>               left<span class="op">=</span><span class="va">False</span>, right<span class="op">=</span><span class="va">False</span>, labelleft<span class="op">=</span><span class="va">True</span>, labelcolor <span class="op">=</span> <span class="st">&#39;#333333&#39;</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#remove unnecessary spines </span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;left&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#show grid below the bars</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;y&#39;</span>, lw<span class="op">=</span><span class="fl">.5</span>, c<span class="op">=</span><span class="st">&#39;k&#39;</span>, alpha<span class="op">=</span><span class="fl">.3</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">#format x-axis tick labels</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> number_formatter(x, pos):</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="fl">1e6</span>:</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">M&#39;</span>.<span class="bu">format</span>(x<span class="op">*</span><span class="fl">1e-6</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&lt;</span> <span class="fl">1e6</span> <span class="kw">and</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">K&#39;</span>.<span class="bu">format</span>(x<span class="op">*</span><span class="fl">1e-3</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(x)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(number_formatter)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR Refugee Data Finder&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">25</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">35</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.02</span>, y<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Evolution of funding in West Africa region | 2020&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">50</span>, fontsize<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">&#39;#000000&#39;</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#set y-axis label</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;USD millions&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize <span class="op">=</span> <span class="dv">10</span>).set_visible(<span class="va">True</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#set tick parameters </span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;both&#39;</span>, </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>               labelsize<span class="op">=</span><span class="dv">10</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>               left<span class="op">=</span><span class="va">False</span>, right<span class="op">=</span><span class="va">False</span>, labelleft<span class="op">=</span><span class="va">True</span>, labelcolor <span class="op">=</span> <span class="st">&#39;#333333&#39;</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#remove unnecessary spines </span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;left&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#show grid below the bars</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;y&#39;</span>, lw<span class="op">=</span><span class="fl">.5</span>, c<span class="op">=</span><span class="st">&#39;k&#39;</span>, alpha<span class="op">=</span><span class="fl">.3</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR Refugee Data Finder&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">25</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">35</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.02</span>, y<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_area_chart_files/figure-html/python_area_chart-1.svg" width="100%" /></p>
+<p><img src="python_stacked_area_chart_files/figure-html/python_area_chart-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
