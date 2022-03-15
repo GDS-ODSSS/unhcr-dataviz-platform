@@ -92,8 +92,8 @@ y2 = df['Other resettlement']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax.bar(x, y1, color='#0072BC', edgecolor='white', label='UNHCR resettlement')
-ax.bar(x, y2, color='#8EBEFF', edgecolor='white', bottom=y1, label='Other resettlement')
+ax.bar(x, y1, color='#0072BC', label='UNHCR resettlement')
+ax.bar(x, y2, color='#8EBEFF', bottom=y1, label='Other resettlement')
 
 #set chart title
 ax.set_title('Resettlement by UNHCR and others | 2010-2020', loc='left', fontweight='bold', pad=20, fontsize=14)
@@ -165,8 +165,8 @@ y2 = df['Other resettlement']
 
 #plot the chart
 fig, ax = plt.subplots()
-rect1=ax.bar(x, y1, color='#0072BC', edgecolor='white', label='UNHCR resettlement')
-rect2=ax.bar(x, y2, color='#8EBEFF', edgecolor='white', bottom=y1, label='Other resettlement')
+rect1=ax.bar(x, y1, color='#0072BC', label='UNHCR resettlement')
+rect2=ax.bar(x, y2, color='#8EBEFF', bottom=y1, label='Other resettlement')
 
 #set chart title
 ax.set_title('Resettlement by UNHCR and others | 2010-2020', loc='left', fontweight='bold', pad=20, fontsize=14)

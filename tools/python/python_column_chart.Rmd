@@ -308,7 +308,10 @@ fig, ax = plt.subplots()
 bar_plot = ax.bar(x, y, color = '#0072BC')
 
 #set chart title
-ax.set_title('Global IDP displacement | 2010 - 2020 (millions)',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+ax.set_title('Global IDP displacement | 2010 - 2020',loc='left', fontsize=14, fontweight='bold', pad=20, color = '#000000')
+
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top', fontsize=11, color='#333333')
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', labelsize=10, labelcolor = '#333333', bottom=False, labelbottom=True, left=False, right=False, labelleft=False)

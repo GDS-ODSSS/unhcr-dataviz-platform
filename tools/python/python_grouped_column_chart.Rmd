@@ -380,7 +380,7 @@ rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white',
 ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.144, y=0.88, fontsize=10, color='#666666')
+plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top', fontsize=11, color='#333333')
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 

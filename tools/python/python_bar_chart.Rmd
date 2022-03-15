@@ -247,6 +247,8 @@ bar_plot = ax.barh(x, y, color = '#0072BC')
 
 #set chart title
 ax.set_title('People displaced across borders by country of origin | 2020', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
 
 #set data label
 ax.bar_label(bar_plot, labels=[f'{x:,.0f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
@@ -298,14 +300,19 @@ fig, ax = plt.subplots()
 bar_plot = ax.barh(x, y, color = '#0072BC')
 
 ax.set_title('People displaced across borders by country of origin | 2020\n', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
 
-ax.bar_label(bar_plot, labels=[f'{x:,.0f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(bar_plot, labels=[f'{x*1e-6:,.1f}M' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
 
 ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True)
                
 ax.spines['top'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['right'].set_visible(False)
+
+# set formatted data label
+
 
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -5), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
