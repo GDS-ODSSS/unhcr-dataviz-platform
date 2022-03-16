@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - Change over time</title>
-  <link href="../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <link href="/unhcr-dataviz-platform/assets/css/unhcrmain.min.css" rel="stylesheet" />
     <!-- jquery JS file -->
-    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="/unhcr-dataviz-platform/assets/js/vendor/jquery.min.js"></script>
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -29,25 +29,25 @@
           <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
             <nav class="nav nav-pills flex-column">
               <h5 class="navbar-title">Comparison</h5>
-              <a class="nav-link" href="#column">Column chart</a>
-              <a class="nav-link" href="#bar">Bar chart</a>
-              <a class="nav-link" href="#column-grouped">Grouped column chart</a>
-              <a class="nav-link" href="#bar-grouped">Grouped bar chart</a>
-              <a class="nav-link" href="#column-stacked">Stacked column chart</a>
-              <a class="nav-link" href="#bar-stacked">Stacked bar chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#column">Column chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#bar">Bar chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#column-grouped">Grouped column chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#bar-grouped">Grouped bar chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#column-stacked">Stacked column chart</a>
+              <a class="nav-link" href="/unhcr-dataviz-platform#bar-stacked">Stacked bar chart</a>
             </nav>
           </nav>
         </div>
         <div class="chart-area col-lg-9">
           <section id="column" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/column_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/column_icon.svg" class="w-25 mb-3" alt="">
               <h2>Column chart</h2>
             </div>
             <h4>Description</h4>
             <p>In a column chart, each category is represented by a vertical rectangle,
               with the height of the rectangle being proportional to the values being plotted.
-              It’s a vertical version of the <a href="#bar">bar chart</a>,
+              It’s a vertical version of the <a href="/unhcr-dataviz-platform#bar">bar chart</a>,
               also sometimes called a vertical bar chart.
             </p>
             <h4>When to use</h4>
@@ -60,7 +60,7 @@
             <div class="dosdonts row row-cols-1 row-cols-md-2">
               <div class="col">
                 <div class="card border-0">
-                  <img src="/assets/img/comparison/column_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                  <img src="/unhcr-dataviz-platform/assets/img/comparison/column_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                   <div class="card-body">
                     <p class="card-text">Always start at a zero baseline.</p>
                   </div>
@@ -68,7 +68,7 @@
               </div>
               <div class="col">
                 <div class="card border-0">
-                  <img src="/assets/img/comparison/column_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                  <img src="/unhcr-dataviz-platform/assets/img/comparison/column_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                   <div class="card-body">
                     <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight
                       meaningful data points.</p>
@@ -77,7 +77,7 @@
               </div>
               <div class="col">
                 <div class="card border-0">
-                  <img src="/assets/img/comparison/column_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                  <img src="/unhcr-dataviz-platform/assets/img/comparison/column_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                   <div class="card-body">
                     <p class="card-text">Choose either axis label or data label.</p>
                   </div>
@@ -85,7 +85,7 @@
               </div>
               <div class="col">
                 <div class="card border-0">
-                  <img src="/assets/img/comparison/column_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                  <img src="/unhcr-dataviz-platform/assets/img/comparison/column_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                   <div class="card-body">
                     <p class="card-text">Use horizontal labels to improve readability.</p>
                   </div>
@@ -93,7 +93,7 @@
               </div>
               <div class="col">
                 <div class="card border-0">
-                  <img src="/assets/img/comparison/column_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                  <img src="/unhcr-dataviz-platform/assets/img/comparison/column_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
                   <div class="card-body">
                     <p class="card-text">Space between bars should be roughly half of the bar width.</p>
                   </div>
@@ -101,17 +101,17 @@
               </div>
             </div>
             <h4 class="tools">Tools available</h4>
-            <a class="btn btn-primary" href="/tools/r/r_column_chart.html">R</a>
+            <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_column_chart.html">R</a>
             <a class="btn btn-primary" href="#">D3.js</a>
             <a class="btn btn-primary" href="#">Python</a>
-            <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-            <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-            <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+            <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+            <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+            <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
           <hr>
           <section id="bar" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/bar_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_icon.svg" class="w-25 mb-3" alt="">
               <h2>Bar chart</h2>
             </div>
             <h4>Description</h4>
@@ -119,19 +119,19 @@
             A bar chart is a chart in which each category is represented by a horizontal rectangle,
             with the length of the rectangle proportional to the values being plotted.
             The horizontal axis shows data value, and the vertical axis displays the categories being compared.
-            It’s a horizontal version of the <a href="#column">column chart</a>.
+            It’s a horizontal version of the <a href="/unhcr-dataviz-platform#column">column chart</a>.
           </p>
           <h4>When to use</h4>
           <p>
             The bar chart is widely used to show comparison among categories and sometimes to visualize time-based data.
             It’s effective for showing the difference between values.
-            It’s an alternative to the <a href="#column">column chart</a> when the category name is long.
+            It’s an alternative to the <a href="/unhcr-dataviz-platform#column">column chart</a> when the category name is long.
           </p>
           <h4>Dos and donts</h4>
           <div class="dosdonts row row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Always start at a zero baseline.</p>
                 </div>
@@ -139,7 +139,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Use consistent colours throughout the chart, using accent colours to highlight
                     meaningful data points.</p>
@@ -148,7 +148,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Choose either axis label or data label.</p>
                 </div>
@@ -156,7 +156,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Sort the data in descending order before charting for non-ordinal data.</p>
                 </div>
@@ -164,7 +164,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Space between bars should be roughly half of the bar width.</p>
                 </div>
@@ -172,7 +172,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_dosdonts_6.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_dosdonts_6.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Avoid using bar charts if most of the values are negative. It is better to use
                     column charts unless the labels do not fit underneath the bars.</p>
@@ -181,17 +181,17 @@
             </div>
           </div>
           <h4 class="tools">Tools available</h4>
-          <a class="btn btn-primary" href="/tools/r/r_bar_chart.html">R</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_bar_chart.html">R</a>
           <a class="btn btn-primary" href="#">D3.js</a>
           <a class="btn btn-primary" href="#">Python</a>
-          <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-          <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-          <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
           <hr>
           <section id="column-grouped" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/column_grouped_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/column_grouped_icon.svg" class="w-25 mb-3" alt="">
               <h2>Grouped column chart</h2>
             </div>
             <h4>Description</h4>
@@ -208,7 +208,7 @@
           <div class="dosdonts row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Always start at a zero baseline.</p>
                 </div>
@@ -216,7 +216,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Order of the elements in a legend should be in the same sequence as the bars for
                     easy reference.</p>
@@ -225,7 +225,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Don’t plot more than 3 groups.</p>
                 </div>
@@ -233,7 +233,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Leave enough space between two groups of bar charts in order to easily
                     differentiate between the groups.</p>
@@ -242,17 +242,17 @@
             </div>
           </div>
           <h4 class="tools">Tools available</h4>
-          <a class="btn btn-primary" href="/tools/r/r_column_grouped_chart.html">R</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_column_grouped_chart.html">R</a>
           <a class="btn btn-primary" href="#">D3.js</a>
           <a class="btn btn-primary" href="#">Python</a>
-          <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-          <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-          <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
           <hr>
           <section id="bar-grouped" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/bar_grouped_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_grouped_icon.svg" class="w-25 mb-3" alt="">
               <h2>Grouped bar chart</h2>
             </div>
             <h4>Description</h4>
@@ -271,7 +271,7 @@
           <div class="dosdonts row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_grouped_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Always start at a zero baseline.</p>
                 </div>
@@ -279,7 +279,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_grouped_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Order of the elements in a legend should be in the same sequence as the bars for
                     easy reference.</p>
@@ -288,7 +288,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_grouped_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Don’t plot more than 3 groups.</p>
                 </div>
@@ -296,7 +296,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_grouped_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Leave enough space between two groups of bar charts in order to easily
                     differentiate between the groups.</p>
@@ -305,17 +305,17 @@
             </div>
           </div>
           <h4 class="tools">Tools available</h4>
-          <a class="btn btn-primary" href="/tools/r/r_bar_grouped_chart.html">R</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_bar_grouped_chart.html">R</a>
           <a class="btn btn-primary" href="#">D3.js</a>
           <a class="btn btn-primary" href="#">Python</a>
-          <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-          <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-          <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
           <hr>
           <section id="column-stacked" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/column_stacked_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_icon.svg" class="w-25 mb-3" alt="">
               <h2>Stacked column chart</h2>
             </div>
             <h4>Description</h4>
@@ -334,7 +334,7 @@
           <div class="dosdonts row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Always start at a zero baseline.</p>
                 </div>
@@ -342,7 +342,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Elements in the legend should be in the same sequence as the bars.</p>
                 </div>
@@ -350,7 +350,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Don’t stack too many groups at once (five or fewer is ideal).</p>
                 </div>
@@ -358,7 +358,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Use horizontal labels to improve readability.</p>
                 </div>
@@ -366,7 +366,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/column_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/column_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Space between bars should be roughly half of the bar width.</p>
                 </div>
@@ -374,17 +374,17 @@
             </div>
           </div>
           <h4 class="tools">Tools available</h4>
-          <a class="btn btn-primary" href="/tools/r/r_column_stacked_chart.html">R</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_column_stacked_chart.html">R</a>
           <a class="btn btn-primary" href="#">D3.js</a>
           <a class="btn btn-primary" href="#">Python</a>
-          <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-          <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-          <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
           <hr>
           <section id="bar-stacked" class="my-5">
             <div class="text-center mb-3">
-              <img src="/assets/img/comparison/bar_stacked_icon.svg" class="w-25 mb-3" alt="">
+              <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_icon.svg" class="w-25 mb-3" alt="">
               <h2>Stacked bar chart</h2>
             </div>
             <h4>Description</h4>
@@ -398,13 +398,13 @@
             Stacked bar charts are used to show how a larger group is divided into smaller subgroups and what
             the relationship of each part has on the total amount. It’s particularly useful when comparing relative
             and absolute differences across categories. It’s a better option when the category names are long and do
-            not fit underneath of vertical stacked bar chart (<a href="#column-stacked">stacked column chart</a>).
+            not fit underneath of vertical stacked bar chart (<a href="/unhcr-dataviz-platform#column-stacked">stacked column chart</a>).
           </p>
           <h4>Dos and donts</h4>
           <div class="dosdonts row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_dosdonts_1.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Always start at a zero baseline.</p>
                 </div>
@@ -412,7 +412,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_dosdonts_2.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Elements in the legend should be in the same sequence as the bars.</p>
                 </div>
@@ -420,7 +420,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_dosdonts_3.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Don’t stack too many groups at once (five or fewer is ideal).</p>
                 </div>
@@ -428,7 +428,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_dosdonts_4.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">The data should be sorted by total value in descending order when using a stacked
                     bar chart for categorical variables (non-ordinal variables).</p>
@@ -437,7 +437,7 @@
             </div>
             <div class="col">
               <div class="card border-0">
-                <img src="/assets/img/comparison/bar_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
+                <img src="/unhcr-dataviz-platform/assets/img/comparison/bar_stacked_dosdonts_5.svg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <p class="card-text">Space between bars should be roughly half of the bar width.</p>
                 </div>
@@ -445,12 +445,12 @@
             </div>
           </div>
           <h4 class="tools">Tools available</h4>
-          <a class="btn btn-primary" href="/tools/r/r_bar_stacked_chart.html">R</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/r/r_bar_stacked_chart.html">R</a>
           <a class="btn btn-primary" href="#">D3.js</a>
           <a class="btn btn-primary" href="#">Python</a>
-          <a class="btn btn-primary" href="/tools/index.html#pbi">Power BI</a>
-          <a class="btn btn-primary" href="/tools/index.html#illustrator">Illustrator</a>
-          <a class="btn btn-primary" href="/tools/index.html#excel">Excel</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#pbi">Power BI</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#illustrator">Illustrator</a>
+          <a class="btn btn-primary" href="/unhcr-dataviz-platform/tools/index.html#excel">Excel</a>
           </section>
         </div>
       </div>
@@ -463,13 +463,13 @@
 
   <!-- Scripts -->
     <!-- bs/popper bundle -->
-    <script src="../assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/unhcr-dataviz-platform/assets/js/vendor/bootstrap.bundle.min.js"></script>
     <!-- UNHCR includes header/footer JS file -->
-    <script type="module" src="../assets/js/unhcrincludes.js"></script>
+    <script type="module" src="/unhcr-dataviz-platform/assets/js/unhcrincludes.js"></script>
     <!-- UNHCR main JS file -->
-    <script type="module" src="../assets/js/unhcrmain.js"></script>
+    <script type="module" src="/unhcr-dataviz-platform/assets/js/unhcrmain.js"></script>
     <!-- UNHCR sidebar JS file -->
-    <script type="module" src="../assets/js/unhcrsidebar.js"></script>
+    <script type="module" src="/unhcr-dataviz-platform/assets/js/unhcrsidebar.js"></script>
     <!-- End scripts -->
 
 </body>
