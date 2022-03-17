@@ -331,7 +331,6 @@ plt.show()
 <div class="col-lg-6">
 
 
-
 ```{python python_line_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
 import numpy as np
