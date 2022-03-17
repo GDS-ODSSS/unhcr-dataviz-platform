@@ -55,7 +55,6 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 </div>
 </div>
 
-
 ----
 
 <!-- Beginning of section, should be preceded by hr (----) --> 
