@@ -5,8 +5,8 @@ class hcrHeader extends HTMLElement {
         <header>
             <nav class="navbar navbar-expand-lg border-bottom">
                 <div class="container p-2">
-                <a class="navbar-brand" href="/unhcr-dataviz-platform/">
-                    <img src="/unhcr-dataviz-platform/assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
+                <a class="navbar-brand" href="../../../">
+                    <img src="../../../assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,19 +15,19 @@ class hcrHeader extends HTMLElement {
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" data-active="home" href="/unhcr-dataviz-platform/">Home</a>
+                        <a class="nav-link" data-active="home" href="../../../">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-active="chart_gallery" href="/unhcr-dataviz-platform/chart_gallery/">Chart gallery</a>
+                        <a class="nav-link" data-active="chart_gallery" href="../../../chart_gallery/">Chart gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-active="general_guidance" href="/unhcr-dataviz-platform/general_guidance/">General guidance</a>
+                        <a class="nav-link" data-active="general_guidance" href="../../../general_guidance/">General guidance</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-active="tools" href="/unhcr-dataviz-platform/tools/">Tools</a>
+                        <a class="nav-link" data-active="tools" href="../../../tools/">Tools</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-active="products" href="/unhcr-dataviz-platform/products/">Products</a>
+                        <a class="nav-link" data-active="products" href="../../../products/">Products</a>
                     </li>
                     </ul>
                 </div>
@@ -49,19 +49,19 @@ class hcrFooter extends HTMLElement {
                 <div class="d-flex flex-wrap justify-content-between">
                 <ul class="nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="/unhcr-dataviz-platform/">Home</a>
+                    <a class="nav-link" href="../../../">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/unhcr-dataviz-platform/chart_gallery/">Chart gallery</a>
+                    <a class="nav-link" href="../../../chart_gallery/">Chart gallery</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/unhcr-dataviz-platform/general_guidance/">General guidance</a>
+                    <a class="nav-link" href="../../../general_guidance/">General guidance</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/unhcr-dataviz-platform/tools/">Tools</a>
+                    <a class="nav-link" href="../../../tools/">Tools</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/unhcr-dataviz-platform/products/">Products</a>
+                    <a class="nav-link" href="../../../products/">Products</a>
                     </li>
                 </ul>
                 <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
