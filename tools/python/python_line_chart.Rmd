@@ -31,9 +31,9 @@ library(reticulate)
 <!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
-        <li class="breadcrumb-item"><a href="/tools/`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
         <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
     </ol>
 </nav>
@@ -49,7 +49,7 @@ library(reticulate)
 <!-- Only text to change below, the rest comes from the YAML --> 
 A line chart is a type of chart that displays the evolution of one or several numeric variables over a continuous interval or time period. Typically, the x-axis is used for a timescale or a sequence of intervals, while the y-axis reports values across that progression.
 
-More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
 </div>
 </div>

@@ -31,9 +31,9 @@ library(reticulate)
 <!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
-        <li class="breadcrumb-item"><a href="/tools/`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
         <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
     </ol>
 </nav>
@@ -49,7 +49,7 @@ library(reticulate)
 <!-- Only text to change below, the rest comes from the YAML --> 
 Grouped bar charts are a type of colour-coded bar chart that is used to represent and compare different categories of two or more groups.
 
-More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
 </div>
 </div>

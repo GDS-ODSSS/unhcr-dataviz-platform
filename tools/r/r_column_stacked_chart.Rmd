@@ -44,9 +44,9 @@ library(scales)
 <!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/tools/">Tools</a></li>
-        <li class="breadcrumb-item"><a href="/tools/`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
         <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
     </ol>
 </nav>
@@ -62,7 +62,7 @@ library(scales)
 <!-- Only text to change below, the rest comes from the YAML --> 
 The stacked column chart stacks vertical bars that represent different groups on top of each other. The height of the stacked bar shows the combined value of the groups.
 
-More about: <a href="/chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
 </div>
 </div>
