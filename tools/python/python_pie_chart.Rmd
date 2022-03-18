@@ -16,7 +16,7 @@ output:
 params:
   tool: Python
   chart_type: Pie chart
-  url_cat: change_over_time
+  url_cat: part_to_a_whole
   url_chart: pie
 ---
 
@@ -47,7 +47,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-A streamgraph is a variation of a stacked area chart. Instead of displaying values on top of a fixed, straight baseline at the bottom of the stack, the values of the streamgraph are displaced around a central baseline.
+A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments. Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -79,64 +79,21 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load and reshape the data
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv')
-df = df.pivot_table(index='year', columns='population_type', values='population_number')
-df = df.reset_index()
-df= df.fillna(0)
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv')
 
 #compute data for plotting
-x = df['year']
-y1 = df['VDA']
-y2 = df['OOC']
-y3 = df['STA']
-y4 = df['IDP']
-y5 = df['ASY']
-y6 = df['REF']
+labels = df['funding_type']
+values = df['funding_value']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax.stackplot(x, y1, y2, y3, y4, y5, y6, labels = [ 'Venezuelans displaced abroad', 'Others of concern', 'Stateless persons', 'IDPs', 'Asylum-seekers', 'Refugees' ], colors = ['#EF4A60', '#999999', '#E1CC0D', '#00B398', '#18375F', '#0072BC'], baseline='weighted_wiggle')
-
+pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
+       
 #set chart title
-ax.set_title('Evolution of people of concern to UNHCR | 1991-2020', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
-
-#set chart legend
-ax.legend(loc=(0,1), ncol=3, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
-
-#set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-
-#format y-axis tick labels
-def number_formatter(x, pos):
-    if x >= 1e6:
-        s = '{:1.0f}M'.format(x*1e-6)
-    elif x < 1e6 and x > 0:
-        s = '{:1.0f}K'.format(x*1e-3)
-    elif x > -1e6 and x < 0:
-        s = '{:1.0f}K'.format(x*1e-3)
-    elif x <= -1e6:
-        s = '{:1.0f}M'.format(x*1e-6)
-    else: 
-        s = '{:1.0f}'.format(x)
-    return s
-ax.yaxis.set_major_formatter(number_formatter)
+ax.set_title('UNHCR Funding (as of February 2022)', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
@@ -168,19 +125,20 @@ rcParams['font.family'] = 'lato'
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv')
 
+#compute data for plotting
 labels = df['funding_type']
 values = df['funding_value']
 
+#plot the chart
 fig, ax = plt.subplots()
-
-# plot pie chart with specific design
-ax.pie(values, labels=labels, autopct='%1.1f%%',
-       pctdistance = 0.75, counterclock=False, startangle=-270, 
-       textprops={'color':"#333333", 'fontsize':10, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
-       
+pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
        
 #set chart title
-ax.set_title('UNHCR Funding', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+ax.set_title('UNHCR Funding (as of February 2022)', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
@@ -188,7 +146,6 @@ plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
-
 ```
 
 
