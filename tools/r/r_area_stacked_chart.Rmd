@@ -60,7 +60,7 @@ library(scales)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-An area chart, like a line chart, displays the evolution of numeric variables over a continuous period of time. However, in an area chart, the area between the line and x-axis is filled with colour or texture.
+As a variation of a simple area chart, a stacked area chart displays the changes of value of multiple data series over a period of time.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
