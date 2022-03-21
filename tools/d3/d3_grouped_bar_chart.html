@@ -201,7 +201,7 @@
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(yearKeys)
-                      .range(['#18375F','#0072BC','#8EBEFF'])
+                      .range(['#0072BC','#8EBEFF'])
                     
                     // set vertical grid line
                     const GridLine = function() {return d3.axisBottom().scale(xScale)};
@@ -301,7 +301,7 @@
                         .attr("y", -(margin.top/2))
                         .attr("width", 15)
                         .attr("height", 15)
-                        .style("fill", "#18375F");
+                        .style("fill", "#0072BC");
                     svg
                         .append("text")
                             .attr("class", "legend")
@@ -314,7 +314,7 @@
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
-                            .style("fill", "#0072BC")
+                            .style("fill", "#8EBEFF")
                     svg
                         .append("text")
                             .attr("class", "legend")
