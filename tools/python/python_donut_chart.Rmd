@@ -79,7 +79,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load and reshape the data
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/donut.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv')
 
 #compute data for plotting
 labels = df['funding_type']
@@ -131,7 +131,7 @@ values = df['funding_value']
 
 #plot the chart
 fig, ax = plt.subplots()
-pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
+pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, wedgeprops={'width':0.5, 'edgecolor':'white', 'linewidth': 2}, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
        
 #set chart title
 ax.set_title('UNHCR Funding (as of February 2022)', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
