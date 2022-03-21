@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Column chart with D3</title>
+  <title>UNHCR Dataviz - Grouped bar chart with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,16 +33,15 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Column chart</li>
+            <li class="breadcrumb-item active" aria-current="page">Grouped bar chart</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Column chart with D3</h2>
+            <h2>Grouped bar chart with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>In a column chart, each category is represented by a vertical rectangle, 
-                  with the height of the rectangle being proportional to the values being plotted.</p>
-                <p>More about: <a href="../../chart_gallery/comparison.html#column">Column chart</a></p>
+                <p>Grouped bar charts are a type of colour-coded bar chart that is used to represent and compare different categories of two or more groups.</p>
+                <p>More about: <a href="../../chart_gallery/comparison.html#bar-grouped">Grouped bar chart</a></p>
               </div>
             </div>
         </div>
@@ -53,7 +52,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">Basic column chart</h3>
+            <h3 class="mb-3">Grouped bar chart</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -90,8 +89,8 @@
                       }
                       text {
                         font-family: lato;
-                        font-size: 11px;
-                        fill: #666666;
+                        font-size: 10px;
+                        fill: #333333;
                       }
                       .grid path {
                         stroke-width: 0;
@@ -103,21 +102,21 @@
                         stroke-opacity: 0.3;
                       }
                       text.chart-title {
-                        font-size: 15px;
-                        font-weight: 600;
+                        font-size: 14px;
+                        font-weight: bold;
                         fill:#222222
                       }
                       text.chart-label {
-                        font-size: 11px;
+                        font-size: 10px;
                         font-weight: 400;
                         fill: #999999;
                       }
                       text.chart-source {
-                        font-size: 9px;
+                        font-size: 8px;
                         fill: #999999;
                       }
                       text.copyright {
-                        font-size: 9px;
+                        font-size: 8px;
                         fill: #999999;
                       }
                       .tooltip {
@@ -128,6 +127,9 @@
                         color: #666666;
                         border: none;
                         box-shadow: 0px 0px 3px 0px #E6E6E6;
+                      }
+                      .legend{
+                        font-size: 10px;
                       }
                     </style>               
                   </code>
@@ -140,7 +142,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 50, right: 20, bottom: 50, left: 40};
+                    const margin = {top: 100, right: 20, bottom: 50, left: 180};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -155,49 +157,68 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv", function(d) {
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv", function(d) {
                       return {
-                        year: +d.year,
-                        displacedNumber: +d.displaced_number
+                        region: d.region,
+                        year: d.year,
+                        asyApplication: +d.asylum_application
                       };
                     }).then(function(data){
+           
+                    const sumbyRegionYear = d3.rollups(data, v => d3.sum(v, d => d.asyApplication), d => d.region, d => d.year)
+                    console.log(sumbyRegionYear)
+                  
+                    const regionKey = Array.from(sumbyRegionYear).map(d => d[0])
+                    const yearKeys = Array.from(Array.from(sumbyRegionYear)[0][1]).map(d=>d[0])
 
-                    // X scale and Axis
-                    const xScale = d3.scaleBand()
-                      .domain(data.map(function(d) { return d.year; })) 
-                      .range([0, width])
+                    const regionKeys = regionKey.sort(d3.ascending)
+
+                    // x scale and Axis
+                    const xScale = d3.scaleLinear()
+                        .domain([0, d3.max(data.map(d => d.asyApplication))]).nice()
+                        .range([0, width]);
+                    svg
+                      .append('g')
+                      .attr("transform", "translate(0, "+ height +")")
+                      .call(d3.axisBottom(xScale).tickSize(0).ticks(5).tickPadding(6).tickFormat(d3.format(".1s")))
+                      .call(function(d) { return d.select(".domain").remove()});
+                  
+                    // y scale and Axis
+                    const yScale = d3.scaleBand()
+                      .domain(regionKeys) 
+                      .range([0, height])
                       .padding(.2); 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
+                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(8));
+
+                    // set subgroup sacle
+                    const ySubgroups = d3.scaleBand()
+                      .domain(yearKeys)
+                      .range([0, yScale.bandwidth()])
+                      .padding([0.05])
+
+                    // color palette
+                    const color = d3.scaleOrdinal()
+                      .domain(yearKeys)
+                      .range(['#18375F','#0072BC','#8EBEFF'])
                     
-                    // Y scale and Axis
-                    const formater =  d3.format(".2s")
-                    const yScale = d3.scaleLinear()
-                        .domain([0, d3.max(data, function(d){ return d.displacedNumber; })]).nice()
-                        .range([height, 0]);
-                    svg
-                      .append('g')
-                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(6).tickFormat(formater))
-                      .call(function(d) { return d.select(".domain").remove()});
-                    
-                    // set horizontal grid line
-                    const GridLine = function() { return d3.axisLeft().scale(yScale)};
+                    // set vertical grid line
+                    const GridLine = function() {return d3.axisBottom().scale(xScale)};
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLine()
-                        .tickSize(-width,0,0)
+                        .tickSize(height,0,0)
                         .tickFormat("")
-                    );  
-                    
+                    ); 
+
                     // create a tooltip
                     const tooltip = d3.select("body")
                       .append("div")
                         .attr("id", "chart")
                         .attr("class", "tooltip");
-                    
+
                     // Three function that change the tooltip when user hover / move / leave a cell
                     const mouseover = function(d) {
                         tooltip
@@ -208,7 +229,7 @@
                     const mousemove = function(event, d) {
                       const formater =  d3.format(",")
                         tooltip
-                          .html(formater(d.displacedNumber))
+                          .html(d3.format(".0f")(d[1]))
                           .style("top", event.pageY - 10 + "px")
                           .style("left", event.pageX + 10 + "px");
                     }
@@ -219,19 +240,20 @@
                           .style("opacity", 1)
                     }
                     
-                    // Bars
-                    const barGroup = svg.selectAll("rect")
-                      .data(data)
-                      .enter()
-                      .append("g")
-                    
-                    barGroup
-                      .append("rect")
-                        .attr("class", "bar")
-                        .attr("x", function(d) { return xScale(d.year); })
-                        .attr("y", function(d) { return yScale(d.displacedNumber); })
-                        .attr("width", xScale.bandwidth())
-                        .attr("height", function(d) { return height - yScale(d.displacedNumber); })
+                    // create bars
+                    bars = svg.append("g")
+                      .selectAll("g")
+                      .data(sumbyRegionYear)
+                      .join("g")
+                         .attr("transform", d => "translate(0, " + yScale(d[0]) +")")
+                      .selectAll("rect")
+                      .data(d => { return d[1] })
+                      .join("rect")
+                         .attr("x", xScale(0))
+                         .attr("y", d => ySubgroups(d[0]))
+                         .attr("width", d => xScale(d[1]))
+                         .attr("height", ySubgroups.bandwidth())
+                         .attr("fill", d=>color(d[0]))
                       .on("mouseover", mouseover)
                       .on("mousemove", mousemove)
                       .on("mouseleave", mouseleave);
@@ -240,25 +262,25 @@
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin.left)*0.9)
+                        .attr("x", -(margin.left)*0.7)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("Trend of global displaced number | 2011 - 2021")
+                      .text("Individual asylum applications registred by region | 2019-2020")
   
                     // set Y axis label
                     svg
                       .append("text")
                         .attr("class", "chart-label")
-                        .attr("x", -(margin.left)*0.9)
-                        .attr("y", -(margin.top/4))
-                        .attr("text-anchor", "start")
-                      .text("Displaced population (millions)")
+                        .attr("x", width/2)
+                        .attr("y", height+margin.bottom/2)
+                        .attr("text-anchor", "middle")
+                      .text("Displaced population")
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin.left)*0.9)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR Refugee Data Finder")
@@ -267,10 +289,38 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin.left)*0.9)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
+                    
+                    //set legend
+                    svg
+                    .append("rect")
+                        .attr("x", -(margin.left)*0.7)
+                        .attr("y", -(margin.top/2))
+                        .attr("width", 15)
+                        .attr("height", 15)
+                        .style("fill", "#18375F");
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", -(margin.left)*0.7+20)
+                            .attr("y", -(margin.top/2.5))
+                        .text("2019")
+                    svg
+                        .append("rect")
+                            .attr("x", -(margin.left)*0.7+60)
+                            .attr("y", -(margin.top/2))
+                            .attr("width", 15)
+                            .attr("height", 15)
+                            .style("fill", "#0072BC")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", -(margin.left)*0.7+80)
+                            .attr("y", -(margin.top/2.5))
+                        .text("2020")
                     })
                   </code>
                 </pre>
