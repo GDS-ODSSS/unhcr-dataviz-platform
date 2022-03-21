@@ -13,9 +13,9 @@
 <meta name="author" content="IPDA/GDS" />
 
 
-<title>UNHCR Dataviz - Stacked area chart with R</title>
+<title>UNHCR Dataviz - Streamgraph with R</title>
 
-<script src="r_area_stacked_chart_files/header-attrs-2.13/header-attrs.js"></script>
+<script src="r_streamgraph_files/header-attrs-2.13/header-attrs.js"></script>
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
 
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Stacked area chart with R</h1>
+<h1 class="title toc-ignore">Streamgraph with R</h1>
 <h4 class="author">IPDA/GDS</h4>
 
 
@@ -191,30 +191,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../r/">R</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Stacked area chart with R
+Streamgraph with R
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="stacked-area-chart-with-r"
-class="section level2 my-5 text-center">
-<h2>Stacked area chart with R</h2>
+<div id="streamgraph-with-r" class="section level2 my-5 text-center">
+<h2>Streamgraph with R</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>As a variation of a simple area chart, a stacked area chart displays
-the changes of value of multiple data series over a period of time.</p>
+<p>A streamgraph is a variation of a stacked area chart. Instead of
+displaying values on top of a fixed, straight baseline at the bottom of
+the stack, the values of the streamgraph are displaced around a central
+baseline.</p>
 <p>More about:
-<a href="../../chart_gallery/change_over_time.html#area-stacked">Stacked
-area chart</a></p>
+<a href="../../chart_gallery/change_over_time.html#streamgraph">Streamgraph</a></p>
 </div>
 </div>
 </div>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="stacked-area-chart" class="section level3">
-<h3>Stacked area chart</h3>
+<div id="streamgraph-using-ggstream-package" class="section level3">
+<h3>Streamgraph using <a
+href="https://github.com/davidsjoberg/ggstream"><code>ggstream</code></a>
+package</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
@@ -222,26 +224,29 @@ area chart</a></p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstream)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">months =</span> lubridate<span class="sc">::</span><span class="fu">my</span>(<span class="fu">paste</span>(months, <span class="st">&quot;2022&quot;</span>)))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv&quot;</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> months, <span class="at">y =</span> funding_million, <span class="at">fill =</span> funding_type)) <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Evolution of funding in West Africa region | 2020&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;USD millions&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%b&quot;</span>, <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>, <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>, <span class="at">axis_title =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population_number,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="fu">factor</span>(population_type, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;REF&quot;</span>, <span class="st">&quot;ASY&quot;</span>, <span class="st">&quot;IDP&quot;</span>, <span class="st">&quot;STA&quot;</span>, <span class="st">&quot;OOC&quot;</span>, <span class="st">&quot;VDA&quot;</span>)))) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_stream</span>() <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr_poc&quot;</span>, <span class="at">nmax =</span> <span class="dv">9</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Refugees&quot;</span>, <span class="st">&quot;Asylum-seekers&quot;</span>, <span class="st">&quot;IDPs&quot;</span>, <span class="st">&quot;Stateless persons&quot;</span>, <span class="st">&quot;Others of concern&quot;</span>, <span class="st">&quot;Venezuelans displaced abroad&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;People of concern to UNHCR | 1991-2021&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n=</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>(),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n=</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;XY&quot;</span>, <span class="at">axis_title =</span> <span class="st">&quot;y&quot;</span>, <span class="at">axis =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_area_stacked_chart-1.svg" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_streamgraph-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
