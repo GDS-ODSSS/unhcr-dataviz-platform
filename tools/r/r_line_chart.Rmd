@@ -167,7 +167,7 @@ ggplot(df, aes(x = year, y = population_number, color = population_type)) +
   geom_line(size = 1) +
   geom_dl(aes(label = population_type),
           method = list(dl.trans(x = x + 0.1),"last.points"),
-          size = 11.5/.pt) +
+          size = 8/.pt) +
   labs(title = "Number of refugees and IDPs of concern to UNHCR | 1991-2021",
        y = "Number of people",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +

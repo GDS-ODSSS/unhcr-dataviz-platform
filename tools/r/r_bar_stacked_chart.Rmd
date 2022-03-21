@@ -60,7 +60,7 @@ library(scales)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-Grouped bar charts are a type of colour-coded bar chart that is used to represent and compare different categories of two or more groups.
+Stacked bar charts stack horizontal bars that represent different groups one after another. The length of the stacked bar shows the combined value of the groups.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
