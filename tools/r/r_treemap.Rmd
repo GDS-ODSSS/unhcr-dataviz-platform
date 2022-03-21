@@ -1,5 +1,5 @@
 ---
-title: "Donut chart with R"
+title: "Treemap with R"
 title-prefix: "UNHCR  Dataviz"
 author: "IPDA/GDS"
 output:
@@ -16,9 +16,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: R
-  chart_type: Donut chart
+  chart_type: Treemap
   url_cat: part_to_a_whole
-  url_chart: donut
+  url_chart: treemap
 ---
 
 ```{r setup, include=FALSE}
@@ -37,8 +37,7 @@ knitr::opts_chunk$set(echo = FALSE,
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
-library(ggtext)
-library(ggforce)
+library(treemapify)
 ```
 
 <main id="tools" class="container mt-5">
@@ -62,7 +61,7 @@ library(ggforce)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-The donut chart is a variation of a [pie charts](../../chart_gallery/part_to_a_whole.html#pie), with the total amount divided into categories based on a proportional value. For the most part, there aren’t significant differences between a pie chart and a donut chart, so the choice of a donut over a standard circle is mostly aesthetic.
+As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other. 
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -76,38 +75,32 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Donut chart
+### Treemap
 
 <div class="row">
 
 <!-- First column for large screen --> 
 <div class="col-lg-6">
 
-```{r donut_code, echo=TRUE, eval=FALSE}
+```{r treemap_code, echo=TRUE, eval=FALSE}
 # Loading required packages
 library(unhcrthemes)
 library(tidyverse)
-library(ggtext)
-library(ggforce)
+library(treemapify)
 
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/donut.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv")
 
 # Plot
-ggplot(df) +
-  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.6, r = 1, amount = funding_value, fill = funding_type),
-               stat = "pie", size = 1, color = "#FFFFFF") +
-  geom_richtext(x = c(1.25, -1.25), y = c(-0.3, 0.3),
-                aes(label = paste0(funding_type, "<br><strong>US$ ", round(funding_value/1e9,2), "B</strong>","<br>", round(100*funding_value/sum(funding_value),1), "%")),
-                size = 8/.pt, fill = NA, label.color = NA) +
-  geom_richtext(x = 0, y = 0, 
-                label = paste0("Total required", "<br><strong>US$ ", round(sum(df$funding_value)/1e9,2), "B</strong>"),
-                size = 12/.pt, fill = NA, label.color = NA) +
-  labs(title = "2021 UNHCR's funding",
+ggplot(df, aes(area = staff_number)) +
+  geom_treemap(color = "#FFFFFF", size = 1,
+               fill = unhcr_pal(n = 1, "pal_blue"), start = "topleft") +
+  geom_treemap_text(aes(label = paste0(round(100*staff_number/sum(staff_number),1), "%\n", region)),
+                    color = "#FFFFFF", size = 9,
+                    start = "topleft", family = "Lato") +
+  labs(title = "UNHCR global workforce by region | 2021",
        caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
-  scale_fill_unhcr_d(palette = "pal_unhcr", direction = -1) +
-  scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
-  theme_unhcr(grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = FALSE, legend = FALSE)
+  theme_unhcr(axis = FALSE, axis_title = FALSE, grid = FALSE)
 ```
 
 </div>
@@ -117,24 +110,20 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_donut_chart, echo=FALSE, out.width="100%"}
+```{r r_treemap, echo=FALSE, out.width="100%", fig.height=5.8}
 # Loading data
-df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/donut.csv")
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv")
 
-ggplot(df) +
-  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.6, r = 1, amount = funding_value, fill = funding_type),
-               stat = "pie", size = 1, color = "#FFFFFF") +
-  geom_richtext(x = c(1.25, -1.25), y = c(-0.3, 0.3),
-                aes(label = paste0(funding_type, "<br><strong>US$ ", round(funding_value/1e9,2), "B</strong>","<br>", round(100*funding_value/sum(funding_value),1), "%")),
-                size = 11.5/.pt, fill = NA, label.color = NA) +
-  geom_richtext(x = 0, y = 0, 
-                label = paste0("Total required", "<br><strong>US$ ", round(sum(df$funding_value)/1e9,2), "B</strong>"),
-                size = 18/.pt, fill = NA, label.color = NA) +
-  labs(title = "2021 UNHCR's funding",
+ggplot(df, aes(area = staff_number)) +
+  geom_treemap(color = "#FFFFFF", size = 1,
+               fill = unhcr_pal(n = 1, "pal_blue"), start = "topleft") +
+  geom_treemap_text(aes(label = paste0(round(100*staff_number/sum(staff_number),1), "%\n", region)),
+                    color = "#FFFFFF", size = 13,
+                    start = "topleft", family = "Lato",
+                    padding.x = grid::unit(2, "mm"), padding.y = grid::unit(2, "mm")) +
+  labs(title = "UNHCR global workforce by region | 2021",
        caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
-  scale_fill_unhcr_d(palette = "pal_unhcr", direction = -1) +
-  scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
-  theme_unhcr(font_size = 13, grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = FALSE, legend = FALSE)
+  theme_unhcr(font_size = 13, axis = FALSE, axis_title = FALSE, grid = FALSE)
 ```
 
 </div>
