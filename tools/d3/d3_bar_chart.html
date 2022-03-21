@@ -29,36 +29,33 @@
   <main class="flex-shrink-0">
     <div class="container my-5">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
-                <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Bar chart</li>
-            </ol>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Bar chart</li>
+          </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Bar chart with D3</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
-                        Sit sint
-                        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                        Quia fugiat
-                        sit
-                        in iste officiis commodi quidem hic quas.</p>
-                </div>
+          <h2>Bar chart with D3</h2>
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <p>A bar chart is a chart in which each category is represented by a horizontal rectangle, 
+                with the length of the rectangle proportional to the values being plotted. 
+                The horizontal axis shows data value, and the vertical axis displays the categories being compared. 
+                It’s a horizontal version of the column chart.</p>
+              <p>More about: <a href="../../chart_gallery/comparison.html#column">Bar chart</a></p>
             </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-6 col-md-4 col-lg-3">
-                    <p>More about: <a href="../../chart_gallery/comparison.html#column">Bar chart</a></p>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <section>
+        <hr>
+
+        <section class="my-5">
             <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
-            <div class="col text-center">
+            <div class="col">
+              <h3>Basic bar chart</h3>
                 <nav>
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -96,6 +93,7 @@
                             fill: #0072BC;
                           }
                           text {
+                            font-family: lato;
                             font-size: 11px;
                             fill: #666666;
                           }
@@ -128,6 +126,7 @@
                           }
                           .tooltip {
                             background-color: #ffffff;
+                            font-family: lato;
                             font-size: 11px;
                             padding: 4px;
                             color: #666666;
@@ -294,6 +293,7 @@
             <!-- End chart section -->
             </div>
         </section>
+
     </div>
 </main>
   <!--  End Main -->
