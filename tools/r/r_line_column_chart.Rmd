@@ -74,7 +74,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Single line chart
+### Line column chart
 
 <div class="row">
 
