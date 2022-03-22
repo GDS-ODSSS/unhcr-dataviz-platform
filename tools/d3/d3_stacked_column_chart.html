@@ -162,25 +162,24 @@
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv", function(d) {
                       return {
                         year: d.year,
-                        type: d.unhcr_esettlement,
-                        rstNumber: +d.other_resettlement
+                        unhcr_resettlement: +d.unhcr_resettlement,
+                        other_resettlement: +d.other_resettlement
                       };
                     }).then(function(data){
-           
-                
 
+                    // list of value keys
+                    const typeKeys = data.columns.slice(1);
+           
                     // stack the data
-                    const stackedData = d3.stack()
+                    const stack = d3.stack()
                        .keys(typeKeys)
                        .order(d3.stackOrderNone)
                        .offset(d3.stackOffsetNone)
-                       (sumbyYearType)
+                    const stackedData =stack(data)
 
-                    console.log(sumbyYearType)
-                  
                     // X scale and Axis
                     const xScale = d3.scaleBand()
-                      .domain(yearKeys) 
+                      .domain(data.map(d => d.year)) 
                       .range([0, width])
                       .padding(.2); 
                     svg
@@ -189,25 +188,18 @@
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
                     // Y scale and Axis
-                    const formater =  d3.format(".1s")
                     const yScale = d3.scaleLinear()
-                        .domain([0, d3.max(data.map(d => d.refNumber))])
+                        .domain([0, 180])
                         .range([height, 0]);
                     svg
                       .append('g')
-                      .call(d3.axisLeft(yScale).ticks(5).tickSize(0).tickPadding(6).tickFormat(formater))
+                      .call(d3.axisLeft(yScale).ticks(9).tickSize(0).tickPadding(6))
                       .call(function(d) { return d.select(".domain").remove()});
-
-                    // set subgroup sacle
-                    const xSubgroups = d3.scaleBand()
-                      .domain(typeKeys)
-                      .range([0, xScale.bandwidth()])
-                      .padding([0.05])
 
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(['#18375F','#0072BC','#8EBEFF'])
+                      .range(['#0072BC','#8EBEFF'])
                     
                     // set horizontal grid line
                     const GridLine = function() {return d3.axisLeft().scale(yScale)};
@@ -247,23 +239,24 @@
                     }
                     
                     // create bars
-                    bars = svg.append("g")
+                    svg.append("g")
                       .selectAll("g")
-                      .data(sumbyYearType)
-                      .join("g")
-                         .attr("transform", d => "translate(" + xScale(d[0]) +", 0)")
-                      .selectAll("rect")
-                      .data(d => { return d[1] })
-                      .join("rect")
-                         .attr("x", d => xSubgroups(d[0]))
-                         .attr("y", d => yScale(d[1]))
-                         .attr("width", xSubgroups.bandwidth())
-                         .attr("height", d => height - yScale(d[1]))
-                         .attr("fill", d=>color(d[0]))
-                      .on("mouseover", mouseover)
-                      .on("mousemove", mousemove)
-                      .on("mouseleave", mouseleave);
-
+                      .data(stackedData)
+                      .enter()
+                      .append("g")
+                          .attr("fill", function(d) { return color(d.key); })
+                        .selectAll("rect")
+                        .data(function(d) { return d; })
+                        .enter()
+                        .append("rect")
+                          .attr("x",function(d) { return xScale(d.data.year); })
+                          .attr("y",function(d) { return yScale(d[1]); })
+                          .attr("width", xScale.bandwidth())
+                          .attr("height",function(d) { return yScale(d[0]) - yScale(d[1]); })
+                          .on("mouseover", mouseover)
+                          .on("mousemove", mousemove)
+                          .on("mouseleave", mouseleave)
+                    
                     // set title
                     svg
                       .append("text")
@@ -271,16 +264,16 @@
                         .attr("x", -(margin.left)*0.6)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("Refugees in Africa region | 2018-2021")
+                      .text("Resettlement by UNHCR and others | 2010-2020")
   
                     // set Y axis label
                     svg
                       .append("text")
                         .attr("class", "chart-label")
                         .attr("x", -(margin.left)*0.6)
-                        .attr("y", -(margin.top/15))
+                        .attr("y", -(margin.top/8))
                         .attr("text-anchor", "start")
-                      .text("Displaced population (millions)")
+                      .text("Number of people (thousands)")
                     
                     // set source
                     svg
@@ -302,21 +295,8 @@
                     
                     //set legend
                     svg
-                    .append("rect")
-                        .attr("x", -(margin.left)*0.6)
-                        .attr("y", -(margin.top/2))
-                        .attr("width", 15)
-                        .attr("height", 15)
-                        .style("fill", "#18375F");
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.6+20)
-                            .attr("y", -(margin.top/2.5))
-                        .text("East and Horn of Africa and Great Lakes")
-                    svg
                         .append("rect")
-                            .attr("x", 180)
+                            .attr("x", -(margin.left)*0.6)
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
@@ -324,12 +304,12 @@
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 200)
+                            .attr("x", -(margin.left)*0.6+20)
                             .attr("y", -(margin.top/2.5))
-                        .text("Southern Africa")
+                        .text("UNHCR resettlement")
                     svg
                         .append("rect")
-                            .attr("x", 280)
+                            .attr("x", 130)
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
@@ -337,10 +317,9 @@
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 300)
+                            .attr("x", 150)
                             .attr("y", -(margin.top/2.5))
-                        .text("West and Central Africa")
-
+                        .text("Other resettlement")
                     })
                   </code>
                 </pre>
