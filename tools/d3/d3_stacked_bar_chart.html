@@ -40,9 +40,9 @@
             <h2>Stacked bar chart with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>The stacked column chart stacks vertical bars that represent different groups on top of each other. 
-                   The height of the stacked bar shows the combined value of the groups. 
-                   They show the cumulative values of a data item and compare parts to the whole.</p>
+                <p>Stacked bar charts stack horizontal bars that represent different groups one after another. 
+                    The length of the stacked bar shows the combined value of the groups. 
+                    They show the cumulative values of data items and compare parts to the whole.</p>
                 <p>More about: <a href="../../chart_gallery/comparison.html#bar-stacked">Stacked bar chart</a></p>
               </div>
             </div>
@@ -144,7 +144,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 100, right: 20, bottom: 50, left: 120};
+                    const margin = {top: 80, right: 20, bottom: 50, left: 120};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -159,18 +159,25 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_stacked_d3.csv", function(d) {
-                      return {
-                        country_origin: d.country_origin,
-                        REF: +d.REF,
-                        ASY: +d.ASY,
-                        ASY: +d.ASY
-                      };
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_stacked_d3.csv", function(d, i, columns) {
+                        for (i = 1, t = 0; i &lt columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+                        d.total = t;
+                        return d;
+                        country_origin: d.country_origin;
+                        ASY: +d.ASY;
+                        REF: +d.REF;
+                        VDA: +d.VDA
+
                     }).then(function(data){
-                        console.log(data[1])
+                        console.log(data)
 
                     // list of value keys
                     const typeKeys = data.columns.slice(1);
+
+                    // sort data in descending order by total value
+                    data.sort(function(a, b) { return b.total - a.total; });
+
+                    console.log(data)
            
                     // stack the data
                     const stack = d3.stack()
@@ -180,13 +187,14 @@
                     const stackedData =stack(data)
 
                     // X scale and Axis
+                    const formater =  d3.format(".1s")
                     const xScale = d3.scaleLinear()
                         .domain([0, 7000000])
                         .range([0, width])
                     svg
                       .append('g')
                       .attr("transform", "translate(0, "+ height +")")
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(6))
+                      .call(d3.axisBottom(xScale).ticks(7).tickSize(0).tickPadding(6).tickFormat(formater))
                       .call(d => d.select(".domain").remove());
 
                     // Y scale and Axis
@@ -201,7 +209,7 @@
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(['#EF4A60','#0072BC','#18375F'])
+                      .range(['#0072BC','#18375F','#EF4A60'])
                     
                     // set vertical grid line
                     const GridLine = function() {return d3.axisBottom().scale(xScale)};
@@ -251,7 +259,7 @@
                         .join("rect")
                           .attr("x", d => xScale(d[0]))
                           .attr("y", d => yScale(d.data.country_origin))
-                          .attr("width",  d => xScale(d[1]))
+                          .attr("width",  d => xScale(d[1])-xScale(d[0]))
                           .attr("height", yScale.bandwidth())
                           .on("mouseover", mouseover)
                           .on("mousemove", mousemove)
@@ -261,7 +269,7 @@
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.8)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
                       .text("Resettlement by UNHCR and others | 2010-2020")
@@ -270,16 +278,16 @@
                     svg
                       .append("text")
                         .attr("class", "chart-label")
-                        .attr("x", -(margin.left)*0.6)
-                        .attr("y", -(margin.top/8))
-                        .attr("text-anchor", "start")
-                      .text("Number of people (thousands)")
+                        .attr("x", width/2)
+                        .attr("y", height+margin.bottom/2)
+                        .attr("text-anchor", "middle")
+                      .text("Number of people (millions)")
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.8)
                         .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR Refugee Data Finder")
@@ -288,7 +296,7 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.8)
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
@@ -296,7 +304,7 @@
                     //set legend
                     svg
                         .append("rect")
-                            .attr("x", -(margin.left)*0.6)
+                            .attr("x", -(margin.left)*0.8)
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
@@ -304,22 +312,35 @@
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.6+20)
-                            .attr("y", -(margin.top/2.5))
-                        .text("UNHCR resettlement")
+                            .attr("x", -(margin.left)*0.8+20)
+                            .attr("y", -(margin.top/2.7))
+                        .text("Refugees")
                     svg
                         .append("rect")
-                            .attr("x", 130)
+                            .attr("x", 0)
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
-                            .style("fill", "#8EBEFF")
+                            .style("fill", "#18375F")
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 150)
-                            .attr("y", -(margin.top/2.5))
-                        .text("Other resettlement")
+                            .attr("x", 20)
+                            .attr("y", -(margin.top/2.7))
+                        .text("Asylum-seekers")
+                    svg
+                        .append("rect")
+                            .attr("x", 120)
+                            .attr("y", -(margin.top/2))
+                            .attr("width", 15)
+                            .attr("height", 15)
+                            .style("fill", "#EF4A60")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 140)
+                            .attr("y", -(margin.top/2.7))
+                        .text("Venezuelans displaced abroad")
                     })
                   </code>
                 </pre>
@@ -335,6 +356,75 @@
           <!-- End chart section -->
           </div>
         </section>
+
+        <section class="mb-5 container">
+            <hr>
+            <h3  class="mt-5 mb-3">Related chart with D3</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+                <!-- Comparison -->
+                <div class="col chart-item">
+                    <a href="d3_column_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Column Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col chart-item">
+                    <a href="d3_bar_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Bar Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col chart-item">
+                    <a href="d3_grouped_column_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Grouped column Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col chart-item">
+                    <a href="d3_grouped_bar_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Grouped bar Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col chart-item">
+                    <a href="d3_stacked_column_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Stacked column Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col chart-item">
+                    <a href="d3_stacked_bar_chart.html">
+                        <div class="chart-img d-inline-flex justify-content-center">
+                            <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
+                            <div class="chart-info d-flex align-items-end p-3">
+                                <span class="chart-name">Stacked bar Chart</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- End Comparison -->
+            </div>
+         </section>
 
     </div>
 </main>
