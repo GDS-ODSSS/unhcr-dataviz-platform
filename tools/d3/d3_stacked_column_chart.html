@@ -162,8 +162,8 @@
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv", function(d) {
                       return {
                         year: d.year,
-                        type: d.rst_type,
-                        rstNumber: +d.rst_in_thousand
+                        type: d.unhcr_esettlement,
+                        rstNumber: +d.other_resettlement
                       };
                     }).then(function(data){
            
