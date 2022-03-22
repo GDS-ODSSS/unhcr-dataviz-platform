@@ -144,7 +144,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 100, right: 20, bottom: 50, left: 40};
+                    const margin = {top: 100, right: 20, bottom: 50, left: 120};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -159,13 +159,15 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv", function(d) {
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_stacked_d3.csv", function(d) {
                       return {
-                        year: d.year,
-                        unhcr_resettlement: +d.unhcr_resettlement,
-                        other_resettlement: +d.other_resettlement
+                        country_origin: d.country_origin,
+                        REF: +d.REF,
+                        ASY: +d.ASY,
+                        ASY: +d.ASY
                       };
                     }).then(function(data){
+                        console.log(data[1])
 
                     // list of value keys
                     const typeKeys = data.columns.slice(1);
@@ -178,36 +180,36 @@
                     const stackedData =stack(data)
 
                     // X scale and Axis
-                    const xScale = d3.scaleBand()
-                      .domain(data.map(d => d.year)) 
-                      .range([0, width])
+                    const xScale = d3.scaleLinear()
+                        .domain([0, 7000000])
+                        .range([0, width])
+                    svg
+                      .append('g')
+                      .attr("transform", "translate(0, "+ height +")")
+                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(6))
+                      .call(d => d.select(".domain").remove());
+
+                    // Y scale and Axis
+                    const yScale = d3.scaleBand()
+                      .domain(data.map(d => d.country_origin)) 
+                      .range([0, height])
                       .padding(.2); 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
-                    
-                    // Y scale and Axis
-                    const yScale = d3.scaleLinear()
-                        .domain([0, 180])
-                        .range([height, 0]);
-                    svg
-                      .append('g')
-                      .call(d3.axisLeft(yScale).ticks(9).tickSize(0).tickPadding(6))
-                      .call(function(d) { return d.select(".domain").remove()});
+                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(8));
 
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(['#0072BC','#8EBEFF'])
+                      .range(['#EF4A60','#0072BC','#18375F'])
                     
-                    // set horizontal grid line
-                    const GridLine = function() {return d3.axisLeft().scale(yScale)};
+                    // set vertical grid line
+                    const GridLine = function() {return d3.axisBottom().scale(xScale)};
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLine()
-                        .tickSize(-width,0,0)
+                        .tickSize(height,0,0)
                         .tickFormat("")
                     ); 
 
@@ -242,17 +244,15 @@
                     svg.append("g")
                       .selectAll("g")
                       .data(stackedData)
-                      .enter()
-                      .append("g")
-                          .attr("fill", function(d) { return color(d.key); })
+                      .join("g")
+                          .attr("fill", d => color(d.key))
                         .selectAll("rect")
-                        .data(function(d) { return d; })
-                        .enter()
-                        .append("rect")
-                          .attr("x",function(d) { return xScale(d.data.year); })
-                          .attr("y",function(d) { return yScale(d[1]); })
-                          .attr("width", xScale.bandwidth())
-                          .attr("height",function(d) { return yScale(d[0]) - yScale(d[1]); })
+                        .data(d => d)
+                        .join("rect")
+                          .attr("x", d => xScale(d[0]))
+                          .attr("y", d => yScale(d.data.country_origin))
+                          .attr("width",  d => xScale(d[1]))
+                          .attr("height", yScale.bandwidth())
                           .on("mouseover", mouseover)
                           .on("mousemove", mousemove)
                           .on("mouseleave", mouseleave)
