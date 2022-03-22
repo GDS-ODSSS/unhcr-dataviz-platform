@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Grouped bar chart with D3</title>
+  <title>UNHCR Dataviz - Stacked column chart with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,15 +33,17 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Grouped bar chart</li>
+            <li class="breadcrumb-item active" aria-current="page">Stacked column chart</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Grouped bar chart with D3</h2>
+            <h2>Stacked column chart with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>Grouped bar charts are a type of colour-coded bar chart that is used to represent and compare different categories of two or more groups.</p>
-                <p>More about: <a href="../../chart_gallery/comparison.html#bar-grouped">Grouped bar chart</a></p>
+                <p>The stacked column chart stacks vertical bars that represent different groups on top of each other. 
+                   The height of the stacked bar shows the combined value of the groups. 
+                   They show the cumulative values of a data item and compare parts to the whole.</p>
+                <p>More about: <a href="../../chart_gallery/comparison.html#column-stacked">Stacked column chart</a></p>
               </div>
             </div>
         </div>
@@ -52,7 +54,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">Grouped bar chart</h3>
+            <h3 class="mb-3">Stacked column chart</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -142,7 +144,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 100, right: 20, bottom: 50, left: 190};
+                    const margin = {top: 100, right: 20, bottom: 50, left: 40};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -157,59 +159,63 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv", function(d) {
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv", function(d) {
                       return {
-                        region: d.region,
                         year: d.year,
-                        asyApplication: +d.asylum_application
+                        type: d.rst_type,
+                        rstNumber: +d.rst_in_thousand
                       };
                     }).then(function(data){
            
-                    const sumbyRegionYear = d3.rollups(data, v => d3.sum(v, d => d.asyApplication), d => d.region, d => d.year)
-                    console.log(sumbyRegionYear)
-                  
-                    const regionKey = Array.from(sumbyRegionYear).map(d => d[0])
-                    const yearKeys = Array.from(Array.from(sumbyRegionYear)[0][1]).map(d=>d[0])
+                
 
-                    const regionKeys = regionKey.sort(d3.ascending)
+                    // stack the data
+                    const stackedData = d3.stack()
+                       .keys(typeKeys)
+                       .order(d3.stackOrderNone)
+                       .offset(d3.stackOffsetNone)
+                       (sumbyYearType)
 
-                    // x scale and Axis
-                    const xScale = d3.scaleLinear()
-                        .domain([0, d3.max(data.map(d => d.asyApplication))]).nice()
-                        .range([0, width]);
-                    svg
-                      .append('g')
-                      .attr("transform", "translate(0, "+ height +")")
-                      .call(d3.axisBottom(xScale).tickSize(0).ticks(5).tickPadding(6).tickFormat(d3.format(".1s")))
-                      .call(function(d) { return d.select(".domain").remove()});
+                    console.log(sumbyYearType)
                   
-                    // y scale and Axis
-                    const yScale = d3.scaleBand()
-                      .domain(regionKeys) 
-                      .range([0, height])
+                    // X scale and Axis
+                    const xScale = d3.scaleBand()
+                      .domain(yearKeys) 
+                      .range([0, width])
                       .padding(.2); 
                     svg
                       .append('g')
-                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(8));
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
+                    
+                    // Y scale and Axis
+                    const formater =  d3.format(".1s")
+                    const yScale = d3.scaleLinear()
+                        .domain([0, d3.max(data.map(d => d.refNumber))])
+                        .range([height, 0]);
+                    svg
+                      .append('g')
+                      .call(d3.axisLeft(yScale).ticks(5).tickSize(0).tickPadding(6).tickFormat(formater))
+                      .call(function(d) { return d.select(".domain").remove()});
 
                     // set subgroup sacle
-                    const ySubgroups = d3.scaleBand()
-                      .domain(yearKeys)
-                      .range([0, yScale.bandwidth()])
+                    const xSubgroups = d3.scaleBand()
+                      .domain(typeKeys)
+                      .range([0, xScale.bandwidth()])
                       .padding([0.05])
 
                     // color palette
                     const color = d3.scaleOrdinal()
-                      .domain(yearKeys)
-                      .range(['#0072BC','#8EBEFF'])
+                      .domain(typeKeys)
+                      .range(['#18375F','#0072BC','#8EBEFF'])
                     
-                    // set vertical grid line
-                    const GridLine = function() {return d3.axisBottom().scale(xScale)};
+                    // set horizontal grid line
+                    const GridLine = function() {return d3.axisLeft().scale(yScale)};
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLine()
-                        .tickSize(height,0,0)
+                        .tickSize(-width,0,0)
                         .tickFormat("")
                     ); 
 
@@ -243,16 +249,16 @@
                     // create bars
                     bars = svg.append("g")
                       .selectAll("g")
-                      .data(sumbyRegionYear)
+                      .data(sumbyYearType)
                       .join("g")
-                         .attr("transform", d => "translate(0, " + yScale(d[0]) +")")
+                         .attr("transform", d => "translate(" + xScale(d[0]) +", 0)")
                       .selectAll("rect")
                       .data(d => { return d[1] })
                       .join("rect")
-                         .attr("x", xScale(0))
-                         .attr("y", d => ySubgroups(d[0]))
-                         .attr("width", d => xScale(d[1]))
-                         .attr("height", ySubgroups.bandwidth())
+                         .attr("x", d => xSubgroups(d[0]))
+                         .attr("y", d => yScale(d[1]))
+                         .attr("width", xSubgroups.bandwidth())
+                         .attr("height", d => height - yScale(d[1]))
                          .attr("fill", d=>color(d[0]))
                       .on("mouseover", mouseover)
                       .on("mousemove", mousemove)
@@ -262,25 +268,25 @@
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin.left)*0.7)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("Individual asylum applications registred by region | 2019-2020")
+                      .text("Refugees in Africa region | 2018-2021")
   
                     // set Y axis label
                     svg
                       .append("text")
                         .attr("class", "chart-label")
-                        .attr("x", width/2)
-                        .attr("y", height+margin.bottom/2)
-                        .attr("text-anchor", "middle")
-                      .text("Displaced population")
+                        .attr("x", -(margin.left)*0.6)
+                        .attr("y", -(margin.top/15))
+                        .attr("text-anchor", "start")
+                      .text("Displaced population (millions)")
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin.left)*0.7)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR Refugee Data Finder")
@@ -289,7 +295,7 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin.left)*0.7)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
@@ -297,20 +303,33 @@
                     //set legend
                     svg
                     .append("rect")
-                        .attr("x", -(margin.left)*0.7)
+                        .attr("x", -(margin.left)*0.6)
                         .attr("y", -(margin.top/2))
                         .attr("width", 15)
                         .attr("height", 15)
-                        .style("fill", "#0072BC");
+                        .style("fill", "#18375F");
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.7+20)
+                            .attr("x", -(margin.left)*0.6+20)
                             .attr("y", -(margin.top/2.5))
-                        .text("2019")
+                        .text("East and Horn of Africa and Great Lakes")
                     svg
                         .append("rect")
-                            .attr("x", -(margin.left)*0.7+60)
+                            .attr("x", 180)
+                            .attr("y", -(margin.top/2))
+                            .attr("width", 15)
+                            .attr("height", 15)
+                            .style("fill", "#0072BC")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 200)
+                            .attr("y", -(margin.top/2.5))
+                        .text("Southern Africa")
+                    svg
+                        .append("rect")
+                            .attr("x", 280)
                             .attr("y", -(margin.top/2))
                             .attr("width", 15)
                             .attr("height", 15)
@@ -318,9 +337,10 @@
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.7+80)
+                            .attr("x", 300)
                             .attr("y", -(margin.top/2.5))
-                        .text("2020")
+                        .text("West and Central Africa")
+
                     })
                   </code>
                 </pre>

@@ -230,7 +230,7 @@
                     const mousemove = function(event, d) {
                       const formater =  d3.format(",")
                         tooltip
-                          .html(d3.format(".0f")(d[1]))
+                          .html(formater(d[1]))
                           .style("top", event.pageY - 10 + "px")
                           .style("left", event.pageX + 10 + "px");
                     }
