@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz</title>
+  <link href="assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="home" class="flex-shrink-0">
+    <section class="banner py-5" style="background-image: url(assets/img/home_banner.svg); background-size:cover; background-position: center; background-repeat: no-repeat;">
+      <div class="container py-5">
+        <h1 class="display-4 fw-bold">Data visualization platform</h1>
+        <p class="fs-4">Insights, guidelines, and tools for better data storytelling.</p>
+      </div>
+    </section>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center gx-5 gy-4">
+                <div class="col-12 col-md-6">
+                    <h2>Chart gallery</h2>
+                    <hr class="short-hr mx-0">
+                    <p>A collection of visualization options for different data and relationships. Find the best option to showcase your data and convey your message.</p>
+                    <a class="btn btn-primary" href="chart_gallery/" role="button">See more</a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <img src="assets/img/chart_gallery_cover.svg" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  class="py-5">
+        <div class="container">
+            <div class="row align-items-center gx-5 gy-4">
+                <div class="col-12 col-md-6 order-md-2">
+                    <h2>General guidance</h2>
+                    <hr class="short-hr mx-0">
+                    <p>The UNHCR Data Visualization Guidelines are practical easy-to-follow guidance which will ensure your charts and graphics are professional, clear, and brand–compliant.</p>
+                    <a class="btn btn-primary" href="general_guidance/" role="button">See more</a>
+                </div>
+                <div class="col-12 col-md-6 order-md-1">
+                    <img src="assets/img/guideline_cover.svg" alt="" class="img-fluid">
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center gx-5 gy-4">
+                <div class="col-12 col-md-6">
+                    <h2>Tools</h2>
+                    <hr class="short-hr mx-0">
+                    <p>To support UNHCR staff to create high-quality brand-compliant charts and graphics, GDS created a number of tools, templates and scripts. You can find useful tools to support your data visualization using Excel, Power BI, Adobe Illustrator, R, Python, D3, and for GIS.</p>
+                    <a class="btn btn-primary" href="tools/" role="button">See more</a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <img src="assets/img/tools_cover.svg" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Products</h2>
+                <hr class="short-hr">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <p>A collection of information products, mostly created by the Information Product Development and Analysis team in GDS. Perhaps they can inspire your data storytelling?</p>
+                    </div>
+                  </div>
+            </div>
+            <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div> -->
+            <div class="text-center mt-5">
+                <a class="btn btn-primary" href="products/" role="button">See more</a>
+            </div>
+        </div>
+    </section>
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="assets/js/unhcrmain.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>
