@@ -162,12 +162,8 @@
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked_d3.csv")
                     .then(function(data){
 
-
-
                     // list of value keys
                     const typeKeys = data.columns.slice(1);
-
-                    console.log(typeKeys)
            
                     // stack the data
                     const stack = d3.stack()
@@ -178,7 +174,7 @@
 
                     // X scale and Axis
                     const xScale = d3.scaleBand()
-                      .domain(data.map(d => d.year)) 
+                      .domain(data.map(d => d.months))
                       .range([0, width])
                       .padding(.2); 
                     svg
@@ -188,7 +184,7 @@
                     
                     // Y scale and Axis
                     const yScale = d3.scaleLinear()
-                        .domain([0, 180])
+                        .domain([0, 500])
                         .range([height, 0]);
                     svg
                       .append('g')
@@ -198,7 +194,7 @@
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(['#0072BC','#8EBEFF'])
+                      .range(["#18375F", "#0072BC", "#8EBEFF", "#00B398"])
                     
                     // set horizontal grid line
                     const GridLine = function() {return d3.axisLeft().scale(yScale)};
@@ -237,19 +233,21 @@
                           .style("opacity", 1)
                     }
                     
-                    <!-- // create bars
-                    svg.append("g")
-                      .selectAll("g")
-                      .data(stackedData)
-                      .join("path")
-                          .attr("fill", d => d.key)
-                          .attr("d", d3.area()
-                          .x(function(d) { return xScale(d.data.month); })
-                          .y0(function(d) { return yScale(+d[0]);})
-                          .y1(function(d) { return yScale(+d[1]);})
-                          .on("mouseover", mouseover)
-                          .on("mousemove", mousemove)
-                          .on("mouseleave", mouseleave) -->
+                    svg
+                    .append("g")
+                    .selectAll("path")
+                    .data(stackedData)
+                    .enter()
+                    .append("path")
+                        .attr("fill", function(d) { return color(d.key); })
+                        .attr("d", d3.area()
+                            .x(function(d) { return xScale(d.data.months); })
+                            .y0(function(d) { return yScale(+d[0]);})
+                            .y1(function(d) { return yScale(+d[1]);})
+                        )
+                        .on("mouseover", mouseover)
+                        <!-- .on("mousemove", mousemove) -->
+                        .on("mouseleave", mouseleave)
                     
                     // set title
                     svg
@@ -267,7 +265,7 @@
                         .attr("x", -(margin.left)*0.6)
                         .attr("y", -(margin.top/8))
                         .attr("text-anchor", "start")
-                      .text("Number of people (thousands)")
+                      .text("USD millions")
                     
                     // set source
                     svg
@@ -330,74 +328,7 @@
           </div>
         </section>
 
-        <section class="mb-5 container">
-          <hr>
-          <h3  class="mt-5 mb-3">Related chart with D3</h3>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-              <!-- Comparison -->
-              <div class="col chart-item">
-                  <a href="d3_column_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Column Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col chart-item">
-                  <a href="d3_bar_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Bar Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col chart-item">
-                  <a href="d3_grouped_column_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Grouped column Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col chart-item">
-                  <a href="d3_grouped_bar_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Grouped bar Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col chart-item">
-                  <a href="d3_stacked_column_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Stacked column Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col chart-item">
-                  <a href="d3_stacked_bar_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Stacked bar Chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <!-- End Comparison -->
-          </div>
-        </section>
+
 
     </div>
 </main>
