@@ -139,7 +139,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 50, right: 20, bottom: 50, left: 40};
+                    const margin = {top: 80, right: 20, bottom: 50, left: 40};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -223,7 +223,6 @@
                               (d[1])
                           });
                           
-
                     // set title
                     svg
                       .append("text")
@@ -238,7 +237,7 @@
                       .append("text")
                         .attr("class", "chart-label")
                         .attr("x", -(margin.left)*0.7)
-                        .attr("y", -(margin.top/4))
+                        .attr("y", -(margin.top/9))
                         .attr("text-anchor", "start")
                       .text("Displaced population (millions)")
                     
@@ -259,6 +258,35 @@
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
+
+                    // set legend manually 
+                    svg
+                        .append("circle")
+                            .attr("cx", -(margin.left)*0.6)
+                            .attr("cy", -(margin.top/2.5))
+                            .attr("r", 5)
+                            .style("fill", "#0072BC");
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", -(margin.left)*0.6+10)
+                            .attr("y", -(margin.top/2.5))
+                            .attr("alignment-baseline","middle")
+                        .text("Refugees")
+                    svg
+                        .append("circle")
+                            .attr("cx", 60)
+                            .attr("cy", -(margin.top/2.5))
+                            .attr("r", 5)
+                            .style("fill", "#00B398")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 70)
+                            .attr("y", -(margin.top/2.5))
+                            .attr("alignment-baseline","middle")
+                        .text("IDPs")
+                    
                     })
                   </code>
                 </pre>

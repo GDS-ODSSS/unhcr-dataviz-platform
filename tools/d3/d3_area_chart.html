@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Line chart with D3</title>
+  <title>UNHCR Dataviz - Area chart with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -37,11 +37,12 @@
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Line chart with D3</h2>
+            <h2>Area chart with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>A line chart is a type of chart that displays the evolution of one or several numeric variables over a continuous interval or time period. Typically, the x-axis is used for a timescale or a sequence of intervals, while the y-axis reports values across that progression.</p>
-                <p>More about: <a href="../../chart_gallery/change_over_time.html">Line chart</a></p>
+                <p>An area chart, like a line chart, displays the evolution of numeric variables over a continuous period of time. 
+                    However, in an area chart, the area between the line and x-axis is filled with colour or texture.</p>
+                <p>More about: <a href="../../chart_gallery/change_over_time.html#area">Area chart</a></p>
               </div>
             </div>
         </div>
@@ -154,39 +155,14 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area.csv", function(d) {
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_d3.csv", function(d) {
                     const parseTime = d3.timeParse("%Y")
                       return {
                         year: parseTime(d.year),
-                        popType: d.population_type,
-                        popNumber: +d.population_number
+                        refNumber: +d.refugee_number
                       };
                     }).then(function(data){
 
-                    // pivot/convert data from long to wide format
-                    const dataWide = Array.from(
-                        d3.group(data, d => d.year),
-                        ([year, group]) => Object.fromEntries(
-                          [["year", year]].concat(
-                            group.map(d => [d.popType, d.popNumber])
-                          )
-                        )
-                      )
-                    
-                    const dataReduce = dataWide[1]
-
-                    console.log(dataReduce)
-                    
-
-                      console.log(data)
-                    
-                    //pivot the data
-                    const dataGrouped = d3.group(data, d => d.popType)
-
-                    console.log(dataGrouped)
-
-                    // list of value keys
-                    const typeKeys = ["Refugees", "IDPs"];
 
                     // X scale and Axis
                     const parseTime = d3.timeParse("%Y")
@@ -201,7 +177,7 @@
                     // Y scale and Axis
                     const formatter =  d3.format(".0s")
                     const yScale = d3.scaleLinear()
-                    .domain([0, d3.max(data, d => d.popNumber)])
+                    .domain([0, d3.max(data, d => d.refNumber)])
                     .range([height, 0]);
                     svg
                       .append('g')
@@ -219,28 +195,18 @@
                         .tickFormat("")
                         .ticks(6)
                     );
-                    
-                    // color palette
-                    const color = d3.scaleOrdinal()
-                      .range(["#0072BC","#00B398"])
-             
-                    // create line
-                    const lines = svg
-                        .selectAll("lines")
-                        .data(dataGrouped)
-                        .join("path")
-                          .attr("fill", "none")
-                          .attr("stroke", d => color(d[0]))
-                          .attr("stroke-width", 2)
-                          .attr("d", function(d){
-                            return d3.line()
-                              .curve(d3.curveCardinal)
-                              .x(d => xScale(d.year))
-                              .y(d => yScale(d.popNumber))
-                              (d[1])
-                          });
-                          
 
+                    // draw graph
+                    svg
+                      .append("path")
+                      .datum(data)
+                          .attr("fill", "#0072BC")
+                          .attr("d", d3.area()
+                              .x(function(d) { return xScale(d.year)})
+                              .y0(yScale(0))
+                              .y1(function(d) { return yScale(d.refNumber)})
+                              );
+                                            
                     // set title
                     svg
                       .append("text")
@@ -248,7 +214,7 @@
                         .attr("x", -(margin.left)*0.7)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("Number of refugee and IDPs of concern to UNHCR | 1991-2021")
+                      .text("Number of refugees | 1991-2021")
   
                     // set Y axis label
                     svg
