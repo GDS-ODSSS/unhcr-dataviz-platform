@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - 100% stacked column chart with D3</title>
+  <title>UNHCR Dataviz - Pie chart with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,17 +33,16 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">100% stacked column chart</li>
+            <li class="breadcrumb-item active" aria-current="page">Pie chart</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>100% stacked column chart with D3</h2>
+            <h2>Pie chart with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>100% stacked column charts are similar to stacked column charts in that categories are represented as vertical bars and series as components of those bars. 
-                    However, in a 100% stacked column chart, each series bar represents the percentage of the whole to which it belongs, 
-                    where the total (cumulative) of each stacked bar always equals 100%.</p>
-                <p>More about: <a href="../../chart_gallery/part_to_a_whole.html#column-stacked-100perc">100% stacked column chart</a></p>
+                <p>A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments.
+                   Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.</p>
+                <p>More about: <a href="../../chart_gallery/part_to_a_whole.html#pie">Pie chart</a></p>
               </div>
             </div>
         </div>
@@ -54,7 +53,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">100% stacked column chart</h3>
+            <h3 class="mb-3">Pie chart</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -156,7 +155,7 @@
                         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc_d3.csv")
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv")
                     .then(function(data){
 
                     // list of value keys
