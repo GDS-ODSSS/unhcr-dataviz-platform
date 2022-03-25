@@ -158,49 +158,12 @@
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv")
                     .then(function(data){
 
-                    // list of value keys
-                    const typeKeys = data.columns.slice(1);
-           
-                    // stack the data
-                    const stack = d3.stack()
-                       .keys(typeKeys)
-                       .order(d3.stackOrderNone)
-                       .offset(d3.stackOffsetNone)
-                    const stackedData =stack(data)
-
-                    // X scale and Axis
-                    const xScale = d3.scaleBand()
-                      .domain(data.map(d => d.Year)) 
-                      .range([0, width])
-                      .padding(.2); 
-                    svg
-                      .append('g')
-                      .attr("transform", `translate(0, ${height})`)
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
-                    // Y scale and Axis
-                    const yScale = d3.scaleLinear()
-                        .domain([0, 1])
-                        .range([height, 0]);
-                    svg
-                      .append('g')
-                      .call(d3.axisLeft(yScale).ticks(10, "%").tickSize(0).tickPadding(4))
-                      .call(d => d.select(".domain").remove());
-
                     // color palette
                     const color = d3.scaleOrdinal()
-                      .domain(typeKeys)
-                      .range(["#18375F", "#0072BC", "#8EBEFF", "#00B398"])
-                    
-                    // set horizontal grid line
-                    const GridLine = function() {return d3.axisLeft().scale(yScale)};
-                    svg
-                      .append("g")
-                        .attr("class", "grid")
-                      .call(GridLine()
-                        .tickSize(-width,0,0)
-                        .tickFormat("")
-                    ); 
+                      .domain(data.map(d => d.funding_type))
+                      .range(["#18375F", "#0072BC"])
+ 
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -232,22 +195,47 @@
                             .style("opacity", 1)
                     };
                     
-                    // create bars
+                    arc = d3.arc()
+                        .innerRadius(0)
+                        .outerRadius(Math.min(width, height) / 2 - 1)
+
+                    arcLabel = {
+                        const radius = Math.min(width, height) / 2 * 0.8;
+                        return d3.arc().innerRadius(radius).outerRadius(radius);
+                      }
+                    
+                    pie = d3.pie()
+                       .sort(null)
+                       .value(d => d.value)
+
+
                     svg.append("g")
-                      .selectAll("g")
-                      .data(stackedData)
-                      .join("g")
-                          .attr("fill", d => color(d.key))
-                      .selectAll("rect")
-                      .data(d => d)
-                      .join("rect")
-                          .attr("x", d => xScale(d.data.Year))
-                          .attr("y", d => yScale(d[1]))
-                          .attr("width", xScale.bandwidth())
-                          .attr("height", d => yScale(d[0]) - yScale(d[1]))
-                      .on("mouseover", mouseover)
-                      .on("mousemove", mousemove)
-                      .on("mouseleave", mouseleave)
+                       .attr("stroke", "white")
+                       .selectAll("path")
+                       .data(arcs)
+                       .join("path")
+                       .attr("fill", d => color(d.data.funding_type))
+                       .attr("d", arc)
+                       .append("title")
+                       .text(d => `${d.data.funding_type}: ${d.data.value.toLocaleString()}`);
+                   
+                    svg.append("g")
+                       .attr("font-family", "sans-serif")
+                       .attr("font-size", 25)
+                       .attr("text-anchor", "middle")
+                       .selectAll("text")
+                       .data(arcs)
+                       .join("text")
+                       .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
+                       .call(text => text.append("tspan")
+                             .attr("x", "0.2em")
+                             .attr("y", "-0.6em")
+                             .text(d => d.data.funding_type))
+                       .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
+                             .attr("x", 0)
+                             .attr("y", "0.7em")
+                             .attr("fill-opacity", 0.7)
+                             .text(d => d.data.value.toLocaleString() + "%"));
                                       
                     // set title
                     svg
@@ -276,59 +264,7 @@
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
                     
-                    //set legend
-                    svg
-                        .append("rect")
-                            .attr("x", -(margin.left)*0.7)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#18375F")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.6+15)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 60)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#0072BC")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 80)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Softly earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 170)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#8EBEFF")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 190)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Tightly earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 290)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#00B398")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 310)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Unearmarked")
+                    
                     })
                   </code>
                 </pre>
