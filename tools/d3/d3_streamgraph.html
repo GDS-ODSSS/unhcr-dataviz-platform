@@ -40,8 +40,9 @@
             <h2>Streamgraph with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>As a variation of a simple area chart, a stacked area chart displays the changes of value of multiple data series over a period of time. 
-                  The values of each data series are plotted on top of each other, which allows tracking not only the evolution of total value but also the breakdown of that total by groups.</p>
+                <p>A streamgraph is a variation of a stacked area chart. Instead of displaying values on top of a fixed, 
+                  straight baseline at the bottom of the stack, the values of the streamgraph are displaced around a central baseline. 
+                  This results in a flowing, organic-shaped “stream” displaying the change over time.</p>
                 <p>More about: <a href="../../chart_gallery/change_over_time.html#area-stacked">Streamgraph</a></p>
               </div>
             </div>
@@ -85,9 +86,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      .bar {
-                        fill: #0072BC;
-                      }
                       text {
                         font-family: lato;
                         font-size: 10px;
@@ -120,15 +118,6 @@
                         font-size: 8px;
                         fill: #999999;
                       }
-                      .tooltip {
-                        background-color: #ffffff;
-                        font-family: lato;
-                        font-size: 11px;
-                        padding: 4px;
-                        color: #666666;
-                        border: none;
-                        box-shadow: 0px 0px 3px 0px #E6E6E6;
-                      }
                       .legend{
                         font-size: 10px;
                       }
@@ -143,7 +132,7 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 100, right: 20, bottom: 50, left: 40};
+                    const margin = {top: 130, right: 20, bottom: 50, left: 40};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -158,140 +147,130 @@
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv")
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph_d3.csv", function(d) {
+                        const parseTime = d3.timeParse("%Y")
+                        return{
+                            year: parseTime(d.year),
+                            REF: +d.REF,
+                            ASY: +d.ASY,
+                            IDPs: +d.IDPs,
+                            STA: +d.STA,
+                            OOC: +d.OOC,
+                            VDA: +d.VDA
+                        }
+                    })
                     .then(function(data){
-                        console.log(data)
-
-                    // pivot/convert data from long to wide format
-                    const dataWide = Array.from(
-                        d3.groups(data, d => d.year),
-                        ([year, group]) => Object.fromEntries(
-                          [["year", year]].concat(
-                            group.map(d => [d.population_type, d.population_number])
-                          )
-                        )
-                      )
-
-                      console.log(dataWide)
-
-
-
-                      
+                    console.log(data)
 
                     // list of value keys
-                    const typeKeys = Object.keys(data).slice(1);
-                    const monthKeys = data.map(d => d.months)
-
+                    const typeKeys = data.columns.slice(1);
            
                     // stack the data
                     const stack = d3.stack()
                        .keys(typeKeys)
                        .order(d3.stackOrderNone)
-                       .offset(d3.stackOffsetNone)
-                    const stackedData =stack(data)
+                       .offset(d3.stackOffsetSilhouette)
+                    const stackedData = stack(data)
 
                     // X scale and Axis
-                    const xScale = d3.scaleBand()
-                      .domain(monthKeys)
-                      .range([0, width])
-                      .padding(.2); 
+                    const parseTime = d3.timeParse("%Y")
+                    const xScale = d3.scaleTime()
+                      .domain(d3.extent(data, d => d.year)).nice()
+                      .range([0, width]) 
                     svg
                       .append('g')
                       .attr("transform", "translate(0," + height + ")")
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
+                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8))
+                      .call(d => d.select(".domain").remove());
                     
                     // Y scale and Axis
+                    const formatter =  d3.format(".0s")
                     const yScale = d3.scaleLinear()
-                        .domain([0, 500])
+                        .domain([-60000000, 60000000])
                         .range([height, 0]);
                     svg
                       .append('g')
-                      .call(d3.axisLeft(yScale).ticks(9).tickSize(0).tickPadding(6))
-                      .call(function(d) { return d.select(".domain").remove()});
+                      .call(d3.axisLeft(yScale).ticks(9).ticks(7).tickSize(0).tickPadding(6).tickFormat(formatter))
+                      .call(d => d.select(".domain").remove());
 
 
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(["#18375F", "#0072BC", "#8EBEFF", "#00B398"])
+                      .range(["#0072BC", "#18375F", "#00B398", "#E1CC0D","#999999","#EF4A60"])
                     
-                    // set horizontal grid line
-                    const GridLine = function() {return d3.axisLeft().scale(yScale)};
+                    // set vertical grid line
+                    const GridLine = function() { return d3.axisBottom().scale(xScale)};
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLine()
-                        .tickSize(-width,0,0)
+                        .tickSize(height,0,0)
                         .tickFormat("")
-                    ); 
-
-                    // create a tooltip
-                    const tooltip = d3.select("body")
-                      .append("div")
-                        .attr("id", "chart")
-                        .attr("class", "tooltip");
-
-                    // Three function that change the tooltip when user hover / move / leave a cell
-                    const mouseover = function(d) {
-                        tooltip
-                          .style("opacity", .8)
-                        d3.select(this)
-                          .style("opacity", .5)
-                    }
-                    const mousemove = function(event, d) {
-                      const formater =  d3.format(",")
-                        tooltip
-                          .html(formater(d[1]))
-                          .style("top", event.pageY - 10 + "px")
-                          .style("left", event.pageX + 10 + "px");
-                    }
-                    const mouseleave = function(d) {
-                        tooltip
-                          .style("opacity", 0)
-                        d3.select(this)
-                          .style("opacity", 1)
-                    }
+                        .ticks(7)
+                    );  
                     
+                    const tooltip = svg
+                    .append("text")
+                    .attr("x", 3)
+                    .attr("y", 10)
+                    .style("opacity", 0)
+                    .style("font-size", 11)
+                  
+                    const mouseover = function(event,d) {
+                      tooltip.style("opacity", 1)
+                      d3.selectAll(".stackedArea").style("opacity", .2)
+                      d3.select(this)
+                        .style("opacity", 1)
+                    }
+                    const mousemove = function(event,d,i) {
+                      grp = d.key
+                      tooltip.text(grp)
+                    }
+                    const mouseleave = function(event,d) {
+                      tooltip.style("opacity", 0)
+                      d3.selectAll(".stackedArea").style("opacity", 1).style("stroke", "none")
+                     }
+                  
+                    // create the areas
                     svg
-                    .append("g")
-                    .selectAll("g")
-                    .data(stackedData)
-                    .join("path")
-                        .attr("fill", d => color(d.key))
+                      .selectAll("alllayer")
+                      .data(stackedData)
+                      .join("path")
+                        .attr("class", "stackedArea")
+                        .style("fill", d => color(d.key))
                         .attr("d", d3.area()
-                            .x(function(d) { return xScale(d.data.months); })
-                            .y0(function(d) { return yScale(+d[0]);})
-                            .y1(function(d) { return yScale(+d[1]);})
+                           .x(d => xScale(d.data.year))
+                           .y0(d => yScale(d[0]))
+                           .y1(d => yScale(d[1]))
                         )
-                        .attr("width", xScale.bandwidth())
-                        .attr("height",function(d) { return yScale(d[0]) - yScale(d[1]); })
                         .on("mouseover", mouseover)
-                        <!-- .on("mousemove", mousemove) -->
-                        .on("mouseleave", mouseleave)
+                        .on("mousemove", mousemove)
+                        .on("mouseleave", mouseleave);
                     
                     // set title
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.65)
                         .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("Evolution of funding in West Africa region | 2020")
+                      .text("Evolution of people of concern to UNHCR | 1991-2020")
   
                     // set Y axis label
                     svg
                       .append("text")
                         .attr("class", "chart-label")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.65)
                         .attr("y", -(margin.top/8))
                         .attr("text-anchor", "start")
-                      .text("USD millions")
+                      .text("Number of people(millions)")
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.65)
                         .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR Refugee Data Finder")
@@ -300,7 +279,7 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin.left)*0.6)
+                        .attr("x", -(margin.left)*0.65)
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
@@ -312,42 +291,29 @@
                             .attr("y", -(margin.top/2))
                             .attr("width", 13)
                             .attr("height", 13)
-                            .style("fill", "#18375F")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.6+20)
-                            .attr("y", -(margin.top/2.5))
-                        .text("Earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 60)
-                            .attr("y", -(margin.top/2))
-                            .attr("width", 13)
-                            .attr("height", 13)
                             .style("fill", "#0072BC")
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 80)
-                            .attr("y", -(margin.top/2.5))
-                        .text("Softly earmarked")
+                            .attr("x", -(margin.left)*0.6+20)
+                            .attr("y", -(margin.top/2.4))
+                        .text("Refugees")
                     svg
                         .append("rect")
-                            .attr("x", 170)
+                            .attr("x", 100)
                             .attr("y", -(margin.top/2))
                             .attr("width", 13)
                             .attr("height", 13)
-                            .style("fill", "#8EBEFF")
+                            .style("fill", "#18375F")
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 190)
-                            .attr("y", -(margin.top/2.5))
-                        .text("Tightly earmarked")
+                            .attr("x", 120)
+                            .attr("y", -(margin.top/2.4))
+                        .text("Asylum-seekers")
                     svg
                         .append("rect")
-                            .attr("x", 290)
+                            .attr("x", 230)
                             .attr("y", -(margin.top/2))
                             .attr("width", 13)
                             .attr("height", 13)
@@ -355,9 +321,48 @@
                     svg
                         .append("text")
                             .attr("class", "legend")
-                            .attr("x", 310)
-                            .attr("y", -(margin.top/2.5))
-                        .text("Unearmarked")
+                            .attr("x", 250)
+                            .attr("y", -(margin.top/2.4))
+                        .text("IDPs")
+                    svg
+                        .append("rect")
+                            .attr("x", 100)
+                            .attr("y", -(margin.top/2.8))
+                            .attr("width", 13)
+                            .attr("height", 13)
+                            .style("fill", "#999999")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", -(margin.left)*0.6+20)
+                            .attr("y", -(margin.top/3.5))
+                        .text("Stateless persons")
+                    svg
+                        .append("rect")
+                            .attr("x", -(margin.left)*0.6)
+                            .attr("y", -(margin.top/2.8))
+                            .attr("width", 13)
+                            .attr("height", 13)
+                            .style("fill", "#E1CC0D")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 120)
+                            .attr("y", -(margin.top/3.5))
+                        .text("Others of concern")
+                    svg
+                        .append("rect")
+                            .attr("x", 230)
+                            .attr("y", -(margin.top/2.8))
+                            .attr("width", 13)
+                            .attr("height", 13)
+                            .style("fill", "#EF4A60")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 250)
+                            .attr("y", -(margin.top/3.5))
+                        .text("Venezuelans displaced abroad")
                     })
                   </code>
                 </pre>
