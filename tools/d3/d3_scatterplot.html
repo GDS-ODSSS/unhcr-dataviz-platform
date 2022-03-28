@@ -167,30 +167,30 @@
 
                     // X scale and Axis
                     const xScale = d3.scaleLinear()
-                      .domain(d3.extent(data, d => d.refugee_number)).nice()
+                      .domain(d3.extent(data, d => +d.refugee_number)).nice()
                       .range([0, width])
-                      .padding(.2); 
                     svg
                       .append('g')
                       .attr("transform", `translate(0, ${height})`)
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
+                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8))
+                      .call(d => d.select(".domain").remove());
                     
                     // Y scale and Axis
                     const yScale = d3.scaleLinear()
-                        .domain(d3.extent(d => d.idp_number)).nice()
+                        .domain(d3.extent(data, d => +d.idp_number)).nice()
                         .range([height, 0]);
                     svg
                       .append('g')
-                      .call(d3.axisLeft(yScale).ticks(10, "%").tickSize(0).tickPadding(4))
+                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(4))
                       .call(d => d.select(".domain").remove());
 
                     // color palette
                     const color = d3.scaleOrdinal()
                       .domain(typeKeys)
-                      .range(["#18375F", "#0072BC", "#8EBEFF", "#00B398"])
+                      .range(["#00B398", "#E1CC0D", "#18375F", "#0072BC", "#EF4A60", "#8EBEFF"])
                     
                     // set horizontal grid line
-                    const GridLinHe = function() {return d3.axisLeft().scale(yScale)};
+                    const GridLineH = function() {return d3.axisLeft().scale(yScale)};
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -205,7 +205,7 @@
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLineV()
-                        .tickSize(-width,0,0)
+                        .tickSize(height,0,0)
                         .tickFormat("")
                     ); 
 
@@ -239,20 +239,17 @@
                             .style("opacity", 1)
                     };
                     
-                    <!-- // create bars
+                    // create graph
                     svg.append("g")
                       .selectAll("g")
-                      .data(stackedData)
-                      .join("g")
-                          .attr("fill", d => color(d.key))
-                      .selectAll("rect")
-                      .data(d => d)
-                      .join("rect")
-                          .attr("x", d => xScale(d.data.Year))
-                          .attr("y", d => yScale(d[1]))
-                          .attr("width", xScale.bandwidth())
-                          .attr("height", d => yScale(d[0]) - yScale(d[1]))
-                      .on("mouseover", mouseover)
+                      .data(data)
+                      .join("circle")
+                          <!-- .attr("class", function(d) { return "bubbles " + d.region }) -->
+                          .attr("cx", d => xScale(d.refugee_number))
+                          .attr("cy", d => yScale(d.idp_number))
+                          .attr("r", 5)
+                          .style("fill", d => color(d.region))
+                      <!-- .on("mouseover", mouseover)
                       .on("mousemove", mousemove)
                       .on("mouseleave", mouseleave) -->
                                       
