@@ -140,32 +140,38 @@
                   <code id="code-js" contenteditable="true">
                     
                     // set the dimensions and margins of the graph
-                    const margin = {top: 80, right: 20, bottom: 50, left: 40};
+                    const margin = {top: 50, right: 20, bottom: 50, left: 20};
                     const width = 450 - margin.left - margin.right;
-                    const height = 350 - margin.top - margin.bottom;
+                    const height = 450 - margin.top - margin.bottom;
 
                     // append the svg object to the body of the page
                     const svg = d3.select("#viz_container")
                       .append("svg")
                         .attr("width", "100%")
                         .attr("height", "100%")
-                        .attr("viewBox", "0 0 450 350")
+                        .attr("viewBox", "0 0 450 450")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+                        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv")
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv", function(d) {
+                      return{
+                        funding_type: d.funding_type,
+                        funding_value: +d.funding_value
+                      }
+                    })
                     .then(function(data){
 
+                      console.log(data)
                     
                     // color palette
                     const color = d3.scaleOrdinal()
-                      .domain(data.map(d => d.funding_type))
-                      .range(["#18375F", "#0072BC"])
+                      .domain(data)
+                      .range(["#18375F","#0072BC"])
  
-
-                    // create a tooltip
+                    <!-- // create a tooltip
                     const tooltip = d3.select("body")
                       .append("div")
                         .attr("class", "tooltip");
@@ -193,33 +199,45 @@
                         d3.select(this)
                             .style("stroke", "none")
                             .style("opacity", 1)
-                    };
+                    }; -->
+
                     
+
+                    const pie = d3.pie()
+                        .value(d => d.funding_value)
+                        .sort(null)
+                      
+                      console.log(pie)
+
+                    const dataPrepared = pie(Object.entries(data))
+
                     arc = d3.arc()
                         .innerRadius(0)
                         .outerRadius(Math.min(width, height) / 2 - 1)
 
-                    arcLabel = {
-                        const radius = Math.min(width, height) / 2 * 0.8;
-                        return d3.arc().innerRadius(radius).outerRadius(radius);
-                      }
                     
-                    pie = d3.pie()
-                       .sort(null)
-                       .value(d => d.value)
 
-
-                    svg.append("g")
-                       .attr("stroke", "white")
-                       .selectAll("path")
-                       .data(arcs)
-                       .join("path")
-                       .attr("fill", d => color(d.data.funding_type))
-                       .attr("d", arc)
-                       .append("title")
-                       .text(d => `${d.data.funding_type}: ${d.data.value.toLocaleString()}`);
+                    
+                    
+                    
+                      
+                    svg
+                    .selectAll('allSlice')
+                    .data(dataPrepared)
+                    .join('path')
+                      .attr('d', arc)
+                      .attr('fill', d => color(d.data[0]))
+                      .attr("stroke", "black")
+                      .style("stroke-width", "2px")
+                      .style("opacity", 0.7)
+                    
+                    <!-- part.append("text")
+                      .attr('transform', (d) => 'translate(' + arc.centroid(d) + ')')
+                      .text((d) => d.data.key)
+                      .attr('fill', 'white') -->
+                    
                    
-                    svg.append("g")
+                    <!-- svg.append("g")
                        .attr("font-family", "sans-serif")
                        .attr("font-size", 25)
                        .attr("text-anchor", "middle")
@@ -235,7 +253,7 @@
                              .attr("x", 0)
                              .attr("y", "0.7em")
                              .attr("fill-opacity", 0.7)
-                             .text(d => d.data.value.toLocaleString() + "%"));
+                             .text(d => d.data.funding_number.toLocaleString() + "%")); -->
                                       
                     // set title
                     svg
