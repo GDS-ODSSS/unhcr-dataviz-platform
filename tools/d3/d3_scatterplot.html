@@ -166,13 +166,14 @@
 
 
                     // X scale and Axis
+                    const f =  d3.format(".2s")
                     const xScale = d3.scaleLinear()
                       .domain(d3.extent(data, d => +d.refugee_number)).nice()
                       .range([0, width])
                     svg
                       .append('g')
                       .attr("transform", `translate(0, ${height})`)
-                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8))
+                      .call(d3.axisBottom(xScale).tickSize(0).ticks(5).tickPadding(8).tickFormat(f))
                       .call(d => d.select(".domain").remove());
                     
                     // Y scale and Axis
@@ -181,7 +182,7 @@
                         .range([height, 0]);
                     svg
                       .append('g')
-                      .call(d3.axisLeft(yScale).tickSize(0).tickPadding(4))
+                      .call(d3.axisLeft(yScale).tickSize(0).ticks(6).tickPadding(4).tickFormat(f))
                       .call(d => d.select(".domain").remove());
 
                     // color palette
@@ -197,6 +198,7 @@
                       .call(GridLineH()
                         .tickSize(-width,0,0)
                         .tickFormat("")
+                        .ticks(5)
                     ); 
 
                     // set vertical grid line
@@ -207,6 +209,7 @@
                       .call(GridLineV()
                         .tickSize(height,0,0)
                         .tickFormat("")
+                        .ticks(5)
                     ); 
 
                     // create a tooltip
@@ -279,60 +282,6 @@
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
-                    
-                    //set legend
-                    svg
-                        .append("rect")
-                            .attr("x", -(margin.left)*0.7)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#18375F")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", -(margin.left)*0.6+15)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 60)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#0072BC")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 80)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Softly earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 170)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#8EBEFF")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 190)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Tightly earmarked")
-                    svg
-                        .append("rect")
-                            .attr("x", 290)
-                            .attr("y", -(margin.top/2.5))
-                            .attr("width", 13)
-                            .attr("height", 13)
-                            .style("fill", "#00B398")
-                    svg
-                        .append("text")
-                            .attr("class", "legend")
-                            .attr("x", 310)
-                            .attr("y", -(margin.top/3.5))
-                        .text("Unearmarked")
                     })
 
                     &lt/script>
