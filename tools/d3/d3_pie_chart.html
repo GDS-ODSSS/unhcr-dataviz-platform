@@ -156,12 +156,7 @@
 
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv", function(d) {
-                      return{
-                        funding_type: d.funding_type,
-                        funding_value: +d.funding_value
-                      }
-                    })
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv")
                     .then(function(data){
 
                       console.log(data)
