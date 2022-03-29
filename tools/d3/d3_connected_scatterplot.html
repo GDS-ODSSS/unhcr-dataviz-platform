@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Connected scatterplot with D3</title>
+  <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="../../assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="../../assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="../../assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="../../assets/js/vendor/parser.js"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main class="flex-shrink-0" id="tools">
+    <div class="container my-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Connected scatterplot</li>
+          </ol>
+        </nav>
+        <div class="my-5 text-center">
+            <h2>Connected scatterplot with D3</h2>
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <p>A connected scatterplot is a type of visualization that displays the evolution of a series of data points that are connected by straight line segments. 
+                    In some cases, it is not the most intuitive to read; but it is impressive for storytelling.</p>
+                <p>More about: <a href="../../chart_gallery/correlation.html#scatterplot-connected">Connected scatterplot</a></p>
+              </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <section class="my-5">
+          <div class="row row-cols-1 row-cols-lg-2 g-4">
+                <!-- Code chunk section-->
+          <div class="col">
+            <h3 class="mb-3">Connected scatterplot</h3>
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
+                <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab" data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript" aria-selected="false">JavaScript</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab">
+                <!-- html code chunk -->
+                <pre class="language-html d3-code-chunk" style="height: 30em">
+                  <code id="code-html" contenteditable="true">
+                    &lt!DOCTYPE html>
+                    &ltmeta charset="utf-8">
+                    &lt!-- Include d3 library -->
+                    &ltscript src="https://d3js.org/d3.v7.min.js">&lt/script>
+                    &lt!-- Create a container to host the chart -->
+                    &ltdiv id="viz_container">&lt/div>
+                  </code>
+                </pre>
+                <!-- End html code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab">
+                <!-- css code chunk -->
+                <pre class="language-css d3-code-chunk" style="height: 30em" tabindex="0">
+                  <code id="code-css" contenteditable="true">
+                    <style>
+                      svg {
+                        width: 100%;
+                        height: 100%;
+                      }
+                      text {
+                        font-family: lato;
+                        font-size: 10px;
+                        fill: #333333;
+                      }
+                      .grid path {
+                        stroke-width: 0;
+                      }
+                      .grid .tick line {
+                        stroke: #333333;
+                        stroke-width: 0.3px;
+                        stroke-opacity: 0.3;
+                      }
+                      text.chart-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        fill:#222222
+                      }
+                      text.chart-label {
+                        font-size: 10px;
+                        font-weight: 400;
+                        fill: #999999;
+                      }
+                      text.chart-source {
+                        font-size: 8px;
+                        fill: #999999;
+                      }
+                      text.copyright {
+                        font-size: 8px;
+                        fill: #999999;
+                      }
+                      .tooltip {
+                        background-color: #ffffff;
+                        font-family: lato;
+                        font-size: 11px;
+                        padding: 6px;
+                        color: #333333;
+                        border: none;
+                        box-shadow: 0px 0px 3px 0px #E6E6E6;
+                      }
+                      .legend{
+                        font-size: 10px;
+                      }
+                    </style>               
+                  </code>
+                </pre>
+                <!-- End css code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-javascript" role="tabpanel" aria-labelledby="nav-javascript-tab">
+                <!-- js code chunk -->
+                <pre class="language-js d3-code-chunk" style="height: 30em">
+                  <code id="code-js" contenteditable="true">
+
+                    &ltscript>
+
+                    // set the dimensions and margins of the graph
+                    const margin = {top: 60, right: 60, bottom: 50, left: 50};
+                    const width = 450 - margin.left - margin.right;
+                    const height = 350 - margin.top - margin.bottom;
+
+                    // append the svg object to the body of the page
+                    const svg = d3.select("#viz_container")
+                      .append("svg")
+                        .attr("width", "100%")
+                        .attr("height", "100%")
+                        .attr("viewBox", "0 0 450 350")
+                        .attr("preserveAspectRatio", "xMinYMin")
+                      .append("g")
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+                    // parse the Data
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot_connected.csv")
+                    .then(function(data){
+
+                    // list of value keys
+                    const typeKeys = data.columns.slice(1);
+
+                    // X scale and Axis
+                    const f =  d3.format("~s")
+                    const xScale = d3.scaleLinear()
+                      .domain(d3.extent(data, d => +d.refugee_number)).nice()
+                      .range([0, width])
+                    svg
+                      .append('g')
+                      .attr("transform", `translate(0, ${height})`)
+                      .call(d3.axisBottom(xScale).tickSize(0).ticks(5).tickPadding(8).tickFormat(f))
+                      .call(d => d.select(".domain").remove());
+                    
+                    // Y scale and Axis
+                    const yScale = d3.scaleLinear()
+                        .domain(d3.extent(data, d => +d.idp_number)).nice()
+                        .range([height, 0]);
+                    svg
+                      .append('g')
+                      .call(d3.axisLeft(yScale).tickSize(0).ticks(3).tickPadding(4).tickFormat(f))
+                      .call(d => d.select(".domain").remove());
+                    
+                    // bubble size scale
+                    const zScale = d3.scaleSqrt()
+                      .domain([600000, 160000000])
+                      .range([2, 50])
+
+                    // color palette
+                    const color = d3.scaleOrdinal()
+                      .domain(typeKeys)
+                      .range(["#EF4A60", "#8EBEFF", "#00B398", "#E1CC0D", "#589BE5", "#18375F", "#0072BC"])
+                    
+                    // set horizontal grid line
+                    const GridLineH = function() {return d3.axisLeft().scale(yScale)};
+                    svg
+                      .append("g")
+                        .attr("class", "grid")
+                      .call(GridLineH()
+                        .tickSize(-width,0,0)
+                        .tickFormat("")
+                        .ticks(3)
+                    ); 
+
+                    // set vertical grid line
+                    const GridLineV = function() {return d3.axisBottom().scale(xScale)};
+                    svg
+                      .append("g")
+                        .attr("class", "grid")
+                      .call(GridLineV()
+                        .tickSize(height,0,0)
+                        .tickFormat("")
+                        .ticks(5)
+                    ); 
+
+                    // create a tooltip
+                    const tooltip = d3.select("body")
+                      .append("div")
+                        .attr("class", "tooltip");
+
+                    // tooltip events
+                    const mouseover = function(d) {
+                        tooltip
+                            .style("opacity", 1)
+                        d3.select(this)
+                            .style("stroke", "#EF4A60")
+                            .style("opacity", 0.5)
+                    };
+                    const mousemove = function(event,d) {
+                        const f = d3.format(",");
+                        const t = d3.format("Y");
+
+                        tooltip
+                        .html("&ltdiv style='color: #0072BC'&ltb>" +t(d.year)+ "&lt/b>&lt/div>&ltdiv>&ltb>Refugees:&lt/b> " +f(d.refugee_number)+ "&lt/div>&ltdiv>&ltb>IDPs:&lt/b> "+ f(d.idp_number) +"&lt/div>")
+                            .style("top", event.pageY - 10 + "px")
+                            .style("left", event.pageX + 10 + "px")
+                    };
+                    const mouseleave = function(d) {
+                        tooltip
+                            .style("opacity", 0)
+                        d3.select(this)
+                            .style("stroke", "none")
+                            .style("opacity", 1)
+                    };
+                    
+                    // create graph
+                    svg.append("g")
+                      .selectAll("g")
+                      .data(data)
+                      .join("circle")
+                          .attr("cx", d => xScale(+d.refugee_number))
+                          .attr("cy", d => yScale(+d.idp_number))
+                          .attr("r", 3)
+                          .style("fill", "#0072BC")
+                      .on("mouseover", mouseover)
+                      .on("mousemove", mousemove)
+                      .on("mouseleave", mouseleave)
+
+                    const arrowPoints = [[0, 0], [0, 20], [20, 10]];
+
+                    svg
+                    .append('defs')
+                      .append('marker')
+                         .attr('id', 'arrow')
+                         .attr('viewBox', [0, 0, 20, 20])
+                         .attr('refX', 10)
+                         .attr('refY', 10)
+                         .attr('markerWidth', 8)
+                         .attr('markerHeight', 8)
+                         .attr('orient', 'auto-start-reverse')
+                      .append('path')
+                         .attr('d', d3.line()(arrowPoints))
+                         .attr('fill', '#0072BC');
+                    svg
+                     .append("path")
+                      .datum(data)
+                      .attr("fill", "none")
+                      .attr("stroke", "#0072BC")
+                      .attr("stroke-width", 1.5)
+                      .attr("d", d3.line()
+                        .x(d => xScale(+d.refugee_number))
+                        .y(d => yScale(+d.idp_number))
+                      )
+                      .attr('marker-end', 'url(#arrow)')
+                      .attr('fill', 'none')
+
+                    <!-- // set data labels  
+                    svg
+                      .append("g")
+                      .attr("font-size", 10)
+                      .selectAll("text")
+                      .data(data)
+                      .join("text")
+                        .attr("dy", "0.35em")
+                        .attr("x", d => xScale(+d.refugee_number) + 5)
+                        .attr("y", d => yScale(+d.idp_number))
+                        .text(d => d.year); -->
+                                      
+                    // set title
+                    svg
+                      .append("text")
+                        .attr("class", "chart-title")
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", -(margin.top)/1.5)
+                        .attr("text-anchor", "start")
+                      .text("Comparison of refugee and IDP population by region | 2021")
+
+                    // set X axis label
+                    svg
+                      .append("text")
+                        .attr("class", "chart-label")
+                        .attr("x", width/1.7)
+                        .attr("y", height+margin.bottom*0.6)
+                        .attr("text-anchor", "middle")
+                      .text("Number of refugees (millions)");
+                
+                    // set Y axis label
+                    svg
+                      .append("text")
+                        .attr("class", "chart-label")
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", -(margin.top/8))
+                        .attr("text-anchor", "start")
+                      .text("Number of IDPs (millions)")
+                    
+                    // set source
+                    svg
+                      .append("text")
+                        .attr("class", "chart-source")
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", height + margin.bottom*0.8)
+                        .attr("text-anchor", "start")
+                      .text("Source: UNHCR")
+  
+                    // set copyright
+                    svg
+                      .append("text")
+                        .attr("class", "copyright")
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", height + margin.bottom*0.95)
+                        .attr("text-anchor", "start")
+                      .text("©UNHCR, The UN Refugee Agency")
+                    })
+
+                    &lt/script>
+                  </code>
+                </pre>
+                <!-- End js code chunk -->
+              </div>
+            </div>
+          </div>
+          <!-- End code chunk section -->
+          <!-- Chart section -->
+          <div class="col">
+              <div id="result" ></div>
+          </div>
+          <!-- End chart section -->
+          </div>
+        </section>
+
+
+    </div>
+</main>
+  <!--  End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="../../assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="../../assets/js/unhcrmain.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>

@@ -71,7 +71,6 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 
 ```{python python_code, echo=TRUE, eval=FALSE}
 # import libraries
-# import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
