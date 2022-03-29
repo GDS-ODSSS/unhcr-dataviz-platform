@@ -243,8 +243,8 @@
                       .selectAll("g")
                       .data(data)
                       .join("circle")
-                          .attr("cx", d => xScale(d.refugee_number))
-                          .attr("cy", d => yScale(d.idp_number))
+                          .attr("cx", d => xScale(+d.refugee_number))
+                          .attr("cy", d => yScale(+d.idp_number))
                           .attr("r", 4)
                           .style("fill", d => color(d.region))
                       .on("mouseover", mouseover)
@@ -254,14 +254,13 @@
                     // set data labels  
                     svg
                       .append("g")
-                      .attr("font-family", "'Work Sans', sans-serif")
                       .attr("font-size", 10)
                       .selectAll("text")
                       .data(data)
                       .join("text")
                         .attr("dy", "0.35em")
-                        .attr("x", d => xScale(d.refugee_number) + 7)
-                        .attr("y", d => yScale(d.idp_number))
+                        .attr("x", d => xScale(+d.refugee_number) + 7)
+                        .attr("y", d => yScale(+d.idp_number))
                         .text(d => d.region);
                                       
                     // set title
