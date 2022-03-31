@@ -174,9 +174,8 @@
                       d.enabled = true;
                     });
 
-                    const total = d3.sum(data.map(function(d) { // calculate the total number of tickets in the dataset         
-                      return (d.enabled) ? d.funding_value : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase                                      
-                      })); 
+                    const total = d3.sum(data.map(function(d) {       
+                      return (d.enabled) ? d.funding_value : 0;  })); 
 
                     // create a tooltip
                     const tooltip = d3.select("body")

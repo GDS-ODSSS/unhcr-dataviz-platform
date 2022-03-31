@@ -85,11 +85,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      text {
-                        font-family: lato;
-                        font-size: 10px;
-                        fill: #333333;
-                      }
                       text.chart-title {
                         font-size: 14px;
                         font-weight: bold;
@@ -112,9 +107,6 @@
                         border: none;
                         box-shadow: 0px 0px 3px 0px #E6E6E6;
                       }
-                      .legend{
-                        font-size: 10px;
-                      }
                     </style>               
                   </code>
                 </pre>
@@ -125,9 +117,8 @@
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
 
-
                     // set the dimensions and margins of the graph
-                    const margin = {top: 60, right: 60, bottom: 50, left: 50};
+                    const margin = {top: 30, right: 20, bottom: 30, left: 20};
                     const width = 450 - margin.left - margin.right;
                     const height = 350 - margin.top - margin.bottom;
 
@@ -144,19 +135,27 @@
                     // parse the Data
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap_d3.csv")
                     .then(function(data){
-                    
+
+                    data.forEach(function(d) {
+                        d.staff_number = +d.staff_number;
+                        d.enabled = true;
+                      });
+    
+                    const total = d3.sum(data.map(function(d) {       
+                      return (d.enabled) ? d.staff_number : 0;  })); 
+
                     // reshape data
                     const symbolsTree = d3.stratify()
                       .id(d => d.region)
                       .parentId(d => d.parent)
                       (data);
 
-                    symbolsTree.sum(d => +d.staff_number)
+                    symbolsTree.sum(d => d.staff_number)
 
                     d3.treemap()
-                      .size(width, height)
-                      .padding(5)
-                      (symbolsTree)
+                      .size([width, height])
+                      .padding(2)
+                      (symbolsTree);
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -171,10 +170,9 @@
                           .style("opacity", .5)
                     };
                     const mousemove = function(event,d) {
-                      const percent = Math.round(1000 * d.data.funding_value / total) / 10;
-                      const f = d3.format(",.0f");
+                      f = d3.format(",")
                       tooltip
-                      .html(`&ltb>${d.data.funding_type}&lt/b>: `+ percent + '%')
+                      .html("Number of staff: " + `${f(d.data.staff_number)}`)
                         .style("top", event.pageY - 10 + "px")
                         .style("left", event.pageX + 10 + "px")
                     };
@@ -186,7 +184,6 @@
                         .style("opacity", 1)
                     };
 
-
                     // create rectangle
                     svg
                       .selectAll("rect")
@@ -196,62 +193,58 @@
                         .attr('y', d => d.y0)
                         .attr('width', d => d.x1 - d.x0)
                         .attr('height', d=> d.y1 - d.y0)
-                        .style("stroke", "black")
-                        .style("fill", "#0072BC");
+                        .style("stroke", "none")
+                        .style("fill", "#0072BC")
+                      .on("mouseover", mouseover)
+                      .on("mousemove", mousemove)
+                      .on("mouseleave", mouseleave);
                   
                     // add labels to the graph
                     svg
-                      .selectAll("text")
+                      .selectAll("text-number")
                       .data(symbolsTree.leaves())
                       .join("text")
-                        .attr("x", function(d){ return d.x0+10}) 
-                        .attr("y", function(d){ return d.y0+20})
-                        .text(function(d){ return d.data.name})
-                        .attr("font-size", "15px");
-                        .attr("fill", "white")
-
-                    svg 
-                      .append("g")
-                      .attr("text-anchor", "middle")
-                      .selectAll("text")
-                      .data(dataPrepared)
+                        .attr("class", "tree-label")
+                        .attr("x", d => d.x0+5) 
+                        .attr("y", d => d.y0+15)
+                        .text(d => Math.round(1000 * d.data.staff_number / total) / 10 + "%")
+                        .attr("font-size", "10px")
+                        .attr("fill", "#ffffff");
+                    svg
+                      .selectAll("text-region")
+                      .data(symbolsTree.leaves())
                       .join("text")
-                      .attr("transform", d => `translate(${arc.centroid(d)})`)
-                      .call(text => text.append("tspan")
-                        .attr("x", "0.2em")
-                        .attr("y", "-0.6em")
-                        .attr("fill", "#ffffff")
-                        .text(d => d.data.funding_type))
-                      .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
-                        .attr("x", 0)
-                        .attr("y", "0.7em")
-                        .attr("fill", "#ffffff")
-                        .text(d => "$" + d.data.funding_value.toLocaleString()))
-               
+                        .attr("class", "tree-label")
+                        .attr("x", d => d.x0+5) 
+                        .attr("y", d => d.y0+30)
+                        .text(d => d.data.region)
+                        .attr("font-size", "10px")
+                        .attr("fill", "#ffffff");
+
                     // set title
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", -(margin/2+radius))
+                        .attr("x", 0)
+                        .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("2021 UNHCR's funding")
+                      .text("UNHCR global workforce by region | 2021");
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/3+radius)
+                        .attr("x", 0)
+                        .attr("y", height + margin.bottom*0.4)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR")
-  
+
                     // set copyright
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/2.2+radius)
+                        .attr("x", 0)
+                        .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
                     })
