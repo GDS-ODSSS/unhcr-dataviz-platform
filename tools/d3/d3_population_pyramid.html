@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Pie chart with D3</title>
+  <title>UNHCR Dataviz - Population pyramid with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,16 +33,16 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pie chart</li>
+            <li class="breadcrumb-item active" aria-current="page">Histogram</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Pie chart with D3</h2>
+            <h2>Population pyramid with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments.
-                   Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.</p>
-                <p>More about: <a href="../../chart_gallery/part_to_a_whole.html#pie">Pie chart</a></p>
+                <p>A population pyramid consists of two histograms, one for each gender (conventionally, males on the left and females on the right) 
+                  where the population numbers are shown horizontally (X-axis) and the age vertically (Y-axis).  </p>
+                <p>More about: <a href="../../chart_gallery/distribution.html#population-pyramid">Population pyramid</a></p>
               </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">Pie chart</h3>
+            <h3 class="mb-3">Population pyramid</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -90,10 +90,24 @@
                         font-size: 10px;
                         fill: #333333;
                       }
+                      .grid path {
+                        stroke-width: 0;
+                        stroke: #333333;
+                      }
+                      .grid .tick line {
+                        stroke: #333333;
+                        stroke-width: 0.3px;
+                        stroke-opacity: 0.3;
+                      }
                       text.chart-title {
                         font-size: 14px;
                         font-weight: bold;
                         fill:#222222
+                      }
+                      text.chart-label {
+                        font-size: 10px;
+                        font-weight: 400;
+                        fill: #999999;
                       }
                       text.chart-source {
                         font-size: 8px;
@@ -125,57 +139,79 @@
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
 
-                    &ltscript>
-
                     // set the dimensions and margins of the graph
-                    const margin = 80,
-                          height = 450,
-                          width = 450
+                    const margin = {top: 60, right: 20, bottom: 50, left: 60};
+                    const width = 450 - margin.left - margin.right;
+                    const height = 350 - margin.top - margin.bottom;
 
                     // append the svg object to the body of the page
                     const svg = d3.select("#viz_container")
                       .append("svg")
                         .attr("width", "100%")
                         .attr("height", "100%")
-                        .attr("viewBox", "0 0 450 450")
+                        .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", `translate(${width / 2}, ${height / 2})`);
-                      
-                      const radius = Math.min(width, height) / 2 - margin
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv", function(d){
-                      return{
-                        funding_type: d.funding_type,
-                        funding_value: +d.funding_value
-                      }
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv", function(d) {
+                        return { 
+                        ages: d.ages,
+                        male: +d.male,
+                        female: +d.female
+                        };
                     })
-                    .then(function(data){
+                    .then(function(data){  
 
-                    // color palette
-                    const color = d3.scaleOrdinal()
-                      .domain(data)
-                      .range(["#0072BC","#8EBEFF"])
+                    // X scale and Axis
+                    const xScaleMale = d3.scaleLinear()
+                      .domain([0, d3.max(data, d => d.male)]) 
+                      .range([width/2, 0]);
+                    svg
+                      .append("g")
+                          .attr("transform", `translate(0, ${height})`)
+                      .call(d3.axisBottom(xScaleMale).tickSize(0).tickPadding(3).ticks(7, "%"))
+                      .call(function(d) { return d.select(".domain").remove()});
 
-                    const pie = d3.pie()
-                      .value(d => +d.funding_value)
-                      .sort(null)
+                    const xScaleFemale = d3.scaleLinear()
+                      .domain([0, d3.max(data, d => d.female)])
+                      .range([width/2, width]);
+                    svg
+                      .append("g")
+                          .attr("transform", `translate(0, ${height})`)
+                      .call(d3.axisBottom(xScaleFemale).tickSize(0).tickPadding(3).ticks(7, "%"))
+                      .call(function(d) { return d.select(".domain").remove()});
 
-                    const dataPrepared = pie(data)
-
-                    arc = d3.arc()
-                      .innerRadius(0)
-                      .outerRadius(radius)
-
-                    data.forEach(function(d) {
-                      d.funding_value = +d.funding_value;
-                      d.enabled = true;
-                    });
-
-                    const total = d3.sum(data.map(function(d) { // calculate the total number of tickets in the dataset         
-                      return (d.enabled) ? d.funding_value : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase                                      
-                      })); 
+                    // set vertical grid line
+                    const GridLineF = function() { return d3.axisBottom().scale(xScaleFemale)};
+                    svg
+                      .append("g")
+                        .attr("class", "grid")
+                      .call(GridLineF()
+                        .tickSize(height,0,0)
+                        .tickFormat("")
+                        .ticks(7)
+                    );
+                    const GridLineM = function() { return d3.axisBottom().scale(xScaleMale)};
+                    svg
+                      .append("g")
+                        .attr("class", "grid")
+                      .call(GridLineM()
+                        .tickSize(height,0,0)
+                        .tickFormat("")
+                        .ticks(7)
+                    );
+                    
+                    // Y scale and Axis
+                    const yScale = d3.scaleBand()
+                        .domain(data.map(function(d) { return d.ages; }))
+                        .range([height, 0])
+                        .padding(.25);
+                    svg
+                        .append("g")
+                        .call(d3.axisLeft(yScale).tickSize(0).tickPadding(15))
+                        .call(d => d.select(".domain").remove());
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -184,72 +220,78 @@
 
                     // tooltip events
                     const mouseover = function(d) {
-                      tooltip
+                        tooltip
                           .style("opacity", 1)
-                      d3.select(this)
+                        d3.select(this)
+                          .style("stroke", "#EF4A60")
                           .style("opacity", .5)
                     };
-                    const mousemove = function(event,d) {
-                      const percent = Math.round(1000 * d.data.funding_value / total) / 10;
-                      const f = d3.format(",.0f");
+                    const mousemove1 = function(event,d) {
+                      
+                        tooltip
+                        .html( `${d.male*100}%`)
+                          .style("top", event.pageY - 10 + "px")
+                          .style("left", event.pageX + 10 + "px");
+                    };
+                    const mousemove2 = function(event,d) {
                       tooltip
-                      .html(`&ltb>${d.data.funding_type}&lt/b>: `+ percent + '%')
+                      .html( `${d.female*100}%`)
                         .style("top", event.pageY - 10 + "px")
                         .style("left", event.pageX + 10 + "px")
-                    };
+                  };
                     const mouseleave = function(d) {
-                      tooltip
-                        .style("opacity", 0)
-                      d3.select(this)
-                        .style("stroke", "none")
-                        .style("opacity", 1)
+                        tooltip
+                          .style("opacity", 0)
+                        d3.select(this)
+                          .style("stroke", "none")
+                          .style("opacity", 1)
                     };
+                    
+                    // create male bars
                     svg
-                    .selectAll('path')
-                    .data(dataPrepared)
-                    .join('path')
-                      .attr('d', arc)
-                      .attr('fill', d => color(d.data.funding_type))
-                      .attr("stroke", "#ffffff")
-                      .style("stroke-width", "2px")
-                      .each(function(d) { this._current - d; })
+                      .selectAll(".maleBar")
+                        .data(data)
+                      .join("rect")
+                        .attr("class", "barMale")
+                        .attr("x", d => xScaleMale(d.male))
+                        .attr("y", d => yScale(d.ages))
+                        .attr("width", d => width/2 - xScaleMale(d.male))
+                        .attr("height", yScale.bandwidth())
+                        .style("fill", "#18375F")
                       .on("mouseover", mouseover)
-                      .on("mousemove", mousemove)
-                      .on("mouseleave", mouseleave);
+                      .on("mousemove", mousemove1)
+                      .on("mouseleave", mouseleave)
 
-                    svg 
-                      .append("g")
-                      .attr("text-anchor", "middle")
-                      .selectAll("text")
-                      .data(dataPrepared)
-                      .join("text")
-                      .attr("transform", d => `translate(${arc.centroid(d)})`)
-                      .call(text => text.append("tspan")
-                        .attr("x", "0.2em")
-                        .attr("y", "-0.6em")
-                        .attr("fill", "#ffffff")
-                        .text(d => d.data.funding_type))
-                      .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
-                        .attr("x", 0)
-                        .attr("y", "0.7em")
-                        .attr("fill", "#ffffff")
-                        .text(d => "$" + d.data.funding_value.toLocaleString()))
-               
+                    // create female bars
+                    svg
+                        .selectAll(".femaleBar")
+                          .data(data)
+                        .join("rect")
+                          .attr("class", "barFemale")
+                          .attr("x", xScaleFemale(0))
+                          .attr("y", d => yScale(d.ages))
+                          .attr("width", d => xScaleFemale(d.female) - xScaleFemale(0))
+                          .attr("height", yScale.bandwidth())
+                          .style("fill", "#0072BC")
+                        .on("mouseover", mouseover)
+                        .on("mousemove", mousemove2)
+                        .on("mouseleave", mouseleave)
+             
                     // set title
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", -(margin/2+radius))
+                        .attr("x", -(margin.left)*0.7)
+                        .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("2021 UNHCR's funding")
-                    
+                      .text("Demographics of forcibly displaced people | 2020")
+
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/3+radius)
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR")
   
@@ -257,13 +299,41 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/2.2+radius)
+                        .attr("x", -(margin.left)*0.4)
+                        .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
+
+                    //set legend
+                    svg
+                        .append("rect")
+                            .attr("x", -(margin.left)*0.7)
+                            .attr("y", -(margin.top/3))
+                            .attr("width", 13)
+                            .attr("height", 13)
+                            .style("fill", "#18375F")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", -(margin.left)*0.6+15)
+                            .attr("y", -(margin.top/5.5))
+                        .text("Male")
+                    svg
+                        .append("rect")
+                            .attr("x", 40)
+                            .attr("y", -(margin.top/3))
+                            .attr("width", 13)
+                            .attr("height", 13)
+                            .style("fill", "#0072BC")
+                    svg
+                        .append("text")
+                            .attr("class", "legend")
+                            .attr("x", 60)
+                            .attr("y", -(margin.top/5.5))
+                        .text("Female")
+
                     })
 
-                    &lt/script>
                   </code>
                 </pre>
                 <!-- End js code chunk -->
@@ -281,64 +351,34 @@
 
         <section class="mb-5 container">
           <hr>
-          <h3 class="mt-5 mb-3">Related chart with D3</h3>
+          <h3 class="mt-5 mb-3">Related chart with R</h3>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-              <!-- Part-to-a-whole -->
-              <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_donut_chart.html">
+              <!-- Distribution -->
+      
+              <div class="col chart-item">
+                  <a href="../../tools/d3/d3_histogram.html">
                       <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid" alt="">
+                          <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid" alt="">
                           <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Donut chart</span>
+                              <span class="chart-name">Histogram</span>
                           </div>
                       </div>
                   </a>
               </div>
-              <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_stacked_column_100perc_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="img-fluid"
-                              alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">100% stacked column chart</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_gridplot.html">
+              <!-- <div class="col chart-item">
+                  <a href="../../tools/d3_boxplot.html">
                     <div class="chart-img d-inline-flex justify-content-center">
-                      <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="">
+                      <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="">
                       <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Grid plot</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_treemap.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Treemap</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-              <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_waterfall.html">
-                    <div class="chart-img d-inline-flex justify-content-center">
-                      <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="">
-                      <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Waterfall</span>
+                        <span class="chart-name">Boxplot</span>
                       </div>
                     </div>
                   </a>
                 </div> -->
       
-              <!-- End Part-to-a-whole -->
+              <!-- End Distribution -->
           </div>
-        </section>
+      </section>
 
 
     </div>
