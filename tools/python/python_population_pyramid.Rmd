@@ -1,5 +1,5 @@
 ---
-title: "Histogram with python"
+title: "Population pyramid with python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -16,9 +16,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: Python
-  chart_type: Histogram
+  chart_type: Population pyramid
   url_cat: distribution
-  url_chart: histogram
+  url_chart: population-pyramid
 ---
 
 ```{r setup, include=FALSE}
@@ -48,7 +48,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-A histogram displays the distribution of data over a continuous interval or specific time period. The height of each bar in a histogram indicates the frequency of data points within the interval/bin. It’s a great tool to identify where values are concentrated, or if there are extreme values or gaps in the dataset.
+A population pyramid consists of two histograms, one for each gender (conventionally, males on the left and females on the right) where the population numbers are shown horizontally (X-axis) and the age vertically (Y-axis). The values can be displayed either as a percentage of the total population or as a raw number.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -62,7 +62,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Histogram
+### Population pyramid
 
 <div class="row">
 
@@ -79,39 +79,38 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
 
 #compute data array for plotting
-x = df['poc_age']
-num_bins = 25
+x_male = df['male'] / -1
+x_female = df['female']
+y = df['ages']
 
 #plot the chart
 fig, ax = plt.subplots()
-histo = ax.hist(x, num_bins)
+ax1 = ax.barh(y, x_male, color='#0072BC')
+ax2 = ax.barh(y, x_female, color='#18375F')
 
-#set x,y axis limits
-xl = plt.xlim(0,100)
-yl = plt.ylim(0,35)
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set chart title
-ax.set_title('Age distribution | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Demographic of forcibly displaced people | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
 
 #set axis label
-ax.set_ylabel('Number of people', color = '#666666', fontsize=10)
+ax.set_ylabel('Age groups', color = '#666666', fontsize=10)
+ax.set_xlabel('Male / Female', color = '#666666', fontsize = 10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               labelsize=10, bottom=False, top=False, labelbottom=False, pad=20,
                left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
 ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -133,7 +132,7 @@ plt.show()
 
 
 
-```{python python_histogram, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_population_pyramid, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -143,40 +142,38 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
 
 #compute data array for plotting
-x = df['poc_age']
-num_bins = 25
+x_male = df['male'] / -1
+x_female = df['female']
+y = df['ages']
 
 #plot the chart
 fig, ax = plt.subplots()
-histo = ax.hist(x, num_bins)
+ax1 = ax.barh(y, x_male, color='#0072BC')
+ax2 = ax.barh(y, x_female, color='#18375F')
 
-#set x,y axis limits
-xl = plt.xlim(0,100)
-yl = plt.ylim(0,35)
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set chart title
-ax.set_title('Age distribution | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Demographic of forcibly displaced people | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
 
 #set axis label
-ax.set_ylabel('Number of people', color = '#666666', fontsize=10)
-ax.set_xlabel('Age', color = '#666666', fontsize=10)
+ax.set_ylabel('Age groups', color = '#666666', fontsize=10)
+ax.set_xlabel('Male / Female', color = '#666666', fontsize = 10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               labelsize=10, bottom=False, top=False, labelbottom=False, pad=20,
                left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
 ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
