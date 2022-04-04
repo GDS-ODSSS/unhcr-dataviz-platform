@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Pie chart with D3</title>
+  <title>UNHCR Dataviz - Treemap with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,16 +33,16 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pie chart</li>
+            <li class="breadcrumb-item active" aria-current="page">Treemap</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Pie chart with D3</h2>
+            <h2>Treemap with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments.
-                   Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.</p>
-                <p>More about: <a href="../../chart_gallery/part_to_a_whole.html#pie">Pie chart</a></p>
+                <p>As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. 
+                    Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other.</p>
+                <p>More about: <a href="../../chart_gallery/part_to_a_whole.html#treemap">Treemap</a></p>
               </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">Pie chart</h3>
+            <h3 class="mb-3">Treemap</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -85,11 +85,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      text {
-                        font-family: lato;
-                        font-size: 10px;
-                        fill: #333333;
-                      }
                       text.chart-title {
                         font-size: 14px;
                         font-weight: bold;
@@ -112,9 +107,6 @@
                         border: none;
                         box-shadow: 0px 0px 3px 0px #E6E6E6;
                       }
-                      .legend{
-                        font-size: 10px;
-                      }
                     </style>               
                   </code>
                 </pre>
@@ -125,57 +117,45 @@
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
 
-                    &ltscript>
-
                     // set the dimensions and margins of the graph
-                    const margin = 80,
-                          height = 450,
-                          width = 450
+                    const margin = {top: 30, right: 20, bottom: 30, left: 20};
+                    const width = 450 - margin.left - margin.right;
+                    const height = 350 - margin.top - margin.bottom;
 
                     // append the svg object to the body of the page
                     const svg = d3.select("#viz_container")
                       .append("svg")
                         .attr("width", "100%")
                         .attr("height", "100%")
-                        .attr("viewBox", "0 0 450 450")
+                        .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", `translate(${width / 2}, ${height / 2})`);
-                      
-                      const radius = Math.min(width, height) / 2 - margin
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv", function(d){
-                      return{
-                        funding_type: d.funding_type,
-                        funding_value: +d.funding_value
-                      }
-                    })
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap_d3.csv")
                     .then(function(data){
 
-                    // color palette
-                    const color = d3.scaleOrdinal()
-                      .domain(data)
-                      .range(["#0072BC","#8EBEFF"])
-
-                    const pie = d3.pie()
-                      .value(d => +d.funding_value)
-                      .sort(null)
-
-                    const dataPrepared = pie(data)
-
-                    arc = d3.arc()
-                      .innerRadius(0)
-                      .outerRadius(radius)
-
                     data.forEach(function(d) {
-                      d.funding_value = +d.funding_value;
-                      d.enabled = true;
-                    });
+                        d.staff_number = +d.staff_number;
+                        d.enabled = true;
+                      });
+    
+                    const total = d3.sum(data.map(function(d) {       
+                      return (d.enabled) ? d.staff_number : 0;  })); 
 
-                    const total = d3.sum(data.map(function(d) { // calculate the total number of tickets in the dataset         
-                      return (d.enabled) ? d.funding_value : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase                                      
-                      })); 
+                    // reshape data
+                    const symbolsTree = d3.stratify()
+                      .id(d => d.region)
+                      .parentId(d => d.parent)
+                      (data);
+
+                    symbolsTree.sum(d => d.staff_number)
+
+                    d3.treemap()
+                      .size([width, height])
+                      .padding(2)
+                      (symbolsTree);
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -190,10 +170,9 @@
                           .style("opacity", .5)
                     };
                     const mousemove = function(event,d) {
-                      const percent = Math.round(1000 * d.data.funding_value / total) / 10;
-                      const f = d3.format(",.0f");
+                      f = d3.format(",")
                       tooltip
-                      .html(`&ltb>${d.data.funding_type}&lt/b>: `+ percent + '%')
+                      .html("Number of staff: " + `${f(d.data.staff_number)}`)
                         .style("top", event.pageY - 10 + "px")
                         .style("left", event.pageX + 10 + "px")
                     };
@@ -204,66 +183,72 @@
                         .style("stroke", "none")
                         .style("opacity", 1)
                     };
+
+                    // create rectangle
                     svg
-                    .selectAll('path')
-                    .data(dataPrepared)
-                    .join('path')
-                      .attr('d', arc)
-                      .attr('fill', d => color(d.data.funding_type))
-                      .attr("stroke", "#ffffff")
-                      .style("stroke-width", "2px")
-                      .each(function(d) { this._current - d; })
+                      .selectAll("rect")
+                      .data(symbolsTree.leaves())
+                      .join("rect")
+                        .attr('x', d => d.x0)
+                        .attr('y', d => d.y0)
+                        .attr('width', d => d.x1 - d.x0)
+                        .attr('height', d=> d.y1 - d.y0)
+                        .style("stroke", "none")
+                        .style("fill", "#0072BC")
                       .on("mouseover", mouseover)
                       .on("mousemove", mousemove)
                       .on("mouseleave", mouseleave);
-
-                    svg 
-                      .append("g")
-                      .attr("text-anchor", "middle")
-                      .selectAll("text")
-                      .data(dataPrepared)
+                  
+                    // add labels to the graph
+                    svg
+                      .selectAll("text-number")
+                      .data(symbolsTree.leaves())
                       .join("text")
-                      .attr("transform", d => `translate(${arc.centroid(d)})`)
-                      .call(text => text.append("tspan")
-                        .attr("x", "0.2em")
-                        .attr("y", "-0.6em")
-                        .attr("fill", "#ffffff")
-                        .text(d => d.data.funding_type))
-                      .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
-                        .attr("x", 0)
-                        .attr("y", "0.7em")
-                        .attr("fill", "#ffffff")
-                        .text(d => "$" + d.data.funding_value.toLocaleString()))
-               
+                        .attr("class", "tree-label")
+                        .attr("x", d => d.x0+5) 
+                        .attr("y", d => d.y0+15)
+                        .text(d => Math.round(1000 * d.data.staff_number / total) / 10 + "%")
+                        .attr("font-size", "10px")
+                        .attr("fill", "#ffffff");
+                    svg
+                      .selectAll("text-region")
+                      .data(symbolsTree.leaves())
+                      .join("text")
+                        .attr("class", "tree-label")
+                        .attr("x", d => d.x0+5) 
+                        .attr("y", d => d.y0+30)
+                        .text(d => d.data.region)
+                        .attr("font-size", "10px")
+                        .attr("fill", "#ffffff");
+
                     // set title
                     svg
                       .append("text")
                         .attr("class", "chart-title")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", -(margin/2+radius))
+                        .attr("x", 0)
+                        .attr("y", -(margin.top)/1.5)
                         .attr("text-anchor", "start")
-                      .text("2021 UNHCR's funding")
+                      .text("UNHCR global workforce by region | 2021");
                     
                     // set source
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/3+radius)
+                        .attr("x", 0)
+                        .attr("y", height + margin.bottom*0.4)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR")
-  
+
                     // set copyright
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin/2+radius))
-                        .attr("y", margin/2.2+radius)
+                        .attr("x", 0)
+                        .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
                     })
 
-                    &lt/script>
                   </code>
                 </pre>
                 <!-- End js code chunk -->
@@ -284,6 +269,16 @@
           <h3 class="mt-5 mb-3">Related chart with D3</h3>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
               <!-- Part-to-a-whole -->
+              <div class="col item-filter filter-part-to-a-whole chart-item">
+                <a href="../../tools/d3/d3_pie_chart.html">
+                    <div class="chart-img d-inline-flex justify-content-center">
+                        <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="">
+                        <div class="chart-info d-flex align-items-end p-3">
+                            <span class="chart-name">Treemap</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
               <div class="col item-filter filter-part-to-a-whole chart-item">
                   <a href="../../tools/d3/d3_donut_chart.html">
                       <div class="chart-img d-inline-flex justify-content-center">
@@ -315,16 +310,7 @@
                     </div>
                   </a>
                 </div>
-              <div class="col item-filter filter-part-to-a-whole chart-item">
-                  <a href="../../tools/d3/d3_treemap.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Treemap</span>
-                          </div>
-                      </div>
-                  </a>
-              </div>
+              
               <div class="col item-filter filter-part-to-a-whole chart-item">
                   <a href="../../tools/d3/d3_waterfall.html">
                     <div class="chart-img d-inline-flex justify-content-center">
