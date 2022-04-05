@@ -1,5 +1,5 @@
 ---
-title: "Stacked column chart with python"
+title: "Stacked column chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

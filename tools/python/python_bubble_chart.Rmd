@@ -1,5 +1,5 @@
 ---
-title: "Bubble chart with python"
+title: "Bubble chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

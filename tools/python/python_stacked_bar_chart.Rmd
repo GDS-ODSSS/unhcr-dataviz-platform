@@ -1,5 +1,5 @@
 ---
-title: "Stacked bar chart with python"
+title: "Stacked bar chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

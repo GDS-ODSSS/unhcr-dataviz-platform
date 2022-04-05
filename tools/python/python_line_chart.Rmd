@@ -1,5 +1,5 @@
 ---
-title: "Line chart with python"
+title: "Line chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -11,6 +11,7 @@ output:
       in_header: "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
+        - "../rmd_includes/py_change_over_time.html"
         - "../rmd_includes/footer.html"
         - "../rmd_includes/footer_script.html"
 params:

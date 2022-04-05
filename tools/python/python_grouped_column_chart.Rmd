@@ -1,5 +1,5 @@
 ---
-title: "Grouped column chart with python"
+title: "Grouped column chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

@@ -1,5 +1,5 @@
 ---
-title: "Grouped bar chart with python"
+title: "Grouped bar chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

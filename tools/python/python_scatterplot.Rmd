@@ -1,5 +1,5 @@
 ---
-title: "Scatterplot with python"
+title: "Scatterplot with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:

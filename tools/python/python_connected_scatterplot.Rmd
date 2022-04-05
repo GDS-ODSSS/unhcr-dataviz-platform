@@ -1,5 +1,5 @@
 ---
-title: "Connected scatterplot with python"
+title: "Connected scatterplot with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
