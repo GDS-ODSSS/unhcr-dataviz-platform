@@ -1,5 +1,5 @@
 ---
-title: "Histogram with python"
+title: "100% stacked column chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -11,14 +11,14 @@ output:
       in_header: "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
-        - "../rmd_includes/py_distribution.html"
+        - "../rmd_includes/python_part_to_a_whole.html"
         - "../rmd_includes/footer.html"
         - "../rmd_includes/footer_script.html"
 params:
   tool: Python
-  chart_type: Histogram
-  url_cat: distribution
-  url_chart: histogram
+  chart_type: 100% stacked column chart
+  url_cat: part_to_a_whole
+  url_chart: column-stacked-100perc
 ---
 
 ```{r setup, include=FALSE}
@@ -48,7 +48,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-A histogram displays the distribution of data over a continuous interval or specific time period. The height of each bar in a histogram indicates the frequency of data points within the interval/bin. It’s a great tool to identify where values are concentrated, or if there are extreme values or gaps in the dataset.
+100% stacked column charts are similar to stacked column charts in that categories are represented as vertical bars and series as components of those bars. However, in a 100% stacked column chart, each series bar represents the percentage of the whole to which it belongs, where the total (cumulative) of each stacked bar always equals 100%.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -62,7 +62,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Histogram
+### 100% stacked column chart
 
 <div class="row">
 
@@ -71,55 +71,72 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 
 ```{python python_code, echo=TRUE, eval=FALSE}
 # import libraries
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 #load custom font
 from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+rcParams['font.family'] = 'lato, bold'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='funding_type', values='percentage')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df['poc_age']
-num_bins = 25
+x = df['year']
+y1 = df['Earmarked']
+y2 = df['Softly earmarked']
+y3 = df['Tightly earmarked']
+y4 = df['Unearmarked']
+
+b_y3 = np.array(y1)+np.array(y2)
+b_y4 = np.array(y1)+np.array(y2)+np.array(y3)
 
 #plot the chart
 fig, ax = plt.subplots()
-histo = ax.hist(x, num_bins)
+rect1=ax.bar(x, y1, color='#18375F', label='Earmarked')
+rect2=ax.bar(x, y2, color='#0072BC', bottom=y1, label='Softly earmarked')
+rect3=ax.bar(x, y3, color='#8EBEFF', bottom=b_y3,label='Tightly earmarked')
+rect4=ax.bar(x, y4, color='#00B398', bottom=b_y4,label='Unearmarked')
 
-#set x,y axis limits
-xl = plt.xlim(0,100)
-yl = plt.ylim(0,35)
+# after plotting the data, format the labels
+current_values = plt.gca().get_yticks()
+plt.gca().set_yticklabels(['{:,.0%}'.format(x) for x in current_values])
 
 #set chart title
-ax.set_title('Age distribution | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
-
-#set axis label
-ax.set_ylabel('Number of people', color = '#666666', fontsize=10)
+ax.set_title('Levels of earmarking | 2012-2020', loc='left', fontweight='bold', pad=20, fontsize=14)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
                labelsize=10, bottom=False, top=False, labelbottom=True, 
                left=False, right=False, labelleft=True, labelcolor = '#333333')
 
+#set x-axis tick and label
+ax.set_xticks(x)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=4, frameon=False, handletextpad=0.5, columnspacing=1.5, fontsize=10, labelcolor='#333333')
+
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
 
 #show grid below the bars
 ax.grid(axis='y', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
+plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -133,58 +150,74 @@ plt.show()
 
 
 
-```{python python_histogram, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_100perc_stacked_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 #load custom font
 from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+rcParams['font.family'] = 'lato, bold'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv')
+
+#reshape df from long to wide
+df = df.pivot(index='year', columns='funding_type', values='percentage')
+df = df.reset_index()
 
 #compute data array for plotting
-x = df['poc_age']
-num_bins = 25
+x = df['year']
+y1 = df['Earmarked']
+y2 = df['Softly earmarked']
+y3 = df['Tightly earmarked']
+y4 = df['Unearmarked']
+
+b_y3 = np.array(y1)+np.array(y2)
+b_y4 = np.array(y1)+np.array(y2)+np.array(y3)
 
 #plot the chart
 fig, ax = plt.subplots()
-histo = ax.hist(x, num_bins)
+rect1=ax.bar(x, y1, color='#18375F', label='Earmarked')
+rect2=ax.bar(x, y2, color='#0072BC', bottom=y1, label='Softly earmarked')
+rect3=ax.bar(x, y3, color='#8EBEFF', bottom=b_y3,label='Tightly earmarked')
+rect4=ax.bar(x, y4, color='#00B398', bottom=b_y4,label='Unearmarked')
 
-#set x,y axis limits
-xl = plt.xlim(0,100)
-yl = plt.ylim(0,35)
+# after plotting the data, format the labels
+current_values = plt.gca().get_yticks()
+plt.gca().set_yticklabels(['{:,.0%}'.format(x) for x in current_values])
 
 #set chart title
-ax.set_title('Age distribution | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
-
-#set axis label
-ax.set_ylabel('Number of people', color = '#666666', fontsize=10)
-ax.set_xlabel('Age', color = '#666666', fontsize=10)
+ax.set_title('Levels of earmarking | 2012-2020', loc='left', fontweight='bold', pad=20, fontsize=14)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', 
                labelsize=10, bottom=False, top=False, labelbottom=True, 
                left=False, right=False, labelleft=True, labelcolor = '#333333')
 
+#set x-axis tick and label
+ax.set_xticks(x)
+
+#set chart legend
+ax.legend(loc=(0,0.95), ncol=4, frameon=False, handletextpad=0.5, columnspacing=1.5, fontsize=10, labelcolor='#333333')
+
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
 
 #show grid below the bars
 ax.grid(axis='y', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
+plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -197,7 +230,6 @@ plt.show()
 </div>
 </section>
 <!-- End of section --->
-
 
 
 </div>

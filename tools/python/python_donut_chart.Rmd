@@ -1,5 +1,5 @@
 ---
-title: "Donut chart with python"
+title: "Donut chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -11,6 +11,7 @@ output:
       in_header: "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
+        - "../rmd_includes/python_part_to_a_whole.html"
         - "../rmd_includes/footer.html"
         - "../rmd_includes/footer_script.html"
 params:
