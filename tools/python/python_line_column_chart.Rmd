@@ -48,7 +48,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-A line chart is a type of chart that displays the evolution of one or several numeric variables over a continuous interval or time period. Typically, the x-axis is used for a timescale or a sequence of intervals, while the y-axis reports values across that progression.
+A line column chart is a type of visualization that combines both line and column charts together, using dual axes displayed on the left and right sides of the chart. It allows us to show the relationship of two variables with different magnitudes and scales.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
