@@ -13,9 +13,9 @@
 <meta name="author" content="IPDA/GDS" />
 
 
-<title>UNHCR Dataviz - Pie chart with Python</title>
+<title>UNHCR Dataviz - Treemap with Python</title>
 
-<script src="python_pie_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<script src="python_treemap_files/header-attrs-2.10/header-attrs.js"></script>
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
 
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Pie chart with Python</h1>
+<h1 class="title toc-ignore">Treemap with Python</h1>
 <h4 class="author">IPDA/GDS</h4>
 
 
@@ -190,32 +190,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../python/">Python</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Pie chart with Python
+Treemap with Python
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="pie-chart-with-python" class="section level2 my-5 text-center">
-<h2>Pie chart with Python</h2>
+<div id="treemap-with-python" class="section level2 my-5 text-center">
+<h2>Treemap with Python</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>A pie chart shows how a total amount is divided between different categorical variables as a circle divided into proportional segments. Each categorical value corresponds with a single slice of the circle, and each arc length indicates the proportion of each category.</p>
-<p>More about: <a href="../../chart_gallery/part_to_a_whole.html#pie">Pie chart</a></p>
+<p>As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other.</p>
+<p>More about: <a href="../../chart_gallery/part_to_a_whole.html#treemap">Treemap</a></p>
 </div>
 </div>
 </div>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="pie-chart" class="section level3">
-<h3>Pie chart</h3>
+<div id="treemap" class="section level3">
+<h3>Treemap</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> squarify <span class="co"># pip install squarify</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#load custom font</span></span>
@@ -223,34 +223,42 @@ Pie chart with Python
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">&#39;font.family&#39;</span>] <span class="op">=</span> <span class="st">&#39;lato&#39;</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load and reshape the data</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv&#39;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv&#39;</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#compute data for plotting</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> df[<span class="st">&#39;funding_type&#39;</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> df[<span class="st">&#39;funding_value&#39;</span>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sizes <span class="op">=</span> df[<span class="st">&#39;staff_number&#39;</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> df[<span class="st">&#39;region&#39;</span>]</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>pie<span class="op">=</span>ax.pie(values, labels<span class="op">=</span>labels, autopct<span class="op">=</span><span class="st">&#39;</span><span class="sc">%1.1f%%</span><span class="st">&#39;</span>, pctdistance <span class="op">=</span> <span class="fl">0.75</span>, counterclock<span class="op">=</span><span class="va">False</span>, startangle<span class="op">=-</span><span class="dv">270</span>, textprops<span class="op">=</span>{<span class="st">&#39;color&#39;</span>:<span class="st">&quot;#333333&quot;</span>, <span class="st">&#39;fontsize&#39;</span>:<span class="dv">11</span>, <span class="st">&#39;fontweight&#39;</span>:<span class="st">&#39;bold&#39;</span>}, colors<span class="op">=</span>[<span class="st">&#39;#0072BC&#39;</span>, <span class="st">&#39;#8EBEFF&#39;</span>])</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;UNHCR Funding (as of February 2022)&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">40</span>, fontsize<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">&#39;#000000&#39;</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">25</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">35</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.02</span>, y<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate percentage</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;percent&#39;</span>] <span class="op">=</span> (df[<span class="st">&#39;staff_number&#39;</span>] <span class="op">/</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                  df[<span class="st">&#39;staff_number&#39;</span>].<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span> <span class="op">=</span> df[<span class="st">&#39;percent&#39;</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [<span class="ss">f&#39;</span><span class="sc">{i:.0f}</span><span class="ss">% </span><span class="ch">\n</span><span class="ss">&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>treemap <span class="op">=</span> squarify.plot(sizes<span class="op">=</span>sizes, label<span class="op">=</span>new_list<span class="op">+</span>label, color<span class="op">=</span><span class="st">&#39;#0072BC&#39;</span>, ec<span class="op">=</span><span class="st">&#39;#ffffff&#39;</span>, text_kwargs<span class="op">=</span>{<span class="st">&quot;color&quot;</span>:<span class="st">&quot;#ffffff&quot;</span>})</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>noax <span class="op">=</span> plt.axis(<span class="st">&#39;off&#39;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;UNHCR global workforce by region | 2021&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">20</span>, fontsize<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">&#39;#000000&#39;</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">20</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.02</span>, y<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_pie_chart_files/figure-html/python_pie-1.svg" width="100%" /></p>
+<p><img src="python_treemap_files/figure-html/python_treemap-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
