@@ -90,7 +90,7 @@ label = df['region']
 df['percent'] = (df['staff_number'] / 
                   df['staff_number'].sum()) * 100
 list = df['percent']
-new_list = [f'{i:.0f}% \n' for i in list]
+new_list = [f'{i:.1f}% \n' for i in list]
 
 #plot the chart
 fig, ax = plt.subplots()
@@ -142,7 +142,7 @@ label = df['region']
 df['percent'] = (df['staff_number'] / 
                   df['staff_number'].sum()) * 100
 list = df['percent']
-new_list = [f'{i:.0f}% \n' for i in list]
+new_list = [f'{i:.1f}% \n' for i in list]
 
 #plot the chart
 fig, ax = plt.subplots()

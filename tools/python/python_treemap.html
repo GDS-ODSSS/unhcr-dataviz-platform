@@ -233,7 +233,7 @@ Treemap with Python
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;percent&#39;</span>] <span class="op">=</span> (df[<span class="st">&#39;staff_number&#39;</span>] <span class="op">/</span> </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                  df[<span class="st">&#39;staff_number&#39;</span>].<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span> <span class="op">=</span> df[<span class="st">&#39;percent&#39;</span>]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [<span class="ss">f&#39;</span><span class="sc">{i:.0f}</span><span class="ss">% </span><span class="ch">\n</span><span class="ss">&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [<span class="ss">f&#39;</span><span class="sc">{i:.1f}</span><span class="ss">% </span><span class="ch">\n</span><span class="ss">&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>]</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
