@@ -126,9 +126,6 @@
                         border: none;
                         box-shadow: 0px 0px 3px 0px #E6E6E6;
                       }
-                      .legend{
-                        font-size: 10px;
-                      }
                     </style>               
                   </code>
                 </pre>
@@ -138,8 +135,6 @@
                 <!-- js code chunk -->
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
-
-                    &ltscript>
 
                     // set the dimensions and margins of the graph
                     const margin = {top: 60, right: 60, bottom: 50, left: 50};
@@ -194,7 +189,7 @@
                       .range(["#EF4A60", "#8EBEFF", "#00B398", "#E1CC0D", "#589BE5", "#18375F", "#0072BC"])
                     
                     // set horizontal grid line
-                    const GridLineH = function() {return d3.axisLeft().scale(yScale)};
+                    const GridLineH = () => d3.axisLeft().scale(yScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -205,15 +200,14 @@
                     ); 
 
                     // set vertical grid line
-                    const GridLineV = function() {return d3.axisBottom().scale(xScale)};
+                    const GridLineV = () => d3.axisBottom().scale(xScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLineV()
                         .tickSize(height,0,0)
                         .tickFormat("")
-                        .ticks(5)
-                    ); 
+                        .ticks(5)); 
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -315,7 +309,6 @@
                       .text("©UNHCR, The UN Refugee Agency")
                     })
 
-                    &lt/script>
                   </code>
                 </pre>
                 <!-- End js code chunk -->

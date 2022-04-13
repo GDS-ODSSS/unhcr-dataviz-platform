@@ -84,9 +84,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      .bar {
-                        fill: #0072BC;
-                      }
                       text {
                         font-family: lato;
                         font-size: 10px;
@@ -154,34 +151,27 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv", function(d) {
-                      return {
-                        region: d.region,
-                        year: d.year,
-                        asyApplication: +d.asylum_application
-                      };
-                    }).then(function(data){
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv")
+                    .then(function(data){
            
-                    const sumbyRegionYear = d3.rollups(data, v => d3.sum(v, d => d.asyApplication), d => d.region, d => d.year)
-                    console.log(sumbyRegionYear)
+                    const sumbyRegionYear = d3.rollups(data, v => d3.sum(v, d => d.asylum_application), d => d.region, d => d.year)
                   
                     const regionKey = Array.from(sumbyRegionYear).map(d => d[0])
                     const yearKeys = Array.from(Array.from(sumbyRegionYear)[0][1]).map(d=>d[0])
-
                     const regionKeys = regionKey.sort(d3.ascending)
 
                     // x scale and Axis
                     const xScale = d3.scaleLinear()
-                        .domain([0, d3.max(data.map(d => d.asyApplication))]).nice()
+                        .domain([0, d3.max(data.map(d => d.asylum_application))]).nice()
                         .range([0, width]);
                     svg
                       .append('g')
                       .attr("transform", "translate(0, "+ height +")")
                       .call(d3.axisBottom(xScale).tickSize(0).ticks(5).tickPadding(6).tickFormat(d3.format(".1s")))
-                      .call(function(d) { return d.select(".domain").remove()});
+                      .call(d => d.select(".domain").remove());
                   
                     // y scale and Axis
                     const yScale = d3.scaleBand()
@@ -204,13 +194,14 @@
                       .range(['#0072BC','#8EBEFF'])
                     
                     // set vertical grid line
-                    const GridLine = function() {return d3.axisBottom().scale(xScale)};
+                    const GridLine = () => d3.axisBottom().scale(xScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
                       .call(GridLine()
                         .tickSize(height,0,0)
                         .tickFormat("")
+                        .ticks(6)
                     ); 
 
                     // create a tooltip
@@ -219,7 +210,7 @@
                         .attr("id", "chart")
                         .attr("class", "tooltip");
 
-                    // Three function that change the tooltip when user hover / move / leave a cell
+                    // tooltip events
                     const mouseover = function(d) {
                         tooltip
                           .style("opacity", .8)
@@ -299,8 +290,8 @@
                     .append("rect")
                         .attr("x", -(margin.left)*0.7)
                         .attr("y", -(margin.top/2))
-                        .attr("width", 15)
-                        .attr("height", 15)
+                        .attr("width", 13)
+                        .attr("height", 13)
                         .style("fill", "#0072BC");
                     svg
                         .append("text")
@@ -312,8 +303,8 @@
                         .append("rect")
                             .attr("x", -(margin.left)*0.7+60)
                             .attr("y", -(margin.top/2))
-                            .attr("width", 15)
-                            .attr("height", 15)
+                            .attr("width", 13)
+                            .attr("height", 13)
                             .style("fill", "#8EBEFF")
                     svg
                         .append("text")

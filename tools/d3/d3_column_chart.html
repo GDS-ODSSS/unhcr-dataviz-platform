@@ -85,9 +85,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      .bar {
-                        fill: #0072BC;
-                      }
                       text {
                         font-family: lato;
                         font-size: 11px;
@@ -152,38 +149,34 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv", function(d) {
-                      return {
-                        year: +d.year,
-                        displacedNumber: +d.displaced_number
-                      };
-                    }).then(function(data){
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
+                    .then(function(data){
 
                     // X scale and Axis
                     const xScale = d3.scaleBand()
-                      .domain(data.map(function(d) { return d.year; })) 
+                      .domain(data.map(d => d.year))
                       .range([0, width])
                       .padding(.2); 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
+                      .attr("transform", `translate(0, ${height})`)
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
                     // Y scale and Axis
-                    const formater =  d3.format(".2s")
+                    const formater =  d3.format("~s")
                     const yScale = d3.scaleLinear()
-                        .domain([0, d3.max(data, function(d){ return d.displacedNumber; })]).nice()
+                        .domain([0, d3.max(data, d => d.displaced_number)]).nice()
                         .range([height, 0]);
                     svg
                       .append('g')
                       .call(d3.axisLeft(yScale).tickSize(0).tickPadding(6).tickFormat(formater))
-                      .call(function(d) { return d.select(".domain").remove()});
+                      .call(d => d.select(".domain").remove());
                     
                     // set horizontal grid line
-                    const GridLine = function() { return d3.axisLeft().scale(yScale)};
+                    const GridLine = () => d3.axisLeft().scale(yScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -198,7 +191,7 @@
                         .attr("id", "chart")
                         .attr("class", "tooltip");
                     
-                    // Three function that change the tooltip when user hover / move / leave a cell
+                    // tolltip events
                     const mouseover = function(d) {
                         tooltip
                           .style("opacity", .8)
@@ -208,7 +201,7 @@
                     const mousemove = function(event, d) {
                       const formater =  d3.format(",")
                         tooltip
-                          .html(formater(d.displacedNumber))
+                          .html(formater(d.displaced_number))
                           .style("top", event.pageY - 10 + "px")
                           .style("left", event.pageX + 10 + "px");
                     }
@@ -228,10 +221,11 @@
                     barGroup
                       .append("rect")
                         .attr("class", "bar")
-                        .attr("x", function(d) { return xScale(d.year); })
-                        .attr("y", function(d) { return yScale(d.displacedNumber); })
+                        .attr("fill", "#0072BC")
+                        .attr("x", d => xScale(d.year))
+                        .attr("y", d => yScale(d.displaced_number))
                         .attr("width", xScale.bandwidth())
-                        .attr("height", function(d) { return height - yScale(d.displacedNumber); })
+                        .attr("height", d => height - yScale(d.displaced_number))
                       .on("mouseover", mouseover)
                       .on("mousemove", mousemove)
                       .on("mouseleave", mouseleave);

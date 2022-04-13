@@ -89,9 +89,6 @@
                             width: 100%;
                             height: 100%;
                           }
-                          .bar {
-                            fill: #0072BC;
-                          }
                           text {
                             font-family: lato;
                             font-size: 11px;
@@ -159,28 +156,23 @@
                               .attr("transform", `translate(${margin.left}, ${margin.top})`);
                         
                         // parse the data
-                        d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv", function(d) {
-                            return {
-                              country: d.country_origin,
-                              refNumber: +d.displaced_number
-                            }
-                        }).then(function(data) {
-                        
+                        d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv")
+                        .then(function(data) {
                         
                         // set X scale and axis
-                        const formater =  d3.format(".1s")
+                        const formater =  d3.format("~s")
                         const xScale = d3.scaleLinear()
-                            .domain([0, d3.max(data, function(d){ return d.refNumber; })]).nice()
+                            .domain([0, d3.max(data, d => +d.displaced_number)]).nice()
                             .range([0, width]);
                         svg
                             .append("g")
                                 .attr("transform", `translate(0, ${height})`)
                             .call(d3.axisBottom(xScale).tickSize(0).tickPadding(6).tickFormat(formater).ticks(7))
-                            .call(function(d) { return d.select(".domain").remove()});
+                            .call( d => d.select(".domain").remove());
                         
                         // set Y scale and axis
                         const yScale = d3.scaleBand()
-                            .domain(data.map(function(d) { return d.country; }))
+                            .domain(data.map( d => d.country_origin))
                             .range([0, height])
                             .padding(.25);
                         svg
@@ -188,15 +180,14 @@
                             .call(d3.axisLeft(yScale).tickSize(0).tickPadding(6));
     
                         // set vertical grid line
-                        const GridLine = function() { return d3.axisBottom().scale(xScale)};
+                        const GridLine = () => d3.axisBottom().scale(xScale);
                         svg
                           .append("g")
                             .attr("class", "grid")
                           .call(GridLine()
                             .tickSize(height,0,0)
                             .tickFormat("")
-                            .ticks(7)
-                        );  
+                            .ticks(7));  
                         
                         // create a tooltip
                         const tooltip = d3.select("body")
@@ -204,7 +195,7 @@
                             .attr("id", "chart")
                             .attr("class", "tooltip");
                         
-                        // Three function that change the tooltip when user hover / move / leave a cell
+                        // tooltip events
                         const mouseover = function(d) {
                             tooltip
                               .style("opacity", .9)
@@ -214,7 +205,7 @@
                         const mousemove = function(event, d) {
                           const formater =  d3.format(",")
                             tooltip
-                              .html(formater(d.refNumber))
+                              .html(formater(d.displaced_number))
                               .style("top", event.pageY - 10 + "px")
                               .style("left", event.pageX + 10 + "px");
                         };
@@ -228,15 +219,12 @@
                         // create bar group
                         const barGroup = svg.selectAll("rect")
                             .data(data)
-                            .enter()
-                            .append("g");
-                        
-                        barGroup
-                            .append("rect")
+                            .join("rect")
                               .attr("class", "bar")
+                              .attr("fill", "#0072BC")
                               .attr("x", xScale(0))
-                              .attr("y", function(d) { return yScale(d.country); })
-                              .attr("width", function(d) { return xScale(d.refNumber); })
+                              .attr("y", d => yScale(d.country_origin))
+                              .attr("width", d => xScale(d.displaced_number))
                               .attr("height", yScale.bandwidth())
                               .on("mouseover", mouseover)
                               .on("mousemove", mousemove)
@@ -277,7 +265,6 @@
                             .attr("y", height + margin.bottom*0.9)
                             .attr("text-anchor", "start")
                           .text("©UNHCR, The UN Refugee Agency")
-
                         })
                       </code>
                     </pre>

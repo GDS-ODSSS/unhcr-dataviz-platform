@@ -84,9 +84,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      .bar {
-                        fill: #0072BC;
-                      }
                       text {
                         font-family: lato;
                         font-size: 11px;
@@ -151,7 +148,7 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the data
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line.csv", function(d) {
@@ -166,34 +163,30 @@
                     //pivot the data
                     const dataGrouped = d3.group(data, d => d.popType)
 
-                    console.log(dataGrouped)
-
                     // list of value keys
                     const typeKeys = ["Refugees", "IDPs"];
 
                     // X scale and Axis
-                    const parseTime = d3.timeParse("%Y")
                     const xScale = d3.scaleTime()
                       .domain(d3.extent(data, d => d.year)).nice()
-                      .range([0, width])
+                      .range([0, width]);
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
+                      .attr("transform", `translate(0, ${height})`)
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
                     // Y scale and Axis
-                    const formatter =  d3.format(".0s")
+                    const formatter =  d3.format("~s")
                     const yScale = d3.scaleLinear()
                     .domain([0, d3.max(data, d => d.popNumber)])
                     .range([height, 0]);
                     svg
                       .append('g')
                       .call(d3.axisLeft(yScale).ticks(6).tickSize(0).tickPadding(6).tickFormat(formatter))
-                      .call(d => d.select(".domain").remove()
-                    );
+                      .call(d => d.select(".domain").remove());
                     
                     // set horizontal grid line
-                    const GridLine = function() { return d3.axisLeft().scale(yScale)};
+                    const GridLine = () => d3.axisLeft().scale(yScale);
                     svg
                       .append("g")
                         .attr("class", "grid")

@@ -145,17 +145,17 @@
                       return (d.enabled) ? d.staff_number : 0;  })); 
 
                     // reshape data
-                    const symbolsTree = d3.stratify()
+                    const treeData = d3.stratify()
                       .id(d => d.region)
                       .parentId(d => d.parent)
                       (data);
 
-                    symbolsTree.sum(d => d.staff_number)
+                    treeData.sum(d => d.staff_number)
 
                     d3.treemap()
                       .size([width, height])
                       .padding(2)
-                      (symbolsTree);
+                      (treeData);
 
                     // create a tooltip
                     const tooltip = d3.select("body")
@@ -187,7 +187,7 @@
                     // create rectangle
                     svg
                       .selectAll("rect")
-                      .data(symbolsTree.leaves())
+                      .data(treeData.leaves())
                       .join("rect")
                         .attr('x', d => d.x0)
                         .attr('y', d => d.y0)
@@ -202,7 +202,7 @@
                     // add labels to the graph
                     svg
                       .selectAll("text-number")
-                      .data(symbolsTree.leaves())
+                      .data(treeData.leaves())
                       .join("text")
                         .attr("class", "tree-label")
                         .attr("x", d => d.x0+5) 
@@ -212,7 +212,7 @@
                         .attr("fill", "#ffffff");
                     svg
                       .selectAll("text-region")
-                      .data(symbolsTree.leaves())
+                      .data(treeData.leaves())
                       .join("text")
                         .attr("class", "tree-label")
                         .attr("x", d => d.x0+5) 

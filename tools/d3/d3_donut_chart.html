@@ -113,9 +113,6 @@
                         border: none;
                         box-shadow: 0px 0px 3px 0px #E6E6E6;
                       }
-                      .legend{
-                        font-size: 10px;
-                      }
                     </style>               
                   </code>
                 </pre>
@@ -125,8 +122,6 @@
                 <!-- js code chunk -->
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
-
-                    &ltscript>
 
                     // set the dimensions and margins of the graph
                     const margin = 80,
@@ -146,12 +141,7 @@
                       const radius = Math.min(width, height) / 2 - margin
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv", function(d){
-                      return{
-                        funding_type: d.funding_type,
-                        funding_value: +d.funding_value
-                      }
-                    })
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv")
                     .then(function(data){
 
                     // color palette
@@ -283,7 +273,6 @@
                       .text("©UNHCR, The UN Refugee Agency")
                     })
 
-                    &lt/script>
                   </code>
                 </pre>
                 <!-- End js code chunk -->

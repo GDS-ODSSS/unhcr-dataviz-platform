@@ -144,26 +144,25 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
                     d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph_d3.csv", function(d) {
                         const parseTime = d3.timeParse("%Y")
                         return{
                             year: parseTime(d.year),
-                            REF: +d.REF,
-                            ASY: +d.ASY,
-                            IDPs: +d.IDPs,
-                            STA: +d.STA,
-                            OOC: +d.OOC,
-                            VDA: +d.VDA
+                            ["Refugees"]: +d.REF,
+                            ["Asylum-seekers"]: +d.ASY,
+                            ["IDPs"]: +d.IDPs,
+                            ["Stateless persons"]: +d.STA,
+                            ["Others of concern"]: +d.OOC,
+                            ["Venezuelans displaced abroad"]: +d.VDA
                         }
                     })
                     .then(function(data){
-                    console.log(data)
 
                     // list of value keys
-                    const typeKeys = data.columns.slice(1);
+                    const typeKeys = ["Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad"]
            
                     // stack the data
                     const stack = d3.stack()
@@ -173,18 +172,17 @@
                     const stackedData = stack(data)
 
                     // X scale and Axis
-                    const parseTime = d3.timeParse("%Y")
                     const xScale = d3.scaleTime()
                       .domain(d3.extent(data, d => d.year)).nice()
                       .range([0, width]) 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
+                      .attr("transform", `translate(0, ${height})`)
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8))
                       .call(d => d.select(".domain").remove());
                     
                     // Y scale and Axis
-                    const formatter =  d3.format(".0s")
+                    const formatter =  d3.format("~s")
                     const yScale = d3.scaleLinear()
                         .domain([-60000000, 60000000])
                         .range([height, 0]);

@@ -137,9 +137,7 @@
                 <!-- js code chunk -->
                 <pre class="language-js d3-code-chunk" style="height: 30em">
                   <code id="code-js" contenteditable="true">
-
-                    &ltscript>
-
+                    
                     // set the dimensions and margins of the graph
                     const margin = {top: 60, right: 60, bottom: 50, left: 50};
                     const width = 450 - margin.left - margin.right;
@@ -193,7 +191,7 @@
                       .range(["#EF4A60", "#8EBEFF", "#00B398", "#E1CC0D", "#589BE5", "#18375F", "#0072BC"])
                     
                     // set horizontal grid line
-                    const GridLineH = function() {return d3.axisLeft().scale(yScale)};
+                    const GridLineH = () => d3.axisLeft().scale(yScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -204,7 +202,7 @@
                     ); 
 
                     // set vertical grid line
-                    const GridLineV = function() {return d3.axisBottom().scale(xScale)};
+                    const GridLineV = () => d3.axisBottom().scale(xScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -284,18 +282,6 @@
                       )
                       .attr('marker-end', 'url(#arrow)')
                       .attr('fill', 'none')
-
-                    <!-- // set data labels  
-                    svg
-                      .append("g")
-                      .attr("font-size", 10)
-                      .selectAll("text")
-                      .data(data)
-                      .join("text")
-                        .attr("dy", "0.35em")
-                        .attr("x", d => xScale(+d.refugee_number) + 5)
-                        .attr("y", d => yScale(+d.idp_number))
-                        .text(d => d.year); -->
                                       
                     // set title
                     svg
@@ -342,8 +328,6 @@
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
                     })
-
-                    &lt/script>
                   </code>
                 </pre>
                 <!-- End js code chunk -->

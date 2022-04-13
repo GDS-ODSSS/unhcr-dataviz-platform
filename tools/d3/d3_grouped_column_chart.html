@@ -154,24 +154,16 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv", function(d) {
-                      return {
-                        year: d.year,
-                        office: d.main_office,
-                        refNumber: +d.refugee_number
-                      };
-                    }).then(function(data){
-           
-                    const sumbyYearOffice = d3.rollups(data, v => d3.sum(v, d => d.refNumber), d => d.year, d => d.office)
-                    console.log(Array.from(sumbyYearOffice))
-                  
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv").then(function(data){
+                    
+                    // data wrangling
+                    const sumbyYearOffice = d3.rollups(data, v => d3.sum(v, d => +d.refugee_number), d => d.year, d => d.main_office)
                     const yearKeys = Array.from(sumbyYearOffice).map(d => d[0])
                     const officeKey = Array.from(Array.from(sumbyYearOffice)[0][1]).map(d=>d[0])
-
-                    const officeKeys = officeKey.sort(d3.ascending)
+                    const officeKey_sorted = officeKey.sort(d3.ascending)
                   
                     // X scale and Axis
                     const xScale = d3.scaleBand()
@@ -180,32 +172,32 @@
                       .padding(.2); 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
+                      .attr("transform", `translate(0,${height})`)
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
                     // Y scale and Axis
                     const formater =  d3.format(".1s")
                     const yScale = d3.scaleLinear()
-                        .domain([0, d3.max(data.map(d => d.refNumber))])
+                        .domain([0, d3.max(data.map(d => +d.refugee_number))])
                         .range([height, 0]);
                     svg
                       .append('g')
                       .call(d3.axisLeft(yScale).ticks(5).tickSize(0).tickPadding(6).tickFormat(formater))
-                      .call(function(d) { return d.select(".domain").remove()});
+                      .call(d => d.select(".domain").remove());
 
                     // set subgroup sacle
                     const xSubgroups = d3.scaleBand()
-                      .domain(officeKeys)
+                      .domain(officeKey_sorted)
                       .range([0, xScale.bandwidth()])
                       .padding([0.05])
 
                     // color palette
                     const color = d3.scaleOrdinal()
-                      .domain(officeKeys)
+                      .domain(officeKey_sorted)
                       .range(['#18375F','#0072BC','#8EBEFF'])
                     
                     // set horizontal grid line
-                    const GridLine = function() {return d3.axisLeft().scale(yScale)};
+                    const GridLine = () => d3.axisLeft().scale(yScale);
                     svg
                       .append("g")
                         .attr("class", "grid")
@@ -220,7 +212,7 @@
                         .attr("id", "chart")
                         .attr("class", "tooltip");
 
-                    // Three function that change the tooltip when user hover / move / leave a cell
+                    // tooltip events
                     const mouseover = function(d) {
                         tooltip
                           .style("opacity", .8)
@@ -300,8 +292,8 @@
                     .append("rect")
                         .attr("x", -(margin.left)*0.6)
                         .attr("y", -(margin.top/2))
-                        .attr("width", 15)
-                        .attr("height", 15)
+                        .attr("width", 13)
+                        .attr("height", 13)
                         .style("fill", "#18375F");
                     svg
                         .append("text")
@@ -313,8 +305,8 @@
                         .append("rect")
                             .attr("x", 180)
                             .attr("y", -(margin.top/2))
-                            .attr("width", 15)
-                            .attr("height", 15)
+                            .attr("width", 13)
+                            .attr("height", 13)
                             .style("fill", "#0072BC")
                     svg
                         .append("text")
@@ -326,8 +318,8 @@
                         .append("rect")
                             .attr("x", 280)
                             .attr("y", -(margin.top/2))
-                            .attr("width", 15)
-                            .attr("height", 15)
+                            .attr("width", 13)
+                            .attr("height", 13)
                             .style("fill", "#8EBEFF")
                     svg
                         .append("text")
@@ -335,7 +327,6 @@
                             .attr("x", 300)
                             .attr("y", -(margin.top/2.5))
                         .text("West and Central Africa")
-
                     })
                   </code>
                 </pre>

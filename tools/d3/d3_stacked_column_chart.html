@@ -86,9 +86,6 @@
                         width: 100%;
                         height: 100%;
                       }
-                      .bar {
-                        fill: #0072BC;
-                      }
                       text {
                         font-family: lato;
                         font-size: 10px;
@@ -156,16 +153,11 @@
                         .attr("viewBox", "0 0 450 350")
                         .attr("preserveAspectRatio", "xMinYMin")
                       .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv", function(d) {
-                      return {
-                        year: d.year,
-                        unhcr_resettlement: +d.unhcr_resettlement,
-                        other_resettlement: +d.other_resettlement
-                      };
-                    }).then(function(data){
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_stacked_d3.csv")
+                    .then(function(data){
 
                     // list of value keys
                     const typeKeys = data.columns.slice(1);
@@ -184,7 +176,7 @@
                       .padding(.2); 
                     svg
                       .append('g')
-                      .attr("transform", "translate(0," + height + ")")
+                      .attr("transform", `translate(0,${height})`)
                       .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
                     
                     // Y scale and Axis
@@ -244,15 +236,14 @@
                       .data(stackedData)
                       .enter()
                       .append("g")
-                          .attr("fill", function(d) { return color(d.key); })
+                          .attr("fill", d => color(d.key) )
                         .selectAll("rect")
-                        .data(function(d) { return d; })
-                        .enter()
-                        .append("rect")
-                          .attr("x",function(d) { return xScale(d.data.year); })
-                          .attr("y",function(d) { return yScale(d[1]); })
+                        .data(d => d)
+                        .join("rect")
+                          .attr("x",d => xScale(d.data.year))
+                          .attr("y",d => yScale(d[1]))
                           .attr("width", xScale.bandwidth())
-                          .attr("height",function(d) { return yScale(d[0]) - yScale(d[1]); })
+                          .attr("height", d => yScale(d[0]) - yScale(d[1]))
                           .on("mouseover", mouseover)
                           .on("mousemove", mousemove)
                           .on("mouseleave", mouseleave)

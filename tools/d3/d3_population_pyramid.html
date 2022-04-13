@@ -155,18 +155,12 @@
                         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                     // parse the Data
-                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv", function(d) {
-                        return { 
-                        ages: d.ages,
-                        male: +d.male,
-                        female: +d.female
-                        };
-                    })
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv")
                     .then(function(data){  
 
                     // X scale and Axis
                     const xScaleMale = d3.scaleLinear()
-                      .domain([0, d3.max(data, d => d.male)]) 
+                      .domain([0, d3.max(data, d => +d.male)]) 
                       .range([width/2, 0]);
                     svg
                       .append("g")
@@ -175,7 +169,7 @@
                       .call(function(d) { return d.select(".domain").remove()});
 
                     const xScaleFemale = d3.scaleLinear()
-                      .domain([0, d3.max(data, d => d.female)])
+                      .domain([0, d3.max(data, d => +d.female)])
                       .range([width/2, width]);
                     svg
                       .append("g")
@@ -205,7 +199,7 @@
                     
                     // Y scale and Axis
                     const yScale = d3.scaleBand()
-                        .domain(data.map(function(d) { return d.ages; }))
+                        .domain(data.map(d => d.ages))
                         .range([height, 0])
                         .padding(.25);
                     svg
@@ -290,7 +284,7 @@
                     svg
                       .append("text")
                         .attr("class", "chart-source")
-                        .attr("x", -(margin.left)*0.4)
+                        .attr("x", -(margin.left)*0.7)
                         .attr("y", height + margin.bottom*0.7)
                         .attr("text-anchor", "start")
                       .text("Source: UNHCR")
@@ -299,7 +293,7 @@
                     svg
                       .append("text")
                         .attr("class", "copyright")
-                        .attr("x", -(margin.left)*0.4)
+                        .attr("x", -(margin.left)*0.7)
                         .attr("y", height + margin.bottom*0.9)
                         .attr("text-anchor", "start")
                       .text("©UNHCR, The UN Refugee Agency")
