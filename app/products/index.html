@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Products</title>
+  <link href="../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- jquery JS file -->
+  <script src="../assets/js/vendor/jquery.min.js"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <div class="text-center mb-5">
+        <h2 class="text-uppercase">Products</h2>
+        <hr class="short-hr">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p>Browse through the collection of storymaps, dashboards and infographics created by UNHCR’s Information Product Development and Analysis unit. These so-called “IM products” are often produced in collaboration with other UNHCR teams, both in headquarters and around the world. They focus on different topics related to UNHCR’s work and mandate as well as different countries and regions facing displacement crises.<br>Perhaps they can inspire your data storytelling?</p>
+          </div>
+        </div>
+      </div>
+
+      <ul id="list-filter" class="chart-menu text-center list-inline text-secondary">
+        <li data-filter="*" class="filter-active list-inline-item">All</li>
+        <li data-filter=".filter-gotm" class="list-inline-item">Graphic of the Month</li>
+        <li data-filter=".filter-power-bi" class="list-inline-item">Power BI</li>
+        <li data-filter=".filter-storymap" class="list-inline-item">Storymap</li>
+      </ul>
+
+      <div class="row container-filter row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-5">
+        <!-- GOTM Feb 2022 -->
+        <div class="col item-filter filter-gotm">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/gotm_yemen_services.png" alt="Thumbnail No home away from home"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://reporting.unhcr.org/needs-mount-as-conflict-in-Yemen-rages-on"
+                  target="_blank">Needs mount as conflict in Yemen rages on</a>
+              </h5>
+              <p class="card-text">More than seven years of conflict have resulted in Yemen enduring one of the world's worst humanitarian crises, in which 70 per cent of the population rely on aid for their survival.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://reporting.unhcr.org/needs-mount-as-conflict-in-Yemen-rages-on"
+                  target="_blank">English</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-navy">Graphic of the month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END GOTM Feb 2022 -->
+
+        <!-- GOTM Jan 2022 -->
+        <div class="col item-filter filter-gotm">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/gotm_covid.png" alt="Thumbnail No home away from home"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://www.unhcr.org/news/stories/2022/2/6204f1904/cameroonian-refugees-help-bust-covid-19-myths-nigeria.html"
+                  target="_blank">COVID-19 vaccination rates in countries hosting refugees</a>
+              </h5>
+              <p class="card-text">As global income inequality combines with uneven access to vaccines, vulnerable
+                populations including refugees are being hit hardest.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://www.unhcr.org/news/stories/2022/2/6204f1904/cameroonian-refugees-help-bust-covid-19-myths-nigeria.html"
+                  target="_blank">English</a> |
+                <a href="https://www.unhcr.org/fr/news/stories/2022/2/62061a20a/nigeria-refugies-camerounais-contribuent-briser-mythes-covid-19.html"
+                  target="_blank">Français</a> | <a
+                  href="https://www.acnur.org/noticias/historia/2022/2/62055cd94/personas-refugiadas-camerunesas-ayudan-a-romper-mitos-sobre-la-covid-19.html#_ga=2.26963198.250345226.1645431173-1590557270.1620829460"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-navy">Graphic of the month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END GOTM Jan 2022 -->
+
+        <!-- No home away from home -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/r4v_venezuelan-1@2x.jpg" alt="Thumbnail No home away from home"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/fc308b616de34a129c86f0d658f2ccd3" target="_blank">No home
+                  away from home</a>
+              </h5>
+              <p class="card-text">Forced to flee their homeland, Venezuelan refugees and migrants now face widespread
+                risk of eviction and homelessness in their new country.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/fc308b616de34a129c86f0d658f2ccd3"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/e363b11bf8c34716889230af52b41cb4"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/ec6df3984521478d8189204e86be00eb"
+                  target="_blank">Español</a> | <a
+                  href="https://storymaps.arcgis.com/stories/af332ad82a1049d5ac1b98037fd4e749"
+                  target="_blank">Português</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END No home away from home -->
+
+        <!-- COVID-19 deepens threats for displaced women and children -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_sgbv-1@2x.jpg"
+              alt="Thumbnail COVID-19 deepens threats for displaced women and children" class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/5bf55a1112144d7dafa58fb4ecc8f9a7" target="_blank">COVID-19
+                  deepens threats for displaced women and children</a>
+              </h5>
+              <p class="card-text">The pandemic has aggravated many of the factors that put forcibly displaced women and
+                children at greater risk of violence and abuse</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/5bf55a1112144d7dafa58fb4ecc8f9a7"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/9aefc644f85a426fbdf451d4ce28a73c"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/3cf680112c044990b94673fa9d17c0d1"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END COVID-19 deepens threats for displaced women and children -->
+
+        <!-- Inclusion of pocs in COVID-19 vaccine rollout -->
+        <div class="col item-filter filter-power-bi">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_vaccine-1@2x.jpg" alt="Thumbnail Public health inclusion of refugees"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://app.powerbi.com/view?r=eyJrIjoiYjM2OWU1ZGYtMmYwOC00ODg0LTgzMGEtMmM3ZjczYWIwNDQ5IiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
+                  target="_blank">Inclusion of persons of concern in national COVID-19 vaccine rollout</a>
+              </h5>
+              <p class="card-text">Global overview - Inclusion of persons of concern in national COVID-19 vaccine
+                rollout.
+              </p>
+              <p class="card-text small text-muted">
+                Version: <a
+                  href="https://app.powerbi.com/view?r=eyJrIjoiYjM2OWU1ZGYtMmYwOC00ODg0LTgzMGEtMmM3ZjczYWIwNDQ5IiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
+                  target="_blank">English</a>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-info">Power BI</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END Inclusion of pocs in COVID-19 vaccine rollout -->
+
+        <!-- Displaced on the frontlines of the climate emergency -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/climate_change-1@2x.jpg"
+              alt="Thumbnail Displaced on the frontlines of the climate emergency" class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/065d18218b654c798ae9f360a626d903" target="_blank">Displaced
+                  on the frontlines of the climate emergency</a>
+              </h5>
+              <p class="card-text">From the Sahel to Central America, climate change is driving displacement and
+                increasing the vulnerability of those already forced to flee.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/065d18218b654c798ae9f360a626d903"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/c0c23d36990349c3ab02ce8d5f1eb574"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/7ee8d1233f184f99bcfd44f3db7b9213/"
+                  target="_blank">Español</a> | <a
+                  href="https://storymaps.arcgis.com/stories/9b67d41f272f466a98ce7048a6d267d6"
+                  target="_blank">Português</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END Displaced on the frontlines of the climate emergency -->
+
+        <!-- Uprooted in their own land -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/uprooted_idp-1@2x.jpg" alt="Thumbnail Uprooted in their own land"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/f290ffd49b934ff8b865be79d6c34dd0" target="_blank">Uprooted
+                  in their own land</a>
+              </h5>
+              <p class="card-text">Forced to flee their homes but remaining in their countries, the internally displaced
+                are among the world’s most vulnerable people.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/f290ffd49b934ff8b865be79d6c34dd0"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/435549afc9d24356abcbf2bcc6f10b35"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/77b69a54cbb64f43a35ffd8aafcef2e9"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Uprooted in their own land -->
+
+        <!-- Public health inclusion of refugees -->
+        <div class="col item-filter filter-power-bi">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/health_inclusion-1@2x.jpg"
+              alt="Thumbnail Public health inclusion of refugees" class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://app.powerbi.com/view?r=eyJrIjoiMWQ0OGM4YWEtNzYxZS00MTVlLTk4ZTItMjk4YzU5NTkwYjhhIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9&pageName=ReportSection"
+                  target="_blank">Inclusion of refugees into National Health Systems</a>
+              </h5>
+              <p class="card-text">Public Health Services Survey - Inclusion of refugees into National Health Systems.
+              </p>
+              <p class="card-text small text-muted">
+                Version: <a
+                  href="https://app.powerbi.com/view?r=eyJrIjoiMWQ0OGM4YWEtNzYxZS00MTVlLTk4ZTItMjk4YzU5NTkwYjhhIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9&pageName=ReportSection"
+                  target="_blank">English</a>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-info">Power BI</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END Public health inclusion of refugees -->
+
+        <!-- Livelihoods, food and futures: COVID-19 and the displaced -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_livelihoods-1@2x.jpg"
+              alt="Thumbnail Livelihoods, food and futures: COVID-19 and the displaced" class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/4b999f79628644df84ccb7c10a9edd9e"
+                  target="_blank">Livelihoods, food and futures: COVID-19 and the displaced</a>
+              </h5>
+              <p class="card-text">Already at risk before COVID, displaced people face new barriers to work, education,
+                food and social protection.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/4b999f79628644df84ccb7c10a9edd9e"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/dd527c3d3e4d4b90b8760106460f0924"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/cd0e2f535c994d79b085a4dee02dd79f"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END Livelihoods, food and futures: COVID-19 and the displaced -->
+
+        <!-- Space, shelter and scarce resources - coping with COVID-19 -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_sector-1@2x.jpg"
+              alt="Thumbnail Space, shelter and scarce resources - coping with COVID-19" class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/e1da7d80fbcf4ce8a3a954910c1e7f37" target="_blank">Space,
+                  shelter and scarce resources - coping with COVID-19</a>
+              </h5>
+              <p class="card-text">Basic services are basic rights - yet for people forced to flee, the standard
+                responses to the virus are virtually out of reach.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/e1da7d80fbcf4ce8a3a954910c1e7f37"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/eda6820e96404a53bce8ef825215d50b"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/31eb3a39e94540e2bd71b801fe7209c3"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END Space, shelter and scarce resources - coping with COVID-19 -->
+
+        <!-- COVID-19 and refugees -->
+        <div class="col item-filter filter-storymap">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_refugees-1@2x.jpg" alt="Thumbnail COVID-19 and refugees"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a
+                  href="https://storymaps.arcgis.com/stories/95cc3b65d9264cf3b80fffef0daa0358" target="_blank">COVID-19
+                  and refugees</a>
+              </h5>
+              <p class="card-text">The maps, stats and facts on how the pandemic has impeded efforts to protect the
+                displaced and affected their access to basic rights.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://storymaps.arcgis.com/stories/95cc3b65d9264cf3b80fffef0daa0358"
+                  target="_blank">English</a> |
+                <a href="https://storymaps.arcgis.com/stories/3368df48b4c84021b450a5f46d2173a9"
+                  target="_blank">Français</a> | <a
+                  href="https://storymaps.arcgis.com/stories/0c386e3d2a7d485f9ae7f6dbfaf606cc"
+                  target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-primary">Storymap</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END COVID-19 and refugees -->
+
+        <!-- COVID-19 Platform -->
+        <div class="col item-filter filter-power-bi">
+          <div class="card p-4 bg-light border-0 h-100">
+            <img src="../assets/img/products/covid_platform-1@2x.jpg" alt="Thumbnail COVID-19 Platform"
+              class="card-img-top mb-3">
+            <div class="card-body p-0">
+              <h5 class="card-title fw-bold"><a href="https://im.unhcr.org/covid19_platform/" target="_blank">COVID-19
+                  Platform</a>
+              </h5>
+              <p class="card-text">The UNHCR COVID-19 Platform temporary measures and impact on protection.</p>
+              <p class="card-text small text-muted">
+                Version: <a href="https://im.unhcr.org/covid19_platform/" target="_blank">English</a> |
+                <a href="https://im.unhcr.org/covid19_platform/?lang=fra" target="_blank">Français</a> | <a
+                  href="https://im.unhcr.org/covid19_platform/?lang=esp" target="_blank">Español</a>
+              </p>
+              <p class="card-text small text-muted">
+                Type: <span class="badge rounded-pill bg-info">Power BI</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END COVID-19 Platform -->
+      </div>
+
+    </div>
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="../assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="../assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="../assets/js/unhcrfilter.js"></script>
+  <!-- isotope JS file -->
+  <script src="../assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- End scripts -->
+
+
+</body>
+
+</html>

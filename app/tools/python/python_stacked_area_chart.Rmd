@@ -1,0 +1,210 @@
+---
+title: "Stacked area chart with Python"
+title-prefix: "UNHCR Dataviz"
+author: "IPDA/GDS"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header: "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_change_over_time.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Stacked area chart
+  url_cat: change_over_time
+  url_chart: area-stacked
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+An area chart, like a line chart, displays the evolution of numeric variables over a continuous period of time. However, in an area chart, the area between the line and x-axis is filled with colour or texture.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Basic area chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#load custom font
+from matplotlib import rcParams
+rcParams['font.family'] = 'lato'
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv')
+df = df.pivot_table(index='months', columns='funding_type', values='funding_million', sort=False)
+df = df.reset_index()
+
+#compute data for plotting
+x = df['months']
+y1 = df['Earmarked']
+y2 = df['Softly earmarked']
+y3 = df['Tightly earmarked']
+y4 = df['Unearmarked']
+
+#plot the chart
+fig, ax = plt.subplots()
+ax.stackplot(x, y1, y2, y3, y4, labels = ['Earmarked', 'Softly earmarked', 'Tightly earmarked', 'Unearmarked'], colors = ['#00B398', '#8EBEFF', '#0072BC','#18375F'])
+
+#set chart legend
+ax.legend(loc=(0,1.05), ncol=4, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
+
+#set chart title
+ax.set_title('Evolution of funding in West Africa region | 2020', loc='left', fontweight='bold', pad=50, fontsize=14, color='#000000')
+
+#set y-axis label
+ax.set_ylabel('USD millions', color = '#666666', fontsize = 10).set_visible(True)
+
+#set tick parameters 
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, labelcolor = '#333333')
+
+#remove unnecessary spines 
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+#show grid below the bars
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+plt.margins(x=0.02, y=0.1)
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_area_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#load custom font
+from matplotlib import rcParams
+rcParams['font.family'] = 'lato'
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv')
+df = df.pivot_table(index='months', columns='funding_type', values='funding_million', sort=False)
+df = df.reset_index()
+
+#compute data for plotting
+x = df['months']
+y1 = df['Earmarked']
+y2 = df['Softly earmarked']
+y3 = df['Tightly earmarked']
+y4 = df['Unearmarked']
+
+#plot the chart
+fig, ax = plt.subplots()
+ax.stackplot(x, y1, y2, y3, y4, labels = ['Earmarked', 'Softly earmarked', 'Tightly earmarked', 'Unearmarked'], colors = ['#00B398', '#8EBEFF', '#0072BC','#18375F'])
+
+#set chart legend
+ax.legend(loc=(0,1.05), ncol=4, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
+
+#set chart title
+ax.set_title('Evolution of funding in West Africa region | 2020', loc='left', fontweight='bold', pad=50, fontsize=14, color='#000000')
+
+#set y-axis label
+ax.set_ylabel('USD millions', color = '#666666', fontsize = 10).set_visible(True)
+
+#set tick parameters 
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, labelcolor = '#333333')
+
+#remove unnecessary spines 
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+#show grid below the bars
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+plt.margins(x=0.02, y=0.1)
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>

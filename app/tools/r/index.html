@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - R Charts</title>
+  <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- jquery JS file -->
+  <script src="../../assets/js/vendor/jquery.min.js"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="tools" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../../">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../tools/">Tools</a></li>
+          <li class="breadcrumb-item active" aria-current="page">R</li>
+        </ol>
+      </nav>
+      <div class="mb-5 text-center">
+        <h2>R charts</h2>
+        <hr class="short-hr">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p>The <a href="https://www.r-project.org/" target="_blank">R programming language</a> is a great tool for data visualization, capable of creating almost any type of chart with the help of <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a> and other packages. In this section, you will find reproducible code for multiple chart types. The examples focus on <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> and <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a>, but some specific chart types might require extra packages. The required packages will always be mentioned at the top of the code chunks.</p>
+            <p>To apply the UNHCR data visualization recommendations, we use the <strong><a href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a></strong> package that has been specifically built to provide UNHCR styles and colours out of the box. <a href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a> is part of a set of packages to ease the production of statistical evidence and data stories.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul id="list-filter" class="chart-menu text-center list-inline text-secondary">
+        <li data-filter="*" class="filter-active list-inline-item">All</li>
+        <li data-filter=".filter-comparison" class="list-inline-item">Comparison</li>
+        <li data-filter=".filter-correlation" class="list-inline-item">Correlation</li>
+        <li data-filter=".filter-change-over-time" class="list-inline-item">Change over time</li>
+        <li data-filter=".filter-distribution" class="list-inline-item">Distribution</li>
+        <li data-filter=".filter-part-to-a-whole" class="list-inline-item">Part-to-a-whole</li>
+        <!-- <li data-filter=".filter-flow" class="list-inline-item">Flow</li> -->
+        <!-- <li data-filter=".filter-geospatial" class="list-inline-item">Geospatial</li> -->
+        <!-- <li data-filter=".filter-ranking" class="list-inline-item">Ranking</li> -->
+      </ul>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 container-filter text-center my-5">
+        <!-- Comparison -->
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_column_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Column Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_bar_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Bar Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_column_grouped_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Grouped column Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_bar_grouped_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Grouped bar Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_column_stacked_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Stacked column Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-comparison chart-item">
+          <a href="../../tools/r/r_bar_stacked_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Stacked bar Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- End Comparison -->
+
+        <!-- Correlation -->
+        
+        <div class="col item-filter filter-correlation chart-item">
+          <a href="r_bubble_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/bubble_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Bubble Chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-correlation chart-item">
+          <a href="#">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/heatmap_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Heatmap</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+        <div class="col item-filter filter-correlation chart-item">
+          <a href="r_scatterplot.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/scatterplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Scatterplot</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-correlation chart-item">
+          <a href="r_scatterplot_connected.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/scatterplot_connected_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Connected scatterplot</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-correlation chart-item">
+          <a href="#">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/tree_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Tree diagram</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+        <!-- <div class="col item-filter filter-correlation chart-item">
+          <a href="#">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/correlation/venn_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Venn diagram</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+       
+        <!-- End Correlation -->
+
+        <!-- Change over time -->
+
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_line_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/line_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Line chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_area_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Area chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_area_stacked_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Stacked area chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_streamgraph.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Streamgraph</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_line_column_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Line column chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-change-over-time chart-item">
+          <a href="../../tools/r/r_slope_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Slope chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-change-over-time chart-item">
+          <a href="/chart_gallery/change_over_time.html#dotplot">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/change_over_time/dotplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Dot plot</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+        <!-- End Change over time -->
+
+        <!-- Distribution -->
+        
+        <div class="col item-filter filter-distribution chart-item">
+          <a href="r_histogram.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Histogram</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-distribution chart-item">
+          <a href="r_population_pyramid.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/distribution/population_pyramid_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Population pyramid</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-distribution chart-item">
+          <a href="r_boxplot.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Boxplot</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+       
+        <!-- End Distribution -->
+
+        <!-- Part-to-a-whole -->
+        
+        <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_pie_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Pie chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_donut_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Donut chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_column_stacked_100perc_chart.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">100% stacked column chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_gridplot.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Grid plot</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+        <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_treemap.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Treemap</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
+          <a href="r_waterfall.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Waterfall</span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+       
+        <!-- End Part-to-a-whole -->
+
+        <!-- Flow -->
+        <!--
+        <div class="col item-filter filter-flow chart-item">
+          <a href="/chart_gallery/flow.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/flow/sankey_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Sankey diagram</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-flow chart-item">
+          <a href="/chart_gallery/flow.html#chord-diagram">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/flow/chord_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Chord diagram</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-flow chart-item">
+          <a href="/chart_gallery/flow.html#flow-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/flow/flow_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Flow map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-flow chart-item">
+          <a href="/chart_gallery/flow.html#arc-diagram">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/flow/arc_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Arc diagram</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-flow chart-item">
+          <a href="/chart_gallery/flow.html#flow-diagram">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/flow/flow_diagram_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Flow diagram</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        -->
+        <!-- End Flow -->
+
+        <!-- Geospatial -->
+        <!--
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Choropleth map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html#bubble-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Bubble map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html#flow-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Flow map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html#icon-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Icon map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html#dot-density-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Dot density map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-geospatial chart-item">
+          <a href="/chart_gallery/geospatial.html#pie-map">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Pie chart map</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        -->
+        <!-- End Geospatial -->
+
+        <!-- Ranking -->
+        <!--
+        <div class="col item-filter filter-ranking chart-item">
+          <a href="/chart_gallery/ranking.html">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/ranking/column_ordered_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Ordered column chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-ranking chart-item">
+          <a href="/chart_gallery/ranking.html#bar-ordered">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/ranking/bar_ordered_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Ordered bar chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-ranking chart-item">
+          <a href="/chart_gallery/ranking.html#lollipop">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/ranking/lollipop_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Lollipop chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col item-filter filter-ranking chart-item">
+          <a href="/chart_gallery/ranking.html#slope">
+            <div class="chart-img d-inline-flex justify-content-center">
+              <img src="/assets/img/ranking/slope_icon.svg" class="img-fluid" alt="">
+              <div class="chart-info d-flex align-items-end p-3">
+                <span class="chart-name">Slope chart</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        -->
+        <!-- End Ranking -->
+      </div>
+
+    </div>
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="../../assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="../../assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="../../assets/js/unhcrfilter.js"></script>
+  <!-- isotope JS file -->
+  <script src="../../assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>

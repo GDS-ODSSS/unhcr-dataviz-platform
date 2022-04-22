@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="IPDA/GDS" />
+
+
+<title>UNHCR Dataviz - Scatterplot with R</title>
+
+<script src="r_scatterplot_files/header-attrs-2.13/header-attrs.js"></script>
+<link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+<header>
+    <nav class="navbar navbar-expand-lg border-bottom">
+        <div class="container p-2">
+        <a class="navbar-brand" href="../../">
+            <img src="../../assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-active="home" href="../../">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="chart_gallery" href="../../chart_gallery/">Chart gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="general_guidance" href="../../general_guidance/">General guidance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="tools" href="../../tools/">Tools</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="products" href="../../products/">Products</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</header>
+
+
+<h1 class="title toc-ignore">Scatterplot with R</h1>
+<h4 class="author">IPDA/GDS</h4>
+
+
+
+<main id="tools" class="container mt-5">
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML -->
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item">
+<a href="../../">Home</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../">Tools</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../r/">R</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+Scatterplot with R
+</li>
+</ol>
+</nav>
+<!-- Intro header -->
+<div id="scatterplot-with-r" class="section level2 my-5 text-center">
+<h2>Scatterplot with R</h2>
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<!-- Only text to change below, the rest comes from the YAML -->
+<p>A scatterplot is a type of visualization using Cartesian Coordinates
+to display two variables for a set of data. The data are displayed as a
+collection of dots. The position of each dot on the horizontal and
+vertical axis indicates the values for an individual data point.</p>
+<p>More about:
+<a href="../../chart_gallery/correlation.html#scatterplot">Scatterplot</a></p>
+</div>
+</div>
+</div>
+<hr />
+<!-- Beginning of section, should be preceded by hr (----) -->
+<section class="my-5">
+<div id="scatterplot" class="section level3">
+<h3>Scatterplot</h3>
+<div class="row">
+<!-- First column for large screen -->
+<div class="col-lg-6">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> refugee_number, <span class="at">y =</span> idp_number)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> region), <span class="at">size =</span> <span class="dv">8</span><span class="sc">/</span>.pt) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Comparison of refugee and IDP population by region | 2021&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of IDPs&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Number of refugees&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>()) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>(),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;XY&quot;</span>, <span class="at">axis =</span> <span class="cn">FALSE</span>, <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span>)</span></code></pre></div>
+</div>
+<!-- End First column --->
+<!-- Second column for large screen -->
+<div class="col-lg-6">
+<p><img src="../../assets/img/tools/r/r_scatterplot-1.svg" width="100%" /></p>
+</div>
+<!-- End Second column --->
+</div>
+</section>
+<!-- End of section --->
+<hr />
+<!-- Beginning of section, should be preceded by hr (----) -->
+<section class="my-5">
+</div>
+<div id="scatterplot-with-colours" class="section level3">
+<h3>Scatterplot with colours</h3>
+<div class="row">
+<!-- First column for large screen -->
+<div class="col-lg-6">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv&quot;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Order regions for visualization</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>region, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;East and Horn of Africa and Great Lakes&quot;</span>, <span class="st">&quot;Southern Africa&quot;</span>, <span class="st">&quot;West and Central Africa&quot;</span>, <span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Asia and the Pacific&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Middle East and North Africa&quot;</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> refugee_number, <span class="at">y =</span> idp_number)) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> region),<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> region), <span class="at">size =</span> <span class="dv">8</span><span class="sc">/</span>.pt) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Comparison of refugee and IDP population by region | 2021&quot;</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of IDPs&quot;</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Number of refugees&quot;</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>()) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>(),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr_region&quot;</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;XY&quot;</span>, <span class="at">axis =</span> <span class="cn">FALSE</span>, <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span>, <span class="at">legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<!-- End First column --->
+<!-- Second column for large screen -->
+<div class="col-lg-6">
+<p><img src="../../assets/img/tools/r/r_scatterplot_color-1.svg" width="100%" /></p>
+</div>
+<!-- End Second column --->
+</div>
+</section>
+<!-- End of section --->
+<!-- To add sections just copy the whole code between the above section tag --->
+</main>
+</div>
+
+<section class="mb-5 container">
+    <hr>
+    <h3 class="mt-5 mb-3">Related chart with R</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+        <!-- Correlation -->
+        <div class="col chart-item">
+            <a href="r_bubble_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/bubble_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Bubble Chart</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- <div class="col chart-item">
+            <a href="#">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/heatmap_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Heatmap</span>
+                </div>
+              </div>
+            </a>
+          </div> -->
+          <div class="col chart-item">
+            <a href="r_scatterplot.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/scatterplot_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Scatterplot</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="r_scatterplot_connected.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/scatterplot_connected_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Connected scatterplot</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- <div class="col chart-item">
+            <a href="#">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/tree_diagram_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Tree diagram</span>
+                </div>
+              </div>
+            </a>
+          </div> -->
+          <!-- <div class="col chart-item">
+            <a href="#">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/correlation/venn_diagram_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Venn diagram</span>
+                </div>
+              </div>
+            </a>
+          </div> -->
+         
+          <!-- End Correlation -->
+    </div>
+</section>
+<footer class="footer mt-auto bg-dark py-3">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between">
+        <ul class="nav">
+            <li class="nav-item">
+            <a class="nav-link" href="../../">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../chart_gallery/">Chart gallery</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../general_guidance/">General guidance</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../tools/">Tools</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../products/">Products</a>
+            </li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
+            us</a>
+        </div>
+        <p class="text-muted px-3"><small>© UNHCR 2022</small></p>
+    </div>
+</footer>
+<!-- Scripts -->
+<!-- bs/popper bundle -->
+<script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+<!-- UNHCR main JS file -->
+<script type="module" src="../../assets/js/unhcrmain.js"></script>
+<!-- End scripts -->
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

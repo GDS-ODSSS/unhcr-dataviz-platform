@@ -1,0 +1,138 @@
+---
+title: "Treemap with R"
+title-prefix: "UNHCR  Dataviz"
+author: "IPDA/GDS"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header: "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_part_to_a_whole.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Treemap
+  url_cat: part_to_a_whole
+  url_chart: treemap
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
+                     base.url = "../../assets/img/tools/")
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.path= paste0(tolower(params$tool),"/"),
+                      message = FALSE,
+                      warning = FALSE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      dev = "svglite",
+                      fig.showtext = TRUE,
+                      fig.retina = 2,
+                      dpi = 300)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+library(treemapify)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other. 
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Treemap
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r treemap_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(treemapify)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv")
+
+# Plot
+ggplot(df, aes(area = staff_number)) +
+  geom_treemap(color = "#FFFFFF", size = 1,
+               fill = unhcr_pal(n = 1, "pal_blue"), start = "topleft") +
+  geom_treemap_text(aes(label = paste0(round(100*staff_number/sum(staff_number),1), "%\n", region)),
+                    color = "#FFFFFF", size = 9,
+                    start = "topleft", family = "Lato") +
+  labs(title = "UNHCR global workforce by region | 2021",
+       caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
+  theme_unhcr(axis = FALSE, axis_title = FALSE, grid = FALSE)
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_treemap, echo=FALSE, out.width="100%", fig.height=5.8}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv")
+
+ggplot(df, aes(area = staff_number)) +
+  geom_treemap(color = "#FFFFFF", size = 1,
+               fill = unhcr_pal(n = 1, "pal_blue"), start = "topleft") +
+  geom_treemap_text(aes(label = paste0(round(100*staff_number/sum(staff_number),1), "%\n", region)),
+                    color = "#FFFFFF", size = 13,
+                    start = "topleft", family = "Lato",
+                    padding.x = grid::unit(2, "mm"), padding.y = grid::unit(2, "mm")) +
+  labs(title = "UNHCR global workforce by region | 2021",
+       caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
+  theme_unhcr(font_size = 13, axis = FALSE, axis_title = FALSE, grid = FALSE)
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>
