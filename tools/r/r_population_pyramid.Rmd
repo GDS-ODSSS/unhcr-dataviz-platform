@@ -92,15 +92,16 @@ library(scales)
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv")
 
 # Plot
-ggplot(df, aes(x = poc_age)) +
-  geom_histogram(fill = unhcr_pal(n = 1, "pal_blue")) +
-  labs(title = "Age distribution | 2020",
-       y = "Number of people",
-       x = "Age",
-       caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n = 10)) +
-  scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_unhcr(grid = "Y", axis = "x", axis_title = "xy")
+ggplot(df) +
+  geom_col(aes(-male, ages, fill = "Male"), width = 0.7) +
+  geom_col(aes(female, ages, fill = "Female"), width = 0.7) +
+  geom_text(aes(-male, ages, label = percent(abs(male))), hjust = 1.25, size = 11.5/.pt) +
+  geom_text(aes(female, ages, label = percent(abs(female))), hjust = -0.25, size = 11.5/.pt) +
+  labs(title = "Demographics of forcibly displaced people | 2020",
+       caption = "Note: figures do not add up to 100 per cent due to rounding\nSource: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  scale_x_continuous(expand = expansion(c(0.2, 0.2))) +
+  scale_fill_manual(values = setNames(unhcr_pal(n = 3, "pal_unhcr")[c(2, 1)], c("Male", "Female"))) +
+  theme_unhcr(grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = "y")
 ```
 
 </div>
