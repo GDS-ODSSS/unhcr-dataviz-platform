@@ -79,7 +79,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/lollipop.csv')
 
 #sort value by descending order
 df.sort_values('displaced_number',inplace=True)
@@ -149,7 +149,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/lollipop.csv')
 
 #sort value by descending order
 df.sort_values('displaced_number',inplace=True)
