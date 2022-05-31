@@ -201,7 +201,7 @@ Ordered bar chart with Python
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
 <p>An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.</p>
-<p>More about: <a href="../../chart_gallery/ranking.html#bar_ordered">Ordered bar chart</a></p>
+<p>More about: <a href="../../chart_gallery/ranking.html#bar-ordered">Ordered bar chart</a></p>
 </div>
 </div>
 </div>
@@ -223,7 +223,7 @@ Ordered bar chart with Python
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">&#39;font.family&#39;</span>] <span class="op">=</span> <span class="st">&#39;lato&#39;</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load data set</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv&#39;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv&#39;</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#sort value by descending order</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;displaced_number&#39;</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
@@ -298,7 +298,7 @@ Ordered bar chart with Python
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">&#39;font.family&#39;</span>] <span class="op">=</span> <span class="st">&#39;lato&#39;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load data set</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv&#39;</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv&#39;</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#sort value in descending order</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;displaced_number&#39;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
@@ -350,74 +350,6 @@ Ordered bar chart with Python
 </main>
 </div>
 
-<section class="mb-5 container">
-    <hr>
-    <h3  class="mt-5 mb-3">Related chart with Python</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-        <!-- Comparison -->
-        <div class="col chart-item">
-            <a href="python_column_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Column Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col chart-item">
-            <a href="python_bar_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Bar Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col chart-item">
-            <a href="python_grouped_column_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Grouped column Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col chart-item">
-            <a href="python_grouped_bar_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Grouped bar Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col chart-item">
-            <a href="python_stacked_column_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Stacked column Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col chart-item">
-            <a href="python_stacked_bar_chart.html">
-                <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
-                    <div class="chart-info d-flex align-items-end p-3">
-                        <span class="chart-name">Stacked bar Chart</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!-- End Comparison -->
-    </div>
-</section>
 <footer class="footer mt-auto bg-dark py-3">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-between">
