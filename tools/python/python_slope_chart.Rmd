@@ -79,20 +79,26 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load and reshape the data
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area.csv')
-df = df.pivot(index='year', columns='population_type', values='population_number')
-df = df.reset_index()
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
 
-#compute data for plotting
-x = df['year']
-y = df['Refugees']
+#set a list of country names
+countries=['Afghanistan','Dem. Rep. of the Congo','Myanmar','South Sudan','Syrian Arab Rep.']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax.stackplot(x, y, color = '#0072BC')
+for i in countries:
+    temp = df[df['country_origin'] == i]
+    plt.plot(temp.year, temp.refugees_number, color='#0072BC', marker='o', markersize=5)
+    # start label
+    plt.text(temp.year.values[0]-0.4, temp.refugees_number.values[0], i, ha='right', va='center')
+    # end label
+    plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
+    
+limits = plt.xlim(1990,2031)
+ticks = plt.xticks([2000, 2021])
 
 #set chart title
-ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
@@ -142,7 +148,7 @@ plt.show()
 
 
 
-```{python python_area_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_slope_chart, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -155,22 +161,24 @@ rcParams['font.family'] = 'lato'
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
 
-types=['refugees','asylum-seekers','idps','venezuelans_displaced_abroad','stateless_persons','others_of_concern']
+#set a list of country names
+countries=['Afghanistan','Dem. Rep. of the Congo','Myanmar','South Sudan','Syrian Arab Rep.']
 
 #plot the chart
 fig, ax = plt.subplots()
-
-for i in types:
-    temp = df[df['poc_type'] == i]
-    plt.plot(temp.year, temp.poc_number)
+for i in countries:
+    temp = df[df['country_origin'] == i]
+    plt.plot(temp.year, temp.refugees_number, color='#0072BC', marker='o', markersize=5)
+    # start label
+    plt.text(temp.year.values[0]-0.4, temp.refugees_number.values[0], i, ha='right', va='center')
+    # end label
+    plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
     
-plt.xlim(2015.5,2021.5)
-plt.xticks([2016, 2021])
-
-
+limits = plt.xlim(1990,2031)
+ticks = plt.xticks([2000, 2021])
 
 #set chart title
-ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
 
 #set y-axis label
 ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
