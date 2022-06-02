@@ -1,5 +1,5 @@
 ---
-title: "Ordered bar chart with Python"
+title: "Ordered column chart with Python"
 title-prefix: "UNHCR Dataviz"
 author: "IPDA/GDS"
 output:
@@ -15,9 +15,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: Python
-  chart_type: Ordered bar chart
+  chart_type: Ordered column chart
   url_cat: ranking
-  url_chart: bar-ordered
+  url_chart: column-ordered
 ---
 
 ```{r setup, include=FALSE}
@@ -47,7 +47,7 @@ library(reticulate)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-An ordered bar chart is a chart in which each category is represented by a horizontal rectangle, with the length of the rectangle being ordered and proportional to the values being plotted.
+An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -61,7 +61,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Basic ordered bar chart
+### Basic ordered column chart
 
 <div class="row">
 
@@ -79,41 +79,47 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
 
 #sort value by descending order
-df.sort_values('displaced_number',inplace=True)
+df.sort_values('returnee_number', ascending=False, inplace=True)
 
 #compute data array for plotting
 x = df.loc[:, 'country_origin'].values
-y = df.loc[:, 'displaced_number'].values
+y = df.loc[:, 'returnee_number'].values
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.barh(x, y, color = '#0072BC')
+bar_plot = ax.bar(x, y, color = '#0072BC')
 
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2020', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
+ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
 
-#set x-axis label
-ax.set_xlabel('Displaced population (millions)', fontsize = 10, color = '#666666')
+#set y-axis label
+ax.set_ylabel('Number of people (thousands)', fontsize = 10, color = '#666666')
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True,labelcolor = '#333333')
+ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #remove unnecessary spines  
 ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
 #show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
-#format x-axis tick labels
-def millions(y, pos):
-    return '{:1.0f}M'.format(y*1e-6)
-ax.xaxis.set_major_formatter(millions)
+#format y-axis tick labels
+def number_formatter(x, pos):
+    if x >= 1e6:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x > 0:
+        s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
+    return s
+ax.yaxis.set_major_formatter(number_formatter)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -135,7 +141,7 @@ plt.show()
 
 
 
-```{python python_bar_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_ordered_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -149,7 +155,7 @@ rcParams['font.family'] = 'lato'
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
 
 #sort value by descending order
-df.sort_values('returnee_number',inplace=True)
+df.sort_values('returnee_number', ascending=False, inplace=True)
 
 #compute data array for plotting
 x = df.loc[:, 'country_origin'].values
@@ -157,24 +163,24 @@ y = df.loc[:, 'returnee_number'].values
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.barh(x, y, color = '#0072BC')
+bar_plot = ax.bar(x, y, color = '#0072BC')
 
 #set chart title
 ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
 
-#set x-axis label
-ax.set_xlabel('Number of people (thousands)', fontsize = 10, color = '#666666')
+#set y-axis label
+ax.set_ylabel('Number of people (thousands)', fontsize = 10, color = '#666666')
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #remove unnecessary spines  
 ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
 #show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
 #format y-axis tick labels
@@ -186,7 +192,7 @@ def number_formatter(x, pos):
     else: 
         s = '{:1.0f}'.format(x)
     return s
-ax.xaxis.set_major_formatter(number_formatter)
+ax.yaxis.set_major_formatter(number_formatter)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -214,7 +220,7 @@ plt.show()
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Ordered bar chart with data label
+### Ordered column chart with data label
 
 <div class="row">
 
@@ -235,7 +241,7 @@ rcParams['font.family'] = 'lato'
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
 
 #sort value in descending order
-df.sort_values('returnee_number', inplace=True)
+df.sort_values('returnee_number', ascending=False, inplace=True)
 
 #prepare data array for plotting
 x = df.loc[:, 'country_origin'].values
@@ -243,28 +249,28 @@ y = df.loc[:, 'returnee_number'].values
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.barh(x, y, color = '#0072BC')
+bar_plot = ax.bar(x, y, color = '#0072BC')
 
-#set chart tit
-ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=35, color = '#000000')
+#set chart title
+ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=40, color = '#000000')
 
 #set subtitle
-plt.suptitle('Number of people (thousands)', x=0.15, y=0.88, horizontalalignment='left', fontsize=10, color='#333333')
+plt.suptitle('Number of people (thousands)', x=0.022, y=0.88, horizontalalignment='left', fontsize=10, color='#333333')
 
-#set data label
+# set data label
 ax.bar_label(bar_plot, labels=[f'{x:,.0f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set tick parameters
-ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True)
+ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=False)
 
 #remove unnecessary spines             
 ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# set formatted data label
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
@@ -282,7 +288,7 @@ plt.show()
 
 
 
-```{python python_bar_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_ordered_column_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -296,7 +302,7 @@ rcParams['font.family'] = 'lato'
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
 
 #sort value in descending order
-df.sort_values('returnee_number', inplace=True)
+df.sort_values('returnee_number', ascending=False, inplace=True)
 
 #prepare data array for plotting
 x = df.loc[:, 'country_origin'].values
@@ -304,28 +310,28 @@ y = df.loc[:, 'returnee_number'].values
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.barh(x, y, color = '#0072BC')
+bar_plot = ax.bar(x, y, color = '#0072BC')
 
-#set chart tit
-ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=35, color = '#000000')
+#set chart title
+ax.set_title('Refugee returns by country of origin (top 5) | 2020', fontsize=14, fontweight='bold', loc='left', pad=40, color = '#000000')
 
 #set subtitle
-plt.suptitle('Number of people (thousands)', x=0.15, y=0.88, horizontalalignment='left', fontsize=10, color='#333333')
+plt.suptitle('Number of people (thousands)', x=0.022, y=0.88, horizontalalignment='left', fontsize=10, color='#333333')
 
-#set data label
+# set data label
 ax.bar_label(bar_plot, labels=[f'{x:,.0f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set tick parameters
-ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True)
+ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=False)
 
 #remove unnecessary spines             
 ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# set formatted data label
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
