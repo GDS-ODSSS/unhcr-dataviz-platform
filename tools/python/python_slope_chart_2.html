@@ -13,9 +13,9 @@
 <meta name="author" content="IPDA/GDS" />
 
 
-<title>UNHCR Dataviz - Lollipop chart with Python</title>
+<title>UNHCR Dataviz - Slope chart with Python</title>
 
-<script src="python_lollipop_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<script src="python_slope_chart_2_files/header-attrs-2.10/header-attrs.js"></script>
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
 
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Lollipop chart with Python</h1>
+<h1 class="title toc-ignore">Slope chart with Python</h1>
 <h4 class="author">IPDA/GDS</h4>
 
 
@@ -190,26 +190,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../python/">Python</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Lollipop chart with Python
+Slope chart with Python
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="lollipop-chart-with-python" class="section level2 my-5 text-center">
-<h2>Lollipop chart with Python</h2>
+<div id="slope-chart-with-python" class="section level2 my-5 text-center">
+<h2>Slope chart with Python</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>As a variant of the bar/column chart, the lollipop chart consists of lines and dots at the end to highlight the values. Like a bar chart, a lollipop chart is used to compare categorical data.</p>
-<p>More about: <a href="../../chart_gallery/ranking.html#lollipop">Lollipop chart</a></p>
+<p>A slope chart looks like a line chart, but unlike the line chart, it has only two data points for each line. The change between two data points can be easily identified with connected lines (slope up means increase, slope down means decrease).</p>
+<p>More about: <a href="../../chart_gallery/ranking.html#slope">Slope chart</a></p>
 </div>
 </div>
 </div>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="lollipop-chart" class="section level3">
-<h3>Lollipop chart</h3>
+<div id="slope-chart" class="section level3">
+<h3>Slope chart</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
@@ -222,61 +222,71 @@ Lollipop chart with Python
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">&#39;font.family&#39;</span>] <span class="op">=</span> <span class="st">&#39;lato&#39;</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load data set</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/lollipop.csv&#39;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#load and reshape the data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv&#39;</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#sort value by descending order</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;displaced_number&#39;</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#set a list of country names</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>countries<span class="op">=</span>[<span class="st">&#39;Afghanistan&#39;</span>,<span class="st">&#39;Dem. Rep. of the Congo&#39;</span>,<span class="st">&#39;Myanmar&#39;</span>,<span class="st">&#39;South Sudan&#39;</span>,<span class="st">&#39;Syrian Arab Rep.&#39;</span>]</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#compute data array for plotting</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df.loc[:, <span class="st">&#39;country_origin&#39;</span>].values</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.loc[:, <span class="st">&#39;displaced_number&#39;</span>].values</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax.hlines(y<span class="op">=</span>x, xmin<span class="op">=</span><span class="dv">0</span>, xmax<span class="op">=</span>y, color<span class="op">=</span><span class="st">&#39;#0072BC&#39;</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax.plot(y, x, <span class="st">&#39;o&#39;</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>xlimt <span class="op">=</span> ax.set_xlim(<span class="dv">0</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;People displaced across borders by country of origin | 2020&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, pad<span class="op">=</span><span class="dv">20</span>, color <span class="op">=</span> <span class="st">&#39;#000000&#39;</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#set x-axis label</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Displaced population (millions)&#39;</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#set tick parameters </span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;both&#39;</span>, labelsize<span class="op">=</span><span class="dv">10</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">True</span>, left<span class="op">=</span><span class="va">False</span>, right<span class="op">=</span><span class="va">False</span>, labelleft<span class="op">=</span><span class="va">True</span>, labelcolor <span class="op">=</span> <span class="st">&#39;#333333&#39;</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#remove unnecessary spines  </span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;bottom&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">#show grid below the bars</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;x&#39;</span>, lw<span class="op">=</span><span class="fl">.5</span>, c<span class="op">=</span><span class="st">&#39;k&#39;</span>, alpha<span class="op">=</span><span class="fl">.3</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> countries:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> df[df[<span class="st">&#39;country_origin&#39;</span>] <span class="op">==</span> i]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    plt.plot(temp.year, temp.refugees_number, color<span class="op">=</span><span class="st">&#39;#0072BC&#39;</span>, marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># start label</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    plt.text(temp.year.values[<span class="dv">0</span>]<span class="op">-</span><span class="fl">0.4</span>, temp.refugees_number.values[<span class="dv">0</span>], i, ha<span class="op">=</span><span class="st">&#39;right&#39;</span>, va<span class="op">=</span><span class="st">&#39;center&#39;</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># end label</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    plt.text(temp.year.values[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.4</span>, temp.refugees_number.values[<span class="dv">1</span>], i, ha<span class="op">=</span><span class="st">&#39;left&#39;</span>, va<span class="op">=</span><span class="st">&#39;center&#39;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>limits <span class="op">=</span> plt.xlim(<span class="dv">1990</span>,<span class="dv">2031</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> plt.xticks([<span class="dv">2000</span>, <span class="dv">2021</span>])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Evolution of refugee population by country of origin |2000 vs 2021&#39;</span>, loc<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>, fontsize<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">&#39;#000000&#39;</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#set y-axis label</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Number of people (millions)&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize <span class="op">=</span> <span class="dv">10</span>).set_visible(<span class="va">True</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#set tick parameters </span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;both&#39;</span>, </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>               labelsize<span class="op">=</span><span class="dv">10</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>               left<span class="op">=</span><span class="va">False</span>, right<span class="op">=</span><span class="va">False</span>, labelleft<span class="op">=</span><span class="va">True</span>, labelcolor <span class="op">=</span> <span class="st">&#39;#333333&#39;</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#remove unnecessary spines </span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">&#39;left&#39;</span>].set_visible(<span class="va">False</span>)</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#format x-axis tick labels</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> millions(y, pos):</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">M&#39;</span>.<span class="bu">format</span>(y<span class="op">*</span><span class="fl">1e-6</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(millions)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR Refugee Data Finder&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">40</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">50</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.1</span>, y<span class="op">=</span><span class="fl">0.02</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#show grid below the bars</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">&#39;y&#39;</span>, lw<span class="op">=</span><span class="fl">.5</span>, c<span class="op">=</span><span class="st">&#39;k&#39;</span>, alpha<span class="op">=</span><span class="fl">.3</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#format x-axis tick labels</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> number_formatter(x, pos):</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="fl">1e6</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">M&#39;</span>.<span class="bu">format</span>(x<span class="op">*</span><span class="fl">1e-6</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&lt;</span> <span class="fl">1e6</span> <span class="kw">and</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">K&#39;</span>.<span class="bu">format</span>(x<span class="op">*</span><span class="fl">1e-3</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">&#39;</span><span class="sc">{:1.0f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(x)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(number_formatter)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR Refugee Data Finder&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">25</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">35</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>plt.margins(x<span class="op">=</span><span class="fl">0.02</span>, y<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_lollipop_chart_files/figure-html/python_bar_chart-1.svg" width="100%" /></p>
+<p><img src="python_slope_chart_2_files/figure-html/python_slope_chart-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>

@@ -1,0 +1,232 @@
+---
+title: "Slope chart with Python"
+title-prefix: "UNHCR Dataviz"
+author: "IPDA/GDS"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header: "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_ranking.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Slope chart
+  url_cat: ranking
+  url_chart: slope
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A slope chart looks like a line chart, but unlike the line chart, it has only two data points for each line. The change between two data points can be easily identified with connected lines (slope up means increase, slope down means decrease).
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Slope chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#load custom font
+from matplotlib import rcParams
+rcParams['font.family'] = 'lato'
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
+
+#set a list of country names
+countries=['Afghanistan','Dem. Rep. of the Congo','Myanmar','South Sudan','Syrian Arab Rep.']
+
+#plot the chart
+fig, ax = plt.subplots()
+for i in countries:
+    temp = df[df['country_origin'] == i]
+    plt.plot(temp.year, temp.refugees_number, color='#0072BC', marker='o', markersize=5)
+    # start label
+    plt.text(temp.year.values[0]-0.4, temp.refugees_number.values[0], i, ha='right', va='center')
+    # end label
+    plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
+    
+limits = plt.xlim(1990,2031)
+ticks = plt.xticks([2000, 2021])
+
+#set chart title
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+
+#set y-axis label
+ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+
+#set tick parameters 
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, labelcolor = '#333333')
+
+#remove unnecessary spines 
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+#show grid below the bars
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+#format x-axis tick labels
+def number_formatter(x, pos):
+    if x >= 1e6:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x > 0:
+        s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
+    return s
+ax.yaxis.set_major_formatter(number_formatter)
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+plt.margins(x=0.02, y=0.1)
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_slope_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#load custom font
+from matplotlib import rcParams
+rcParams['font.family'] = 'lato'
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
+
+#set a list of country names
+countries=['Afghanistan','Dem. Rep. of the Congo','Myanmar','South Sudan','Syrian Arab Rep.']
+
+#plot the chart
+fig, ax = plt.subplots()
+for i in countries:
+    temp = df[df['country_origin'] == i]
+    plt.plot(temp.year, temp.refugees_number, color='#0072BC', marker='o', markersize=5)
+    # start label
+    plt.text(temp.year.values[0]-0.4, temp.refugees_number.values[0], i, ha='right', va='center')
+    # end label
+    plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
+    
+limits = plt.xlim(1990,2031)
+ticks = plt.xticks([2000, 2021])
+
+#set chart title
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+
+#set y-axis label
+ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+
+#set tick parameters 
+ax.tick_params(axis='both', which='both', 
+               labelsize=10, bottom=False, top=False, labelbottom=True, 
+               left=False, right=False, labelleft=True, labelcolor = '#333333')
+
+#remove unnecessary spines 
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+#show grid below the bars
+ax.grid(axis='y', lw=.5, c='k', alpha=.3)
+ax.set_axisbelow(True)
+
+#format x-axis tick labels
+def number_formatter(x, pos):
+    if x >= 1e6:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x > 0:
+        s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
+    return s
+ax.yaxis.set_major_formatter(number_formatter)
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+plt.margins(x=0.02, y=0.1)
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>
