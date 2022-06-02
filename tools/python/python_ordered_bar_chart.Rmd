@@ -146,7 +146,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
 
 #sort value by descending order
 df.sort_values('returnee_number',inplace=True)
@@ -232,7 +232,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
 
 #sort value in descending order
 df.sort_values('returnee_number', inplace=True)
@@ -262,7 +262,7 @@ ax.spines['top'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# set formatted data label
+#set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
@@ -293,7 +293,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
 #load data set
-df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/bar_ordered.csv')
 
 #sort value in descending order
 df.sort_values('returnee_number', inplace=True)
@@ -323,7 +323,7 @@ ax.spines['top'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# set formatted data label
+#set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
