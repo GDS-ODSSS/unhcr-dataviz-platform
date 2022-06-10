@@ -150,7 +150,7 @@ fig, ax = plt.subplots()
 ax = sns.heatmap(df, annot=True, linewidths=.5, yticklabels=y, square=True, cmap=['#DCE9FF','#8EBEFF','#589BE5','#0072BC','#044F85'], cbar=False, fmt=".1f")
 
 #set chart title
-ax.set_title('Refugee population by region | 2001-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee population by region | 2011-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
 
 #set subtitle
 plt.suptitle('Number of people in millions', x=0.32, y=0.88, fontsize=10, color='#333333')
