@@ -74,6 +74,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -94,6 +95,9 @@ labels = df['region']
 category1 = df[2019]
 category2 = df[2020]
 
+#wrap long labels
+labels = [ '\n'.join(wrap(l, 20)) for l in labels ]
+
 #set x-axis ticks label location
 x = np.arange(len(labels))
 
@@ -101,12 +105,15 @@ x = np.arange(len(labels))
 width = 0.4
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rects1 = ax.barh(x - width/2, category1, width, color='#0072BC', edgecolor='white', label=2019)
 rects2 = ax.barh(x + width/2, category2, width, color='#8EBEFF', edgecolor='white', label=2020)
 
 #set chart title
-ax.set_title('Individual asylum applications registered by region \n| 2019-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Individual asylum applications registered by region | 2019-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+
+#set chart legend
+ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set y-axis label
 ax.set_xlabel('Number of people', color = '#666666', fontsize=10)
@@ -116,9 +123,6 @@ ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False,
 
 #set x-axis tick and label
 ax.set_yticks(x, labels)
-
-#set chart legend
-ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -132,9 +136,11 @@ ax.set_axisbelow(True)
 #format x-axis tick labels
 def number_formatter(x, pos):
     if x >= 1e6:
-        s = '{:1.1f}M'.format(x*1e-6)
-    else:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x >= 1e3:
         s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
     return s
 ax.xaxis.set_major_formatter(number_formatter)
 
@@ -163,6 +169,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -183,6 +190,9 @@ labels = df['region']
 category1 = df[2019]
 category2 = df[2020]
 
+#wrap long labels
+labels = [ '\n'.join(wrap(l, 20)) for l in labels ]
+
 #set x-axis ticks label location
 x = np.arange(len(labels))
 
@@ -190,12 +200,15 @@ x = np.arange(len(labels))
 width = 0.4
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rects1 = ax.barh(x - width/2, category1, width, color='#0072BC', edgecolor='white', label=2019)
 rects2 = ax.barh(x + width/2, category2, width, color='#8EBEFF', edgecolor='white', label=2020)
 
 #set chart title
-ax.set_title('Individual asylum applications registered by region \n| 2019-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Individual asylum applications registered by region | 2019-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+
+#set chart legend
+ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set y-axis label
 ax.set_xlabel('Number of people', color = '#666666', fontsize=10)
@@ -205,9 +218,6 @@ ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False,
 
 #set x-axis tick and label
 ax.set_yticks(x, labels)
-
-#set chart legend
-ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -221,9 +231,11 @@ ax.set_axisbelow(True)
 #format x-axis tick labels
 def number_formatter(x, pos):
     if x >= 1e6:
-        s = '{:1.1f}M'.format(x*1e-6)
-    else:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x >= 1e3:
         s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
     return s
 ax.xaxis.set_major_formatter(number_formatter)
 
@@ -265,6 +277,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -277,13 +290,16 @@ df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-plat
 df = df.pivot(index='region', columns='year', values='asylum_application')
 df = df.reset_index()
 
-#sort value by descending order
+#sort value in descending order
 df = df.sort_values(by=['region'], ascending=False)
 
-#compute data array for plotting
+#prepare data array for plotting
 labels = df['region']
 category1 = df[2019]
 category2 = df[2020]
+
+#wrap long labels
+labels = [ '\n'.join(wrap(l, 20)) for l in labels ]
 
 #set x-axis ticks label location
 x = np.arange(len(labels))
@@ -292,14 +308,18 @@ x = np.arange(len(labels))
 width = 0.4
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rects1 = ax.barh(x - width/2, category1, width, color='#0072BC', edgecolor='white', label=2019)
 rects2 = ax.barh(x + width/2, category2, width, color='#8EBEFF', edgecolor='white', label=2020)
 
 #set chart title
-ax.set_title('Individual asylum applications registered by region \n| 2019-2020', loc='left', fontweight='bold', pad=45, fontsize=14)
+ax.set_title('Individual asylum applications registered by region | 2019-2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+
 #set subtitle
-plt.suptitle('Number of people in thousands', x=0.39, y=0.85, fontsize=10, color='#333333')
+plt.suptitle('Number of people in thousands', x=0.345, y=0.885, fontsize=11, color='#333333')
+
+#set chart legend
+ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set formatted data label
 ax.bar_label(rects1, labels=[f'{x*1e-3:,.0f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
@@ -311,17 +331,14 @@ ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False,
 #set x-axis tick and label
 ax.set_yticks(x, labels)
 
-#set chart legend
-ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
-
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
@@ -344,6 +361,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -356,13 +374,16 @@ df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-plat
 df = df.pivot(index='region', columns='year', values='asylum_application')
 df = df.reset_index()
 
-#sort value by descending order
+#sort value in descending order
 df = df.sort_values(by=['region'], ascending=False)
 
-#compute data array for plotting
+#prepare data array for plotting
 labels = df['region']
 category1 = df[2019]
 category2 = df[2020]
+
+#wrap long labels
+labels = [ '\n'.join(wrap(l, 20)) for l in labels ]
 
 #set x-axis ticks label location
 x = np.arange(len(labels))
@@ -371,14 +392,18 @@ x = np.arange(len(labels))
 width = 0.4
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rects1 = ax.barh(x - width/2, category1, width, color='#0072BC', edgecolor='white', label=2019)
 rects2 = ax.barh(x + width/2, category2, width, color='#8EBEFF', edgecolor='white', label=2020)
 
 #set chart title
-ax.set_title('Individual asylum applications registered by region \n| 2019-2020', loc='left', fontweight='bold', pad=45, fontsize=14)
+ax.set_title('Individual asylum applications registered by region | 2019-2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+
 #set subtitle
-plt.suptitle('Number of people in thousands', x=0.39, y=0.85, fontsize=10, color='#333333')
+plt.suptitle('Number of people in thousands', x=0.345, y=0.885, fontsize=11, color='#333333')
+
+#set chart legend
+ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set formatted data label
 ax.bar_label(rects1, labels=[f'{x*1e-3:,.0f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
@@ -390,17 +415,14 @@ ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False,
 #set x-axis tick and label
 ax.set_yticks(x, labels)
 
-#set chart legend
-ax.legend(loc=(0,1), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
-
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 
 #set chart source and copyright
-plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()

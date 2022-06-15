@@ -71,29 +71,29 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 
 ```{python python_code, echo=TRUE, eval=FALSE}
 # import libraries
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
-# show static image in the notebook if needed
-%matplotlib inline
-
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv')
 
-#sort value by descending order
+#sort value in descending order
 df.sort_values('displaced_number',inplace=True)
 
-#compute data array for plotting
-x = df.loc[:, 'country_origin'].values
-y = df.loc[:, 'displaced_number'].values
+#prepare data array for plotting
+x = df['country_origin']
+y = df['displaced_number']
+
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 bar_plot = ax.barh(x, y, color = '#0072BC')
 
 #set chart title
@@ -103,7 +103,7 @@ ax.set_title('People displaced across borders by country of origin | 2020', font
 ax.set_xlabel('Displaced population (millions)', fontsize = 10, color = '#666666')
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True,labelcolor = '#333333')
+ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #remove unnecessary spines  
 ax.spines['top'].set_visible(False)
@@ -115,9 +115,15 @@ ax.grid(axis='x', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
 #format x-axis tick labels
-def millions(y, pos):
-    return '{:1.0f}M'.format(y*1e-6)
-ax.xaxis.set_major_formatter(millions)
+def number_formatter(x, pos):
+    if x >= 1e6:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x >= 1e3:
+        s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
+    return s
+ax.xaxis.set_major_formatter(number_formatter)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -141,9 +147,9 @@ plt.show()
 
 ```{python python_bar_chart, echo=FALSE, out.width="100%", fig.height=5.75}
 # import libraries
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -152,15 +158,18 @@ rcParams['font.family'] = 'lato'
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv')
 
-#sort value by descending order
+#sort value in descending order
 df.sort_values('displaced_number',inplace=True)
 
-#compute data array for plotting
-x = df.loc[:, 'country_origin'].values
-y = df.loc[:, 'displaced_number'].values
+#prepare data array for plotting
+x = df['country_origin']
+y = df['displaced_number']
+
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 bar_plot = ax.barh(x, y, color = '#0072BC')
 
 #set chart title
@@ -182,9 +191,15 @@ ax.grid(axis='x', lw=.5, c='k', alpha=.3)
 ax.set_axisbelow(True)
 
 #format x-axis tick labels
-def millions(y, pos):
-    return '{:1.0f}M'.format(y*1e-6)
-ax.xaxis.set_major_formatter(millions)
+def number_formatter(x, pos):
+    if x >= 1e6:
+        s = '{:1.0f}M'.format(x*1e-6)
+    elif x < 1e6 and x >= 1e3:
+        s = '{:1.0f}K'.format(x*1e-3)
+    else: 
+        s = '{:1.0f}'.format(x)
+    return s
+ax.xaxis.set_major_formatter(number_formatter)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -221,16 +236,13 @@ plt.show()
 
 ```{python python_code_2, echo=TRUE, eval=FALSE}
 # import libraries
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
-
-#show static image in the notebook if needed
-%matplotlib inline
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv')
@@ -238,33 +250,37 @@ df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-plat
 #sort value in descending order
 df.sort_values('displaced_number', inplace=True)
 
-#compute data array for plotting
-x = df.loc[:, 'country_origin'].values
-y = df.loc[:, 'displaced_number'].values
+#prepare data array for plotting
+x = df['country_origin']
+y = df['displaced_number']
+
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
 
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 bar_plot = ax.barh(x, y, color = '#0072BC')
 
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2020', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
-#set subtitle
-plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
+ax.set_title('People displaced across borders by country of origin | 2020', fontsize=14, fontweight='bold', loc='left', pad=35, color = '#000000')
 
-#set data label
-ax.bar_label(bar_plot, labels=[f'{x:,.0f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.348, y=0.88, fontsize=11, color='#333333')
+
+# set formatted data label
+ax.bar_label(bar_plot, labels=[f'{x*1e-6:,.1f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
 
 #set tick parameters 
 ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True)
-
-#remove unnecessary spines      
+ 
+#remove unnecessary spines              
 ax.spines['top'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -5), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
-plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
 #adjust chart margin and layout
 fig.tight_layout()
@@ -283,43 +299,58 @@ plt.show()
 
 
 ```{python python_bar_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
-import numpy as np
+# import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
+#load custom font
 from matplotlib import rcParams
 rcParams['font.family'] = 'lato'
 
+#load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv')
 
+#sort value in descending order
 df.sort_values('displaced_number', inplace=True)
 
-x = df.loc[:, 'country_origin'].values
-y = df.loc[:, 'displaced_number'].values
+#prepare data array for plotting
+x = df['country_origin']
+y = df['displaced_number']
 
-fig, ax = plt.subplots()
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
+
+#plot the chart
+fig, ax = plt.subplots(figsize=(7,5.75))
 bar_plot = ax.barh(x, y, color = '#0072BC')
 
-ax.set_title('People displaced across borders by country of origin | 2020\n', fontsize=14, fontweight='bold', loc='left', pad=20, color = '#000000')
+#set chart title
+ax.set_title('People displaced across borders by country of origin | 2020', fontsize=14, fontweight='bold', loc='left', pad=35, color = '#000000')
+
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
+plt.suptitle('Number of people in millions', x=0.348, y=0.88, fontsize=11, color='#333333')
 
-ax.bar_label(bar_plot, labels=[f'{x*1e-6:,.1f}M' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
+# set formatted data label
+ax.bar_label(bar_plot, labels=[f'{x*1e-6:,.1f}' for x in bar_plot.datavalues], padding=3,color='#333333', fontsize=10)
 
+#set tick parameters 
 ax.tick_params(axis='both', which='both', labelsize=10, labelcolor='#333333', bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True)
-               
+ 
+#remove unnecessary spines              
 ax.spines['top'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# set formatted data label
-
-
+#set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -5), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 plt.annotate('© UNHCR, The UN Refugee Agency', (0,0), (0, -15), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
 
+#adjust chart margin and layout
 fig.tight_layout()
 plt.margins(x=0.1, y=0.02)
+
+#show charts
 plt.show()
 ```
 
