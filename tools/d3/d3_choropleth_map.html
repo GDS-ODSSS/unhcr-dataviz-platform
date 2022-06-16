@@ -92,13 +92,14 @@
                       }
                       text {
                       	font-family: lato;
-                      	font-size: 9px;
+                      	font-size: 8px;
                       	fill: #666666;
                       }
-                      text.mapTitle {
+                      .mapTitle {
                       	font-size: 15px;
                       	font-weight: 600;
                       	fill:#222222;
+                        background:orange
                       }
                       .solid{
                       	stroke:white;
@@ -143,7 +144,7 @@
                     const projection = d3.geoRobinson()
                             .scale(85)
                             .center([0, 0])
-                            .translate([width/2.2, height/1.8]);
+                            .translate([width/2.2, height/2]);
                     
                     // path generator
                     const path = d3.geoPath()
@@ -244,28 +245,27 @@
                     // set legend
                     svg.append("g")
                       .attr("class", "legendThreshold")
-                      .attr("transform", "translate(5,270)");
+                      .attr("transform", "translate(5,255)");
 
                     const legend = d3.legendColor()
                     .labelFormat(d3.format(",.0f"))
                     .labels(d3.legendHelpers.thresholdLabels)
-                    .labelOffset(5)
+                    .labelOffset(3)
                     .shapePadding(0)
                     .scale(color);
                     
                     svg.select(".legendThreshold")
                         .call(legend);
-
-                    // set title
-                    svg
-                      .append("text")
-                        .attr("class", "mapTitle")
-                        .attr("x", width*0.01)
-                        .attr("y", height*0.05)
-                        .attr("text-anchor", "start")
-                      .text("Global Refugee displacement | 2021");
                     
                     // set note
+                    svg
+                      .append('text')
+                          .attr('class', 'note')
+                          .attr('x', width*0.01)
+                          .attr('y', height*0.96)
+                          .attr('text-anchor', 'start')
+                          .style('font-size', 7)
+                      .text('Source: UNHCR Refugee Data Finder');
                     svg
                       .append('text')
                           .attr('class', 'note')
@@ -284,6 +284,7 @@
           <!-- End code chunk section -->
           <!-- Chart section -->
           <div class="col">
+            <h5>Global Refugee displacement by country of asylum | 2021</h5>
               <div id="result" ></div>
           </div>
           <!-- End chart section -->
