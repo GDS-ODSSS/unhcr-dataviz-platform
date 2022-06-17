@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Chorepleth map with D3</title>
+  <title>UNHCR Dataviz - Bubble map with D3</title>
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- prism CSS file -->
   <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
@@ -33,17 +33,16 @@
             <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
             <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Chorepleth map</li>
+            <li class="breadcrumb-item active" aria-current="page">Bubble map</li>
           </ol>
         </nav>
         <div class="my-5 text-center">
-            <h2>Chorepleth map with D3</h2>
+            <h2>Bubble map with D3</h2>
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <p>A choropleth map is a type of thematic map in which areas are shaded or patterned according to a data variable. 
-                    The variable is categorized into intervals, with each interval represented by a colour, and the map filled accordingly. 
-                    Colour progression is used to represent the differences, often blending from dark to light or one colour to another.</p>
-                <p>More about: <a href="../../chart_gallery/geospatial.html#choropleth">Chorepleth map</a></p>
+                <p>As a variation of a bubble chart, bubble maps display bubbles over geographical regions rather than the cartesian plane. 
+                  The size or area of the bubble indicates the value of the particular variable, with the position on the map indicating location.</p>
+                <p>More about: <a href="../../chart_gallery/geospatial.html#bubble-map">Bubble map</a></p>
               </div>
             </div>
         </div>
@@ -54,7 +53,7 @@
           <div class="row row-cols-1 row-cols-lg-2 g-4">
                 <!-- Code chunk section-->
           <div class="col">
-            <h3 class="mb-3">Chorepleth map</h3>
+            <h3 class="mb-3">Bubble map</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
@@ -90,10 +89,14 @@
                       	width: 100%;
                       	height: 100%;
                       }
-                      text {
-                      	font-family: lato;
-                      	font-size: 8px;
-                      	fill: #666666;
+                      .tooltip {
+                        background-color: #ffffff;
+                        font-family: lato;
+                        font-size: 11px;
+                        padding: 4px;
+                        color: #666666;
+                        border: none;
+                        box-shadow: 0px 0px 3px 0px #E6E6E6;
                       }
                       .solid{
                       	stroke:white;
@@ -134,125 +137,138 @@
                          .attr("viewBox","0 0  450 350")
                          .attr("preserveAspectRatio","xMinYMin");
                     
-                    // set map scale, location on screen and its projection
+                    //set map scale, location on screen and its projection
                     const projection = d3.geoRobinson()
                             .scale(85)
                             .center([0, 0])
                             .translate([width/2.2, height/2]);
                     
-                    // path generator
-                    const path = d3.geoPath()
+                    //path generator
+                    const generator = d3.geoPath()
                             .projection(projection);
-                    
-                    // set color scale
-                    const color = d3.scaleThreshold()
-                            .domain([10000,100000,1000000,1000000])
-                            .range(["#DCE9FF", "#8EBEFF", "#589BE5", "#0072BC"])
-                            .unknown("#E6E6E6");
 
-                    //declare polygon and polyline
+                    //declare polygon, polyline and bubble
                     const poly = svg.append("g");
                     const line = svg.append("g");
+                    const bubble = svg.append("g");
 
                     // declare URL
-                    const dataURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/choropleth_map.csv";
+                    const dataURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv";
                     const polygonsURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json";
                     const polylinesURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json";
                           
-                    // load data
-                    const promises = [
-                      d3.json(polygonsURL),
-                      d3.csv(dataURL)
-                    ];
-                       
-                    Promise.all(promises).then(ready)
-                    function ready([topology, population]) {
-                    
-                      // prepare pop data to join shapefile
-                      const data = {};
-                      population.forEach(function(d){
-                        data[d.iso3] = +d.refugees
-                      });
+                    //load data
+                    d3.csv(dataURL).then(function(population) {
 
-                      // set mouse events
+                      //create a tooltip
+                      const tooltip = d3.select("body")
+                        .append("div")
+                          .attr("class", "tooltip");
+  
+                      //tooltip and mouse events
                       const mouseover = function(d) {
-                        d3.selectAll(".countries")
-                          .transition()
-                          .duration(100)
-                          .style("opacity", .3)
+                        tooltip
+                            .style("opacity", 1)
                         d3.select(this)
-                          .transition()
-                          .duration(100)
-                          .style("opacity", 1)
+                            .style("fill", "#589BE5")
+                            .style("stroke", "#EF4A60")
+                            .style("opacity", 1)
+                      };
+                      const mousemove = function(event,d) {
+                        f = d3.format(",")
+                        tooltip
+                        .html("&ltdiv style='color: #0072BC'>&ltb>" + d.gis_name + "&lt/b>&lt/div>&ltdiv>Number of Refugee: " + `${f(d.ref)}`+"&lt/div>")
+                          .style("top", event.pageY - 10 + "px")
+                          .style("left", event.pageX + 10 + "px")
                       };
                       const mouseleave = function(d) {
-                        d3.selectAll(".countries")
-                          .transition()
-                          .duration(100)
-                          .style("opacity", 1)
+                        tooltip
+                          .style("opacity", 0)
                         d3.select(this)
-                          .transition()
-                          .duration(100)
+                          .style("stroke", "#0072BC")
                           .style("opacity", 1)
                       };
-                      
-                      // load and draw polygons
-                      poly
-                        .selectAll("path")
+  
+                      //set bubble scale
+                      const valueScale = d3.extent(population, d => +d.ref)
+                      const size = d3.scaleSqrt()
+                        .domain(valueScale)
+                        .range([1, 20]);
+  
+                      //draw bubble
+                      bubble
+                        .selectAll("circle")
+                        .data(population)
+                        .join("circle")
+                          .attr("cx", d => projection([+d.lon, +d.lat])[0])
+                          .attr("cy", d => projection([+d.lon, +d.lat])[1])
+                          .attr("r", d => size(+d.ref))
+                          .style("fill", "#589BE5")
+                          .attr("stroke", "#0072BC")
+                          .attr("stroke-width", 0.5)
+                          .attr("fill-opacity", .6)
+                          .on("mouseover", mouseover)
+                          .on("mousemove", mousemove)
+                          .on("mouseleave", mouseleave);
+  
+                      //Add legend
+                      const legendLabel = [100000,1000000,5000000];
+                      const xCircle = 20;
+                      const xLabel = 55;
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("circle")
+                          .attr("cx", xCircle)
+                          .attr("cy", d => height*0.9 - size(d))
+                          .attr("r", d => size(d))
+                          .style("fill", "none")
+                          .attr("stroke", "#666666")
+                          .attr("stroke-width", 0.75);
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("line")
+                          .attr('x1', xCircle)
+                          .attr('x2', xLabel)
+                          .attr('y1', d => height*0.9 - size(d)*2)
+                          .attr('y2', d => height*0.9 - size(d)*2)
+                          .attr('stroke', '#666666')
+                          .attr("stroke-width", 0.75);
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("text")
+                          .attr('x', xLabel)
+                          .attr('y', d => height*0.9 - size(d)*2)
+                          .text(d => d3.format(",")(d))
+                          .style("font-size", 9)
+                          .style("fill", "#666666")
+                          .attr('alignment-baseline', 'middle')    
+                    });
+
+                    //load and draw polygons
+                    d3.json(polygonsURL).then(function(topology) {
+                    poly
+                      .selectAll("path")
                         .data(topojson.feature(topology, topology.objects.world_polygons_simplified).features)
                         .join("path")
-                          .attr("fill", function(d) { return color(d.refugees = data[d.properties.color_code])})
-                          .attr("d", path)
-                          .attr("class", function(d){ return "countries" })
-                        .on("mouseover", mouseover)
-                        .on("mouseleave", mouseleave)
-                        .append("title")
-                          .text(function(d) { return `${d.properties.gis_name} \nRefugee Population: ${d3.format(",")(d.refugees)}`
-                      }
-                    )};
-
+                          .attr("fill", "#CCCCCC")
+                          .attr("d", generator);
+                    });
+                    
                     //load and draw lines
                     d3.json(polylinesURL).then(function(topology) {
                     line
                       .selectAll("path")
-                         .data(topojson.feature(topology, topology.objects.world_lines_simplified).features)
-                         .enter()
-                         .append("path")
-                         .attr("d", path)
-                         .style("fill","none")
-                         .attr("class", function(d) {return d.properties.type;})
+                        .data(topojson.feature(topology, topology.objects.world_lines_simplified).features)
+                        .join("path")
+                          .style("fill","none")
+                          .attr("d", generator)
+                          .attr("class", d => d.properties.type)
                     });
 
-                    //zoom function
-                    const zoom = true
-                    if (zoom){
-                    	var zoomFunction = d3.zoom()
-                    		  .scaleExtent([1, 8])
-                    		  .on('zoom', function(event) {
-                    			  poly.selectAll('path')
-                    			   .attr('transform', event.transform);
-                    			  line.selectAll('path')
-                    			   .attr('transform', event.transform);
-                    	});
-                    	svg.call(zoomFunction);
-                    };
-
-                    // set legend
-                    svg.append("g")
-                      .attr("class", "legendThreshold")
-                      .attr("transform", "translate(5,255)");
-
-                    const legend = d3.legendColor()
-                    .labelFormat(d3.format(",.0f"))
-                    .labels(d3.legendHelpers.thresholdLabels)
-                    .labelOffset(3)
-                    .shapePadding(0)
-                    .scale(color);
-                    
-                    svg.select(".legendThreshold")
-                        .call(legend);
-                    
-                    // set note
+                    //set note
                     svg
                       .append('text')
                           .attr('class', 'note')
@@ -260,6 +276,7 @@
                           .attr('y', height*0.96)
                           .attr('text-anchor', 'start')
                           .style('font-size', 7)
+                          .style("fill", "#666666")
                       .text('Source: UNHCR Refugee Data Finder');
                     svg
                       .append('text')
@@ -268,6 +285,7 @@
                           .attr('y', height*0.99)
                           .attr('text-anchor', 'start')
                           .style('font-size', 7)
+                          .style("fill", "#666666")
                       .text('The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.');
 
                   </code>
@@ -279,7 +297,7 @@
           <!-- End code chunk section -->
           <!-- Chart section -->
           <div class="col">
-            <h5>Global Refugee displacement by country of asylum | 2021</h5>
+            <h5>Global Refugee displacement by country of origin | 2021</h5>
               <div id="result" ></div>
           </div>
           <!-- End chart section -->
@@ -291,7 +309,7 @@
           <h3 class="mt-5 mb-3">Related chart with D3</h3>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
               <!-- Geospatial -->
-              <!-- <div class="col chart-item">
+              <div class="col chart-item">
                 <a href="../../tools/d3/d3_choropleth_map.html">
                   <div class="chart-img d-inline-flex justify-content-center">
                     <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
@@ -300,18 +318,17 @@
                     </div>
                   </div>
                 </a>
-              </div> -->
-              <div class="col chart-item">
-                <a href="../../tools/d3/d3_bubble_map.html">
+              </div>
+              <!-- <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#bubble-map">
                   <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
+                    <img src="../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
                     <div class="chart-info d-flex align-items-end p-3">
                       <span class="chart-name">Bubble map</span>
                     </div>
                   </div>
                 </a>
               </div>
-              <!-- 
               <div class="col chart-item">
                 <a href="../chart_gallery/geospatial.html#flow-map">
                   <div class="chart-img d-inline-flex justify-content-center">
