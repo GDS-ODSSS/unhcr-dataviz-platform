@@ -191,7 +191,7 @@
                       };
   
                       //set bubble scale
-                      const valueScale = d3.extent(population, function(d) { return +d.ref; })
+                      const valueScale = d3.extent(population, d => +d.ref)
                       const size = d3.scaleSqrt()
                         .domain(valueScale)
                         .range([1, 20]);
@@ -242,7 +242,7 @@
                         .join("text")
                           .attr('x', xLabel)
                           .attr('y', d => height*0.9 - size(d)*2)
-                          .text(d => d)
+                          .text(d => d3.format(",")(d))
                           .style("font-size", 9)
                           .style("fill", "#666666")
                           .attr('alignment-baseline', 'middle')    
@@ -266,7 +266,7 @@
                         .join("path")
                           .style("fill","none")
                           .attr("d", generator)
-                          .attr("class", function(d) {return d.properties.type;})
+                          .attr("class", d => d.properties.type)
                     });
 
                     //set note
@@ -277,6 +277,7 @@
                           .attr('y', height*0.96)
                           .attr('text-anchor', 'start')
                           .style('font-size', 7)
+                          .style("fill", "#666666")
                       .text('Source: UNHCR Refugee Data Finder');
                     svg
                       .append('text')
@@ -285,6 +286,7 @@
                           .attr('y', height*0.99)
                           .attr('text-anchor', 'start')
                           .style('font-size', 7)
+                          .style("fill", "#666666")
                       .text('The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.');
 
                   </code>
