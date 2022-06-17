@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Bubble map with D3</title>
+  <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="../../assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="../../assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="../../assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="../../assets/js/vendor/parser.js"></script>
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main class="flex-shrink-0" id="tools">
+    <div class="container my-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
+            <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Bubble map</li>
+          </ol>
+        </nav>
+        <div class="my-5 text-center">
+            <h2>Bubble map with D3</h2>
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <p>A choropleth map is a type of thematic map in which areas are shaded or patterned according to a data variable. 
+                    The variable is categorized into intervals, with each interval represented by a colour, and the map filled accordingly. 
+                    Colour progression is used to represent the differences, often blending from dark to light or one colour to another.</p>
+                <p>More about: <a href="../../chart_gallery/geospatial.html#bubble-map">Bubble map</a></p>
+              </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <section class="my-5">
+          <div class="row row-cols-1 row-cols-lg-2 g-4">
+                <!-- Code chunk section-->
+          <div class="col">
+            <h3 class="mb-3">Bubble map</h3>
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
+                <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab" data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript" aria-selected="false">JavaScript</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab">
+                <!-- html code chunk -->
+                <pre class="language-html d3-code-chunk" style="height: 30em">
+                  <code id="code-html" contenteditable="true">
+                    &lt!DOCTYPE html>
+                    &ltmeta charset="utf-8">
+                    &lt!-- Include d3 library -->
+                    &ltscript src="https://d3js.org/d3.v7.min.js">&lt/script>
+                    &ltscript src="https://cdn.jsdelivr.net/npm/d3-geo@">&lt/script>
+                    &ltscript src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4">&lt/script>
+                    &ltscript src="https://unpkg.com/topojson@3">&lt/script>
+                    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js">&lt/script>
+                    &lt!-- Create a container to host the chart -->
+                    &ltdiv id="viz_container">&lt/div>
+                  </code>
+                </pre>
+                <!-- End html code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab">
+                <!-- css code chunk -->
+                <pre class="language-css d3-code-chunk" style="height: 30em" tabindex="0">
+                  <code id="code-css" contenteditable="true">
+                    <style>
+                      svg {
+                      	width: 100%;
+                      	height: 100%;
+                      }
+                      .tooltip {
+                        background-color: #ffffff;
+                        font-family: lato;
+                        font-size: 11px;
+                        padding: 4px;
+                        color: #666666;
+                        border: none;
+                        box-shadow: 0px 0px 3px 0px #E6E6E6;
+                      }
+                      .solid{
+                      	stroke:white;
+                      	stroke-width:0.2;
+                      }
+                      .dashed{
+                      	stroke:white;
+                      	stroke-width:0.2;
+                      	stroke-dasharray:1, 0.5
+                      }
+                      .dotted{
+                      	stroke:white;
+                      	stroke-width:0.2;
+                      	stroke-dasharray:0.2, 0.5
+                      }
+                      .dashed-dot{
+                      	stroke:white;
+                      	stroke-width:0.2;
+                      	stroke-dasharray:1, 0.5, 0.2, 0.5
+                      } 
+                    </style>               
+                  </code>
+                </pre>
+                <!-- End css code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-javascript" role="tabpanel" aria-labelledby="nav-javascript-tab">
+                <!-- js code chunk -->
+                <pre class="language-js d3-code-chunk" style="height: 30em">
+                  <code id="code-js" contenteditable="true">
+
+                    //set svg parameters
+                    const width = 450,
+                          height = 350;
+                    const svg = d3.select("#viz_container")
+                       .append("svg")
+                         .attr("width", "100%")
+                         .attr("height", "100%")
+                         .attr("viewBox","0 0  450 350")
+                         .attr("preserveAspectRatio","xMinYMin");
+                    
+                    //set map scale, location on screen and its projection
+                    const projection = d3.geoRobinson()
+                            .scale(85)
+                            .center([0, 0])
+                            .translate([width/2.2, height/2]);
+                    
+                    //path generator
+                    const generator = d3.geoPath()
+                            .projection(projection);
+
+                    //declare polygon, polyline and bubble
+                    const poly = svg.append("g");
+                    const line = svg.append("g");
+                    const bubble = svg.append("g");
+
+                    // declare URL
+                    const dataURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv";
+                    const polygonsURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json";
+                    const polylinesURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json";
+                          
+                    //load data
+                    d3.csv(dataURL).then(function(population) {
+
+                      //create a tooltip
+                      const tooltip = d3.select("body")
+                        .append("div")
+                          .attr("class", "tooltip");
+  
+                      //tooltip and mouse events
+                      const mouseover = function(d) {
+                        tooltip
+                            .style("opacity", 1)
+                        d3.select(this)
+                            .style("fill", "#589BE5")
+                            .style("stroke", "#EF4A60")
+                            .style("opacity", 1)
+                      };
+                      const mousemove = function(event,d) {
+                        f = d3.format(",")
+                        tooltip
+                        .html("&ltdiv style='color: #0072BC'>&ltb>" + d.gis_name + "&lt/b>&lt/div>&ltdiv>Number of Refugee: " + `${f(d.ref)}`+"&lt/div>")
+                          .style("top", event.pageY - 10 + "px")
+                          .style("left", event.pageX + 10 + "px")
+                      };
+                      const mouseleave = function(d) {
+                        tooltip
+                          .style("opacity", 0)
+                        d3.select(this)
+                          .style("stroke", "#0072BC")
+                          .style("opacity", 1)
+                      };
+  
+                      //set bubble scale
+                      const valueScale = d3.extent(population, function(d) { return +d.ref; })
+                      const size = d3.scaleSqrt()
+                        .domain(valueScale)
+                        .range([1, 20]);
+  
+                      //draw bubble
+                      bubble
+                        .selectAll("circle")
+                        .data(population)
+                        .join("circle")
+                          .attr("cx", d => projection([+d.lon, +d.lat])[0])
+                          .attr("cy", d => projection([+d.lon, +d.lat])[1])
+                          .attr("r", d => size(+d.ref))
+                          .style("fill", "#589BE5")
+                          .attr("stroke", "#0072BC")
+                          .attr("stroke-width", 0.5)
+                          .attr("fill-opacity", .6)
+                          .on("mouseover", mouseover)
+                          .on("mousemove", mousemove)
+                          .on("mouseleave", mouseleave);
+  
+                      //Add legend
+                      const legendLabel = [100000,1000000,5000000];
+                      const xCircle = 20;
+                      const xLabel = 55;
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("circle")
+                          .attr("cx", xCircle)
+                          .attr("cy", d => height*0.9 - size(d))
+                          .attr("r", d => size(d))
+                          .style("fill", "none")
+                          .attr("stroke", "#666666")
+                          .attr("stroke-width", 0.75);
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("line")
+                          .attr('x1', xCircle)
+                          .attr('x2', xLabel)
+                          .attr('y1', d => height*0.9 - size(d)*2)
+                          .attr('y2', d => height*0.9 - size(d)*2)
+                          .attr('stroke', '#666666')
+                          .attr("stroke-width", 0.75);
+                      svg
+                        .selectAll("legend")
+                        .data(legendLabel)
+                        .join("text")
+                          .attr('x', xLabel)
+                          .attr('y', d => height*0.9 - size(d)*2)
+                          .text(d => d)
+                          .style("font-size", 9)
+                          .style("fill", "#666666")
+                          .attr('alignment-baseline', 'middle')    
+                    });
+
+                    //load and draw polygons
+                    d3.json(polygonsURL).then(function(topology) {
+                    poly
+                      .selectAll("path")
+                        .data(topojson.feature(topology, topology.objects.world_polygons_simplified).features)
+                        .join("path")
+                          .attr("fill", "#CCCCCC")
+                          .attr("d", generator);
+                    });
+                    
+                    //load and draw lines
+                    d3.json(polylinesURL).then(function(topology) {
+                    line
+                      .selectAll("path")
+                        .data(topojson.feature(topology, topology.objects.world_lines_simplified).features)
+                        .join("path")
+                          .style("fill","none")
+                          .attr("d", generator)
+                          .attr("class", function(d) {return d.properties.type;})
+                    });
+
+                    //set note
+                    svg
+                      .append('text')
+                          .attr('class', 'note')
+                          .attr('x', width*0.01)
+                          .attr('y', height*0.96)
+                          .attr('text-anchor', 'start')
+                          .style('font-size', 7)
+                      .text('Source: UNHCR Refugee Data Finder');
+                    svg
+                      .append('text')
+                          .attr('class', 'note')
+                          .attr('x', width*0.01)
+                          .attr('y', height*0.99)
+                          .attr('text-anchor', 'start')
+                          .style('font-size', 7)
+                      .text('The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.');
+
+                  </code>
+                </pre>
+                <!-- End js code chunk -->
+              </div>
+            </div>
+          </div>
+          <!-- End code chunk section -->
+          <!-- Chart section -->
+          <div class="col">
+            <h5>Global Refugee displacement by country of origin | 2021</h5>
+              <div id="result" ></div>
+          </div>
+          <!-- End chart section -->
+          </div>
+        </section>
+
+        <section class="mb-5 container">
+          <hr>
+          <h3 class="mt-5 mb-3">Related chart with D3</h3>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+              <!-- Geospatial -->
+              <div class="col chart-item">
+                <a href="../../tools/d3/d3_choropleth_map.html">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Choropleth map</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#bubble-map">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Bubble map</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#flow-map">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Flow map</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#icon-map">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Icon map</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#dot-density-map">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Dot density map</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col chart-item">
+                <a href="../chart_gallery/geospatial.html#pie-map">
+                  <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="">
+                    <div class="chart-info d-flex align-items-end p-3">
+                      <span class="chart-name">Pie chart map</span>
+                    </div>
+                  </div>
+                </a>
+              </div> -->
+
+              <!-- End Geospatial -->
+          </div>
+        </section>
+
+    
+
+    </div>
+</main>
+  <!--  End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="../../assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="../../assets/js/unhcrmain.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>
