@@ -95,12 +95,6 @@
                       	font-size: 8px;
                       	fill: #666666;
                       }
-                      .mapTitle {
-                      	font-size: 15px;
-                      	font-weight: 600;
-                      	fill:#222222;
-                        background:orange
-                      }
                       .solid{
                       	stroke:white;
                       	stroke-width:0.2;
@@ -156,10 +150,11 @@
                             .range(["#DCE9FF", "#8EBEFF", "#589BE5", "#0072BC"])
                             .unknown("#E6E6E6");
 
+                    //declare polygon and polyline
                     const poly = svg.append("g");
                     const line = svg.append("g");
 
-                    // URL
+                    // declare URL
                     const dataURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/choropleth_map.csv";
                     const polygonsURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json";
                     const polylinesURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json";
@@ -201,7 +196,7 @@
                           .style("opacity", 1)
                       };
                       
-                      // draw polygons
+                      // load and draw polygons
                       poly
                         .selectAll("path")
                         .data(topojson.feature(topology, topology.objects.world_polygons_simplified).features)
@@ -216,7 +211,7 @@
                       }
                     )};
 
-                    //load and draw the lines
+                    //load and draw lines
                     d3.json(polylinesURL).then(function(topology) {
                     line
                       .selectAll("path")
@@ -229,7 +224,7 @@
                     });
 
                     //zoom function
-                    const zoom = true //set to false to remove possibility to zoom
+                    const zoom = true
                     if (zoom){
                     	var zoomFunction = d3.zoom()
                     		  .scaleExtent([1, 8])
@@ -296,7 +291,7 @@
           <h3 class="mt-5 mb-3">Related chart with D3</h3>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
               <!-- Geospatial -->
-              <div class="col chart-item">
+              <!-- <div class="col chart-item">
                 <a href="../../tools/d3/d3_choropleth_map.html">
                   <div class="chart-img d-inline-flex justify-content-center">
                     <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
@@ -305,17 +300,18 @@
                     </div>
                   </div>
                 </a>
-              </div>
-              <!-- <div class="col chart-item">
-                <a href="../chart_gallery/geospatial.html#bubble-map">
+              </div> -->
+              <div class="col chart-item">
+                <a href="../../tools/d3/d3_bubble_map.html">
                   <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
                     <div class="chart-info d-flex align-items-end p-3">
                       <span class="chart-name">Bubble map</span>
                     </div>
                   </div>
                 </a>
               </div>
+              <!-- 
               <div class="col chart-item">
                 <a href="../chart_gallery/geospatial.html#flow-map">
                   <div class="chart-img d-inline-flex justify-content-center">
