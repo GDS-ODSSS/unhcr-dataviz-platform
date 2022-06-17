@@ -28,7 +28,16 @@ function jsParser(divOrig){
 }
     
 // Load chart
-$.getScript("https://d3js.org/d3.v7.min.js", function(){
+$.when(
+  $.getScript( "https://d3js.org/d3.v7.min.js" ),
+  $.getScript( "https://cdn.jsdelivr.net/npm/d3-geo@3" ),
+  $.getScript( "https://cdn.jsdelivr.net/npm/d3-geo-projection@4" ),
+  $.getScript( "https://unpkg.com/topojson@3" ),
+  $.getScript( "https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js" ),
+  $.Deferred(function( deferred ){
+      $( deferred.resolve );
+  })
+).done(function(){
   // Run the according code to update the graph
   htmlParser('code-html', 'result')
   cssParser('code-css','result')

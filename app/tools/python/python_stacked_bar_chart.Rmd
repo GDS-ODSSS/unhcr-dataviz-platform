@@ -74,6 +74,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -91,25 +92,27 @@ df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
 df= df.fillna(0)
 
-
-#compute data array for plotting
+#prepare data array for plotting
 x = df['country_origin']
 y1 = df['VDA']
 y2 = df['REF']
 y3 = df['ASY']
-
-
 b_y3 = np.add(y1, y2)
 
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
+
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
 rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
 
-
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=35, fontsize=14)
+
+#set chart legend
+ax.legend(loc=(0,1.02), ncol=3, frameon=False, fontsize=10, labelcolor='#333333', handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set y-axis label
 ax.set_xlabel('Number of people (millions)', color = '#666666', fontsize=10)
@@ -121,9 +124,6 @@ ax.tick_params(axis='both', which='both',
 
 #set x-axis tick and label
 ax.set_yticks(x)
-
-#set chart legend
-ax.legend(loc=(0,1.01), ncol=2, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -138,7 +138,7 @@ ax.set_axisbelow(True)
 def number_formatter(x, pos):
     if x >= 1e6:
         s = '{:1.0f}M'.format(x*1e-6)
-    elif x < 1e6 and x > 0:
+    elif x < 1e6 and x >= 1e3:
         s = '{:1.0f}K'.format(x*1e-3)
     else: 
         s = '{:1.0f}'.format(x)
@@ -170,6 +170,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -187,25 +188,27 @@ df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
 df= df.fillna(0)
 
-
-#compute data array for plotting
+#prepare data array for plotting
 x = df['country_origin']
 y1 = df['VDA']
 y2 = df['REF']
 y3 = df['ASY']
-
-
 b_y3 = np.add(y1, y2)
 
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
+
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
 rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
 
-
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=35, fontsize=14)
+
+#set chart legend
+ax.legend(loc=(0,1.02), ncol=3, frameon=False, fontsize=10, labelcolor='#333333', handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set y-axis label
 ax.set_xlabel('Number of people (millions)', color = '#666666', fontsize=10)
@@ -217,9 +220,6 @@ ax.tick_params(axis='both', which='both',
 
 #set x-axis tick and label
 ax.set_yticks(x)
-
-#set chart legend
-ax.legend(loc=(0,1.01), ncol=2, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -234,7 +234,7 @@ ax.set_axisbelow(True)
 def number_formatter(x, pos):
     if x >= 1e6:
         s = '{:1.0f}M'.format(x*1e-6)
-    elif x < 1e6 and x > 0:
+    elif x < 1e6 and x >= 1e3:
         s = '{:1.0f}K'.format(x*1e-3)
     else: 
         s = '{:1.0f}'.format(x)
@@ -279,6 +279,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -292,39 +293,40 @@ df = df.pivot(index='country_origin', columns='population_type', values='populat
 df = df.reset_index()
 
 #sort by total descending order
-df['Total'] = df.sum(axis=1)
+df['Total'] = df.sum(numeric_only=True, axis=1)
 df = df.sort_values("Total", ascending=True)
+df= df.fillna(0)
 
 #compute data array for plotting
 x = df['country_origin']
-y1 = df['ASY']
+y1 = df['VDA']
 y2 = df['REF']
-y3 = df['VDA']
-
+y3 = df['ASY']
 b_y3 = np.add(y1, y2)
 
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
+
 #plot the chart
-fig, ax = plt.subplots()
-rect1=ax.barh(x, y1, color='#18375F', label='Asylum-seekers')
+fig, ax = plt.subplots(figsize=(7,5.75))
+rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
-rect3=ax.barh(x, y3, color='#EF4A60', left=b_y3, label='Venezuelans dispalced abrod')
+rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
 
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=60, fontsize=14)
+ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=45, fontsize=14)
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
+plt.suptitle('Number of people in millions', x=0.344, y=0.88, fontsize=11, color='#333333')
+
+#set chart legend
+ax.legend(loc=(0,1.02), ncol=3, frameon=False, fontsize=10, labelcolor='#333333', handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=False, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #set x-axis tick and label
 ax.set_yticks(x)
-
-#set chart legend
-ax.legend(loc=(0,1.01), ncol=2, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -361,6 +363,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from textwrap import wrap
 
 #load custom font
 from matplotlib import rcParams
@@ -383,32 +386,31 @@ x = df['country_origin']
 y1 = df['VDA']
 y2 = df['REF']
 y3 = df['ASY']
-
-
 b_y3 = np.add(y1, y2)
 
+#wrap long labels
+x = [ '\n'.join(wrap(l, 20)) for l in x ]
+
 #plot the chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(7,5.75))
 rect1=ax.barh(x, y1, color='#EF4A60', label='Venezuelans dispalced abrod')
 rect2=ax.barh(x, y2, color='#0072BC', left=y1, label='Refugees')
 rect3=ax.barh(x, y3, color='#18375F', left=b_y3, label='Asylum-seekers')
 
 #set chart title
-ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=60, fontsize=14)
+ax.set_title('People displaced across borders by country of origin | 2021', loc='left', fontweight='bold', pad=45, fontsize=14)
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.336, y=0.88, fontsize=10, color='#333333')
+plt.suptitle('Number of people in millions', x=0.344, y=0.88, fontsize=11, color='#333333')
+
+#set chart legend
+ax.legend(loc=(0,1.02), ncol=3, frameon=False, fontsize=10, labelcolor='#333333', handlelength=1.5, borderpad=0, handletextpad=0.5)
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=False, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=False, left=False, right=False, labelleft=True, labelcolor = '#333333')
 
 #set x-axis tick and label
 ax.set_yticks(x)
-
-#set chart legend
-ax.legend(loc=(0,1.01), ncol=2, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333')
 
 #remove unnecessary spines 
 ax.spines['top'].set_visible(False)
@@ -419,8 +421,6 @@ ax.spines['bottom'].set_visible(False)
 ax.bar_label(rect1, labels=[f'{x*1e-6:,.1f}' for x in rect1.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
 ax.bar_label(rect2, labels=[f'{x*1e-6:,.1f}' for x in rect2.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
 ax.bar_label(rect3, labels=[f'{x*1e-6:,.1f}' for x in rect3.datavalues], label_type='center', padding=3,color='#ffffff', fontsize=10)
-
-  
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
