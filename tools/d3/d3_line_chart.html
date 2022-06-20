@@ -18,9 +18,25 @@
   <script src="../../assets/js/vendor/d3.min.js"></script>
   <!-- parser JS file -->
   <script src="../../assets/js/vendor/parser.js"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body class="d-flex flex-column vh-100">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
@@ -28,36 +44,42 @@
   <!-- Main -->
   <main class="flex-shrink-0" id="tools">
     <div class="container my-5">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
-            <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Line chart</li>
-          </ol>
-        </nav>
-        <div class="my-5 text-center">
-            <h2>Line chart with D3</h2>
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <p>A line chart is a type of chart that displays the evolution of one or several numeric variables over a continuous interval or time period. Typically, the x-axis is used for a timescale or a sequence of intervals, while the y-axis reports values across that progression.</p>
-                <p>More about: <a href="../../chart_gallery/change_over_time.html">Line chart</a></p>
-              </div>
-            </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
+          <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Line chart</li>
+        </ol>
+      </nav>
+      <div class="my-5 text-center">
+        <h2>Line chart with D3</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p>A line chart is a type of chart that displays the evolution of one or several numeric variables over a
+              continuous interval or time period. Typically, the x-axis is used for a timescale or a sequence of
+              intervals, while the y-axis reports values across that progression.</p>
+            <p>More about: <a href="../../chart_gallery/change_over_time.html">Line chart</a></p>
+          </div>
         </div>
+      </div>
 
-        <hr>
+      <hr>
 
-        <section class="my-5">
-          <div class="row row-cols-1 row-cols-lg-2 g-4">
-                <!-- Code chunk section-->
+      <section class="my-5">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+          <!-- Code chunk section-->
           <div class="col">
             <h3 class="mb-3">Line chart</h3>
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html" type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
-                <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css" type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
-                <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab" data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript" aria-selected="false">JavaScript</button>
+                <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html"
+                  type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
+                <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css"
+                  type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript"
+                  aria-selected="false">JavaScript</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -290,58 +312,58 @@
           <!-- End code chunk section -->
           <!-- Chart section -->
           <div class="col">
-              <div id="result" ></div>
+            <div id="result"></div>
           </div>
           <!-- End chart section -->
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="mb-5 container">
-          <hr>
-          <h3 class="mt-5 mb-3">Related chart with D3</h3>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-              <!-- Change over time -->
-              <div class="col chart-item">
-                  <a href="../../tools/d3/d3_area_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Area chart</span>
-                          </div>
-                      </div>
-                  </a>
+      <section class="mb-5 container">
+        <hr>
+        <h3 class="mt-5 mb-3">Related chart with D3</h3>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+          <!-- Change over time -->
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_area_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Area chart</span>
+                </div>
               </div>
-              <div class="col chart-item">
-                  <a href="../../tools/d3/d3_stacked_area_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Stacked area chart</span>
-                          </div>
-                      </div>
-                  </a>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_stacked_area_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Stacked area chart</span>
+                </div>
               </div>
-              <div class="col chart-item">
-                  <a href="../../tools/d3/d3_streamgraph.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Streamgraph</span>
-                          </div>
-                      </div>
-                  </a>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_streamgraph.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Streamgraph</span>
+                </div>
               </div>
-              <div class="col chart-item">
-                  <a href="../../tools/d3/d3_line_column_chart.html">
-                      <div class="chart-img d-inline-flex justify-content-center">
-                          <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid" alt="">
-                          <div class="chart-info d-flex align-items-end p-3">
-                              <span class="chart-name">Line column chart</span>
-                          </div>
-                      </div>
-                  </a>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_line_column_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid" alt="">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Line column chart</span>
+                </div>
               </div>
-              <!-- <div class="col chart-item">
+            </a>
+          </div>
+          <!-- <div class="col chart-item">
                   <a href="../../tools/d3/d3_slope_chart.html">
                       <div class="chart-img d-inline-flex justify-content-center">
                           <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid" alt="">
@@ -361,14 +383,14 @@
                       </div>
                   </a>
               </div> -->
-              <!-- End Change over time -->
-          </div>
-        </section>
+          <!-- End Change over time -->
+        </div>
+      </section>
 
-    
+
 
     </div>
-</main>
+  </main>
   <!--  End Main -->
 
   <!-- Footer -->

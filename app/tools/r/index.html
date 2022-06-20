@@ -10,9 +10,25 @@
   <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- jquery JS file -->
   <script src="../../assets/js/vendor/jquery.min.js"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body class="d-flex flex-column vh-100">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- Navigation -->
   <hcr-header></hcr-header>
   <!-- End Navigation -->
@@ -32,8 +48,18 @@
         <hr class="short-hr">
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <p>The <a href="https://www.r-project.org/" target="_blank">R programming language</a> is a great tool for data visualization, capable of creating almost any type of chart with the help of <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a> and other packages. In this section, you will find reproducible code for multiple chart types. The examples focus on <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> and <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a>, but some specific chart types might require extra packages. The required packages will always be mentioned at the top of the code chunks.</p>
-            <p>To apply the UNHCR data visualization recommendations, we use the <strong><a href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a></strong> package that has been specifically built to provide UNHCR styles and colours out of the box. <a href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a> is part of a set of packages to ease the production of statistical evidence and data stories.</p>
+            <p>The <a href="https://www.r-project.org/" target="_blank">R programming language</a> is a great tool for
+              data visualization, capable of creating almost any type of chart with the help of <a
+                href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a> and other packages. In this section,
+              you will find reproducible code for multiple chart types. The examples focus on <a
+                href="https://www.tidyverse.org/" target="_blank">tidyverse</a> and <a
+                href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a>, but some specific chart types might
+              require extra packages. The required packages will always be mentioned at the top of the code chunks.</p>
+            <p>To apply the UNHCR data visualization recommendations, we use the <strong><a
+                  href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a></strong> package that
+              has been specifically built to provide UNHCR styles and colours out of the box. <a
+                href="https://vidonne.github.io/unhcrthemes/" target="_blank">unhcrthemes</a> is part of a set of
+              packages to ease the production of statistical evidence and data stories.</p>
           </div>
         </div>
       </div>
@@ -115,7 +141,7 @@
         <!-- End Comparison -->
 
         <!-- Correlation -->
-        
+
         <div class="col item-filter filter-correlation chart-item">
           <a href="r_bubble_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -176,7 +202,7 @@
             </div>
           </a>
         </div> -->
-       
+
         <!-- End Correlation -->
 
         <!-- Change over time -->
@@ -254,7 +280,7 @@
         <!-- End Change over time -->
 
         <!-- Distribution -->
-        
+
         <div class="col item-filter filter-distribution chart-item">
           <a href="r_histogram.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -285,11 +311,11 @@
             </div>
           </a>
         </div> -->
-       
+
         <!-- End Distribution -->
 
         <!-- Part-to-a-whole -->
-        
+
         <div class="col item-filter filter-part-to-a-whole chart-item">
           <a href="r_pie_chart.html">
             <div class="chart-img d-inline-flex justify-content-center">
@@ -350,7 +376,7 @@
             </div>
           </a>
         </div> -->
-       
+
         <!-- End Part-to-a-whole -->
 
         <!-- Flow -->
