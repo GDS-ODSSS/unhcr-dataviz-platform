@@ -1,14 +1,18 @@
 ---
 title: "100% stacked column chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_part_to_a_whole_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_part_to_a_whole.html"

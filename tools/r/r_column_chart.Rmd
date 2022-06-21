@@ -1,14 +1,18 @@
 ---
 title: "Column chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_comparison_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_comparison.html"
@@ -112,7 +116,7 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_column_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_column_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A column chart of the total displaced population form 2011 to 2021"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
 
@@ -179,7 +183,7 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_column_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_column_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A column chart of the total displaced population form 2011 to 2021 including labels"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column.csv")
 
