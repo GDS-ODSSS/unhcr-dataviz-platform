@@ -155,7 +155,7 @@ plt.show()
 
 
 
-```{python python_scatterplot, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_scatterplot, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A scatterplot showing comparison of refugee and IDP population by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -334,7 +334,7 @@ plt.show()
 
 
 
-```{python python_scatterplot_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_scatterplot_2, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A scatterplot showing comparison of refugee and IDP population by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd

@@ -163,7 +163,7 @@ plt.show()
 
 
 
-```{python python_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_grouped_column_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A grouped column chart showing refugee in Africa region | 2018-2021"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -348,7 +348,7 @@ plt.show()
 
 
 
-```{python python_column_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_grouped_column_chart_2, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A grouped column chart showing refugee in Africa region | 2018-2021"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

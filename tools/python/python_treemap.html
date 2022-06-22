@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Treemap with Python</title>
+<title>UNHCR Dataviz Platform - Treemap with Python</title>
 
 <script src="python_treemap_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for part-to-a-whole purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Part-to-a-whole,Pie chart,Donut chart,100% stacked column chart,Grid plot,Treemap,Waterfall">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Treemap with Python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -200,8 +220,13 @@ Treemap with Python
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other.</p>
-<p>More about: <a href="../../chart_gallery/part_to_a_whole.html#treemap">Treemap</a></p>
+<p>As a variation of a tree diagram, a treemap is meant to show
+hierarchical structure using the size of the rectangle to represent
+quantity. Each category is assigned a rectangle, with subcategories
+displayed inside the large rectangle, in proportionate size against each
+other.</p>
+<p>More about:
+<a href="../../chart_gallery/part_to_a_whole.html#treemap">Treemap</a></p>
 </div>
 </div>
 </div>
@@ -213,7 +238,8 @@ Treemap with Python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> squarify <span class="co"># pip install squarify</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -233,7 +259,7 @@ Treemap with Python
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;percent&#39;</span>] <span class="op">=</span> (df[<span class="st">&#39;staff_number&#39;</span>] <span class="op">/</span> </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                  df[<span class="st">&#39;staff_number&#39;</span>].<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span> <span class="op">=</span> df[<span class="st">&#39;percent&#39;</span>]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [<span class="ss">f&#39;</span><span class="sc">{i:.1f}</span><span class="ss">% </span><span class="ch">\n</span><span class="ss">&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [<span class="ss">f&#39;</span><span class="sc">{</span>i<span class="sc">:.1f}</span><span class="ss">% </span><span class="ch">\n</span><span class="ss">&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>]</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
@@ -258,7 +284,7 @@ Treemap with Python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_treemap_files/figure-html/python_treemap-1.svg" width="100%" /></p>
+<p><img src="python_treemap_files/figure-html/python_treemap-1.svg" title="A treemap showing UNHCR global workforce by region | 2021" alt="A treemap showing UNHCR global workforce by region | 2021" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -275,7 +301,7 @@ Treemap with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_pie_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="Pie chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Pie chart</span>
                     </div>
@@ -285,7 +311,8 @@ Treemap with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_donut_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid"
+                        alt="Donut chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Donut chart</span>
                     </div>
@@ -296,7 +323,7 @@ Treemap with Python
             <a href="python_100perc_stacked_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
                     <img src="../../assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="img-fluid"
-                        alt="">
+                        alt="100% stacked column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">100% stacked column chart</span>
                     </div>
@@ -306,7 +333,7 @@ Treemap with Python
         <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_gridplot.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="Grid plot thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Grid plot</span>
                 </div>
@@ -316,7 +343,8 @@ Treemap with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_treemap.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid"
+                        alt="Treemap thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Treemap</span>
                     </div>
@@ -326,7 +354,7 @@ Treemap with Python
         <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_waterfall.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="Waterfall thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Waterfall</span>
                 </div>

@@ -154,7 +154,7 @@ plt.show()
 
 
 
-```{python python_100perc_stacked_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_100perc_stacked_column_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A 100% stacked column chart showing levels of earmarking | 2012-2020"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

@@ -159,7 +159,7 @@ plt.show()
 
 
 
-```{python python_streamgraph, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_streamgraph, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A streamgraph showing evolution of people of concern to UNHCR | 1991-2020"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
