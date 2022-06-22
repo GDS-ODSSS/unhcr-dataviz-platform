@@ -130,7 +130,7 @@ plt.show()
 
 
 
-```{python python_heatmap, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_heatmap, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A heatmap showing refugee population by region | 2001-2020"}
 # import libraries
 import matplotlib.pyplot as plt
 import seaborn as sns

@@ -160,7 +160,7 @@ plt.show()
 
 
 
-```{python python_scatterplot_connected, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_scatterplot_connected, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A connected scatterplot showing evolution of refugee vs IDP population in Afghanistan | 2001-2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd

@@ -156,7 +156,7 @@ plt.show()
 
 
 
-```{python python_bubble_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_bubble_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A bubble chart showing comparison of refugee and IDP population by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -337,7 +337,7 @@ plt.show()
 
 
 
-```{python python_bubble_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_bubble_chart_2, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A bubble chart showing comparison of refugee and IDP population by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd

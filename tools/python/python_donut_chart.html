@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Donut chart with Python</title>
+<title>UNHCR Dataviz Platform - Donut chart with Python</title>
 
 <script src="python_donut_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for part-to-a-whole purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Part-to-a-whole,Pie chart,Donut chart,100% stacked column chart,Grid plot,Treemap,Waterfall">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Donut chart with Python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -195,13 +215,22 @@ Donut chart with Python
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="donut-chart-with-python" class="section level2 my-5 text-center">
+<div id="donut-chart-with-python"
+class="section level2 my-5 text-center">
 <h2>Donut chart with Python</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>The donut chart is a variation of a pie charts, with the total amount divided into categories based on a proportional value. For the most part, there aren’t significant differences between a pie chart and a donut chart, so the choice of a donut over a standard circle is mostly aesthetic. One small advantage for the ring shape is that the central area can be used to show additional information such as the total amount figure.</p>
-<p>More about: <a href="../../chart_gallery/part_to_a_whole.html#donut">Donut chart</a></p>
+<p>The donut chart is a variation of a pie charts, with the total amount
+divided into categories based on a proportional value. For the most
+part, there aren’t significant differences between a pie chart and a
+donut chart, so the choice of a donut over a standard circle is mostly
+aesthetic. One small advantage for the ring shape is that the central
+area can be used to show additional information such as the total amount
+figure.</p>
+<p>More about:
+<a href="../../chart_gallery/part_to_a_whole.html#donut">Donut
+chart</a></p>
 </div>
 </div>
 </div>
@@ -213,7 +242,8 @@ Donut chart with Python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -250,7 +280,7 @@ Donut chart with Python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_donut_chart_files/figure-html/python_pie-1.svg" width="100%" /></p>
+<p><img src="python_donut_chart_files/figure-html/python_donut_chart-1.svg" title="A donut chart showing UNHCR Funding (as of February 2022)" alt="A donut chart showing UNHCR Funding (as of February 2022)" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -267,7 +297,7 @@ Donut chart with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_pie_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/pie_icon.svg" class="img-fluid" alt="Pie chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Pie chart</span>
                     </div>
@@ -277,7 +307,8 @@ Donut chart with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_donut_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/donut_icon.svg" class="img-fluid"
+                        alt="Donut chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Donut chart</span>
                     </div>
@@ -288,7 +319,7 @@ Donut chart with Python
             <a href="python_100perc_stacked_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
                     <img src="../../assets/img/part_to_a_whole/column_stacked_100perc_icon.svg" class="img-fluid"
-                        alt="">
+                        alt="100% stacked column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">100% stacked column chart</span>
                     </div>
@@ -298,7 +329,7 @@ Donut chart with Python
         <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_gridplot.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="Grid plot thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Grid plot</span>
                 </div>
@@ -308,7 +339,8 @@ Donut chart with Python
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="python_treemap.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/part_to_a_whole/treemap_icon.svg" class="img-fluid"
+                        alt="Treemap thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Treemap</span>
                     </div>
@@ -318,7 +350,7 @@ Donut chart with Python
         <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_waterfall.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/part_to_a_whole/waterfall_icon.svg" class="img-fluid" alt="Waterfall thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Waterfall</span>
                 </div>

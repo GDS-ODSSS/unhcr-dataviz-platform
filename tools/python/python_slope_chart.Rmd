@@ -152,7 +152,7 @@ plt.show()
 
 
 
-```{python python_slope_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_slope_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A slope chart showing evolution of refugee population by country of origin |2000 vs 2021"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

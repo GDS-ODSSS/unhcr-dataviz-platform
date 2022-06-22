@@ -156,7 +156,7 @@ plt.show()
 
 
 
-```{python python_line_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_line_column_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A line column chart showing trend of global displacement | 2007 - 2016"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

@@ -125,7 +125,7 @@ plt.show()
 
 
 
-```{python python_treemap, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_treemap, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A treemap showing UNHCR global workforce by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
 import squarify # pip install squarify

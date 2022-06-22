@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Ordered column chart with Python</title>
+<title>UNHCR Dataviz Platform - Ordered column chart with Python</title>
 
 <script src="python_ordered_column_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for ranking purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Ranking,Ordered column chart,Ordered bar chart,Lollipop chart,Slope chart">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Ordered column chart with Python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -195,13 +215,18 @@ Ordered column chart with Python
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="ordered-column-chart-with-python" class="section level2 my-5 text-center">
+<div id="ordered-column-chart-with-python"
+class="section level2 my-5 text-center">
 <h2>Ordered column chart with Python</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.</p>
-<p>More about: <a href="../../chart_gallery/ranking.html#column-ordered">Ordered column chart</a></p>
+<p>An ordered column chart is a chart in which each category is
+represented by a vertical rectangle, with the height of the rectangle
+being ordered and proportional to the values being plotted.</p>
+<p>More about:
+<a href="../../chart_gallery/ranking.html#column-ordered">Ordered column
+chart</a></p>
 </div>
 </div>
 </div>
@@ -213,7 +238,8 @@ Ordered column chart with Python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -279,7 +305,7 @@ Ordered column chart with Python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_ordered_column_chart_files/figure-html/python_ordered_column_chart-1.svg" width="100%" /></p>
+<p><img src="python_ordered_column_chart_files/figure-html/python_ordered_column_chart-1.svg" title="An ordered column showing refugee returns by country of origin (top 5) | 2020" alt="An ordered column showing refugee returns by country of origin (top 5) | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -294,7 +320,8 @@ Ordered column chart with Python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -324,7 +351,7 @@ Ordered column chart with Python
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">&#39;Number of people (thousands)&#39;</span>, x<span class="op">=</span><span class="fl">0.022</span>, y<span class="op">=</span><span class="fl">0.88</span>, horizontalalignment<span class="op">=</span><span class="st">&#39;left&#39;</span>, fontsize<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">&#39;#333333&#39;</span>)</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># set data label</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax.bar_label(bar_plot, labels<span class="op">=</span>[<span class="ss">f&#39;</span><span class="sc">{x:,</span><span class="fl">.0</span><span class="sc">f}</span><span class="ss">&#39;</span> <span class="cf">for</span> x <span class="kw">in</span> bar_plot.datavalues], padding<span class="op">=</span><span class="dv">3</span>,color<span class="op">=</span><span class="st">&#39;#333333&#39;</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax.bar_label(bar_plot, labels<span class="op">=</span>[<span class="ss">f&#39;</span><span class="sc">{</span>x<span class="sc">:,</span><span class="fl">.0</span><span class="er">f</span><span class="sc">}</span><span class="ss">&#39;</span> <span class="cf">for</span> x <span class="kw">in</span> bar_plot.datavalues], padding<span class="op">=</span><span class="dv">3</span>,color<span class="op">=</span><span class="st">&#39;#333333&#39;</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#set tick parameters</span></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;both&#39;</span>, labelsize<span class="op">=</span><span class="dv">10</span>, labelcolor<span class="op">=</span><span class="st">&#39;#333333&#39;</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">True</span>, left<span class="op">=</span><span class="va">False</span>, right<span class="op">=</span><span class="va">False</span>, labelleft<span class="op">=</span><span class="va">False</span>)</span>
@@ -348,7 +375,7 @@ Ordered column chart with Python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_ordered_column_chart_files/figure-html/python_ordered_column_chart_2-3.svg" width="100%" /></p>
+<p><img src="python_ordered_column_chart_files/figure-html/python_ordered_column_chart_2-3.svg" title="An ordered column showing refugee returns by country of origin (top 5) | 2020" alt="An ordered column showing refugee returns by country of origin (top 5) | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -358,54 +385,53 @@ Ordered column chart with Python
 </div>
 
 <section class="mb-5 container">
-    <hr>
-    <h3 class="mt-5 mb-3">Related chart with Python</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-
-        <!-- Ranking -->
-
-        <div class="col item-filter filter-ranking chart-item">
-            <a href="python_ordered_column_chart.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/ranking/column_ordered_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Ordered column chart</span>
-                </div>
-              </div>
-            </a>
+  <hr>
+  <h3 class="mt-5 mb-3">Related chart with Python</h3>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+    <!-- Ranking -->
+    <div class="col chart-item">
+      <a href="python_ordered_column_chart.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/ranking/column_ordered_icon.svg" class="img-fluid"
+            alt="Ordered column chart thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Ordered column chart</span>
           </div>
-          <div class="col item-filter filter-ranking chart-item">
-            <a href="python_ordered_bar_chart.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/ranking/bar_ordered_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Ordered bar chart</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col item-filter filter-ranking chart-item">
-            <a href="python_lollipop_chart.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/ranking/lollipop_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Lollipop chart</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col item-filter filter-ranking chart-item">
-            <a href="python_slope_chart_2.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/ranking/slope_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Slope chart</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Ranking -->
+        </div>
+      </a>
     </div>
+    <div class="col chart-item">
+      <a href="python_ordered_bar_chart.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/ranking/bar_ordered_icon.svg" class="img-fluid" alt="Ordered bar chart thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Ordered bar chart</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col chart-item">
+      <a href="python_lollipop_chart.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/ranking/lollipop_icon.svg" class="img-fluid" alt="Lollipop chart thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Lollipop chart</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col chart-item">
+      <a href="python_slope_chart_2.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/ranking/slope_icon.svg" class="img-fluid" alt="Slope chart thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Slope chart</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- End Ranking -->
+  </div>
 </section>
 <footer class="footer mt-auto bg-dark py-3">
     <div class="container">
