@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Histogram with R</title>
+<title>UNHCR Dataviz Platform - Histogram with R</title>
 
-<script src="r_histogram_files/header-attrs-2.13/header-attrs.js"></script>
+<script src="r_histogram_files/header-attrs-2.14/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for distribution purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Distribution,Histogram,Population pyramid,Boxplot">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -138,6 +153,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -173,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Histogram with R</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -226,20 +246,29 @@ indicates the frequency of data points within the interval/bin.</p>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv&quot;</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> poc_age)) <span class="sc">+</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Age distribution | 2020&quot;</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: Data source here</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>, <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>, <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span>)</span></code></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  df,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> poc_age)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Age distribution | 2020&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: Data source here</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_histogram-1.svg" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_histogram-1.svg" title="A histogram showing age distribution | 2020" alt="A histogram showing age distribution | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -258,7 +287,8 @@ indicates the frequency of data points within the interval/bin.</p>
         <div class="col chart-item">
             <a href="r_histogram.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid"
+                        alt="Histogram thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Histogram</span>
                     </div>
@@ -268,7 +298,8 @@ indicates the frequency of data points within the interval/bin.</p>
         <div class="col chart-item">
             <a href="r_population_pyramid.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/distribution/population_pyramid_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/distribution/population_pyramid_icon.svg" class="img-fluid"
+                        alt="Population pyramid thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Population pyramid</span>
                     </div>
@@ -278,7 +309,7 @@ indicates the frequency of data points within the interval/bin.</p>
         <!-- <div class="col chart-item">
             <a href="r_boxplot.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="Boxplot thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Boxplot</span>
                 </div>
