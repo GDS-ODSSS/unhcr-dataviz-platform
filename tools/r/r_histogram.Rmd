@@ -26,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -96,15 +100,24 @@ library(scales)
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv")
 
 # Plot
-ggplot(df, aes(x = poc_age)) +
+ggplot(
+  df,
+  aes(x = poc_age)
+) +
   geom_histogram(fill = unhcr_pal(n = 1, "pal_blue")) +
-  labs(title = "Age distribution | 2020",
-       y = "Number of people",
-       x = "Age",
-       caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency") +
+  labs(
+    title = "Age distribution | 2020",
+    y = "Number of people",
+    x = "Age",
+    caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(breaks = pretty_breaks(n = 10)) +
   scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_unhcr(grid = "Y", axis = "x", axis_title = "xy")
+  theme_unhcr(
+    grid = "Y",
+    axis = "x",
+    axis_title = "xy"
+  )
 ```
 
 </div>
@@ -114,16 +127,18 @@ ggplot(df, aes(x = poc_age)) +
 <div class="col-lg-6">
 
 
-```{r r_histogram, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_histogram, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A histogram showing age distribution | 2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv")
 
 ggplot(df, aes(x = poc_age)) +
   geom_histogram(fill = unhcr_pal(n = 1, "pal_blue")) +
-  labs(title = "Age distribution | 2020",
-       y = "Number of people",
-       x = "Age",
-       caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency") +
+  labs(
+    title = "Age distribution | 2020",
+    y = "Number of people",
+    x = "Age",
+    caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(breaks = pretty_breaks(n = 10)) +
   scale_y_continuous(expand = expansion(c(0, 0.1))) +
   theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = "xy")

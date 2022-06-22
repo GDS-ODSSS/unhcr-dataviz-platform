@@ -26,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -97,15 +101,47 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(-male, ages, fill = "Male"), width = 0.7) +
-  geom_col(aes(female, ages, fill = "Female"), width = 0.7) +
-  geom_text(aes(-male, ages, label = percent(abs(male))), hjust = 1.25, size = 11.5/.pt) +
-  geom_text(aes(female, ages, label = percent(abs(female))), hjust = -0.25, size = 11.5/.pt) +
-  labs(title = "Demographics of forcibly displaced people | 2020",
-       caption = "Note: figures do not add up to 100 per cent due to rounding\nSource: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  geom_col(aes(-male,
+    ages,
+    fill = "Male"
+  ),
+  width = 0.7
+  ) +
+  geom_col(aes(female,
+    ages,
+    fill = "Female"
+  ),
+  width = 0.7
+  ) +
+  geom_text(aes(-male,
+    ages,
+    label = percent(abs(male))
+  ),
+  hjust = 1.25,
+  size = 11.5 / .pt
+  ) +
+  geom_text(aes(female,
+    ages,
+    label = percent(abs(female))
+  ),
+  hjust = -0.25,
+  size = 11.5 / .pt
+  ) +
+  labs(
+    title = "Demographics of forcibly displaced people | 2020",
+    caption = "Note: figures do not add up to 100 per cent due to rounding\nSource: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(expand = expansion(c(0.2, 0.2))) +
-  scale_fill_manual(values = setNames(unhcr_pal(n = 3, "pal_unhcr")[c(2, 1)], c("Male", "Female"))) +
-  theme_unhcr(grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = "y")
+  scale_fill_manual(values = setNames(
+    unhcr_pal(n = 3, "pal_unhcr")[c(2, 1)],
+    c("Male", "Female")
+  )) +
+  theme_unhcr(
+    grid = FALSE,
+    axis = FALSE,
+    axis_title = FALSE,
+    axis_text = "y"
+  )
 ```
 
 </div>
@@ -115,17 +151,19 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_population_pyramid, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_population_pyramid, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A population pyramid showing demographic of forcibly displaced people | 2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv")
 
 ggplot(df) +
   geom_col(aes(-male, ages, fill = "Male"), width = 0.7) +
   geom_col(aes(female, ages, fill = "Female"), width = 0.7) +
-  geom_text(aes(-male, ages, label = percent(abs(male))), hjust = 1.25, size = 11.5/.pt) +
-  geom_text(aes(female, ages, label = percent(abs(female))), hjust = -0.25, size = 11.5/.pt) +
-  labs(title = "Demographics of forcibly displaced people | 2020",
-       caption = "Note: figures do not add up to 100 per cent due to rounding\nSource: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  geom_text(aes(-male, ages, label = percent(abs(male))), hjust = 1.25, size = 11.5 / .pt) +
+  geom_text(aes(female, ages, label = percent(abs(female))), hjust = -0.25, size = 11.5 / .pt) +
+  labs(
+    title = "Demographics of forcibly displaced people | 2020",
+    caption = "Note: figures do not add up to 100 per cent due to rounding\nSource: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(expand = expansion(c(0.2, 0.2))) +
   scale_fill_manual(values = setNames(unhcr_pal(n = 3, "pal_unhcr")[c(2, 1)], c("Male", "Female"))) +
   theme_unhcr(font_size = 13, grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = "y")
