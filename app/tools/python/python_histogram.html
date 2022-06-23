@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Histogram with python</title>
+<title>UNHCR Dataviz Platform - Histogram with python</title>
 
 <script src="python_histogram_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for distribution purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Distribution,Histogram,Population pyramid,Boxplot">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Histogram with python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -200,8 +220,13 @@ Histogram with python
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>A histogram displays the distribution of data over a continuous interval or specific time period. The height of each bar in a histogram indicates the frequency of data points within the interval/bin. It’s a great tool to identify where values are concentrated, or if there are extreme values or gaps in the dataset.</p>
-<p>More about: <a href="../../chart_gallery/distribution.html#histogram">Histogram</a></p>
+<p>A histogram displays the distribution of data over a continuous
+interval or specific time period. The height of each bar in a histogram
+indicates the frequency of data points within the interval/bin. It’s a
+great tool to identify where values are concentrated, or if there are
+extreme values or gaps in the dataset.</p>
+<p>More about:
+<a href="../../chart_gallery/distribution.html#histogram">Histogram</a></p>
 </div>
 </div>
 </div>
@@ -213,7 +238,8 @@ Histogram with python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -270,7 +296,7 @@ Histogram with python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_histogram_files/figure-html/python_histogram-1.svg" width="100%" /></p>
+<p><img src="python_histogram_files/figure-html/python_histogram-1.svg" title="A histogram showing age distribution | 2020" alt="A histogram showing age distribution | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -293,7 +319,8 @@ Histogram with python
         <div class="col chart-item">
             <a href="python_histogram.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/distribution/histogram_icon.svg" class="img-fluid"
+                        alt="Histogram thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Histogram</span>
                     </div>
@@ -303,7 +330,8 @@ Histogram with python
         <div class="col chart-item">
             <a href="python_population_pyramid.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/distribution/population_pyramid_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/distribution/population_pyramid_icon.svg" class="img-fluid"
+                        alt="Population pyramid thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Population pyramid</span>
                     </div>
@@ -313,7 +341,7 @@ Histogram with python
         <!-- <div class="col chart-item">
             <a href="r_boxplot.html">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/distribution/boxplot_icon.svg" class="img-fluid" alt="Boxplot thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Boxplot</span>
                 </div>

@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Grouped column chart with Python</title>
+<title>UNHCR Dataviz Platform - Grouped column chart with Python</title>
 
 <script src="python_grouped_column_chart_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for comparison purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Comparison,Column chart,Bar chart,Grouped column chart,Grouped bar chart,Stacked column chart,Stacked bar chart">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Grouped column chart with Python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -301,7 +321,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_grouped_column_chart_files/figure-html/python_column_chart-1.svg" width="100%" /></p>
+<p><img src="python_grouped_column_chart_files/figure-html/python_grouped_column_chart-1.svg" title="A grouped column chart showing refugee in Africa region | 2018-2021" alt="A grouped column chart showing refugee in Africa region | 2018-2021" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -392,7 +412,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_grouped_column_chart_files/figure-html/python_column_chart_2-3.svg" width="100%" /></p>
+<p><img src="python_grouped_column_chart_files/figure-html/python_grouped_column_chart_2-3.svg" title="A grouped column chart showing refugee in Africa region | 2018-2021" alt="A grouped column chart showing refugee in Africa region | 2018-2021" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -403,13 +423,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 
 <section class="mb-5 container">
     <hr>
-    <h3  class="mt-5 mb-3">Related chart with Python</h3>
+    <h3 class="mt-5 mb-3">Related chart with Python</h3>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
         <!-- Comparison -->
         <div class="col chart-item">
             <a href="python_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/column_icon.svg" class="img-fluid"
+                        alt="Column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Column Chart</span>
                     </div>
@@ -419,7 +440,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
         <div class="col chart-item">
             <a href="python_bar_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/bar_icon.svg" class="img-fluid" alt="Bar chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Bar Chart</span>
                     </div>
@@ -429,7 +450,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
         <div class="col chart-item">
             <a href="python_grouped_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/column_grouped_icon.svg" class="img-fluid"
+                        alt="Grouped column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Grouped column Chart</span>
                     </div>
@@ -439,7 +461,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
         <div class="col chart-item">
             <a href="python_grouped_bar_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/bar_grouped_icon.svg" class="img-fluid"
+                        alt="Grouped bar chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Grouped bar Chart</span>
                     </div>
@@ -449,7 +472,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
         <div class="col chart-item">
             <a href="python_stacked_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/column_stacked_icon.svg" class="img-fluid"
+                        alt="Stacked column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Stacked column Chart</span>
                     </div>
@@ -459,7 +483,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
         <div class="col chart-item">
             <a href="python_stacked_bar_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/comparison/bar_stacked_icon.svg" class="img-fluid"
+                        alt="Stacked bar chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Stacked bar Chart</span>
                     </div>

@@ -1,14 +1,18 @@
 ---
 title: "Line chart with Python"
-title-prefix: "UNHCR Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/py_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/py_change_over_time.html"
@@ -149,7 +153,7 @@ plt.show()
 
 
 
-```{python python_line_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_line_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A line chart showing number of refugees and IDPs of concern to UNHCR | 1990-2021"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -332,7 +336,7 @@ plt.show()
 <div class="col-lg-6">
 
 
-```{python python_line_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_line_chart_2, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A line chart showing number of refugees and IDPs of concern to UNHCR | 1990-2021"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

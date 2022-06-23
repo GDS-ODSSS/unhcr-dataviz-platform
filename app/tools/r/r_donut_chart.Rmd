@@ -1,14 +1,18 @@
 ---
 title: "Donut chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_part_to_a_whole_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_part_to_a_whole.html"
@@ -22,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -95,19 +103,62 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.6, r = 1, amount = funding_value, fill = funding_type),
-               stat = "pie", size = 1, color = "#FFFFFF") +
-  geom_richtext(x = c(1.25, -1.25), y = c(-0.3, 0.3),
-                aes(label = paste0(funding_type, "<br><strong>US$ ", round(funding_value/1e9,2), "B</strong>","<br>", round(100*funding_value/sum(funding_value),1), "%")),
-                size = 8/.pt, fill = NA, label.color = NA) +
-  geom_richtext(x = 0, y = 0, 
-                label = paste0("Total required", "<br><strong>US$ ", round(sum(df$funding_value)/1e9,2), "B</strong>"),
-                size = 12/.pt, fill = NA, label.color = NA) +
-  labs(title = "2021 UNHCR's funding",
-       caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
-  scale_fill_unhcr_d(palette = "pal_unhcr", direction = -1) +
+  geom_arc_bar(aes(
+    x0 = 0,
+    y0 = 0,
+    r0 = 0.6,
+    r = 1,
+    amount = funding_value,
+    fill = funding_type
+  ),
+  stat = "pie",
+  size = 1,
+  color = "#FFFFFF"
+  ) +
+  geom_richtext(
+    x = c(1.25, -1.25),
+    y = c(-0.3, 0.3),
+    aes(label = paste0(
+      funding_type,
+      "<br><strong>US$ ",
+      round(funding_value / 1e9, 2),
+      "B</strong>", "<br>",
+      round(100 * funding_value / sum(funding_value), 1),
+      "%"
+    )),
+    size = 8 / .pt,
+    fill = NA,
+    label.color = NA
+  ) +
+  geom_richtext(
+    x = 0,
+    y = 0,
+    label = paste0(
+      "Total required",
+      "<br><strong>US$ ",
+      round(sum(df$funding_value) / 1e9, 2),
+      "B</strong>"
+    ),
+    size = 12 / .pt,
+    fill = NA,
+    label.color = NA
+  ) +
+  labs(
+    title = "2021 UNHCR's funding",
+    caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_fill_unhcr_d(
+    palette = "pal_unhcr",
+    direction = -1
+  ) +
   scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
-  theme_unhcr(grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = FALSE, legend = FALSE)
+  theme_unhcr(
+    grid = FALSE,
+    axis = FALSE,
+    axis_title = FALSE,
+    axis_text = FALSE,
+    legend = FALSE
+  )
 ```
 
 </div>
@@ -117,21 +168,28 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_donut_chart, echo=FALSE, out.width="100%"}
+```{r r_donut_chart, echo=FALSE, out.width="100%", fig.alt="A donut chart showing UNHCR Funding (as of February 2022)"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/donut.csv")
 
 ggplot(df) +
   geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.6, r = 1, amount = funding_value, fill = funding_type),
-               stat = "pie", size = 1, color = "#FFFFFF") +
-  geom_richtext(x = c(1.25, -1.25), y = c(-0.3, 0.3),
-                aes(label = paste0(funding_type, "<br><strong>US$ ", round(funding_value/1e9,2), "B</strong>","<br>", round(100*funding_value/sum(funding_value),1), "%")),
-                size = 11.5/.pt, fill = NA, label.color = NA) +
-  geom_richtext(x = 0, y = 0, 
-                label = paste0("Total required", "<br><strong>US$ ", round(sum(df$funding_value)/1e9,2), "B</strong>"),
-                size = 18/.pt, fill = NA, label.color = NA) +
-  labs(title = "2021 UNHCR's funding",
-       caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency") +
+    stat = "pie", size = 1, color = "#FFFFFF"
+  ) +
+  geom_richtext(
+    x = c(1.25, -1.25), y = c(-0.3, 0.3),
+    aes(label = paste0(funding_type, "<br><strong>US$ ", round(funding_value / 1e9, 2), "B</strong>", "<br>", round(100 * funding_value / sum(funding_value), 1), "%")),
+    size = 11.5 / .pt, fill = NA, label.color = NA
+  ) +
+  geom_richtext(
+    x = 0, y = 0,
+    label = paste0("Total required", "<br><strong>US$ ", round(sum(df$funding_value) / 1e9, 2), "B</strong>"),
+    size = 18 / .pt, fill = NA, label.color = NA
+  ) +
+  labs(
+    title = "2021 UNHCR's funding",
+    caption = "Source: Define source here\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_fill_unhcr_d(palette = "pal_unhcr", direction = -1) +
   scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
   theme_unhcr(font_size = 13, grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = FALSE, legend = FALSE)

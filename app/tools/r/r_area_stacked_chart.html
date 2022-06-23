@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Stacked area chart with R</title>
+<title>UNHCR Dataviz Platform - Stacked area chart with R</title>
 
 <script src="r_area_stacked_chart_files/header-attrs-2.14/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for change over time purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Change over time,Line chart,Area chart,Stacked area chart,Streamgraph,Line column chart,Slope chart,Dot plot">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -138,6 +153,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -173,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Stacked area chart with R</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -225,23 +245,37 @@ area chart</a></p>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">months =</span> lubridate<span class="sc">::</span><span class="fu">my</span>(<span class="fu">paste</span>(months, <span class="st">&quot;2022&quot;</span>)))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> months, <span class="at">y =</span> funding_million, <span class="at">fill =</span> funding_type)) <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Evolution of funding in West Africa region | 2020&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;USD millions&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%b&quot;</span>, <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>, <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>, <span class="at">axis_title =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area_stacked.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">months =</span> lubridate<span class="sc">::</span><span class="fu">my</span>(<span class="fu">paste</span>(months, <span class="st">&quot;2022&quot;</span>)))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> months,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> funding_million,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> funding_type</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Evolution of funding in West Africa region | 2020&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;USD millions&quot;</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">&quot;%b&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">12</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_title =</span> <span class="st">&quot;y&quot;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_area_stacked_chart-1.svg" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_area_stacked_chart-1.svg" title="A stacked area chart showing evolution of funding in West Africa region | 2020" alt="A stacked area chart showing evolution of funding in West Africa region | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -259,7 +293,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_line_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/line_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/line_icon.svg" class="img-fluid"
+                        alt="Line chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Line chart</span>
                     </div>
@@ -269,7 +304,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_area_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid"
+                        alt="Area chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Area chart</span>
                     </div>
@@ -279,7 +315,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_area_stacked_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid"
+                        alt="Stacked area chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Stacked area chart</span>
                     </div>
@@ -289,7 +326,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_streamgraph.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid"
+                        alt="Streamgraph thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Streamgraph</span>
                     </div>
@@ -299,7 +337,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_line_column_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid"
+                        alt="Line column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Line column chart</span>
                     </div>
@@ -309,7 +348,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_slope_chart.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid"
+                        alt="Slope chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Slope chart</span>
                     </div>
@@ -319,7 +359,8 @@ area chart</a></p>
         <div class="col chart-item">
             <a href="r_dotplot.html">
                 <div class="chart-img d-inline-flex justify-content-center">
-                    <img src="../../assets/img/change_over_time/dotplot_icon.svg" class="img-fluid" alt="">
+                    <img src="../../assets/img/change_over_time/dotplot_icon.svg" class="img-fluid"
+                        alt="Column chart thumbnail">
                     <div class="chart-info d-flex align-items-end p-3">
                         <span class="chart-name">Dot plot</span>
                     </div>

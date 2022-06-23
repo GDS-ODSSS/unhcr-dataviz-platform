@@ -1,14 +1,18 @@
 ---
 title: "Stacked column chart with Python"
-title-prefix: "UNHCR Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/py_comparison_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/py_comparison.html"
@@ -152,7 +156,7 @@ plt.show()
 
 
 
-```{python python_stacked_column_chart, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_stacked_column_chart, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A stacked column chart showing resettlement by UNHCR and others | 2010-2020"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -320,7 +324,7 @@ plt.show()
 
 
 
-```{python python_stacked_column_chart_2, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_stacked_column_chart_2, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A stacked column chart showing resettlement by UNHCR and others | 2010-2020"}
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd

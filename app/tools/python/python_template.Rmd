@@ -1,7 +1,9 @@
 ---
 title: "Title of the page"
-title-prefix: "UNHCR Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null

@@ -1,7 +1,8 @@
 // Filters and isotope
 $(window).on('load', function() {
     var chartIsotope = $('.container-filter').isotope({
-      itemSelector: '.item-filter'
+      itemSelector: '.item-filter',
+      layoutMode: 'fitRows'
     });
   
     $('#list-filter li').on('click', function() {

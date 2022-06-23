@@ -1,14 +1,18 @@
 ---
 title: "Bar chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_comparison_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_comparison.html"
@@ -22,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -92,16 +100,28 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = displaced_number, y = reorder(country_origin, displaced_number)),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  labs(title = "People displaced across borders by country of origin | 2021",
-       x = "Number of people (in million)",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(expand = expansion(c(0, 0.1)),
-                     breaks = pretty_breaks(n = 7),
-                     labels = label_number_si()) +
-  theme_unhcr(grid = "X", axis = "y", axis_title = "x")
+  geom_col(aes(
+    x = displaced_number,
+    y = reorder(country_origin, displaced_number)
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  labs(
+    title = "People displaced across borders by country of origin | 2021",
+    x = "Number of people (in million)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(
+    expand = expansion(c(0, 0.1)),
+    breaks = pretty_breaks(n = 7),
+    labels = label_number_si()
+  ) +
+  theme_unhcr(
+    grid = "X",
+    axis = "y",
+    axis_title = "x"
+  )
 ```
 
 </div>
@@ -111,20 +131,25 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_bar_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_bar_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A bar chart showing people displaced across borders by country of origin | 2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv")
 
 ggplot(df) +
   geom_col(aes(x = displaced_number, y = reorder(country_origin, displaced_number)),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  labs(title = "People displaced across borders by country of origin | 2021",
-       x = "Number of people (in million)",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(expand = expansion(c(0, 0.1)),
-                     breaks = pretty_breaks(n = 7),
-                     labels = label_number_si()) +
+    fill = unhcr_pal(n = 1, "pal_blue"),
+    width = 0.8
+  ) +
+  labs(
+    title = "People displaced across borders by country of origin | 2021",
+    x = "Number of people (in million)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(
+    expand = expansion(c(0, 0.1)),
+    breaks = pretty_breaks(n = 7),
+    labels = label_number_si()
+  ) +
   theme_unhcr(font_size = 13, grid = "X", axis = "y", axis_title = "x")
 ```
 
@@ -158,17 +183,33 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = displaced_number, y = reorder(country_origin, displaced_number)),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  geom_text(aes(x = displaced_number, y = reorder(country_origin, displaced_number),
-                label = round(displaced_number / 1e6, 2)),
-            hjust = -0.5, size = 8/.pt) +
-  labs(title = "People displaced across borders by country of origin | 2021",
-       subtitle = "Number of people (in million)",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  geom_col(aes(
+    x = displaced_number,
+    y = reorder(country_origin, displaced_number)
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  geom_text(aes(
+    x = displaced_number,
+    y = reorder(country_origin, displaced_number),
+    label = round(displaced_number / 1e6, 2)
+  ),
+  hjust = -0.5,
+  size = 8 / .pt
+  ) +
+  labs(
+    title = "People displaced across borders by country of origin | 2021",
+    subtitle = "Number of people (in million)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(expand = expansion(c(0, 0.1))) +
-  theme_unhcr(grid = FALSE, axis = "y", axis_title = FALSE, axis_text = "y")
+  theme_unhcr(
+    grid = FALSE,
+    axis = "y",
+    axis_title = FALSE,
+    axis_text = "y"
+  )
 ```
 
 </div>
@@ -178,20 +219,26 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_bar_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_bar_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A bar chart showing people displaced across borders by country of origin | 2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar.csv")
 
 ggplot(df) +
   geom_col(aes(x = displaced_number, y = reorder(country_origin, displaced_number)),
-           fill = unhcr_pal(n = 1, "pal_blue"),
-           width = 0.8) +
-  geom_text(aes(x = displaced_number, y = reorder(country_origin, displaced_number),
-                label = round(displaced_number / 1e6, 2)),
-            hjust = -0.5, size = 11.5/.pt) +
-  labs(title = "People displaced across borders by country of origin | 2021",
-       subtitle = "Number of people (in million)",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+    fill = unhcr_pal(n = 1, "pal_blue"),
+    width = 0.8
+  ) +
+  geom_text(aes(
+    x = displaced_number, y = reorder(country_origin, displaced_number),
+    label = round(displaced_number / 1e6, 2)
+  ),
+  hjust = -0.5, size = 11.5 / .pt
+  ) +
+  labs(
+    title = "People displaced across borders by country of origin | 2021",
+    subtitle = "Number of people (in million)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
   scale_x_continuous(expand = expansion(c(0, 0.1))) +
   theme_unhcr(font_size = 13, grid = FALSE, axis = "y", axis_title = FALSE, axis_text = "y")
 ```

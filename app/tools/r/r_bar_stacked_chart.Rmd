@@ -1,14 +1,18 @@
 ---
 title: "Stacked bar chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_comparison_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_comparison.html"
@@ -92,16 +96,23 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = population_number, y = reorder(country_origin, population_number),
-               fill = 	population_type), width = 0.7) +
+  geom_col(aes(x = population_number,
+               y = reorder(country_origin, population_number),
+               fill = 	population_type),
+           width = 0.7) +
   labs(title = "People displaced across borders by country of origin | 2021",
        x = "Number of people",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(expand = expansion(c(0, 0.1)), breaks = pretty_breaks(n = 7),
+  scale_x_continuous(expand = expansion(c(0, 0.1)),
+                     breaks = pretty_breaks(n = 7),
                      labels = label_number_si()) +
-  scale_fill_unhcr_d(palette = "pal_unhcr", nmax = 10, order = c(3, 1, 9),
+  scale_fill_unhcr_d(palette = "pal_unhcr",
+                     nmax = 10,
+                     order = c(3, 1, 9),
                      labels = c("Asylum-seekers", "Refugees", "Venezuelans displaced abroad")) +
-  theme_unhcr(grid = "X", axis = "y", axis_title = "x")
+  theme_unhcr(grid = "X",
+              axis = "y",
+              axis_title = "x")
 ```
 
 </div>
@@ -111,7 +122,7 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_bar_stacked_chart, echo=FALSE, out.width="100%", fig.height=6.5}
+```{r r_bar_stacked_chart, echo=FALSE, out.width="100%", fig.height=6.5, fig.alt="A stacked bar chart showing people displaced across borders by country of origin | 2021"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_stacked.csv")
 
@@ -158,20 +169,30 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = population_number, y = reorder(country_origin, population_number),
-               fill = population_type), width = 0.7) +
+  geom_col(aes(x = population_number,
+               y = reorder(country_origin, population_number),
+               fill = population_type),
+           width = 0.7) +
   geom_text(data = filter(df, population_number > 180000),
-            aes(x = population_number, y = reorder(country_origin, population_number),
-                group = population_type, label = round(population_number / 1e6, 1)),
-            position = position_stack(vjust = 0.5), size = 8/.pt,
+            aes(x = population_number,
+                y = reorder(country_origin, population_number),
+                group = population_type,
+                label = round(population_number / 1e6, 1)),
+            position = position_stack(vjust = 0.5),
+            size = 8/.pt,
             color = "#FFFFFF") +
   labs(title = "People displaced across borders by country of origin | 2021",
        subtitle = "Number of people (million)",
        caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
   scale_x_continuous(expand = expansion(c(0, 0.1))) +
-  scale_fill_unhcr_d(palette = "pal_unhcr", nmax = 10, order = c(3, 1, 9),
+  scale_fill_unhcr_d(palette = "pal_unhcr",
+                     nmax = 10,
+                     order = c(3, 1, 9),
                      labels = c("Asylum-seekers", "Refugees", "Venezuelans displaced abroad")) +
-  theme_unhcr(fgrid = FALSE, axis = "y", axis_title = FALSE, axis_text = "y")
+  theme_unhcr(fgrid = FALSE,
+              axis = "y",
+              axis_title = FALSE,
+              axis_text = "y")
 ```
 
 </div>
@@ -181,7 +202,7 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_bar_stacked_label_chart, echo=FALSE, out.width="100%", fig.height=6.5}
+```{r r_bar_stacked_label_chart, echo=FALSE, out.width="100%", fig.height=6.5, fig.alt="A stacked bar chart showing people displaced across borders by country of origin | 2021"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_stacked.csv")
 

@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Heatmap with Python</title>
+<title>UNHCR Dataviz Platform - Heatmap with Python</title>
 
 <script src="python_heatmap_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for correlation purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Correlation,Bubble chart,Heatmap,Scatterplot,Connected scatterplot,Tree diagram,Venn diagram">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -137,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -172,7 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Heatmap with Python</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -200,8 +220,11 @@ Heatmap with Python
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>A heatmap is a type of visualization that values are depicted through variations in colour within a two-dimensional matrix of cells. It allows us to visualize complex data and understand it at a glance.</p>
-<p>More about: <a href="../../chart_gallery/correlation.html#heatmap">Heatmap</a></p>
+<p>A heatmap is a type of visualization that values are depicted through
+variations in colour within a two-dimensional matrix of cells. It allows
+us to visualize complex data and understand it at a glance.</p>
+<p>More about:
+<a href="../../chart_gallery/correlation.html#heatmap">Heatmap</a></p>
 </div>
 </div>
 </div>
@@ -213,7 +236,8 @@ Heatmap with Python
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -264,7 +288,7 @@ Heatmap with Python
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="python_heatmap_files/figure-html/python_heatmap-1.svg" width="100%" /></p>
+<p><img src="python_heatmap_files/figure-html/python_heatmap-1.svg" title="A heatmap showing refugee population by region | 2001-2020" alt="A heatmap showing refugee population by region | 2001-2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -274,73 +298,74 @@ Heatmap with Python
 </div>
 
 <section class="mb-5 container">
-    <hr>
-    <h3 class="mt-5 mb-3">Related chart with Python</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-        <!-- Correlation -->
-        <div class="col chart-item">
-            <a href="python_bubble_chart.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/bubble_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Bubble Chart</span>
-                </div>
-              </div>
-            </a>
+  <hr>
+  <h3 class="mt-5 mb-3">Related chart with Python</h3>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+    <!-- Correlation -->
+    <div class="col chart-item">
+      <a href="python_bubble_chart.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/correlation/bubble_icon.svg" class="img-fluid" alt="Bubble chart thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Bubble Chart</span>
           </div>
-          <div class="col chart-item">
-            <a href="python_heatmap.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/heatmap_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Heatmap</span>
-                </div>
-              </div>
-            </a>
+        </div>
+      </a>
+    </div>
+    <div class="col chart-item">
+      <a href="python_heatmap.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/correlation/heatmap_icon.svg" class="img-fluid" alt="Heatmap thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Heatmap</span>
           </div>
-          <div class="col chart-item">
-            <a href="python_scatterplot.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/scatterplot_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Scatterplot</span>
-                </div>
-              </div>
-            </a>
+        </div>
+      </a>
+    </div>
+    <div class="col chart-item">
+      <a href="python_scatterplot.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/correlation/scatterplot_icon.svg" class="img-fluid" alt="Scatterplot thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Scatterplot</span>
           </div>
-          <div class="col chart-item">
-            <a href="python_connected_scatterplot.html">
-              <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/scatterplot_connected_icon.svg" class="img-fluid" alt="">
-                <div class="chart-info d-flex align-items-end p-3">
-                  <span class="chart-name">Connected scatterplot</span>
-                </div>
-              </div>
-            </a>
+        </div>
+      </a>
+    </div>
+    <div class="col chart-item">
+      <a href="python_connected_scatterplot.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/correlation/scatterplot_connected_icon.svg" class="img-fluid"
+            alt="Connected scatterplot thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Connected scatterplot</span>
           </div>
-          <!-- <div class="col chart-item">
+        </div>
+      </a>
+    </div>
+    <!-- <div class="col chart-item">
             <a href="#">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/tree_diagram_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/correlation/tree_diagram_icon.svg" class="img-fluid" alt="Tree diagram thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Tree diagram</span>
                 </div>
               </div>
             </a>
           </div> -->
-          <!-- <div class="col chart-item">
+    <!-- <div class="col chart-item">
             <a href="#">
               <div class="chart-img d-inline-flex justify-content-center">
-                <img src="../../assets/img/correlation/venn_diagram_icon.svg" class="img-fluid" alt="">
+                <img src="../../assets/img/correlation/venn_diagram_icon.svg" class="img-fluid" alt="Venn diagram thumbnail">
                 <div class="chart-info d-flex align-items-end p-3">
                   <span class="chart-name">Venn diagram</span>
                 </div>
               </div>
             </a>
           </div> -->
-         
-          <!-- End Correlation -->
-    </div>
+
+    <!-- End Correlation -->
+  </div>
 </section>
 <footer class="footer mt-auto bg-dark py-3">
     <div class="container">

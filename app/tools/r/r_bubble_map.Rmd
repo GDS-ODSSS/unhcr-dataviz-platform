@@ -1,0 +1,146 @@
+---
+title: "Bubble map with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_geospatial_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_geospatial.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Bubble map
+  url_cat: geospatial
+  url_chart: bubble-map
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
+                     base.url = "../../assets/img/tools/")
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.path= paste0(tolower(params$tool),"/"),
+                      message = FALSE,
+                      warning = FALSE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      dev = "svglite",
+                      fig.showtext = TRUE,
+                      fig.retina = 2,
+                      dpi = 300)
+library(unhcrthemes)
+library(tidyverse)
+library(sf)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+As a variation of a bubble chart, bubble maps display bubbles over geographical regions rather than the cartesian plane. The size or area of the bubble indicates the value of the particular variable, with the position on the map indicating location. Bubble maps are useful for comparing proportions against geographic regions without the issues caused by the size of different areas, as you would have in choropleth maps.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Bubble map
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r bubble_map_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(sf)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/bubble.csv")
+
+# Plot
+ggplot(df, aes(x = refugee_number, y = idp_number)) +
+  geom_point(aes(size = total_number), color = unhcr_pal(n = 1, "pal_blue"), alpha = 0.6) +
+  scale_size(range = c(4, 16), name = "Total population", labels = label_number_si(),
+             breaks = c(8e6, 10e6, 12e6)) +
+  geom_text_repel(aes(label = region), size = 8/.pt) +
+  labs(title = "Comparison of refugee and IDP population by region | 2021",
+       y = "Number of IDPs",
+       x = "Number of refugees",
+       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  scale_x_continuous(labels = label_number_si()) +
+  scale_y_continuous(labels = label_number_si(),
+                     breaks = pretty_breaks(n = 6)) +
+  coord_cartesian(clip = "off") +
+  theme_unhcr(grid = "XY", axis = FALSE, axis_title = "xy", legend_title = TRUE)
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_bubble_map, echo=FALSE, out.width="100%", fig.height=6.5}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv")
+poly <- st_read("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json")
+line <- st_read("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json")
+ggplot() +
+  geom_sf(data = poly, fill = unhcr_pal(n = 5, "pal_grey")[1], color = "transparent") +
+  geom_sf(data = line, aes(linetype = type)) +
+  scale_linetype_manual(values=c(2, 4, 3, 1)) +
+  labs(title = "Number of refugees by country of origin | 2021",
+       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
+  theme_unhcr_map()
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

@@ -1,14 +1,18 @@
 ---
 title: "Streamgraph with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_change_over_time.html"
@@ -22,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -93,18 +101,38 @@ library(ggstream)
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv")
 
 # Plot
-ggplot(df, aes(x = year, y = population_number,
-               fill = factor(population_type, levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA")))) +
+ggplot(
+  df,
+  aes(
+    x = year,
+    y = population_number,
+    fill = factor(population_type,
+      levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA")
+    )
+  )
+) +
   geom_stream() +
-  scale_fill_unhcr_d(palette = "pal_unhcr_poc", nmax = 9, order = c(1,3:5, 8:9),
-                     labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")) +
-  labs(title = "People of concern to UNHCR | 1991-2021",
-       y = "Number of people",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n= 8)) +
-  scale_y_continuous(labels = label_number_si(),
-                     breaks = pretty_breaks(n= 6)) +
-  theme_unhcr(grid = "XY", axis_title = "y", axis = FALSE)
+  scale_fill_unhcr_d(
+    palette = "pal_unhcr_poc",
+    nmax = 9,
+    order = c(1, 3:5, 8:9),
+    labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")
+  ) +
+  labs(
+    title = "People of concern to UNHCR | 1991-2021",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = 8)) +
+  scale_y_continuous(
+    labels = label_number_si(),
+    breaks = pretty_breaks(n = 6)
+  ) +
+  theme_unhcr(
+    grid = "XY",
+    axis_title = "y",
+    axis = FALSE
+  )
 ```
 
 </div>
@@ -114,21 +142,29 @@ ggplot(df, aes(x = year, y = population_number,
 <div class="col-lg-6">
 
 
-```{r r_streamgraph, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_streamgraph, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A streamgraph showing evolution of people of concern to UNHCR | 1991-2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv")
 
-ggplot(df, aes(x = year, y = population_number,
-               fill = factor(population_type, levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA")))) +
+ggplot(df, aes(
+  x = year, y = population_number,
+  fill = factor(population_type, levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA"))
+)) +
   geom_stream() +
-  scale_fill_unhcr_d(palette = "pal_unhcr_poc", nmax = 9, order = c(1,3:5, 8:9),
-                     labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")) +
-  labs(title = "People of concern to UNHCR | 1991-2021",
-       y = "Number of people",
-       caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency") +
-  scale_x_continuous(breaks = pretty_breaks(n= 8)) +
-  scale_y_continuous(labels = label_number_si(),
-                     breaks = pretty_breaks(n= 6)) +
+  scale_fill_unhcr_d(
+    palette = "pal_unhcr_poc", nmax = 9, order = c(1, 3:5, 8:9),
+    labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")
+  ) +
+  labs(
+    title = "People of concern to UNHCR | 1991-2021",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = 8)) +
+  scale_y_continuous(
+    labels = label_number_si(),
+    breaks = pretty_breaks(n = 6)
+  ) +
   theme_unhcr(font_size = 13, grid = "XY", axis_title = "y", axis = FALSE)
 ```
 

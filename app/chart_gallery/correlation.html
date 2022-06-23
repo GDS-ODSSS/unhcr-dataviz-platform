@@ -5,8 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="IPDA/GDS">
-    <title>UNHCR Dataviz - Correlation</title>
+    <title>UNHCR Dataviz Platform - Find most effective chart for the data</title>
+    <meta name="description" content="A correlation chart shows how two or more variables relate to each other.">
+    <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Chart classification,Chart catalogue,Best practices,Effective charts,Correlation,Bubble chart,Heatmap,Scatterplot,Connected scatterplot,Tree diagram,Venn diagram">
+    <meta name="author" content="Cedric Vidonne">
+    <meta name="author" content="Lei Chen">
     <link href="../assets/css/unhcrmain.min.css" rel="stylesheet" />
     <!-- jquery JS file -->
     <script src="../assets/js/vendor/jquery.min.js"></script>
@@ -28,7 +31,7 @@
     <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
+    <h1 class="title">Chart Gallery - Correlation</h1>
     <!-- Navigation -->
     <hcr-header></hcr-header>
     <!-- End Navigation -->
@@ -57,7 +60,7 @@
                 <div class="chart-area col-lg-9">
                     <section id="bubble" class="my-5">
                         <div class="text-center mb-3">
-                            <img src="../assets/img/correlation/bubble_icon.svg" class="w-25 mb-3" alt="">
+                            <img src="../assets/img/correlation/bubble_icon.svg" class="w-25 mb-3" alt="Bubble chart icon">
                             <h2>Bubble chart</h2>
                         </div>
                         <h4>Description</h4>
@@ -80,7 +83,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/bubble_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Bubble chart dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Try to limit the number of points to plot.</p>
                                     </div>
@@ -89,7 +92,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/bubble_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Bubble chart dos and donts 2">
                                     <div class="card-body">
                                         <p class="card-text">Draw bubbles with transparency.</p>
                                     </div>
@@ -98,7 +101,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/bubble_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Bubble chart dos and donts 3">
                                     <div class="card-body">
                                         <p class="card-text">Don’t draw the size of the circle based on its radius or
                                             diameter; use the circle’s area instead.</p>
@@ -123,7 +126,7 @@
                     <hr>
                     <section id="heatmap" class="my-5">
                         <div class="text-center mb-3">
-                            <img src="../assets/img/correlation/heatmap_icon.svg" class="w-25 mb-3" alt="">
+                            <img src="../assets/img/correlation/heatmap_icon.svg" class="w-25 mb-3" alt="Heatmap icon">
                             <h2>Heatmap</h2>
                         </div>
                         <h4>Description</h4>
@@ -142,7 +145,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/heatmap_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Heatmap dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Use an appropriate colour palette to match the data: use a
                                             sequential palette to differentiate high values from low values; use a
@@ -163,14 +166,14 @@
                         <!-- <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a> -->
                         <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
                         <!-- <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a> -->
-                        <!-- <a class="btn btn-primary" href="#">R</a>
-                        <a class="btn btn-primary" href="#">D3.js</a> -->
+                        <a class="btn btn-primary" href="../tools/r/r_heatmap.html">R</a>
+                        <!-- <a class="btn btn-primary" href="#">D3.js</a> -->
                         <a class="btn btn-primary" href="../tools/python/python_heatmap.html">Python</a>
                     </section>
                     <hr>
                     <section id="scatterplot" class="my-5">
                         <div class="text-center mb-3">
-                            <img src="../assets/img/correlation/scatterplot_icon.svg" class="w-25 mb-3" alt="">
+                            <img src="../assets/img/correlation/scatterplot_icon.svg" class="w-25 mb-3" alt="Scatterplot icon">
                             <h2>Scatterplot</h2>
                         </div>
                         <h4>Description</h4>
@@ -198,7 +201,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/scatterplot_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Scatterplot dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Avoid overplotting (when lots of data points overlap each
                                             other,
@@ -209,7 +212,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/scatterplot_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Scatterplot dos and donts 2">
                                     <div class="card-body">
                                         <p class="card-text">If overplotting can’t be avoided, use transparency to help
                                             the
@@ -236,7 +239,7 @@
                     <section id="scatterplot-connected" class="my-5">
                         <div class="text-center mb-3">
                             <img src="../assets/img/correlation/scatterplot_connected_icon.svg" class="w-25 mb-3"
-                                alt="">
+                                alt="Connected scatterplot icon">
                             <h2>Connected scatterplot</h2>
                         </div>
                         <h4>Description</h4>
@@ -260,7 +263,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/scatterplot_connected_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Connected scatterplot dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Use an arrow line to indicate the direction of evolution
                                             when a
@@ -271,7 +274,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/scatterplot_connected_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Connected scatterplot dos and donts 2">
                                     <div class="card-body">
                                         <p class="card-text">Use an appropriate measurement interval</p>
                                     </div>
@@ -280,7 +283,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/scatterplot_connected_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt=" dos and donts 3">
                                     <div class="card-body">
                                         <p class="card-text">Don’t plot too many data series.</p>
                                     </div>
@@ -298,7 +301,7 @@
                     <hr>
                     <section id="tree-diagram" class="my-5">
                         <div class="text-center mb-3">
-                            <img src="../assets/img/correlation/tree_diagram_icon.svg" class="w-25 mb-3" alt="">
+                            <img src="../assets/img/correlation/tree_diagram_icon.svg" class="w-25 mb-3" alt="Tree diagram icon">
                             <h2>Tree diagram</h2>
                         </div>
                         <h4>Description</h4>
@@ -321,7 +324,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/tree_diagram_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Tree diagram dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Use simple shapes such as rectangles or circles as nodes.
                                         </p>
@@ -331,7 +334,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/tree_diagram_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Tree diagram dos and donts 2">
                                     <div class="card-body">
                                         <p class="card-text">Use consistent colours throughout the chart.</p>
                                     </div>
@@ -340,7 +343,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/tree_diagram_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Tree diagram dos and donts 3">
                                     <div class="card-body">
                                         <p class="card-text">Build the diagram from the root node from top to bottom or
                                             from
@@ -351,7 +354,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/tree_diagram_dosdonts_4.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Tree diagram dos and donts 4">
                                     <div class="card-body">
                                         <p class="card-text">Each node can only have one connection in the hierarchy to
                                             the top
@@ -371,7 +374,7 @@
                     <hr>
                     <section id="venn" class="my-5">
                         <div class="text-center mb-3">
-                            <img src="../assets/img/correlation/venn_diagram_icon.svg" class="w-25 mb-3" alt="">
+                            <img src="../assets/img/correlation/venn_diagram_icon.svg" class="w-25 mb-3" alt="Venn diagram icon">
                             <h2>Venn diagram</h2>
                         </div>
                         <h4>Description</h4>
@@ -397,7 +400,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/venn_dosdonts_1.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Venn diagram dos and donts 1">
                                     <div class="card-body">
                                         <p class="card-text">Use contrasting colours for different sets.</p>
                                     </div>
@@ -406,7 +409,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/venn_dosdonts_2.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Venn diagram dos and donts 2">
                                     <div class="card-body">
                                         <p class="card-text">Use transparency to allow clear distinction of the
                                             intersections.</p>
@@ -416,7 +419,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/venn_dosdonts_3.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Venn diagram dos and donts 3">
                                     <div class="card-body">
                                         <p class="card-text">Make sure text labels are clear and visible</p>
                                     </div>
@@ -425,7 +428,7 @@
                             <div class="col">
                                 <div class="card border-0">
                                     <img src="../assets/img/correlation/venn_dosdonts_4.svg"
-                                        class="card-img-top img-fluid" alt="...">
+                                        class="card-img-top img-fluid" alt="Venn diagram dos and donts 4">
                                     <div class="card-body">
                                         <p class="card-text">Don’t display too many sets in a single diagram.</p>
                                     </div>

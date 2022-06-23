@@ -1,14 +1,18 @@
 ---
 title: "Streamgraph with Python"
-title-prefix: "UNHCR Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/py_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/py_change_over_time.html"
@@ -155,7 +159,7 @@ plt.show()
 
 
 
-```{python python_streamgraph, echo=FALSE, out.width="100%", fig.height=5.75}
+```{python python_streamgraph, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A streamgraph showing evolution of people of concern to UNHCR | 1991-2020"}
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt

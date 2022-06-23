@@ -1,14 +1,18 @@
 ---
 title: "100% stacked column chart with R"
-title-prefix: "UNHCR  Dataviz"
-author: "IPDA/GDS"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
 output:
   html_document:
     theme: null
     self_contained: false
     highlight: "pygments"
     includes:
-      in_header: "../rmd_includes/in_head.html"
+      in_header:
+        - "../rmd_includes/r_part_to_a_whole_head.html"
+        - "../rmd_includes/in_head.html"
       before_body: "../rmd_includes/header.html"
       after_body:
         - "../rmd_includes/r_part_to_a_whole.html"
@@ -22,18 +26,22 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../../assets/img/tools/",
-                     base.url = "../../assets/img/tools/")
-knitr::opts_chunk$set(echo = FALSE,
-                      fig.path= paste0(tolower(params$tool),"/"),
-                      message = FALSE,
-                      warning = FALSE,
-                      collapse = TRUE,
-                      comment = "#>",
-                      dev = "svglite",
-                      fig.showtext = TRUE,
-                      fig.retina = 2,
-                      dpi = 300)
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
 library(unhcrthemes)
 library(tidyverse)
 library(scales)
@@ -92,14 +100,29 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_col(aes(x = year, y = percentage, fill = funding_type),
-           width = 0.7, position = position_fill()) +
+  geom_col(aes(
+    x = year,
+    y = percentage,
+    fill = funding_type
+  ),
+  width = 0.7,
+  position = position_fill()
+  ) +
   scale_fill_unhcr_d(palette = "pal_unhcr") +
   scale_x_continuous(breaks = pretty_breaks(n = 9)) +
-  scale_y_continuous(expand = expansion(c(0, 0.01)), labels = percent) +
-  labs(title = "Levels of earmarking | 2012-2020",
-       caption = "Source: UNHCR\n© UNHCR, The UN Refugee Agency") +
-  theme_unhcr(grid = "Y", axis = "x", axis_title = FALSE)
+  scale_y_continuous(
+    expand = expansion(c(0, 0.01)),
+    labels = percent
+  ) +
+  labs(
+    title = "Levels of earmarking | 2012-2020",
+    caption = "Source: UNHCR\n© UNHCR, The UN Refugee Agency"
+  ) +
+  theme_unhcr(
+    grid = "Y",
+    axis = "x",
+    axis_title = FALSE
+  )
 ```
 
 </div>
@@ -109,18 +132,21 @@ ggplot(df) +
 <div class="col-lg-6">
 
 
-```{r r_column_stacked_100perc_chart, echo=FALSE, out.width="100%", fig.height=5.8}
+```{r r_column_stacked_100perc_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A 100% stacked column chart showing levels of earmarking | 2012-2020"}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv")
 
 ggplot(df) +
   geom_col(aes(x = year, y = percentage, fill = funding_type),
-           width = 0.7, position = position_fill()) +
+    width = 0.7, position = position_fill()
+  ) +
   scale_fill_unhcr_d(palette = "pal_unhcr") +
   scale_x_continuous(breaks = pretty_breaks(n = 9)) +
   scale_y_continuous(expand = expansion(c(0, 0.01)), labels = percent) +
-  labs(title = "Levels of earmarking | 2012-2020",
-       caption = "Source: UNHCR\n© UNHCR, The UN Refugee Agency") +
+  labs(
+    title = "Levels of earmarking | 2012-2020",
+    caption = "Source: UNHCR\n© UNHCR, The UN Refugee Agency"
+  ) +
   theme_unhcr(font_size = 13, grid = "Y", axis = "x", axis_title = FALSE)
 ```
 
