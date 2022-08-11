@@ -78,10 +78,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle', 'donut'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv')
@@ -92,10 +89,10 @@ values = df['funding_value']
 
 #plot the chart
 fig, ax = plt.subplots()
-pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, wedgeprops={'width':0.5, 'edgecolor':'white', 'linewidth': 2}, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
+pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, wedgeprops={'width':0.5, 'edgecolor':'white', 'linewidth': 2})
        
 #set chart title
-ax.set_title('UNHCR Funding (as of February 2022)', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+ax.set_title('UNHCR Funding (as of February 2022)')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -103,7 +100,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -122,10 +118,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle', 'donut'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/pie.csv')
@@ -136,10 +129,10 @@ values = df['funding_value']
 
 #plot the chart
 fig, ax = plt.subplots()
-pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, wedgeprops={'width':0.5, 'edgecolor':'white', 'linewidth': 2}, textprops={'color':"#333333", 'fontsize':11, 'fontweight':'bold'}, colors=['#0072BC', '#8EBEFF'])
+pie=ax.pie(values, labels=labels, autopct='%1.1f%%', pctdistance = 0.75, counterclock=False, startangle=-270, wedgeprops={'width':0.5, 'edgecolor':'white', 'linewidth': 2})
        
 #set chart title
-ax.set_title('UNHCR Funding (as of February 2022)', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+ax.set_title('UNHCR Funding (as of February 2022)')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -147,7 +140,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

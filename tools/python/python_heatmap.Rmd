@@ -78,10 +78,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from textwrap import wrap
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle', 'heatmap'])
 
 #load and reshape data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/heatmap.csv')
@@ -96,19 +93,14 @@ fig, ax = plt.subplots()
 ax = sns.heatmap(df, annot=True, linewidths=.5, yticklabels=y, square=True, cmap=['#DCE9FF','#8EBEFF','#589BE5','#0072BC','#044F85'], cbar=False, fmt=".1f")
 
 #set chart title
-ax.set_title('Refugee population by region | 2001-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee population by region | 2011-2020')
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.32, y=0.88, fontsize=10, color='#333333')
+plt.suptitle('Number of people in millions', x=0.345, y=0.87)
 
 #set axis label
 ax.set_xlabel('')
 ax.set_ylabel('')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, 
-               left=False, right=False, labelcolor = '#333333')
                
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -30), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -116,7 +108,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -40), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
@@ -136,10 +127,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from textwrap import wrap
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle', 'heatmap'])
 
 #load and reshape data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/heatmap.csv')
@@ -154,19 +142,14 @@ fig, ax = plt.subplots()
 ax = sns.heatmap(df, annot=True, linewidths=.5, yticklabels=y, square=True, cmap=['#DCE9FF','#8EBEFF','#589BE5','#0072BC','#044F85'], cbar=False, fmt=".1f")
 
 #set chart title
-ax.set_title('Refugee population by region | 2011-2020', loc='left', fontweight='bold', pad=35, fontsize=14)
+ax.set_title('Refugee population by region | 2011-2020')
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.32, y=0.88, fontsize=10, color='#333333')
+plt.suptitle('Number of people in millions', x=0.345, y=0.87)
 
 #set axis label
 ax.set_xlabel('')
 ax.set_ylabel('')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, 
-               left=False, right=False, labelcolor = '#333333')
                
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -30), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -174,7 +157,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -40), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()

@@ -78,10 +78,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','line'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line.csv')
@@ -91,36 +88,20 @@ df = df.reset_index()
 
 #compute data for plotting
 x = df['year']
-category1 = df['IDPs']
-category2 = df['Refugees']
+y = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.plot(x, category1, linestyle = '-', linewidth=2.5, color='#00B398', label = 'IDPs')
-bar_plot = ax.plot(x, category2, linestyle = '-', linewidth=2.5, color='#0072BC', label = 'Refugees')
-
-#set chart legend
-ax.legend(loc=(0,0.95), ncol=2, frameon=False, fontsize=10, labelcolor='#333333')
+bar_plot = ax.plot(x, y)
 
 #set chart title
-ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+ax.set_title('Number of refugees | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)')
 
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+#set y-axis limit
+ylimit = plt.ylim(8 * 1e6, 22 * 1e6)
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -139,7 +120,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -158,10 +138,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','line'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line.csv')
@@ -171,32 +148,20 @@ df = df.reset_index()
 
 #compute data for plotting
 x = df['year']
-category2 = df['Refugees']
+y = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.plot(x, category2, linestyle = '-', linewidth=2.5, color='#0072BC', label = 'Refugees')
+bar_plot = ax.plot(x, y)
 
 #set chart title
-ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+ax.set_title('Number of refugees | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)')
 
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-
+#set y-axis limit
+ylimit = plt.ylim(8 * 1e6, 22 * 1e6)
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -215,7 +180,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -247,10 +211,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','line'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line.csv')
@@ -260,51 +221,36 @@ df = df.reset_index()
 
 #compute data for plotting
 x = df['year']
-category1 = df['IDPs']
-category2 = df['Refugees']
+y1 = df['IDPs']
+y2 = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.plot(x, category1, linestyle = '-', linewidth=2.5, color='#00B398', label = 'IDPs')
-bar_plot = ax.plot(x, category2, linestyle = '-', linewidth=2.5, color='#0072BC', label = 'Refugees')
+bar_plot = ax.plot(x, y1)
+bar_plot = ax.plot(x, y2)
 
 #set chart title
-ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)')
 
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+#set y-axis limit
+ylimit = plt.ylim(0, 60 * 1e6)
 
 #set direct labeling for lines
 idp_xpos=x.iloc[-1]
-idp_ypos=category1.iloc[-1]
+idp_ypos=y1.iloc[-1]
 plt.annotate("IDPs", (idp_xpos,idp_ypos),
                  textcoords="offset points",
                  xytext=(0,10), 
-                 ha='center',
-                 fontsize=10, 
-                 color='#333333')
+                 ha='center')
 ref_xpos=x.iloc[-1]
-ref_ypos=category2.iloc[-1]
+ref_ypos=y2.iloc[-1]
 plt.annotate("Refugees", (ref_xpos,ref_ypos),
                  textcoords="offset points",
                  xytext=(0,10), 
-                 ha='left',
-                 fontsize=10, 
-                 color='#333333')
-    
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+                 ha='left')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -323,7 +269,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -341,10 +286,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','line'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line.csv')
@@ -354,51 +296,36 @@ df = df.reset_index()
 
 #compute data for plotting
 x = df['year']
-category1 = df['IDPs']
-category2 = df['Refugees']
+y1 = df['IDPs']
+y2 = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-bar_plot = ax.plot(x, category1, linestyle = '-', linewidth=2.5, color='#00B398', label = 'IDPs')
-bar_plot = ax.plot(x, category2, linestyle = '-', linewidth=2.5, color='#0072BC', label = 'Refugees')
+bar_plot = ax.plot(x, y1)
+bar_plot = ax.plot(x, y2)
 
 #set chart title
-ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+ax.set_title('Number of refugees and IDPs of concern to UNHCR | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
+ax.set_ylabel('Number of people (millions)')
 
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+#set y-axis limit
+ylimit = plt.ylim(0, 60 * 1e6)
 
 #set direct labeling for lines
 idp_xpos=x.iloc[-1]
-idp_ypos=category1.iloc[-1]
+idp_ypos=y1.iloc[-1]
 plt.annotate("IDPs", (idp_xpos,idp_ypos),
                  textcoords="offset points",
                  xytext=(0,10), 
-                 ha='center',
-                 fontsize=10, 
-                 color='#333333')
+                 ha='center')
 ref_xpos=x.iloc[-1]
-ref_ypos=category2.iloc[-1]
+ref_ypos=y2.iloc[-1]
 plt.annotate("Refugees", (ref_xpos,ref_ypos),
                  textcoords="offset points",
                  xytext=(0,10), 
-                 ha='left',
-                 fontsize=10, 
-                 color='#333333')
-    
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+                 ha='left')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -417,7 +344,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

@@ -78,10 +78,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
@@ -103,34 +100,28 @@ x = np.arange(len(labels))
 width = 0.28
 
 #plot the chart
-fig, ax = plt.subplots(figsize=(7,5.75))
-rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
-rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width, category1, width, edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Refugee in Africa region | 2018-2021', pad=50)
 
 #set chart legend
-ax.legend(loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
+ax.legend(loc=(0,1.04), ncol=2)
+
+#set y-axis title
+ax.set_ylabel('Number of people (millions)')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(labelleft=True)
 
 #set x-axis tick and label
 ax.set_xticks(x, labels)
 
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
 #show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.grid(axis='y')
 
 #format y-axis tick labels
 def number_formatter(x, pos):
@@ -149,7 +140,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -168,10 +158,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
@@ -193,34 +180,28 @@ x = np.arange(len(labels))
 width = 0.28
 
 #plot the chart
-fig, ax = plt.subplots(figsize=(7,5.75))
-rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
-rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width, category1, width, edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Refugee in Africa region | 2018-2021', pad=50)
 
 #set chart legend
-ax.legend(loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
+ax.legend(loc=(0,1.04), ncol=2)
+
+#set y-axis title
+ax.set_ylabel('Number of people (millions)')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', labelsize=10, bottom=False, top=False, labelbottom=True, left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(labelleft=True)
 
 #set x-axis tick and label
 ax.set_xticks(x, labels)
 
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
 #show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.grid(axis='y')
 
 #format y-axis tick labels
 def number_formatter(x, pos):
@@ -239,7 +220,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -271,10 +251,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
@@ -296,37 +273,27 @@ x = np.arange(len(labels))
 width = 0.28
 
 #plot the chart
-fig, ax = plt.subplots(figsize=(7, 5.75))
-rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
-rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width, category1, width, edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
+ax.set_title('Refugee in Africa region | 2018-2021', pad=70)
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top', fontsize=11, color='#333333')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=False, labelcolor = '#333333')
+plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top')
 
 #set x-axis tick and label
 ax.set_xticks(x, labels)
 
 #set chart legend
-ax.legend(loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+ax.legend(loc=(0,1.05), ncol=2)
 
 # set formatted data label
-ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3)
+ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3)
+ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -334,7 +301,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.2)
 
 #show chart
 plt.show()
@@ -353,10 +319,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv')
@@ -378,37 +341,27 @@ x = np.arange(len(labels))
 width = 0.28
 
 #plot the chart
-fig, ax = plt.subplots(figsize=(7, 5.75))
-rects1 = ax.bar(x - width, category1, width, color='#18375F', edgecolor='white', label='East and Horn of Africa and Great Lakes')
-rects2 = ax.bar(x, category2, width, color='#0072BC', edgecolor='white', label='Southern Africa')
-rects3 = ax.bar(x + width, category3, width, color='#8EBEFF', edgecolor='white', label='West and Central Africa')
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width, category1, width, edgecolor='white', label='East and Horn of Africa and Great Lakes')
+rects2 = ax.bar(x, category2, width, edgecolor='white', label='Southern Africa')
+rects3 = ax.bar(x + width, category3, width, edgecolor='white', label='West and Central Africa')
 
 #set chart title
-ax.set_title('Refugee in Africa region | 2018-2021', loc='left', fontweight='bold', pad=45, fontsize=14, color='#000000')
+ax.set_title('Refugee in Africa region | 2018-2021', pad=70)
 
 #set subtitle
-plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top', fontsize=11, color='#333333')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=False, labelcolor = '#333333')
+plt.suptitle('Number of people in millions', x=0.02, y=0.88, ha='left', va='top')
 
 #set x-axis tick and label
 ax.set_xticks(x, labels)
 
 #set chart legend
-ax.legend(loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=1.5, borderpad=0, handletextpad=0.5)
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+ax.legend(loc=(0,1.05), ncol=2)
 
 # set formatted data label
-ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(rects1, labels=[f'{x*1e-6:,.1f}' for x in rects1.datavalues], padding=3)
+ax.bar_label(rects2, labels=[f'{x*1e-6:,.1f}' for x in rects2.datavalues], padding=3)
+ax.bar_label(rects3, labels=[f'{x*1e-6:,.1f}' for x in rects3.datavalues], padding=3)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -416,7 +369,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.2)
 
 #show chart
 plt.show()
