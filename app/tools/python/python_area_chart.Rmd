@@ -77,10 +77,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','area'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area.csv')
@@ -93,27 +90,13 @@ y = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax.stackplot(x, y, color = '#0072BC')
+ax.stackplot(x, y)
 
 #set chart title
-ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Number of refugees | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_ylabel('Number of people (millions)')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -132,7 +115,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -151,10 +133,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','area'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/area.csv')
@@ -167,27 +146,13 @@ y = df['Refugees']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax.stackplot(x, y, color = '#0072BC')
+ax.stackplot(x, y)
 
 #set chart title
-ax.set_title('Number of refugees | 1990-2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Number of refugees | 1990-2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_ylabel('Number of people (millions)')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -206,7 +171,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

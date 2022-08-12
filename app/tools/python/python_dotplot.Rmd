@@ -77,17 +77,14 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import matplotlib.pyplot as plt
 import pandas as pd
 from textwrap import wrap
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','dotplot'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/dot_plot.csv')
 df = df.pivot_table(index=['location','order'], columns='period', values='percent', sort=False)
 df = df.reset_index()
 
-#sort value in descending order
+#sort values in descending order
 ordered_df = df.sort_values(by='order', ascending=False)
 
 #wrap the long labels
@@ -96,29 +93,15 @@ wrapped_label = [ '\n'.join(wrap(l, 20)) for l in y_labels ]
 
 #plot the chart
 fig, ax = plt.subplots()
-plt.scatter(ordered_df['before_covid'], wrapped_label, color='#8EBEFF', label='before_covid')
-plt.scatter(ordered_df['first_months'], wrapped_label, color='#0072BC', label='first_months')
+plt.scatter(ordered_df['before_covid'], wrapped_label, label='before_covid')
+plt.scatter(ordered_df['first_months'], wrapped_label, label='first_months')
 plt.hlines(y=wrapped_label, xmin=ordered_df['before_covid'], xmax=ordered_df['first_months'], color='#666666')
 
 #set chart legend
-ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=0.7, borderpad=0, handletextpad=0.5)
+ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,1.05), ncol=2)
 
 #set chart title
-ax.set_title('COVID-19 impact on poverty rates of informal workers', loc='left', fontweight='bold', pad=25, fontsize=14, color='#000000')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_title('COVID-19 impact on poverty rates of informal workers', pad=50)
 
 # xticks and xticklabel format
 limit = plt.xlim(0, 1)
@@ -131,7 +114,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -150,10 +132,7 @@ plt.show()
 import matplotlib.pyplot as plt
 import pandas as pd
 from textwrap import wrap
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','dotplot'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/dot_plot.csv')
@@ -169,29 +148,15 @@ wrapped_label = [ '\n'.join(wrap(l, 20)) for l in y_labels ]
 
 #plot the chart
 fig, ax = plt.subplots()
-plt.scatter(ordered_df['before_covid'], wrapped_label, color='#8EBEFF', label='before_covid')
-plt.scatter(ordered_df['first_months'], wrapped_label, color='#0072BC', label='first_months')
+plt.scatter(ordered_df['before_covid'], wrapped_label, label='before_covid')
+plt.scatter(ordered_df['first_months'], wrapped_label, label='first_months')
 plt.hlines(y=wrapped_label, xmin=ordered_df['before_covid'], xmax=ordered_df['first_months'], color='#666666')
 
 #set chart legend
-ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,0.98), ncol=2, frameon=False, fontsize=10, labelcolor='#333333',handlelength=0.7, borderpad=0, handletextpad=0.5)
+ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,1.05), ncol=2)
 
 #set chart title
-ax.set_title('COVID-19 impact on poverty rates of informal workers', loc='left', fontweight='bold', pad=25, fontsize=14, color='#000000')
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_title('COVID-19 impact on poverty rates of informal workers', pad=50)
 
 # xticks and xticklabel format
 limit = plt.xlim(0, 1)
@@ -204,7 +169,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

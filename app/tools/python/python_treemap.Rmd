@@ -76,12 +76,9 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 ```{python python_code, echo=TRUE, eval=FALSE}
 # import libraries
 import matplotlib.pyplot as plt
-import squarify # pip install squarify
+import squarify
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','treemap'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv')
@@ -98,12 +95,11 @@ new_list = [f'{i:.1f}% \n' for i in list]
 
 #plot the chart
 fig, ax = plt.subplots()
-
 treemap = squarify.plot(sizes=sizes, label=new_list+label, color='#0072BC', ec='#ffffff', text_kwargs={"color":"#ffffff"})
 noax = plt.axis('off')
        
 #set chart title
-plt.title('UNHCR global workforce by region | 2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+plt.title('UNHCR global workforce by region | 2021')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -111,7 +107,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -128,12 +123,9 @@ plt.show()
 ```{python python_treemap, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A treemap showing UNHCR global workforce by region | 2021"}
 # import libraries
 import matplotlib.pyplot as plt
-import squarify # pip install squarify
+import squarify
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','treemap'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv')
@@ -150,12 +142,11 @@ new_list = [f'{i:.1f}% \n' for i in list]
 
 #plot the chart
 fig, ax = plt.subplots()
-
 treemap = squarify.plot(sizes=sizes, label=new_list+label, color='#0072BC', ec='#ffffff', text_kwargs={"color":"#ffffff"})
 noax = plt.axis('off')
        
 #set chart title
-plt.title('UNHCR global workforce by region | 2021', loc='left', fontweight='bold', pad=20, fontsize=14, color='#000000')
+plt.title('UNHCR global workforce by region | 2021')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -163,7 +154,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

@@ -77,10 +77,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','slope'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
@@ -98,28 +95,15 @@ for i in countries:
     # end label
     plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
     
-limits = plt.xlim(1990,2031)
 ticks = plt.xticks([2000, 2021])
+xl = plt.xlim(1990,2031)
+yl = plt.ylim(0, 7*1e6)
 
 #set chart title
-ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_ylabel('Number of people (millions)')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -138,7 +122,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -157,10 +140,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','slope'])
 
 #load and reshape the data
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope_2.csv')
@@ -178,28 +158,15 @@ for i in countries:
     # end label
     plt.text(temp.year.values[1]+0.4, temp.refugees_number.values[1], i, ha='left', va='center')
     
-limits = plt.xlim(1990,2031)
 ticks = plt.xticks([2000, 2021])
+xl = plt.xlim(1990,2031)
+yl = plt.ylim(0, 7*1e6)
 
 #set chart title
-ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021', loc='left', fontweight='bold', pad=15, fontsize=14, color='#000000')
+ax.set_title('Evolution of refugee population by country of origin |2000 vs 2021')
 
 #set y-axis label
-ax.set_ylabel('Number of people (millions)', color = '#666666', fontsize = 10).set_visible(True)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_ylabel('Number of people (millions)')
 
 #format x-axis tick labels
 def number_formatter(x, pos):
@@ -218,7 +185,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
