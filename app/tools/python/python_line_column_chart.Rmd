@@ -78,10 +78,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','linecolumn'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line_column.csv')
@@ -93,12 +90,13 @@ y_line = df['displaced_proportion']
 
 #plot the bar
 fig, ax1 = plt.subplots()
-bar_plot = ax1.bar(x, y_col, color='#0072BC', label = 'Displaced population')
+bar_plot=ax1.bar(x, y_col, label = 'Displaced population')
 #set y axis limits
 ylim1 = plt.ylim(0,100)
+
 #plot the line that share the same x-axis with bar
 ax2 = ax1.twinx()
-line_plot = ax2.plot(x, y_line, linestyle='-', linewidth=2.5, color='#EF4A60', label = 'Porportion displaced')
+line_plot=ax2.plot(x, y_line, color='#EF4A60', label = 'Porportion displaced')
 #set y axis limits
 ylim2 = plt.ylim(0,10)
 
@@ -106,35 +104,19 @@ ylim2 = plt.ylim(0,10)
 ax1.set_xticks(x)
 
 #set chart title
-ax1.set_title('Trend of global displacement | 2007 - 2016', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+ax1.set_title('Trend of global displacement | 2007 - 2016', pad=50)
 
 #set chart legend
-ax1.legend(loc=(0,1.05), ncol=3, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
-ax2.legend(loc=(0.3,1.05), ncol=3, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
+ax1.legend(loc=(0,1.05), ncol=1)
+ax2.legend(loc=(0.3,1.05), ncol=1)
 
 #set y-axis label
-ax1.set_ylabel('Displaced population (millions)', color = '#666666', fontsize = 10)
-ax2.set_ylabel('Proportion displaced (number displaced per 1,000)', color = '#666666', fontsize = 10)
+ax1.set_ylabel('Displaced population (millions)')
+ax2.set_ylabel('Proportion displaced (number displaced per 1,000)')
 
-#set tick parameters 
-ax1.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-ax2.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=False, labelcolor = '#333333')
-               
-#remove unnecessary spines 
-ax1.spines['top'].set_visible(False)
-ax1.spines['right'].set_visible(False)
-ax1.spines['left'].set_visible(False)
-ax2.spines['top'].set_visible(False)
-ax2.spines['right'].set_visible(False)
-ax2.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax1.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax1.set_axisbelow(True)
+#remove all ticks
+ax1.tick_params(bottom=False,left=False)
+ax2.tick_params(bottom=False, right=False)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -142,7 +124,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -161,10 +142,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','linecolumn'])
 
 #compute data array for plotting
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line_column.csv')
@@ -176,12 +154,13 @@ y_line = df['displaced_proportion']
 
 #plot the bar
 fig, ax1 = plt.subplots()
-bar_plot = ax1.bar(x, y_col, color='#0072BC', label = 'Displaced population')
+bar_plot=ax1.bar(x, y_col, label = 'Displaced population')
 #set y axis limits
 ylim1 = plt.ylim(0,100)
+
 #plot the line that share the same x-axis with bar
 ax2 = ax1.twinx()
-line_plot = ax2.plot(x, y_line, linestyle='-', linewidth=2.5, color='#EF4A60', label = 'Porportion displaced')
+line_plot=ax2.plot(x, y_line, color='#EF4A60', label = 'Porportion displaced')
 #set y axis limits
 ylim2 = plt.ylim(0,10)
 
@@ -189,35 +168,19 @@ ylim2 = plt.ylim(0,10)
 ax1.set_xticks(x)
 
 #set chart title
-ax1.set_title('Trend of global displacement | 2007 - 2016', loc='left', fontweight='bold', pad=40, fontsize=14, color='#000000')
+ax1.set_title('Trend of global displacement | 2007 - 2016', pad=50)
 
 #set chart legend
-ax1.legend(loc=(0,1.05), ncol=3, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
-ax2.legend(loc=(0.3,1.05), ncol=3, borderpad=0, frameon=False, fontsize=10, labelcolor='#333333', columnspacing=1.5, handletextpad=0.4)
+ax1.legend(loc=(0,1.05), ncol=1)
+ax2.legend(loc=(0.3,1.05), ncol=1)
 
 #set y-axis label
-ax1.set_ylabel('Displaced population (millions)', color = '#666666', fontsize = 10)
-ax2.set_ylabel('Proportion displaced (number displaced per 1,000)', color = '#666666', fontsize = 10)
+ax1.set_ylabel('Displaced population (millions)')
+ax2.set_ylabel('Proportion displaced (number displaced per 1,000)')
 
-#set tick parameters 
-ax1.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-ax2.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=False, labelcolor = '#333333')
-               
-#remove unnecessary spines 
-ax1.spines['top'].set_visible(False)
-ax1.spines['right'].set_visible(False)
-ax1.spines['left'].set_visible(False)
-ax2.spines['top'].set_visible(False)
-ax2.spines['right'].set_visible(False)
-ax2.spines['left'].set_visible(False)
-
-#show grid below the bars
-ax1.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax1.set_axisbelow(True)
+#remove all ticks
+ax1.tick_params(bottom=False,left=False)
+ax2.tick_params(bottom=False, right=False)
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -225,7 +188,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

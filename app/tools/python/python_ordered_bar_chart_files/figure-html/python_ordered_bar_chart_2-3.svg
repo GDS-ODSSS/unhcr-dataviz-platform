@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2022-06-21T18:39:51.337411</dc:date>
+    <dc:date>2022-08-10T15:29:40.291615</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -30,52 +30,13 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 72.61 369.92 
-L 471.855 369.92 
-L 471.855 77.39 
-L 72.61 77.39 
+    <path d="M 73.017188 369.928438 
+L 463.942508 369.928438 
+L 463.942508 73.954375 
+L 73.017188 73.954375 
+L 73.017188 369.928438 
 z
-" style="fill: #ffffff"/>
-   </g>
-   <g id="patch_3">
-    <path d="M 72.61 364.294423 
-L 109.2025 364.294423 
-L 109.2025 317.414615 
-L 72.61 317.414615 
-z
-" clip-path="url(#p3742bd83a4)" style="fill: #0072bc"/>
-   </g>
-   <g id="patch_4">
-    <path d="M 72.61 305.694663 
-L 127.0525 305.694663 
-L 127.0525 258.814856 
-L 72.61 258.814856 
-z
-" clip-path="url(#p3742bd83a4)" style="fill: #0072bc"/>
-   </g>
-   <g id="patch_5">
-    <path d="M 72.61 247.094904 
-L 187.445 247.094904 
-L 187.445 200.215096 
-L 72.61 200.215096 
-z
-" clip-path="url(#p3742bd83a4)" style="fill: #0072bc"/>
-   </g>
-   <g id="patch_6">
-    <path d="M 72.61 188.495144 
-L 194.2875 188.495144 
-L 194.2875 141.615337 
-L 72.61 141.615337 
-z
-" clip-path="url(#p3742bd83a4)" style="fill: #0072bc"/>
-   </g>
-   <g id="patch_7">
-    <path d="M 72.61 129.895385 
-L 435.56 129.895385 
-L 435.56 83.015577 
-L 72.61 83.015577 
-z
-" clip-path="url(#p3742bd83a4)" style="fill: #0072bc"/>
+" style="fill: none"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1"/>
@@ -90,7 +51,7 @@ z
     <g id="ytick_1">
      <g id="text_1">
       <!-- Nigeria -->
-      <g style="fill: #333333" transform="translate(33.481875 344.502175)scale(0.1 -0.1)">
+      <g style="fill: #333333" transform="translate(33.389063 344.168414)scale(0.1 -0.1)">
        <defs>
         <path id="Lato-Regular-4e" d="M 877 4586 
 Q 960 4586 1000 4565 
@@ -344,7 +305,7 @@ z
     <g id="ytick_2">
      <g id="text_2">
       <!-- Cameroon -->
-      <g style="fill: #333333" transform="translate(19.531875 285.937572)scale(0.1 -0.1)">
+      <g style="fill: #333333" transform="translate(19.439063 284.913895)scale(0.1 -0.1)">
        <defs>
         <path id="Lato-Regular-43" d="M 3789 947 
 Q 3840 947 3882 906 
@@ -492,7 +453,7 @@ z
     <g id="ytick_3">
      <g id="text_3">
       <!-- Syria -->
-      <g style="fill: #333333" transform="translate(43.530312 227.337813)scale(0.1 -0.1)">
+      <g style="fill: #333333" transform="translate(43.4375 225.624219)scale(0.1 -0.1)">
        <defs>
         <path id="Lato-Regular-53" d="M 2906 3869 
 Q 2877 3821 2845 3797 
@@ -580,7 +541,7 @@ z
     <g id="ytick_4">
      <g id="text_4">
       <!-- Burundi -->
-      <g style="fill: #333333" transform="translate(30.281875 168.738053)scale(0.1 -0.1)">
+      <g style="fill: #333333" transform="translate(30.189063 166.334543)scale(0.1 -0.1)">
        <defs>
         <path id="Lato-Regular-42" d="M 557 0 
 L 557 4586 
@@ -694,7 +655,7 @@ z
     <g id="ytick_5">
      <g id="text_5">
       <!-- South Sudan -->
-      <g style="fill: #333333" transform="translate(10.892812 110.138293)scale(0.1 -0.1)">
+      <g style="fill: #333333" transform="translate(10.8 107.044867)scale(0.1 -0.1)">
        <defs>
         <path id="Lato-Regular-74" d="M 1450 -51 
 Q 1066 -51 859 163 
@@ -764,14 +725,54 @@ z
      </g>
     </g>
    </g>
+   <g id="patch_3">
+    <path d="M 73.017188 364.236629 
+L 111.657347 364.236629 
+L 111.657347 316.804888 
+L 73.017188 316.804888 
+z
+" clip-path="url(#pf632345d8d)" style="fill: #0072bc"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 73.017188 304.946953 
+L 130.506205 304.946953 
+L 130.506205 257.515212 
+L 73.017188 257.515212 
+z
+" clip-path="url(#pf632345d8d)" style="fill: #0072bc"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 73.017188 245.657277 
+L 194.278176 245.657277 
+L 194.278176 198.225536 
+L 73.017188 198.225536 
+z
+" clip-path="url(#pf632345d8d)" style="fill: #0072bc"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 73.017188 186.367601 
+L 201.503571 186.367601 
+L 201.503571 138.93586 
+L 73.017188 138.93586 
+z
+" clip-path="url(#pf632345d8d)" style="fill: #0072bc"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 73.017188 127.077925 
+L 456.277305 127.077925 
+L 456.277305 79.646184 
+L 73.017188 79.646184 
+z
+" clip-path="url(#pf632345d8d)" style="fill: #0072bc"/>
+   </g>
    <g id="patch_8">
-    <path d="M 72.61 369.92 
-L 72.61 77.39 
+    <path d="M 73.017188 369.928438 
+L 73.017188 73.954375 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_6">
     <!-- 12,300 -->
-    <g style="fill: #333333" transform="translate(112.2025 343.679519)scale(0.1 -0.1)">
+    <g style="fill: #333333" transform="translate(111.657347 343.345758)scale(0.1 -0.1)">
      <defs>
       <path id="Lato-Regular-31" d="M 918 435 
 L 1904 435 
@@ -972,7 +973,7 @@ z
    </g>
    <g id="text_7">
     <!-- 18,300 -->
-    <g style="fill: #333333" transform="translate(130.0525 285.07976)scale(0.1 -0.1)">
+    <g style="fill: #333333" transform="translate(130.506205 284.056082)scale(0.1 -0.1)">
      <defs>
       <path id="Lato-Regular-38" d="M 1853 -51 
 Q 1510 -51 1225 40 
@@ -1048,7 +1049,7 @@ z
    </g>
    <g id="text_8">
     <!-- 38,600 -->
-    <g style="fill: #333333" transform="translate(190.445 226.48)scale(0.1 -0.1)">
+    <g style="fill: #333333" transform="translate(194.278176 224.766406)scale(0.1 -0.1)">
      <defs>
       <path id="Lato-Regular-36" d="M 2080 2810 
 Q 2355 2810 2601 2718 
@@ -1103,7 +1104,7 @@ z
    </g>
    <g id="text_9">
     <!-- 40,900 -->
-    <g style="fill: #333333" transform="translate(197.2875 167.88024)scale(0.1 -0.1)">
+    <g style="fill: #333333" transform="translate(201.503571 165.47673)scale(0.1 -0.1)">
      <defs>
       <path id="Lato-Regular-34" d="M 2890 1654 
 L 3584 1654 
@@ -1187,7 +1188,7 @@ z
    </g>
    <g id="text_10">
     <!-- 122,000 -->
-    <g style="fill: #333333" transform="translate(438.56 109.280481)scale(0.1 -0.1)">
+    <g style="fill: #333333" transform="translate(456.277305 106.187054)scale(0.1 -0.1)">
      <use xlink:href="#Lato-Regular-31"/>
      <use xlink:href="#Lato-Regular-32" x="58"/>
      <use xlink:href="#Lato-Regular-32" x="116"/>
@@ -1199,7 +1200,7 @@ z
    </g>
    <g id="text_11">
     <!-- Source: UNHCR Refugee Data Finder -->
-    <g style="fill: #666666" transform="translate(72.61 391.549062)scale(0.09 -0.09)">
+    <g style="fill: #666666" transform="translate(73.017188 391.5575)scale(0.09 -0.09)">
      <defs>
       <path id="Lato-Regular-63" d="M 2678 2666 
 Q 2653 2630 2627 2611 
@@ -1455,7 +1456,7 @@ z
    </g>
    <g id="text_12">
     <!-- © UNHCR, The UN Refugee Agency -->
-    <g style="fill: #666666" transform="translate(72.61 401.549062)scale(0.09 -0.09)">
+    <g style="fill: #666666" transform="translate(73.017188 401.5575)scale(0.09 -0.09)">
      <defs>
       <path id="Lato-Regular-a9" d="M 3296 1482 
 Q 3322 1498 3339 1509 
@@ -1613,7 +1614,7 @@ z
    </g>
    <g id="text_13">
     <!-- Refugee returns by country of origin (top 5) | 2020 -->
-    <g transform="translate(72.61 42.39)scale(0.14 -0.14)">
+    <g transform="translate(73.017188 43.954375)scale(0.14 -0.14)">
      <defs>
       <path id="Lato-Bold-52" d="M 1357 1808 
 L 1357 0 
@@ -2369,7 +2370,7 @@ z
   </g>
   <g id="text_14">
    <!-- Number of people (thousands) -->
-   <g style="fill: #333333" transform="translate(75.6 57.434687)scale(0.1 -0.1)">
+   <g style="fill: #333333" transform="translate(73.08 58.985625)scale(0.12 -0.12)">
     <defs>
      <path id="Lato-Regular-62" d="M 486 0 
 L 486 4714 
@@ -2579,8 +2580,8 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p3742bd83a4">
-   <rect x="72.61" y="77.39" width="399.245" height="292.53"/>
+  <clipPath id="pf632345d8d">
+   <rect x="73.017188" y="73.954375" width="390.92532" height="295.974063"/>
   </clipPath>
  </defs>
 </svg>

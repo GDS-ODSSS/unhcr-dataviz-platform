@@ -74,13 +74,9 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <div class="col-lg-6">
 
 ```{python python_code, echo=TRUE, eval=FALSE}
-# import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','population_pyramid'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
@@ -92,29 +88,18 @@ y = df['ages']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax1 = ax.barh(y, x_male, color='#0072BC')
-ax2 = ax.barh(y, x_female, color='#18375F')
+ax1 = ax.barh(y, x_male)
+ax2 = ax.barh(y, x_female)
 
-ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues])
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues])
 
 #set chart title
-ax.set_title('Demographic of forcibly displaced people | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Demographic of forcibly displaced people | 2020')
 
 #set axis label
-ax.set_ylabel('Age groups', color = '#666666', fontsize=10)
-ax.set_xlabel('Male / Female', color = '#666666', fontsize = 10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=False, pad=20,
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
+ax.set_ylabel('Age groups')
+ax.set_xlabel('Male / Female')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -122,7 +107,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
@@ -140,10 +124,7 @@ plt.show()
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','population_pyramid'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
@@ -155,29 +136,18 @@ y = df['ages']
 
 #plot the chart
 fig, ax = plt.subplots()
-ax1 = ax.barh(y, x_male, color='#0072BC')
-ax2 = ax.barh(y, x_female, color='#18375F')
+ax1 = ax.barh(y, x_male)
+ax2 = ax.barh(y, x_female)
 
-ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues], padding=3,color='#333333', fontsize=10)
-ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues], padding=3,color='#333333', fontsize=10)
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues])
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues])
 
 #set chart title
-ax.set_title('Demographic of forcibly displaced people | 2020', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Demographic of forcibly displaced people | 2020')
 
 #set axis label
-ax.set_ylabel('Age groups', color = '#666666', fontsize=10)
-ax.set_xlabel('Male / Female', color = '#666666', fontsize = 10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=False, pad=20,
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
+ax.set_ylabel('Age groups')
+ax.set_xlabel('Male / Female')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -185,7 +155,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()

@@ -78,10 +78,8 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato, bold'
+import matplotlib.ticker as mticker
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv')
@@ -102,37 +100,30 @@ b_y4 = np.array(y1)+np.array(y2)+np.array(y3)
 
 #plot the chart
 fig, ax = plt.subplots()
-rect1=ax.bar(x, y1, color='#18375F', label='Earmarked')
-rect2=ax.bar(x, y2, color='#0072BC', bottom=y1, label='Softly earmarked')
-rect3=ax.bar(x, y3, color='#8EBEFF', bottom=b_y3,label='Tightly earmarked')
-rect4=ax.bar(x, y4, color='#00B398', bottom=b_y4,label='Unearmarked')
+rect1=ax.bar(x, y1, label='Earmarked')
+rect2=ax.bar(x, y2, bottom=y1, label='Softly earmarked')
+rect3=ax.bar(x, y3, bottom=b_y3,label='Tightly earmarked')
+rect4=ax.bar(x, y4, bottom=b_y4,label='Unearmarked')
 
 # after plotting the data, format the labels
-current_values = plt.gca().get_yticks()
-plt.gca().set_yticklabels(['{:,.0%}'.format(x) for x in current_values])
+ticks_loc = ax.get_yticks()
+tickloc=ax.yaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
+ticklab=ax.set_yticklabels(['{:,.0%}'.format(x) for x in ticks_loc])
 
 #set chart title
-ax.set_title('Levels of earmarking | 2012-2020', loc='left', fontweight='bold', pad=20, fontsize=14)
+ax.set_title('Levels of earmarking | 2012-2020', pad=50)
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(labelleft=True)
 
 #set x-axis tick and label
 ax.set_xticks(x)
 
 #set chart legend
-ax.legend(loc=(0,0.95), ncol=4, frameon=False, handletextpad=0.5, columnspacing=1.5, fontsize=10, labelcolor='#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+ax.legend(loc=(0,1.05), ncol=4)
 
 #show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.grid(axis='y')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -140,7 +131,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()
@@ -159,10 +149,8 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato, bold'
+import matplotlib.ticker as mticker
+plt.style.use(['unhcrpyplotstyle','column'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv')
@@ -183,37 +171,30 @@ b_y4 = np.array(y1)+np.array(y2)+np.array(y3)
 
 #plot the chart
 fig, ax = plt.subplots()
-rect1=ax.bar(x, y1, color='#18375F', label='Earmarked')
-rect2=ax.bar(x, y2, color='#0072BC', bottom=y1, label='Softly earmarked')
-rect3=ax.bar(x, y3, color='#8EBEFF', bottom=b_y3,label='Tightly earmarked')
-rect4=ax.bar(x, y4, color='#00B398', bottom=b_y4,label='Unearmarked')
+rect1=ax.bar(x, y1, label='Earmarked')
+rect2=ax.bar(x, y2, bottom=y1, label='Softly earmarked')
+rect3=ax.bar(x, y3, bottom=b_y3,label='Tightly earmarked')
+rect4=ax.bar(x, y4, bottom=b_y4,label='Unearmarked')
 
 # after plotting the data, format the labels
-current_values = plt.gca().get_yticks()
-plt.gca().set_yticklabels(['{:,.0%}'.format(x) for x in current_values])
+ticks_loc = ax.get_yticks()
+tickloc=ax.yaxis.set_major_locator(mticker.FixedLocator(ticks_loc))
+ticklab=ax.set_yticklabels(['{:,.0%}'.format(x) for x in ticks_loc])
 
 #set chart title
-ax.set_title('Levels of earmarking | 2012-2020', loc='left', fontweight='bold', pad=20, fontsize=14)
+ax.set_title('Levels of earmarking | 2012-2020', pad=50)
 
 #set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
+ax.tick_params(labelleft=True)
 
 #set x-axis tick and label
 ax.set_xticks(x)
 
 #set chart legend
-ax.legend(loc=(0,0.95), ncol=4, frameon=False, handletextpad=0.5, columnspacing=1.5, fontsize=10, labelcolor='#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
+ax.legend(loc=(0,1.05), ncol=4)
 
 #show grid below the bars
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.grid(axis='y')
 
 #set chart source and copyright
 plt.annotate('Source: UNHCR', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
@@ -221,7 +202,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.1)
 
 #show chart
 plt.show()

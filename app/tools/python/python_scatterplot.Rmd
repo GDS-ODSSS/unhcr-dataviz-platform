@@ -77,10 +77,7 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','scatterplot'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv')
@@ -99,29 +96,11 @@ for i in range(len(x)):
     plt.annotate(label[i], (x[i], y[i]), textcoords="offset points", xytext=(0,5), ha='left')
 
 #set chart title
-ax.set_title('Comparison of refugee and IDP population by region | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Comparison of refugee and IDP population by region | 2021')
 
 #set axis label
-ax.set_xlabel('Number of refugees (millions)', color = '#666666', fontsize=10)
-ax.set_ylabel('Number of IDPs (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_xlabel('Number of refugees (millions)')
+ax.set_ylabel('Number of IDPs (millions)')
 
 #format axis tick labels
 def number_formatter(x, pos):
@@ -141,7 +120,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -50), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
@@ -159,10 +137,7 @@ plt.show()
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','scatterplot'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv')
@@ -181,29 +156,11 @@ for i in range(len(x)):
     plt.annotate(label[i], (x[i], y[i]), textcoords="offset points", xytext=(0,5), ha='left')
 
 #set chart title
-ax.set_title('Comparison of refugee and IDP population by region | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Comparison of refugee and IDP population by region | 2021')
 
 #set axis label
-ax.set_xlabel('Number of refugees (millions)', color = '#666666', fontsize=10)
-ax.set_ylabel('Number of IDPs (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_xlabel('Number of refugees (millions)')
+ax.set_ylabel('Number of IDPs (millions)')
 
 #format axis tick labels
 def number_formatter(x, pos):
@@ -223,7 +180,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -50), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
@@ -254,10 +210,7 @@ plt.show()
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','scatterplot'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv')
@@ -279,28 +232,11 @@ for i in range(len(x)):
     plt.annotate(label[i], (x[i], y[i]), textcoords="offset points", xytext=(0,5), ha='left')
 
 #set chart title
-ax.set_title('Comparison of refugee and IDP population by region | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Comparison of refugee and IDP population by region | 2021')
 
 #set axis label
-ax.set_xlabel('Number of refugees (millions)', color = '#666666', fontsize=10)
-ax.set_ylabel('Number of IDPs (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_xlabel('Number of refugees (millions)')
+ax.set_ylabel('Number of IDPs (millions)')
 
 #format axis tick labels
 def number_formatter(x, pos):
@@ -320,7 +256,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -50), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
@@ -338,10 +273,7 @@ plt.show()
 # import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
-#load custom font
-from matplotlib import rcParams
-rcParams['font.family'] = 'lato'
+plt.style.use(['unhcrpyplotstyle','scatterplot'])
 
 #load data set
 df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot.csv')
@@ -363,28 +295,11 @@ for i in range(len(x)):
     plt.annotate(label[i], (x[i], y[i]), textcoords="offset points", xytext=(0,5), ha='left')
 
 #set chart title
-ax.set_title('Comparison of refugee and IDP population by region | 2021', loc='left', fontweight='bold', pad=40, fontsize=14)
+ax.set_title('Comparison of refugee and IDP population by region | 2021')
 
 #set axis label
-ax.set_xlabel('Number of refugees (millions)', color = '#666666', fontsize=10)
-ax.set_ylabel('Number of IDPs (millions)', color = '#666666', fontsize=10)
-
-#set tick parameters 
-ax.tick_params(axis='both', which='both', 
-               labelsize=10, bottom=False, top=False, labelbottom=True, 
-               left=False, right=False, labelleft=True, labelcolor = '#333333')
-
-#remove unnecessary spines 
-ax.spines['top'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-
-#show grid below the bars
-ax.grid(axis='x', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
-ax.grid(axis='y', lw=.5, c='k', alpha=.3)
-ax.set_axisbelow(True)
+ax.set_xlabel('Number of refugees (millions)')
+ax.set_ylabel('Number of IDPs (millions)')
 
 #format axis tick labels
 def number_formatter(x, pos):
@@ -404,7 +319,6 @@ plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -50), xycoords='axes f
 
 #adjust chart margin and layout
 fig.tight_layout()
-plt.margins(x=0.02, y=0.02)
 
 #show chart
 plt.show()
