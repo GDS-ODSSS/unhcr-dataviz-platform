@@ -119,13 +119,15 @@ ggplot(df, aes(x = refugee_number, y = idp_number)) +
 <div class="col-lg-6">
 
 
-```{r r_bubble_map, echo=FALSE, out.width="100%", fig.height=6.5}
+```{r r_bubble_map, echo=FALSE, error=FALSE, results='hide', out.width="100%", fig.height=7.5}
 # Loading data
 df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv")
 poly <- st_read("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json")
 line <- st_read("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json")
+
+# Plot
 ggplot() +
-  geom_sf(data = poly, fill = unhcr_pal(n = 5, "pal_grey")[1], color = "transparent") +
+  geom_sf(data = poly, fill = unhcr_pal(n = 5, "pal_grey")[2], color = "transparent") +
   geom_sf(data = line, aes(linetype = type)) +
   scale_linetype_manual(values=c(2, 4, 3, 1)) +
   labs(title = "Number of refugees by country of origin | 2021",
