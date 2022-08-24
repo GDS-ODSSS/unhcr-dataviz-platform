@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Bubble map with R</title>
+<title>UNHCR Dataviz Platform - Bubble map with R</title>
 
-<script src="r_bubble_map_files/header-attrs-2.14/header-attrs.js"></script>
+<script src="r_bubble_map_files/header-attrs-2.15/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for geospatial purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Geospatial,Choropleth map,Bubble map,Flow map,Icon map,Dot density map,Pie chart map">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -111,13 +126,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -138,6 +160,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -173,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Bubble map with R</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -249,22 +276,6 @@ map</a></p>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<pre><code>#&gt; Reading layer `world_polygons_simplified&#39; from data source 
-#&gt;   `https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json&#39; 
-#&gt;   using driver `TopoJSON&#39;
-#&gt; Simple feature collection with 285 features and 12 fields
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -180 ymin: -55.49141 xmax: 180 ymax: 83.61776
-#&gt; CRS:           NA
-#&gt; Reading layer `world_lines_simplified&#39; from data source 
-#&gt;   `https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json&#39; 
-#&gt;   using driver `TopoJSON&#39;
-#&gt; Simple feature collection with 372 features and 2 fields
-#&gt; Geometry type: LINESTRING
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -141 ymin: -54.89695 xmax: 141.0194 ymax: 70.09262
-#&gt; CRS:           NA</code></pre>
 <p><img src="../../assets/img/tools/r/r_bubble_map-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
@@ -276,72 +287,72 @@ map</a></p>
 </div>
 
 <section class="mb-5 container">
-    <hr>
-    <h3 class="mt-5 mb-3">Related chart with R</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-        <!-- Geospatial -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+  <hr>
+  <h3 class="mt-5 mb-3">Related chart with R</h3>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+    <!-- Geospatial -->
+    <!-- <div class="col chart-item">
           <a href="r_choropleth_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="Choropleth map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Choropleth map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <div class="col item-filter filter-geospatial chart-item">
-          <a href="r_bubble_map.html">
-            <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
-              <div class="chart-info d-flex align-items-end p-3">
-                <span class="chart-name">Bubble map</span>
-              </div>
-            </div>
-          </a>
+    <div class="col chart-item">
+      <a href="r_bubble_map.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="Bubble map thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Bubble map</span>
+          </div>
         </div>
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+      </a>
+    </div>
+    <!-- <div class="col chart-item">
           <a href="r_flow_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="Flow map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Flow map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_icon_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="Icon map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Icon map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_dot_density_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="Dot density map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Dot density map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_pie_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="Pie map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Pie chart map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- End Geospatial -->
-    </div>
+    <!-- End Geospatial -->
+  </div>
 </section>
 <footer class="footer mt-auto bg-dark py-3">
     <div class="container">
