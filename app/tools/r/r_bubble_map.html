@@ -10,14 +10,29 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="IPDA/GDS" />
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz - Bubble map with R</title>
+<title>UNHCR Dataviz Platform - Bubble map with R</title>
 
-<script src="r_bubble_map_files/header-attrs-2.14/header-attrs.js"></script>
+<script src="r_bubble_map_files/header-attrs-2.15/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for geospatial purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Geospatial,Choropleth map,Bubble map,Flow map,Icon map,Dot density map,Pie chart map">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
 
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -111,13 +126,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -138,6 +160,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container p-2">
@@ -173,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">Bubble map with R</h1>
-<h4 class="author">IPDA/GDS</h4>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
 
 
 
@@ -225,46 +252,61 @@ map</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/bubble.csv&quot;</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> refugee_number, <span class="at">y =</span> idp_number)) <span class="sc">+</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_number), <span class="at">color =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">16</span>), <span class="at">name =</span> <span class="st">&quot;Total population&quot;</span>, <span class="at">labels =</span> <span class="fu">label_number_si</span>(),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">8e6</span>, <span class="fl">10e6</span>, <span class="fl">12e6</span>)) <span class="sc">+</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> region), <span class="at">size =</span> <span class="dv">8</span><span class="sc">/</span>.pt) <span class="sc">+</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Comparison of refugee and IDP population by region | 2021&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of IDPs&quot;</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Number of refugees&quot;</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>()) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number_si</span>(),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;XY&quot;</span>, <span class="at">axis =</span> <span class="cn">FALSE</span>, <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span>, <span class="at">legend_title =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Data URL</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df_url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>poly_url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>line_url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and transform data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(df_url) <span class="sc">|&gt;</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>poly <span class="ot">&lt;-</span> <span class="fu">st_read</span>(poly_url) <span class="sc">|&gt;</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>line <span class="ot">&lt;-</span> <span class="fu">st_read</span>(line_url) <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">as_factor</span>(type) <span class="sc">|&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fct_relevel</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dashed-dot&quot;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> poly,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="st">&quot;pal_grey&quot;</span>)[<span class="dv">2</span>],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;transparent&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> line,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">linetype =</span> type),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> .<span class="dv">25</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> df,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">size =</span> ref),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="st">&quot;pal_blue&quot;</span>)[<span class="dv">5</span>],</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">12</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>                    <span class="at">scale_cut =</span> <span class="fu">cut_short_scale</span>()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>                  ),</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">1e5</span>, <span class="fl">1e6</span>, <span class="fl">5e6</span>)) <span class="sc">+</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Global Refugee displacement by country of origin | 2021&quot;</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.</span><span class="sc">\n</span><span class="st">Source: UNHCR Refugee Data Finder</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">&#39;ESRI:54030&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr_map</span>()</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<pre><code>#&gt; Reading layer `world_polygons_simplified&#39; from data source 
-#&gt;   `https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json&#39; 
-#&gt;   using driver `TopoJSON&#39;
-#&gt; Simple feature collection with 285 features and 12 fields
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -180 ymin: -55.49141 xmax: 180 ymax: 83.61776
-#&gt; CRS:           NA
-#&gt; Reading layer `world_lines_simplified&#39; from data source 
-#&gt;   `https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json&#39; 
-#&gt;   using driver `TopoJSON&#39;
-#&gt; Simple feature collection with 372 features and 2 fields
-#&gt; Geometry type: LINESTRING
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -141 ymin: -54.89695 xmax: 141.0194 ymax: 70.09262
-#&gt; CRS:           NA</code></pre>
 <p><img src="../../assets/img/tools/r/r_bubble_map-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
@@ -276,72 +318,72 @@ map</a></p>
 </div>
 
 <section class="mb-5 container">
-    <hr>
-    <h3 class="mt-5 mb-3">Related chart with R</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
-        <!-- Geospatial -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+  <hr>
+  <h3 class="mt-5 mb-3">Related chart with R</h3>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+    <!-- Geospatial -->
+    <!-- <div class="col chart-item">
           <a href="r_choropleth_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="Choropleth map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Choropleth map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <div class="col item-filter filter-geospatial chart-item">
-          <a href="r_bubble_map.html">
-            <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="">
-              <div class="chart-info d-flex align-items-end p-3">
-                <span class="chart-name">Bubble map</span>
-              </div>
-            </div>
-          </a>
+    <div class="col chart-item">
+      <a href="r_bubble_map.html">
+        <div class="chart-img d-inline-flex justify-content-center">
+          <img src="../../assets/img/geospatial/bubble_map_icon.svg" class="img-fluid" alt="Bubble map thumbnail">
+          <div class="chart-info d-flex align-items-end p-3">
+            <span class="chart-name">Bubble map</span>
+          </div>
         </div>
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+      </a>
+    </div>
+    <!-- <div class="col chart-item">
           <a href="r_flow_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/flow_map_icon.svg" class="img-fluid" alt="Flow map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Flow map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_icon_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/icon_map_icon.svg" class="img-fluid" alt="Icon map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Icon map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_dot_density_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/dot_density_map_icon.svg" class="img-fluid" alt="Dot density map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Dot density map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- <div class="col item-filter filter-geospatial chart-item">
+    <!-- <div class="col chart-item">
           <a href="r_pie_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
-              <img src="../../assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="">
+              <img src="../../assets/img/geospatial/pie_map_icon.svg" class="img-fluid" alt="Pie map thumbnail">
               <div class="chart-info d-flex align-items-end p-3">
                 <span class="chart-name">Pie chart map</span>
               </div>
             </div>
           </a>
         </div> -->
-        <!-- End Geospatial -->
-    </div>
+    <!-- End Geospatial -->
+  </div>
 </section>
 <footer class="footer mt-auto bg-dark py-3">
     <div class="container">
