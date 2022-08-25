@@ -1,5 +1,5 @@
 ---
-title: "Bubble map with R"
+title: "Choropleth map with R"
 title-prefix: "UNHCR Dataviz Platform"
 author:
   - "Cedric Vidonne"
@@ -20,9 +20,9 @@ output:
         - "../rmd_includes/footer_script.html"
 params:
   tool: R
-  chart_type: Bubble map
+  chart_type: Choropleth map
   url_cat: geospatial
-  url_chart: bubble-map
+  url_chart: choropleth-map
 ---
 
 ```{r setup, include=FALSE}
@@ -67,7 +67,7 @@ library(sf)
 <div class="col-lg-8">
 
 <!-- Only text to change below, the rest comes from the YAML --> 
-As a variation of a bubble chart, bubble maps display bubbles over geographical regions rather than the cartesian plane. The size or area of the bubble indicates the value of the particular variable, with the position on the map indicating location. Bubble maps are useful for comparing proportions against geographic regions without the issues caused by the size of different areas, as you would have in choropleth maps.
+A choropleth map is a type of thematic map in which areas are shaded or patterned according to a data variable. The variable is categorized into intervals, with each interval represented by a colour, and the map filled accordingly.
 
 More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
 
@@ -81,14 +81,14 @@ More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_c
 <!-- Beginning of section, should be preceded by hr (----) --> 
 <section class="my-5">
 
-### Bubble map
+### Choropleth map
 
 <div class="row">
 
 <!-- First column for large screen --> 
 <div class="col-lg-6">
 
-```{r bubble_map_code, echo=TRUE, eval=FALSE}
+```{r choropleth_map_code, echo=TRUE, eval=FALSE}
 # Loading required packages
 library(unhcrthemes)
 library(tidyverse)
@@ -152,9 +152,9 @@ ggplot() +
 <div class="col-lg-6">
 
 
-```{r r_bubble_map, echo=FALSE, error=FALSE, results='hide', out.width="100%", fig.height=5}
+```{r r_choropleth_map, echo=FALSE, error=FALSE, results='hide', out.width="100%", fig.height=5}
 # Data URL
-df_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/bubble_map.csv"
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/choropleth_map.csv")
 poly_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json"
 line_url <- "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json"
 

@@ -14,9 +14,9 @@
 <meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz Platform - Bubble map with R</title>
+<title>UNHCR Dataviz Platform - Choropleth map with R</title>
 
-<script src="r_bubble_map_files/header-attrs-2.15/header-attrs.js"></script>
+<script src="r_choropleth_map_files/header-attrs-2.15/header-attrs.js"></script>
 <meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for geospatial purpose.">
 <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Geospatial,Choropleth map,Bubble map,Flow map,Icon map,Dot density map,Pie chart map">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Bubble map with R</h1>
+<h1 class="title toc-ignore">Choropleth map with R</h1>
 <h4 class="author">Cedric Vidonne</h4>
 <h4 class="author">Lei Chen</h4>
 
@@ -218,25 +218,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../r/">R</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Bubble map with R
+Choropleth map with R
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="bubble-map-with-r" class="section level2 my-5 text-center">
-<h2>Bubble map with R</h2>
+<div id="choropleth-map-with-r" class="section level2 my-5 text-center">
+<h2>Choropleth map with R</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>As a variation of a bubble chart, bubble maps display bubbles over
-geographical regions rather than the cartesian plane. The size or area
-of the bubble indicates the value of the particular variable, with the
-position on the map indicating location. Bubble maps are useful for
-comparing proportions against geographic regions without the issues
-caused by the size of different areas, as you would have in choropleth
-maps.</p>
+<p>A choropleth map is a type of thematic map in which areas are shaded
+or patterned according to a data variable. The variable is categorized
+into intervals, with each interval represented by a colour, and the map
+filled accordingly.</p>
 <p>More about:
-<a href="../../chart_gallery/geospatial.html#bubble-map">Bubble
+<a href="../../chart_gallery/geospatial.html#choropleth-map">Choropleth
 map</a></p>
 </div>
 </div>
@@ -244,8 +241,8 @@ map</a></p>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="bubble-map" class="section level3">
-<h3>Bubble map</h3>
+<div id="choropleth-map" class="section level3">
+<h3>Choropleth map</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
@@ -307,7 +304,7 @@ map</a></p>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_bubble_map-1.svg" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_choropleth_map-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -322,7 +319,7 @@ map</a></p>
   <h3 class="mt-5 mb-3">Related chart with R</h3>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
     <!-- Geospatial -->
-    <!-- <div class="col chart-item">
+    <div class="col chart-item">
           <a href="r_choropleth_map.html">
             <div class="chart-img d-inline-flex justify-content-center">
               <img src="../../assets/img/geospatial/choropleth_map_icon.svg" class="img-fluid" alt="Choropleth map thumbnail">
@@ -331,7 +328,7 @@ map</a></p>
               </div>
             </div>
           </a>
-        </div> -->
+        </div>
     <div class="col chart-item">
       <a href="r_bubble_map.html">
         <div class="chart-img d-inline-flex justify-content-center">
