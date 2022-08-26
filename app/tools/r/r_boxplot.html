@@ -14,9 +14,9 @@
 <meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz Platform - Histogram with R</title>
+<title>UNHCR Dataviz Platform - Boxplot with R</title>
 
-<script src="r_histogram_files/header-attrs-2.16/header-attrs.js"></script>
+<script src="r_boxplot_files/header-attrs-2.16/header-attrs.js"></script>
 <meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for distribution purpose.">
 <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Distribution,Histogram,Population pyramid,Boxplot">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">Histogram with R</h1>
+<h1 class="title toc-ignore">Boxplot with R</h1>
 <h4 class="author">Cedric Vidonne</h4>
 <h4 class="author">Lei Chen</h4>
 
@@ -218,64 +218,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../r/">R</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-Histogram with R
+Boxplot with R
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="histogram-with-r" class="section level2 my-5 text-center">
-<h2>Histogram with R</h2>
+<div id="boxplot-with-r" class="section level2 my-5 text-center">
+<h2>Boxplot with R</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>A histogram displays the distribution of data over a continuous
-interval or specific time period. The height of each bar in a histogram
-indicates the frequency of data points within the interval/bin.</p>
+<p>The boxplot uses boxes and lines to show the distributions of one or
+more groups of numeric data based on a 5-point summary of data points:
+the upperextreme (“maximum”), upper quartile (Q3), median, lower
+quartile (Q1), and lower extreme (minimum) values.</p>
 <p>More about:
-<a href="../../chart_gallery/distribution.html#histogram">Histogram</a></p>
+<a href="../../chart_gallery/distribution.html#boxplot">Boxplot</a></p>
 </div>
 </div>
 </div>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="histogram" class="section level3">
-<h3>Histogram</h3>
+<div id="boxplot" class="section level3">
+<h3>Boxplot</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/histogram.csv&quot;</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  df,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> poc_age)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Age distribution | 2020&quot;</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: Data source here</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_title =</span> <span class="st">&quot;xy&quot;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/boxplot.csv&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_blue&quot;</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_grey&quot;</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">width =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Refugees age distribution by country of asylum | 2020&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: Data source here</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Age&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>)</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_histogram-1.svg" alt="A histogram showing age distribution | 2020" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_boxplot-1.svg" alt="A boxplot showing age distribution | 2020" width="100%" /></p>
+</div>
+<!-- End Second column --->
+</div>
+</section>
+<!-- End of section --->
+<hr />
+<!-- Beginning of section, should be preceded by hr (----) -->
+<section class="my-5">
+</div>
+<div id="grouped-boxplot" class="section level3">
+<h3>Grouped boxplot</h3>
+<div class="row">
+<!-- First column for large screen -->
+<div class="col-lg-6">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/boxplot.csv&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> age, <span class="at">fill =</span> gender)) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">unhcr_pal</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="st">&quot;pal_grey&quot;</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">width =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Refugees age distribution and gender</span><span class="sc">\n</span><span class="st">by country of asylum | 2020&quot;</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: Data source here</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Age&quot;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">nmax =</span> <span class="dv">3</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>)</span></code></pre></div>
+</div>
+<!-- End First column --->
+<!-- Second column for large screen -->
+<div class="col-lg-6">
+<p><img src="../../assets/img/tools/r/r_boxplot_group-1.svg" alt="A boxplot showing age distribution by gender | 2020" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
