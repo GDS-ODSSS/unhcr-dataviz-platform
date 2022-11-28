@@ -1,0 +1,265 @@
+---
+title: "Grouped bar chart with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_comparison_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_comparison.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Grouped bar chart
+  url_cat: comparison
+  url_chart: bar-grouped
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+Grouped bar charts are a type of colour-coded bar chart that is used to represent and compare different categories of two or more groups.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Grouped bar chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r bar_grouped_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv")
+
+# Plot
+ggplot(df) +
+  geom_col(aes(
+    x = asylum_application,
+    y = fct_rev(factor(region)),
+    fill = as.character(year)
+  ),
+  position = position_dodge(0.7),
+  width = 0.6
+  ) +
+  scale_fill_unhcr_d(palette = "pal_unhcr") +
+  labs(
+    title = "Individual asylum applications registered by region | 2019-2020",
+    x = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(
+    expand = expansion(c(0, 0.1)),
+    labels = label_number_si()
+  ) +
+  scale_y_discrete(labels = scales::label_wrap(17)) +
+  theme_unhcr(
+    grid = "X",
+    axis = "y",
+    axis_title = "x"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_bar_grouped_chart, echo=FALSE, out.width="100%", fig.height=6, fig.alt="A grouped bar chart showing individual asylum applications registered by region | 2019-2020"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv")
+
+ggplot(df) +
+  geom_col(aes(x = asylum_application, y = fct_rev(factor(region)), fill = as.character(year)),
+    position = position_dodge(0.7),
+    width = 0.6
+  ) +
+  scale_fill_unhcr_d(palette = "pal_unhcr") +
+  labs(
+    title = "Individual asylum applications registered by region | 2019-2020",
+    x = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(
+    expand = expansion(c(0, 0.1)),
+    labels = label_number_si()
+  ) +
+  scale_y_discrete(labels = scales::label_wrap(17)) +
+  theme_unhcr(font_size = 13, grid = "X", axis = "y", axis_title = "x")
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Grouped bar chart with labels
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r bar_grouped_label_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv")
+
+# Plot
+ggplot(df) +
+  geom_col(aes(
+    x = asylum_application,
+    y = fct_rev(factor(region)),
+    fill = as.character(year)
+  ),
+  position = position_dodge(width = 0.7),
+  width = 0.6
+  ) +
+  geom_text(aes(
+    x = asylum_application,
+    y = fct_rev(factor(region)),
+    group = as.character(year),
+    label = round(asylum_application / 1e3)
+  ),
+  position = position_dodge(width = 0.7),
+  hjust = -0.25, size = 8 / .pt
+  ) +
+  scale_fill_unhcr_d(palette = "pal_unhcr") +
+  labs(
+    title = "Individual asylum applications registered by region | 2019-2020",
+    subtitle = "Number of people (thousand)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(expand = expansion(c(0, 0.1))) +
+  scale_y_discrete(labels = scales::label_wrap(17)) +
+  theme_unhcr(
+    grid = FALSE,
+    axis = "y",
+    axis_title = FALSE,
+    axis_text = "y"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_bar_grouped_label_chart, echo=FALSE, out.width="100%", fig.height=6.5, fig.alt="A grouped bar chart showing individual asylum applications registered by region | 2019-2020"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/bar_grouped.csv")
+
+ggplot(df) +
+  geom_col(aes(x = asylum_application, y = fct_rev(factor(region)), fill = as.character(year)),
+    position = position_dodge(width = 0.7),
+    width = 0.6
+  ) +
+  geom_text(aes(
+    x = asylum_application, y = fct_rev(factor(region)),
+    group = as.character(year), label = round(asylum_application / 1e3)
+  ),
+  position = position_dodge(width = 0.7),
+  hjust = -0.25, size = 11.5 / .pt
+  ) +
+  scale_fill_unhcr_d(palette = "pal_unhcr") +
+  labs(
+    title = "Individual asylum applications registered by region | 2019-2020",
+    subtitle = "Number of people (thousand)",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(expand = expansion(c(0, 0.1))) +
+  scale_y_discrete(labels = scales::label_wrap(17)) +
+  theme_unhcr(font_size = 13, grid = FALSE, axis = "y", axis_title = FALSE, axis_text = "y")
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

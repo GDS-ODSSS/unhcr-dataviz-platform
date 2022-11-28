@@ -1,0 +1,174 @@
+---
+title: "Heatmap with Python"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/py_correlation_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_correlation.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Heatmap
+  url_cat: correlation
+  url_chart: heatmap
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A heatmap is a type of visualization that values are depicted through variations in colour within a two-dimensional matrix of cells. It allows us to visualize complex data and understand it at a glance.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Heatmap
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code_1, echo=TRUE, eval=FALSE}
+# import libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from textwrap import wrap
+plt.style.use(['unhcrpyplotstyle', 'heatmap'])
+
+#load and reshape data set
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/heatmap.csv')
+df = df.pivot('location', 'year', 'values')
+
+#wrap the long labels
+y = ['Americas', 'Asia and Pacific', 'East and Horn of Africa and Great Lakes', 'Europe (incl. Turkey)','Middle East/North Africa','Southern Africa', 'West and Central Africa']
+y = [ '\n'.join(wrap(l, 20)) for l in y ]
+
+#plot the chart
+fig, ax = plt.subplots()
+ax = sns.heatmap(df, annot=True, linewidths=.5, yticklabels=y, square=True, cmap=['#DCE9FF','#8EBEFF','#589BE5','#0072BC','#044F85'], cbar=False, fmt=".1f")
+
+#set chart title
+ax.set_title('Refugee population by region | 2011-2020')
+
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.345, y=0.87)
+
+#set axis label
+ax.set_xlabel('')
+ax.set_ylabel('')
+               
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -30), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_heatmap, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A heatmap showing refugee population by region | 2001-2020"}
+# import libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from textwrap import wrap
+plt.style.use(['unhcrpyplotstyle', 'heatmap'])
+
+#load and reshape data set
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/heatmap.csv')
+df = df.pivot('location', 'year', 'values')
+
+#wrap the long labels
+y = ['Americas', 'Asia and Pacific', 'East and Horn of Africa and Great Lakes', 'Europe (incl. Turkey)','Middle East/North Africa','Southern Africa', 'West and Central Africa']
+y = [ '\n'.join(wrap(l, 20)) for l in y ]
+
+#plot the chart
+fig, ax = plt.subplots()
+ax = sns.heatmap(df, annot=True, linewidths=.5, yticklabels=y, square=True, cmap=['#DCE9FF','#8EBEFF','#589BE5','#0072BC','#044F85'], cbar=False, fmt=".1f")
+
+#set chart title
+ax.set_title('Refugee population by region | 2011-2020')
+
+#set subtitle
+plt.suptitle('Number of people in millions', x=0.345, y=0.87)
+
+#set axis label
+ax.set_xlabel('')
+ax.set_ylabel('')
+               
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -30), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -40), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>

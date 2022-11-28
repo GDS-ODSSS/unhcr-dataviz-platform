@@ -1,0 +1,180 @@
+---
+title: "Streamgraph with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_change_over_time.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Streamgraph
+  url_cat: change_over_time
+  url_chart: streamgraph
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+library(ggstream)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A streamgraph is a variation of a stacked area chart. Instead of displaying values on top of a fixed, straight baseline at the bottom of the stack, the values of the streamgraph are displaced around a central baseline.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Streamgraph using [`ggstream`](https://github.com/davidsjoberg/ggstream) package
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r streamgraph_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+library(ggstream)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv")
+
+# Plot
+ggplot(
+  df,
+  aes(
+    x = year,
+    y = population_number,
+    fill = factor(population_type,
+      levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA")
+    )
+  )
+) +
+  geom_stream() +
+  scale_fill_unhcr_d(
+    palette = "pal_unhcr_poc",
+    nmax = 9,
+    order = c(1, 3:5, 8:9),
+    labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")
+  ) +
+  labs(
+    title = "People of concern to UNHCR | 1991-2021",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = 8)) +
+  scale_y_continuous(
+    labels = label_number_si(),
+    breaks = pretty_breaks(n = 6)
+  ) +
+  theme_unhcr(
+    grid = "XY",
+    axis_title = "y",
+    axis = FALSE
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_streamgraph, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="A streamgraph showing evolution of people of concern to UNHCR | 1991-2020"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/streamgraph.csv")
+
+ggplot(df, aes(
+  x = year, y = population_number,
+  fill = factor(population_type, levels = c("REF", "ASY", "IDP", "STA", "OOC", "VDA"))
+)) +
+  geom_stream() +
+  scale_fill_unhcr_d(
+    palette = "pal_unhcr_poc", nmax = 9, order = c(1, 3:5, 8:9),
+    labels = c("Refugees", "Asylum-seekers", "IDPs", "Stateless persons", "Others of concern", "Venezuelans displaced abroad")
+  ) +
+  labs(
+    title = "People of concern to UNHCR | 1991-2021",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = 8)) +
+  scale_y_continuous(
+    labels = label_number_si(),
+    breaks = pretty_breaks(n = 6)
+  ) +
+  theme_unhcr(font_size = 13, grid = "XY", axis_title = "y", axis = FALSE)
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

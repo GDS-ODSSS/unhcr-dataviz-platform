@@ -1,0 +1,199 @@
+---
+title: "Line column chart with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_change_over_time.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Line column chart
+  url_cat: change_over_time
+  url_chart: line-column
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A line column chart is a type of visualization that combines both line and column charts together, using dual axes displayed on the left and right sides of the chart.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Line column chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r line_column_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line_column.csv")
+
+# Plot
+ggplot(data = df) +
+  geom_col(aes(year,
+    displaced_population,
+    fill = "Displaced population"
+  ),
+  width = 0.7
+  ) +
+  geom_line(aes(year,
+    displaced_proportion * 10,
+    color = "Proportion displaced"
+  ),
+  size = 1
+  ) +
+  scale_fill_manual(values = setNames(
+    unhcr_pal(n = 1, "pal_blue"),
+    "Displaced population"
+  )) +
+  scale_color_manual(values = setNames(
+    unhcr_pal(n = 1, "pal_red"),
+    "Proportion displaced"
+  )) +
+  labs(
+    title = "Trend of global displacement | 2007 - 2016",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = nrow(df))) +
+  scale_y_continuous("Displaced population (millions)",
+    expand = expansion(c(0, 0.2)),
+    breaks = pretty_breaks(),
+    sec.axis = sec_axis(~ . / 10,
+      breaks = pretty_breaks(),
+      name = "Proportion displaced (number displaced per 1,000)"
+    )
+  ) +
+  theme_unhcr(
+    grid = "Y",
+    axis_title = "y"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_line_column_chart, echo=FALSE, out.width="100%", fig.height=6, fig.alt="A line column chart showing trend of global displacement | 2007 - 2016"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line_column.csv")
+
+ggplot(data = df) +
+  geom_col(aes(year,
+    displaced_population,
+    fill = "Displaced population"
+  ),
+  width = 0.7
+  ) +
+  geom_line(aes(year,
+    displaced_proportion * 10,
+    color = "Proportion displaced"
+  ),
+  size = 1
+  ) +
+  scale_fill_manual(values = setNames(
+    unhcr_pal(n = 1, "pal_blue"),
+    "Displaced population"
+  )) +
+  scale_color_manual(values = setNames(
+    unhcr_pal(n = 1, "pal_red"),
+    "Proportion displaced"
+  )) +
+  labs(
+    title = "Trend of global displacement | 2007 - 2016",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(breaks = pretty_breaks(n = nrow(df))) +
+  scale_y_continuous("Displaced population (millions)",
+    expand = expansion(c(0, 0.2)),
+    breaks = pretty_breaks(),
+    sec.axis = sec_axis(~ . / 10,
+      breaks = pretty_breaks(),
+      name = "Proportion displaced (number displaced per 1,000)"
+    )
+  ) +
+  theme_unhcr(font_size = 13, grid = "Y", axis_title = "y")
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

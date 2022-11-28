@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNHCR Dataviz Platform - Line column chart with D3</title>
+  <meta name="description" content="A collection of reproducible d3.js code examples for creating UNHCR branded line column charts for change over time purpose.">
+  <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,JavaScript,D3js,D3.js tutorial,D3 chart examples,Interactive visualization,Change over time,Line column chart">
+  <meta name="author" content="Cedric Vidonne">
+  <meta name="author" content="Lei Chen">
+  <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- prism CSS file -->
+  <link href="../../assets/css/vendor/prism.min.css" rel="stylesheet" />
+  <!-- prism JS file -->
+  <script src="../../assets/js/vendor/prism.min.js"></script>
+  <!-- jquery JS file -->
+  <script src="../../assets/js/vendor/jquery.min.js"></script>
+  <!-- d3 JS file -->
+  <script src="../../assets/js/vendor/d3.min.js"></script>
+  <!-- parser JS file -->
+  <script src="../../assets/js/vendor/parser.js"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <h1 class="title">Line column chart with D3</h1>
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main class="flex-shrink-0" id="tools">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../tools/index.html">Tools</a></li>
+          <li class="breadcrumb-item"><a href="../../tools/d3/index.html">D3</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Line column chart</li>
+        </ol>
+      </nav>
+      <div class="my-5 text-center">
+        <h2>Line column chart with D3</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p>A line column chart is a type of visualization that combines both line and column charts together, using
+              dual axes displayed on the left and right sides of the chart.
+              It allows us to show the relationship of two variables with different magnitudes and scales.</p>
+            <p>More about: <a href="../../chart_gallery/change_over_time.html#line-column">Line column chart</a></p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <section class="my-5">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+          <!-- Code chunk section-->
+          <div class="col">
+            <h3 class="mb-3">Line column chart</h3>
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link p-2 active" id="nav-html-tab" data-bs-toggle="tab" data-bs-target="#nav-html"
+                  type="button" role="tab" aria-controls="nav-html" aria-selected="true">HMTL</button>
+                <button class="nav-link p-2" id="nav-css-tab" data-bs-toggle="tab" data-bs-target="#nav-css"
+                  type="button" role="tab" aria-controls="nav-css" aria-selected="false">CSS</button>
+                <button class="nav-link p-2" id="nav-javascript-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-javascript" type="button" role="tab" aria-controls="nav-javascript"
+                  aria-selected="false">JavaScript</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-html" role="tabpanel" aria-labelledby="nav-html-tab">
+                <!-- html code chunk -->
+                <pre class="language-html d3-code-chunk" style="height: 30em">
+                  <code id="code-html" contenteditable="true">
+                    &lt!DOCTYPE html>
+                    &ltmeta charset="utf-8">
+                    &lt!-- Include d3 library -->
+                    &ltscript src="https://d3js.org/d3.v7.min.js">&lt/script>
+                    &lt!-- Create a container to host the chart -->
+                    &ltdiv id="viz_container">&lt/div>
+                  </code>
+                </pre>
+                <!-- End html code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-css" role="tabpanel" aria-labelledby="nav-css-tab">
+                <!-- css code chunk -->
+                <pre class="language-css d3-code-chunk" style="height: 30em" tabindex="0">
+                  <code id="code-css" contenteditable="true">
+                    <style>
+                      svg {
+                        width: 100%;
+                        height: 100%;
+                      }
+                      text {
+                        font-family: lato;
+                        font-size: 10px;
+                        fill: #333333;
+                      }
+                      .grid path {
+                        stroke-width: 0;
+                        stroke: #333333;
+                      }
+                      .grid .tick line {
+                        stroke: #333333;
+                        stroke-width: 0.3px;
+                        stroke-opacity: 0.3;
+                      }
+                      text.chart-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        fill:#222222
+                      }
+                      text.chart-label {
+                        font-size: 10px;
+                        font-weight: 400;
+                        fill: #999999;
+                      }
+                      text.chart-source {
+                        font-size: 8px;
+                        fill: #999999;
+                      }
+                      text.copyright {
+                        font-size: 8px;
+                        fill: #999999;
+                      }
+                      .tooltip {
+                        background-color: #ffffff;
+                        font-family: lato;
+                        font-size: 11px;
+                        padding: 4px;
+                        color: #666666;
+                        border: none;
+                        box-shadow: 0px 0px 3px 0px #E6E6E6;
+                      }
+                    </style>               
+                  </code>
+                </pre>
+                <!-- End css code chunk -->
+              </div>
+              <div class="tab-pane fade" id="nav-javascript" role="tabpanel" aria-labelledby="nav-javascript-tab">
+                <!-- js code chunk -->
+                <pre class="language-js d3-code-chunk" style="height: 30em">
+                  <code id="code-js" contenteditable="true">
+                    
+                    // set the dimensions and margins of the graph
+                    const margin = {top: 80, right: 20, bottom: 50, left: 40};
+                    const width = 450 - margin.left - margin.right;
+                    const height = 350 - margin.top - margin.bottom;
+
+                    // append the svg object to the body of the page
+                    const svg = d3.select("#viz_container")
+                      .append("svg")
+                        .attr("width", "100%")
+                        .attr("height", "100%")
+                        .attr("viewBox", "0 0 450 350")
+                        .attr("preserveAspectRatio", "xMinYMin")
+                      .append("g")
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+                    // parse the Data
+                    d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/line_column.csv")
+                    .then(function(data){
+
+                    // X scale and Axis
+                    const xScale = d3.scaleBand()
+                      .domain(data.map(d => d.year)) 
+                      .range([0, width])
+                      .padding(.2);  
+                    svg
+                      .append('g')
+                      .style("color", "#666666")
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(d3.axisBottom(xScale).tickSize(0).tickPadding(8));
+                    
+                    // Y scale and Axis
+                    const yScale1 = d3.scaleLinear()
+                        .domain([0, 90])
+                        .range([height, 0]);
+                    svg
+                      .append('g')
+                      .call(d3.axisLeft(yScale1).ticks(10).tickSize(0).tickPadding(6))
+                      .call(d => d.select(".domain").remove());
+                    
+                    const yScale2 = d3.scaleLinear()
+                      .domain([0, 9])
+                      .range([height, 0]);
+                    svg
+                      .append('g')
+                      .attr("transform", `translate(${width}, 0)`)
+                      .call(d3.axisRight(yScale2).ticks(10).tickSize(0).tickPadding(6))
+                      .call(d => d.select(".domain").remove());
+
+                    // set horizontal grid line
+                    const GridLine = () => d3.axisLeft().scale(yScale1);
+                    svg
+                      .append("g")
+                        .attr("class", "grid")
+                      .call(GridLine()
+                        .tickSize(-width,0,0)
+                        .tickFormat("")
+                    );
+
+                    // create a tooltip
+                    const tooltip = d3.select("body")
+                      .append("div")
+                        .attr("id", "chart")
+                        .attr("class", "tooltip");
+
+                    // tooltip events
+                    const mouseover = function(d) {
+                        tooltip
+                          .style("opacity", .8)
+                        d3.select(this)
+                          .style("opacity", .5)
+                    }
+                    const mousemove = function(event, d) {
+                      const formater =  d3.format(",")
+                        tooltip
+                          .html(formater(+d.displaced_population))
+                          .style("top", event.pageY - 10 + "px")
+                          .style("left", event.pageX + 10 + "px");
+                    }
+                    const mouseleave = function(d) {
+                        tooltip
+                          .style("opacity", 0)
+                        d3.select(this)
+                          .style("opacity", 1)
+                    }
+                    
+                    // create bar
+                    const bar = svg 
+                        .selectAll("rect")
+                        .data(data)
+                        .join("g")
+                        .append("rect")
+                          .attr("class", "bar")
+                          .style("fill", "#0072BC")
+                          .attr("x", d => xScale(d.year))
+                          .attr("y", d => yScale1(+d.displaced_population))
+                          .attr("width", xScale.bandwidth())
+                          .attr("height", d => height - yScale1(+d.displaced_population))
+                        .on("mouseover", mouseover)
+                        .on("mousemove", mousemove)
+                        .on("mouseleave", mouseleave);
+                    
+                    // create line
+                    svg
+                        .append("path")
+                        .datum(data)
+                            .attr("class", "line")
+                            .attr("fill", "none")
+                            .attr("stroke", "#18375F")
+                            .attr("stroke-width", 2)
+                            .attr("d", d3.line()
+                                .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+                                .y(d => yScale2(d.displaced_proportion))
+                                );
+                    
+                    // set title
+                    svg
+                      .append("text")
+                        .attr("class", "chart-title")
+                        .attr("x", -(margin.left)*0.5)
+                        .attr("y", -(margin.top)/1.5)
+                        .attr("text-anchor", "start")
+                      .text("Trend of global displacement | 2007-2016")
+  
+                      // set Y axis 1 label
+                      svg
+                        .append("text")
+                          .attr("class", "label_left")
+                          .attr("x", -(margin.left)*0.5)
+                          .attr("y", -(margin.top/4))
+                          .attr("text-anchor", "start")
+                          .style("fill", "#0072BC")
+                        .text("Displaced population (millions)")
+                      
+                      // set Y axis 2 label
+                      svg
+                       .append("text")
+                         .attr("class", "label_right")
+                         .attr("x", width+15)
+                         .attr("y", -(margin.top/2.7))
+                         .attr("text-anchor", "end")
+                         .style("fill", "#18375F")
+                       .text("Proportion displaced")
+                      svg
+                        .append("text")
+                          .attr("class", "label_right")
+                          .attr("x", width+15)
+                          .attr("y", -(margin.top/4))
+                          .attr("text-anchor", "end")
+                          .style("fill", "#18375F")
+                        .text("(Number displaced per 1,000 world population)")
+                    
+                    // set source
+                    svg
+                      .append("text")
+                        .attr("class", "chart-source")
+                        .attr("x", -(margin.left)*0.5)
+                        .attr("y", height + margin.bottom*0.7)
+                        .attr("text-anchor", "start")
+                      .text("Source: UNHCR Refugee Data Finder")
+  
+                    // set copyright
+                    svg
+                      .append("text")
+                        .attr("class", "copyright")
+                        .attr("x", -(margin.left)*0.5)
+                        .attr("y", height + margin.bottom*0.9)
+                        .attr("text-anchor", "start")
+                      .text("©UNHCR, The UN Refugee Agency")
+                    
+                    })
+                  </code>
+                </pre>
+                <!-- End js code chunk -->
+              </div>
+            </div>
+          </div>
+          <!-- End code chunk section -->
+          <!-- Chart section -->
+          <div class="col">
+            <div id="result"></div>
+          </div>
+          <!-- End chart section -->
+        </div>
+      </section>
+
+      <section class="mb-5 container">
+        <hr>
+        <h3 class="mt-5 mb-3">Related chart with D3</h3>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+          <!-- Change over time -->
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_line_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/line_icon.svg" class="img-fluid" alt="Line chart thumbnail">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Line chart</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_area_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid" alt="Area chart thumbnail">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Area chart</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_stacked_area_chart.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid" alt="Stacked area chart thumbnail">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Stacked area chart</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col chart-item">
+            <a href="../../tools/d3/d3_streamgraph.html">
+              <div class="chart-img d-inline-flex justify-content-center">
+                <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid" alt="Streamgraph thumbnail">
+                <div class="chart-info d-flex align-items-end p-3">
+                  <span class="chart-name">Streamgraph</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- <div class="col chart-item">
+                  <a href="../../tools/d3/d3_slope_chart.html">
+                      <div class="chart-img d-inline-flex justify-content-center">
+                          <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid" alt="Slope chart thumbnail">
+                          <div class="chart-info d-flex align-items-end p-3">
+                              <span class="chart-name">Slope chart</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+               <div class="col chart-item">
+                  <a href="../../tools/d3/d3_dotplot.html">
+                      <div class="chart-img d-inline-flex justify-content-center">
+                          <img src="../../assets/img/change_over_time/dotplot_icon.svg" class="img-fluid" alt="Dot plot thumbnail">
+                          <div class="chart-info d-flex align-items-end p-3">
+                              <span class="chart-name">Dot plot</span>
+                          </div>
+                      </div>
+                  </a>
+              </div> -->
+          <!-- End Change over time -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <!--  End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="../../assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="../../assets/js/unhcrmain.js"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>

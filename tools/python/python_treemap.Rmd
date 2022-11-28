@@ -1,0 +1,171 @@
+---
+title: "Treemap with Python"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/py_part_to_a_whole_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_part_to_a_whole.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Treemap
+  url_cat: part_to_a_whole
+  url_chart: treemap
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+As a variation of a tree diagram, a treemap is meant to show hierarchical structure using the size of the rectangle to represent quantity. Each category is assigned a rectangle, with subcategories displayed inside the large rectangle, in proportionate size against each other.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Treemap
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+# import libraries
+import matplotlib.pyplot as plt
+import squarify
+import pandas as pd
+plt.style.use(['unhcrpyplotstyle','treemap'])
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv')
+
+#compute data for plotting
+sizes = df['staff_number']
+label = df['region']
+
+#calculate percentage
+df['percent'] = (df['staff_number'] / 
+                  df['staff_number'].sum()) * 100
+list = df['percent']
+new_list = [f'{i:.1f}% \n' for i in list]
+
+#plot the chart
+fig, ax = plt.subplots()
+treemap = squarify.plot(sizes=sizes, label=new_list+label, color='#0072BC', ec='#ffffff', text_kwargs={"color":"#ffffff"})
+noax = plt.axis('off')
+       
+#set chart title
+plt.title('UNHCR global workforce by region | 2021')
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_treemap, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A treemap showing UNHCR global workforce by region | 2021"}
+# import libraries
+import matplotlib.pyplot as plt
+import squarify
+import pandas as pd
+plt.style.use(['unhcrpyplotstyle','treemap'])
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/treemap.csv')
+
+#compute data for plotting
+sizes = df['staff_number']
+label = df['region']
+
+#calculate percentage
+df['percent'] = (df['staff_number'] / 
+                  df['staff_number'].sum()) * 100
+list = df['percent']
+new_list = [f'{i:.1f}% \n' for i in list]
+
+#plot the chart
+fig, ax = plt.subplots()
+treemap = squarify.plot(sizes=sizes, label=new_list+label, color='#0072BC', ec='#ffffff', text_kwargs={"color":"#ffffff"})
+noax = plt.axis('off')
+       
+#set chart title
+plt.title('UNHCR global workforce by region | 2021')
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR', (0,0), (0, -10), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -20), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>

@@ -1,0 +1,181 @@
+---
+title: "Connected scatterplot with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_correlation_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_correlation.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Connected scatterplot
+  url_cat: correlation
+  url_chart: scatterplot-connected
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+library(ggrepel)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A connected scatterplot is a type of visualization that displays the evolution of a series of data points that are connected by straight line segments. In some cases, it is not the most intuitive to read; but it is impressive for storytelling.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Connected scatterplot
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r scatterplot_connected_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+library(ggrepel)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot_connected.csv")
+
+# Plot
+ggplot(
+  df,
+  aes(
+    x = refugee_number,
+    y = idp_number
+  )
+) +
+  geom_segment(aes(
+    xend = c(tail(refugee_number, n = -1), NA),
+    yend = c(tail(idp_number, n = -1), NA)
+  ),
+  color = unhcr_pal(n = 1, "pal_grey")
+  ) +
+  geom_point(
+    color = unhcr_pal(n = 1, "pal_blue"),
+    size = 3
+  ) +
+  geom_text_repel(
+    data = df[seq(1, nrow(df), 2), ],
+    aes(label = year),
+    size = 8 / .pt,
+    point.padding = 5
+  ) +
+  labs(
+    title = "Evolution of refugee vs IDP population in Afghanistan\n2001-2021",
+    y = "Number of IDPs",
+    x = "Number of refugees",
+    caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(labels = label_number_si()) +
+  scale_y_continuous(labels = label_number_si()) +
+  theme_unhcr(
+    grid = "XY",
+    axis = FALSE,
+    axis_title = "xy"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_scatterplot_connected, echo=FALSE, out.width="100%", fig.height=6.2, fig.alt="A connected scatterplot showing evolution of refugee vs IDP population in Afghanistan | 2001-2021"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/correlation/scatterplot_connected.csv")
+
+ggplot(df, aes(x = refugee_number, y = idp_number)) +
+  geom_segment(aes(xend = c(tail(refugee_number, n = -1), NA), yend = c(tail(idp_number, n = -1), NA)),
+    color = unhcr_pal(n = 1, "pal_grey")
+  ) +
+  geom_point(color = unhcr_pal(n = 1, "pal_blue"), size = 3) +
+  geom_text_repel(data = df[seq(1, nrow(df), 2), ], aes(label = year), size = 11.5 / .pt, point.padding = 5) +
+  labs(
+    title = "Evolution of refugee vs IDP population in Afghanistan\n2001-2021",
+    y = "Number of IDPs",
+    x = "Number of refugees",
+    caption = "Source: Data source here\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(labels = label_number_si()) +
+  scale_y_continuous(labels = label_number_si()) +
+  theme_unhcr(font_size = 13, grid = "XY", axis = FALSE, axis_title = "xy")
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

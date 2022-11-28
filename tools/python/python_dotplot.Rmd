@@ -1,0 +1,186 @@
+---
+title: "Dot plot with Python"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/py_change_over_time_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_change_over_time.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Dot plot
+  url_cat: change_over_time
+  url_chart: dotplot
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A dot plot is a type of graph in which the dots are connected to show changes or differences. It’s an alternative to the grouped bar chart or slope chart.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Dot plot
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+# import libraries
+import matplotlib.pyplot as plt
+import pandas as pd
+from textwrap import wrap
+plt.style.use(['unhcrpyplotstyle','dotplot'])
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/dot_plot.csv')
+df = df.pivot_table(index=['location','order'], columns='period', values='percent', sort=False)
+df = df.reset_index()
+
+#sort values in descending order
+ordered_df = df.sort_values(by='order', ascending=False)
+
+#wrap the long labels
+y_labels = ordered_df['location']
+wrapped_label = [ '\n'.join(wrap(l, 20)) for l in y_labels ]
+
+#plot the chart
+fig, ax = plt.subplots()
+plt.scatter(ordered_df['before_covid'], wrapped_label, label='before_covid')
+plt.scatter(ordered_df['first_months'], wrapped_label, label='first_months')
+plt.hlines(y=wrapped_label, xmin=ordered_df['before_covid'], xmax=ordered_df['first_months'], color='#666666')
+
+#set chart legend
+ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,1.05), ncol=2)
+
+#set chart title
+ax.set_title('COVID-19 impact on poverty rates of informal workers', pad=50)
+
+# xticks and xticklabel format
+limit = plt.xlim(0, 1)
+vals = ax.get_xticks()
+ax.set_xticklabels(['{:,.0%}'.format(x) for x in vals])
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_dotplot, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A dotplot showing COVID-19 impact on poverty rates of informal workers"}
+# import libraries
+import matplotlib.pyplot as plt
+import pandas as pd
+from textwrap import wrap
+plt.style.use(['unhcrpyplotstyle','dotplot'])
+
+#load and reshape the data
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/dot_plot.csv')
+df = df.pivot_table(index=['location','order'], columns='period', values='percent', sort=False)
+df = df.reset_index()
+
+#sort values in descending order
+ordered_df = df.sort_values(by='order', ascending=False)
+
+#wrap the long labels
+y_labels = ordered_df['location']
+wrapped_label = [ '\n'.join(wrap(l, 20)) for l in y_labels ]
+
+#plot the chart
+fig, ax = plt.subplots()
+plt.scatter(ordered_df['before_covid'], wrapped_label, label='before_covid')
+plt.scatter(ordered_df['first_months'], wrapped_label, label='first_months')
+plt.hlines(y=wrapped_label, xmin=ordered_df['before_covid'], xmax=ordered_df['first_months'], color='#666666')
+
+#set chart legend
+ax.legend(labels = ["Before COVID-19", "First month of the crisis"], loc=(0,1.05), ncol=2)
+
+#set chart title
+ax.set_title('COVID-19 impact on poverty rates of informal workers', pad=50)
+
+# xticks and xticklabel format
+limit = plt.xlim(0, 1)
+vals = ax.get_xticks()
+ax.set_xticklabels(['{:,.0%}'.format(x) for x in vals])
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>

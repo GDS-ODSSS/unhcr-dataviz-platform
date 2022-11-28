@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Cedric Vidonne" />
+<meta name="author" content="Lei Chen" />
+
+
+<title>UNHCR Dataviz Platform - Dot plot with Python</title>
+
+<script src="python_dotplot_files/header-attrs-2.10/header-attrs.js"></script>
+<meta name="description" content="A collection of reproducible Python code examples to create UNHCR branded charts for change over time purpose.">
+<meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,Python,Python tutorial,Matplotlib,Matplotlib plot tutorial,Pandas,Change over time,Line chart,Area chart,Stacked area chart,Streamgraph,Line column chart,Slope chart,Dot plot">
+<link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+  <!-- End Google Tag Manager -->
+  
+  
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+    <nav class="navbar navbar-expand-lg border-bottom">
+        <div class="container p-2">
+        <a class="navbar-brand" href="../../">
+            <img src="../../assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-active="home" href="../../">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="chart_gallery" href="../../chart_gallery/">Chart gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="general_guidance" href="../../general_guidance/">General guidance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="tools" href="../../tools/">Tools</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-active="products" href="../../products/">Products</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</header>
+
+
+<h1 class="title toc-ignore">Dot plot with Python</h1>
+<h4 class="author">Cedric Vidonne</h4>
+<h4 class="author">Lei Chen</h4>
+
+
+
+<main id="tools" class="container py-5">
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML -->
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item">
+<a href="../../">Home</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../">Tools</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../python/">Python</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+Dot plot with Python
+</li>
+</ol>
+</nav>
+<!-- Intro header -->
+<div id="dot-plot-with-python" class="section level2 my-5 text-center">
+<h2>Dot plot with Python</h2>
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<!-- Only text to change below, the rest comes from the YAML -->
+<p>A dot plot is a type of graph in which the dots are connected to show
+changes or differences. It’s an alternative to the grouped bar chart or
+slope chart.</p>
+<p>More about:
+<a href="../../chart_gallery/change_over_time.html#dotplot">Dot
+plot</a></p>
+</div>
+</div>
+</div>
+<hr />
+<!-- Beginning of section, should be preceded by hr (----) -->
+<section class="my-5">
+<div id="dot-plot" class="section level3">
+<h3>Dot plot</h3>
+<div class="row">
+<!-- First column for large screen -->
+<div class="col-lg-6">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> textwrap <span class="im">import</span> wrap</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">&#39;unhcrpyplotstyle&#39;</span>,<span class="st">&#39;dotplot&#39;</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#load and reshape the data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/dot_plot.csv&#39;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.pivot_table(index<span class="op">=</span>[<span class="st">&#39;location&#39;</span>,<span class="st">&#39;order&#39;</span>], columns<span class="op">=</span><span class="st">&#39;period&#39;</span>, values<span class="op">=</span><span class="st">&#39;percent&#39;</span>, sort<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#sort values in descending order</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ordered_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">&#39;order&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#wrap the long labels</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>y_labels <span class="op">=</span> ordered_df[<span class="st">&#39;location&#39;</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>wrapped_label <span class="op">=</span> [ <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(wrap(l, <span class="dv">20</span>)) <span class="cf">for</span> l <span class="kw">in</span> y_labels ]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the chart</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.scatter(ordered_df[<span class="st">&#39;before_covid&#39;</span>], wrapped_label, label<span class="op">=</span><span class="st">&#39;before_covid&#39;</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.scatter(ordered_df[<span class="st">&#39;first_months&#39;</span>], wrapped_label, label<span class="op">=</span><span class="st">&#39;first_months&#39;</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.hlines(y<span class="op">=</span>wrapped_label, xmin<span class="op">=</span>ordered_df[<span class="st">&#39;before_covid&#39;</span>], xmax<span class="op">=</span>ordered_df[<span class="st">&#39;first_months&#39;</span>], color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart legend</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax.legend(labels <span class="op">=</span> [<span class="st">&quot;Before COVID-19&quot;</span>, <span class="st">&quot;First month of the crisis&quot;</span>], loc<span class="op">=</span>(<span class="dv">0</span>,<span class="fl">1.05</span>), ncol<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart title</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;COVID-19 impact on poverty rates of informal workers&#39;</span>, pad<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># xticks and xticklabel format</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>limit <span class="op">=</span> plt.xlim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> ax.get_xticks()</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">&#39;{:,.0%}&#39;</span>.<span class="bu">format</span>(x) <span class="cf">for</span> x <span class="kw">in</span> vals])</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#set chart source and copyright</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;Source: UNHCR Refugee Data Finder&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">25</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">&#39;©UNHCR, The UN Refugee Agency&#39;</span>, (<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">35</span>), xycoords<span class="op">=</span><span class="st">&#39;axes fraction&#39;</span>, textcoords<span class="op">=</span><span class="st">&#39;offset points&#39;</span>, va<span class="op">=</span><span class="st">&#39;top&#39;</span>, color <span class="op">=</span> <span class="st">&#39;#666666&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#adjust chart margin and layout</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">#show chart</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div>
+<!-- End First column --->
+<!-- Second column for large screen -->
+<div class="col-lg-6">
+<p><img src="python_dotplot_files/figure-html/python_dotplot-1.svg" title="A dotplot showing COVID-19 impact on poverty rates of informal workers" alt="A dotplot showing COVID-19 impact on poverty rates of informal workers" width="100%" /></p>
+</div>
+<!-- End Second column --->
+</div>
+</section>
+<!-- End of section --->
+</main>
+</div>
+
+<section class="mb-5 container">
+    <hr>
+    <h3 class="mt-5 mb-3">Related chart with Python</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+        <!-- Change over time -->
+        <div class="col chart-item">
+            <a href="python_line_chart.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/line_icon.svg" class="img-fluid"
+                        alt="Line chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Line chart</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_area_chart.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/area_icon.svg" class="img-fluid"
+                        alt="Area chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Area chart</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_stacked_area_chart.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/area_stacked_icon.svg" class="img-fluid"
+                        alt="Stacked area chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Stacked area chart</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_streamgraph.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/streamgraph_icon.svg" class="img-fluid"
+                        alt="Streamgraph chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Streamgraph</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_line_column_chart.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/line_column_icon.svg" class="img-fluid"
+                        alt="Line column chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Line column chart</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_slope_chart.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/slope_icon.svg" class="img-fluid"
+                        alt="Slope chart thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Slope chart</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col chart-item">
+            <a href="python_dotplot.html">
+                <div class="chart-img d-inline-flex justify-content-center">
+                    <img src="../../assets/img/change_over_time/dotplot_icon.svg" class="img-fluid"
+                        alt="Dot pplot thumbnail">
+                    <div class="chart-info d-flex align-items-end p-3">
+                        <span class="chart-name">Dot plot</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- End Change over time -->
+    </div>
+</section>
+<footer class="footer mt-auto bg-dark py-3">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between">
+        <ul class="nav">
+            <li class="nav-item">
+            <a class="nav-link" href="../../">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../chart_gallery/">Chart gallery</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../general_guidance/">General guidance</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../tools/">Tools</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../products/">Products</a>
+            </li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
+            us</a>
+        </div>
+        <p class="text-muted px-3"><small>© UNHCR 2022</small></p>
+    </div>
+</footer>
+<!-- Scripts -->
+<!-- bs/popper bundle -->
+<script src="../../assets/js/vendor/bootstrap.bundle.min.js"></script>
+<!-- UNHCR main JS file -->
+<script type="module" src="../../assets/js/unhcrmain.js"></script>
+<!-- End scripts -->
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

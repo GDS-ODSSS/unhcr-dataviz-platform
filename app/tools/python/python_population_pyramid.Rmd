@@ -1,0 +1,181 @@
+---
+title: "Population pyramid with python"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/py_distribution_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/py_distribution.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: Python
+  chart_type: Population pyramid
+  url_cat: distribution
+  url_chart: population-pyramid
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      dev = "svg")
+library(reticulate)
+```
+
+<main id="tools" class="container py-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A population pyramid consists of two histograms, one for each gender (conventionally, males on the left and females on the right) where the population numbers are shown horizontally (X-axis) and the age vertically (Y-axis). The values can be displayed either as a percentage of the total population or as a raw number.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Population pyramid
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{python python_code, echo=TRUE, eval=FALSE}
+import matplotlib.pyplot as plt
+import pandas as pd
+plt.style.use(['unhcrpyplotstyle','population_pyramid'])
+
+#load data set
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
+
+#compute data array for plotting
+x_male = df['male'] / -1
+x_female = df['female']
+y = df['ages']
+
+#plot the chart
+fig, ax = plt.subplots()
+ax1 = ax.barh(y, x_male)
+ax2 = ax.barh(y, x_female)
+
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues])
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues])
+
+#set chart title
+ax.set_title('Demographic of forcibly displaced people | 2020')
+
+#set axis label
+ax.set_ylabel('Age groups')
+ax.set_xlabel('Male / Female')
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+
+```{python python_population_pyramid, echo=FALSE, out.width="100%", fig.height=5.75, fig.alt="A population pyramid showing demographic of forcibly displaced people | 2020"}
+# import libraries
+import matplotlib.pyplot as plt
+import pandas as pd
+plt.style.use(['unhcrpyplotstyle','population_pyramid'])
+
+#load data set
+df = pd.read_csv('https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv')
+
+#compute data array for plotting
+x_male = df['male'] / -1
+x_female = df['female']
+y = df['ages']
+
+#plot the chart
+fig, ax = plt.subplots()
+ax1 = ax.barh(y, x_male)
+ax2 = ax.barh(y, x_female)
+
+ax.bar_label(ax1, labels=[f'{x*100:,.0f}%' for x in -ax1.datavalues])
+ax.bar_label(ax2, labels=[f'{x*100:,.0f}%' for x in ax2.datavalues])
+
+#set chart title
+ax.set_title('Demographic of forcibly displaced people | 2020')
+
+#set axis label
+ax.set_ylabel('Age groups')
+ax.set_xlabel('Male / Female')
+
+#set chart source and copyright
+plt.annotate('Source: UNHCR Refugee Data Finder', (0,0), (0, -25), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+plt.annotate('©UNHCR, The UN Refugee Agency', (0,0), (0, -35), xycoords='axes fraction', textcoords='offset points', va='top', color = '#666666', fontsize=9)
+
+#adjust chart margin and layout
+fig.tight_layout()
+
+#show chart
+plt.show()
+```
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+
+</main>

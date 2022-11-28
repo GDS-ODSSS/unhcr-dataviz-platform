@@ -1,0 +1,282 @@
+---
+title: "Ordered column chart with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_ranking_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_ranking.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Ordered column chart
+  url_cat: ranking
+  url_chart: column-ordered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+An ordered column chart is a chart in which each category is represented by a vertical rectangle, with the height of the rectangle being ordered and proportional to the values being plotted.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Ordered column chart
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r column_ordered_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv")
+
+# Plot
+ggplot(df) +
+  geom_col(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  labs(
+    title = "Refugee returns by country of origin (top 5) | 2020",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_y_continuous(
+    expand = expansion(c(0, 0.1)),
+    breaks = pretty_breaks(),
+    labels = label_number_si()
+  ) +
+  theme_unhcr(
+    grid = "Y",
+    axis = "x",
+    axis_title = "y"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_column_ordered_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="An ordered column showing refugee returns by country of origin (top 5) | 2020"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv")
+
+ggplot(df) +
+  geom_col(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  labs(
+    title = "Refugee returns by country of origin (top 5) | 2020",
+    y = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_y_continuous(
+    expand = expansion(c(0, 0.1)),
+    breaks = pretty_breaks(),
+    labels = label_number_si()
+  ) +
+  theme_unhcr(
+    font_size = 13,
+    grid = "Y",
+    axis = "x",
+    axis_title = "y"
+  )
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Ordered column chart with labels
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r column_ordered_labels_code, echo=TRUE, eval=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+library(scales)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv")
+
+# Plot
+ggplot(df) +
+  geom_col(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  geom_text(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number,
+    label = format(returnee_number,
+      big.mark = ",",
+      scientific = FALSE
+    )
+  ),
+  vjust = -1,
+  size = 8 / .pt
+  ) +
+  labs(
+    title = "Refugee returns by country of origin (top 5) | 2020",
+    subtitle = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_y_continuous(
+    expand = expansion(c(0, 0.1))
+  ) +
+  theme_unhcr(
+    grid = FALSE,
+    axis = "x",
+    axis_title = FALSE,
+    axis_text = "x"
+  )
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r r_column_ordered_labels_chart, echo=FALSE, out.width="100%", fig.height=5.8, fig.alt="An ordered column showing refugee returns by country of origin (top 5) | 2020"}
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/ranking/column_ordered.csv")
+
+ggplot(df) +
+  geom_col(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number
+  ),
+  fill = unhcr_pal(n = 1, "pal_blue"),
+  width = 0.8
+  ) +
+  geom_text(aes(
+    x = reorder(country_origin, -returnee_number),
+    y = returnee_number,
+    label = format(returnee_number, big.mark = ",", scientific = FALSE)
+  ),
+  vjust = -1,
+  size = 11.5 / .pt
+  ) +
+  labs(
+    title = "Refugee returns by country of origin (top 5) | 2020",
+    subtitle = "Number of people",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_y_continuous(
+    expand = expansion(c(0, 0.1))
+  ) +
+  theme_unhcr(
+    font_size = 13,
+    grid = FALSE,
+    axis = "x",
+    axis_title = FALSE,
+    axis_text = "x"
+  )
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNHCR Dataviz Platform - Find most effective chart for the data</title>
+    <meta name="description" content="A change over time chart shows data over a time period to display as a way to find trends or changes over time.">
+    <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Chart classification,Chart catalogue,Best practices,Effective charts,Change over time,Line chart,Area chart,Stacked area chart,Streamgraph,Line column chart,Slope chart,Dot plot">
+    <meta name="author" content="Cedric Vidonne">
+    <meta name="author" content="Lei Chen">
+    <link href="../assets/css/unhcrmain.min.css" rel="stylesheet" />
+    <!-- jquery JS file -->
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-WH3X382 height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <h1 class="title">Chart Gallery - Change over time</h1>
+    <!-- Navigation -->
+    <hcr-header></hcr-header>  
+    <!-- End Navigation -->
+
+    <!-- Main -->
+    <main id="chart_gallery" class="d-flex flex-column min-vh-100 flex-shrink-0">
+
+        <!-- Back to top button -->
+        <a id="back-to-top"></a>
+
+        <div class="container my-5">
+            <div class="row">
+                <div class="sidebar-area col-lg-3">
+                    <nav id="sidebar" class="navbar sticky-top d-none d-lg-block align-items-stretch p-3">
+                        <nav class="nav nav-pills flex-column">
+                            <h5 class="navbar-title">Change over time</h5>
+                            <a class="nav-link" href="#line">Line chart</a>
+                            <a class="nav-link" href="#area">Area chart</a>
+                            <a class="nav-link" href="#area-stacked">Stacked area chart</a>
+                            <a class="nav-link" href="#streamgraph">Streamgraph</a>
+                            <a class="nav-link" href="#line-column">Line column chart</a>
+                            <a class="nav-link" href="#slope">Slope chart</a>
+                            <a class="nav-link" href="#dotplot">Dot plot</a>
+                        </nav>
+                    </nav>
+                </div>
+                <div class="chart-area col-lg-9">
+                    <section id="line" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/line_icon.svg" class="w-25 mb-3" alt="Line chart icon">
+                            <h2>Line chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>A line chart is a type of chart that displays the evolution of one or several numeric
+                            variables over a continuous interval or time period. Typically, the x-axis is used for a
+                            timescale or a sequence of intervals, while the y-axis reports values across that
+                            progression.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Line charts are common and effective for showing how the value of something changes over
+                            time or comparing how several things change over time relative to each other by plotting
+                            them on the same chart using different colored lines.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2 g-3">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Choose an appropriate y-axis scale (ideally, the height of
+                                            the line occupies roughly two-thirds of the chart area).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t plot too many lines (four maximum).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 3">
+                                    <div class="card-body">
+                                        <p class="card-text">Use solid and right weight line (thick enough to stand out
+                                            against the gridline but still think enough to show the twists and turns of
+                                            the line).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 4">
+                                    <div class="card-body">
+                                        <p class="card-text">Use clearly differentiated colour for the different
+                                            categories.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_5.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 5">
+                                    <div class="card-body">
+                                        <p class="card-text">Label the lines directly (use a legend only when space is
+                                            tight).
+                                        </p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_dosdonts_6.svg"
+                                        class="card-img-top img-fluid" alt="Line chart dos and donts 6">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t use dual axes to compare the evolution of different
+                                            variables (multiple lines).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_line_chart.html">R</a>
+                        <a class="btn btn-primary" href="../tools/d3/d3_line_chart.html">D3.js</a>
+                        <a class="btn btn-primary" href="../tools/python/python_line_chart.html">Python</a>
+
+                    </section>
+
+                    <hr>
+
+                    <section id="area" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/area_icon.svg" class="w-25 mb-3" alt="Area chart icon">
+                            <h2>Area chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>
+                            An area chart, like a line chart, displays the evolution of numeric variables over a
+                            continuous period of time. However, in an area chart, the area between the line and
+                            x-axis is filled with colour or texture.
+                        </p>
+                        <p>
+                            Area charts are created by plotting data points on a Cartesian coordinate grid
+                            (typically, timescale is on the x-axis, with values on the y-axis), and then the
+                            points are connected with a line, and the area below is filled.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Area charts are useful for showing trending quantities, or even comparing multiple
+                            quantities against each other (also known as grouped or overlapping area charts).
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Area chart dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Use zero baseline for the y-axis.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Area chart dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Use the same colour for the line and the fill.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="Area chart dos and donts 3">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t use an area chart for showing fine differences
+                                            between values.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_area_chart.html">R</a>
+                        <a class="btn btn-primary" href="../tools/d3/d3_area_chart.html">D3.js</a>
+                        <a class="btn btn-primary" href="../tools/python/python_area_chart.html">Python</a>
+                    </section>
+
+                    <hr>
+
+                    <section id="area-stacked" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/area_stacked_icon.svg" class="w-25 mb-3" alt="Stacked area chart icon">
+                            <h2>Stacked area chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>
+                            As a variation of a simple area chart, a stacked area chart displays the changes of
+                            value of multiple data series over a period of time. The values of each data series are
+                            plotted on top of each other, which allows tracking not only the evolution of total
+                            value but also the breakdown of that total by groups.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Stacked area charts are useful for comparing multiple related variables changing over an
+                            interval. We can get a general idea of how each variable compares to the other in their
+                            contributions to the total. However, stack area charts should be used carefully as
+                            people could be confused with overlapping (or grouped) area charts in which all data
+                            series share a common baseline.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_stacked_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Stacked area chart dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Use zero baseline for the y-axis.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_stacked_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Stacked area chart dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Use contrasting colours for each individual category.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_stacked_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="Stacked area chart dos and donts 3">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t apply opacity on colours for the filled areas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_stacked_dosdonts_4.svg"
+                                        class="card-img-top img-fluid" alt="Stacked area chart dos and donts 4">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t use a stacked area chart to show fine differences
+                                            between values.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/area_stacked_dosdonts_5.svg"
+                                        class="card-img-top img-fluid" alt="Stacked area chart dos and donts 5">
+                                    <div class="card-body">
+                                        <p class="card-text">Order the values in a way that tells the best story.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_area_stacked_chart.html">R</a>
+                        <a class="btn btn-primary" href="../tools/d3/d3_stacked_area_chart.html">D3.js</a>
+                        <a class="btn btn-primary" href="../tools/python/python_stacked_area_chart.html">Python</a>
+                    </section>
+
+                    <hr>
+
+                    <section id="streamgraph" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/streamgraph_icon.svg" class="w-25 mb-3" alt="Streamgraph icon">
+                            <h2>Streamgraph</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>
+                            A streamgraph is a variation of a stacked area chart. Instead of displaying values on
+                            top of a fixed, straight baseline at the bottom of the stack, the values of the
+                            streamgraph are displaced around a central baseline. This results in a flowing,
+                            organic-shaped “stream” displaying the change over time.
+                        </p>
+                        <p>
+                            In a streamgraph, the horizontal axis is used for the timescale, while the height of
+                            each individual stream shape indicates the value of each category. Different colour
+                            shades are used for representing different categories. This makes streamgraphs visually
+                            appealing and more engaging to look at.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Streamgraphs are useful for visualizing large datasets to show the quantity change
+                            within categories over time. It can help identify trends and patterns. Stream graphs are
+                            best used in an interactive form rather than static graphs.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/streamgraph_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Streamgraph dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Use contrasting colours for each individual category.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/streamgraph_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Streamgraph dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t apply opacity on colours for the filled areas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Don’t use a streamgraph to show fine differences between
+                                        values.</li>
+                                    <li>Make it interactive if possible.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/r/r_streamgraph.html">R</a>
+                        <a class="btn btn-primary" href="../tools/d3/d3_streamgraph.html">D3.js</a>
+                        <a class="btn btn-primary" href="../tools/python/python_streamgraph.html">Python</a>
+                    </section>
+
+                    <hr>
+
+                    <section id="line-column" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/line_column_icon.svg" class="w-25 mb-3" alt="Line column chart icon">
+                            <h2>Line column chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>
+                            A line column chart is a type of visualization that combines both line and column charts
+                            together, using dual axes displayed on the left and right sides of the chart. It allows
+                            us to show the relationship of two variables with different magnitudes and scales.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Line column charts can be useful when showing the relationship over time between an
+                            amount (column) and a rate (line). Be careful when using, because if used incorrectly,
+                            it can be misleading.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_column_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Line column chart dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Place primary y-axis on the left.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_column_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Line column chart dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Start at zero baseline for y-axis that that shows the
+                                            amount (column).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/line_column_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="Line column chart dos and donts 3">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t include too many variables.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Use contrasting colours to clarify which data series
+                                        belongs to which axis.</li>
+                                    <li>Don’t use it to compare heights, as the axes could be on
+                                        different scales.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_line_column_chart.html">R</a>
+                        <a class="btn btn-primary" href="../tools/d3/d3_line_column_chart.html">D3.js</a>
+                        <a class="btn btn-primary" href="../tools/python/python_line_column_chart.html">Python</a>
+                    </section>
+
+                    <hr>
+
+                    <section id="slope" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/slope_icon.svg" class="w-25 mb-3" alt="Slope chart icon">
+                            <h2>Slope chart</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>
+                            A slope chart looks like a line chart, but unlike the line chart, it has only two data
+                            points for each line. The change between two data points can be easily identified with
+                            connected lines (slope up means increase, slope down means decrease).
+                        </p>
+                        <h4>When to use</h4>
+                        <p>
+                            Slope charts can be used to show change in a ‘before and after’ story by comparing their
+                            values at different points in time. It is a great way to show change or difference when
+                            there are only two data points. It works well with both continuous data and categorical
+                            data.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/slope_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Slope chart dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Don’t plot too many data series, especially if there are
+                                            many similar values and slopes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/slope_dosdonts_2.svg"
+                                        class="card-img-top img-fluid" alt="Slope chart dos and donts 2">
+                                    <div class="card-body">
+                                        <p class="card-text">Use consistent colours throughout the chart, using accent
+                                            colours to highlight meaningful data points.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/slope_dosdonts_3.svg"
+                                        class="card-img-top img-fluid" alt="Slope chart dos and donts 3">
+                                    <div class="card-body">
+                                        <p class="card-text">Use direct labelling instead of a separate legend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_slope_chart.html">R</a>
+                        <!-- <a class="btn btn-primary" href="#">D3.js</a> -->
+                        <a class="btn btn-primary" href="../tools/python/python_slope_chart.html">Python</a>
+                    </section>
+                    <hr>
+                    <section id="dotplot" class="my-5">
+                        <div class="text-center mb-3">
+                            <img src="../assets/img/change_over_time/dotplot_icon.svg" class="w-25 mb-3" alt="Dot plot icon">
+                            <h2>Dot plot</h2>
+                        </div>
+                        <h4>Description</h4>
+                        <p>A dot plot is a type of graph in which the dots are connected to show changes or differences.
+                            It’s an alternative to the grouped bar chart or slope chart.
+                        </p>
+                        <h4>When to use</h4>
+                        <p>Dot plot can be used for displaying changes between two points in time, two conditions, or
+                            differences between two groups.
+                        </p>
+                        <h4>Dos and donts</h4>
+                        <div class="dosdonts row row-cols-1 row-cols-md-2">
+                            <div class="col">
+                                <div class="card border-0">
+                                    <img src="../assets/img/change_over_time/dotplot_dosdonts_1.svg"
+                                        class="card-img-top img-fluid" alt="Dot plot dos and donts 1">
+                                    <div class="card-body">
+                                        <p class="card-text">Use a horizontal dot plot if the category name is long.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="tools">Tools available</h4>
+                        <a class="btn btn-primary" href="../tools/index.html#excel">MS Office</a>
+                        <a class="btn btn-primary" href="../tools/index.html#pbi">Power BI</a>
+                        <a class="btn btn-primary" href="../tools/index.html#illustrator">Illustrator</a>
+                        <a class="btn btn-primary" href="../tools/r/r_dotplot.html">R</a>
+                        <!-- <a class="btn btn-primary" href="#">D3.js</a> -->
+                        <a class="btn btn-primary" href="../tools/python/python_dotplot.html">Python</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <hcr-footer></hcr-footer>
+    <!-- End footer -->
+
+    <!-- Scripts -->
+    <!-- bs/popper bundle -->
+    <script src="../assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- UNHCR includes header/footer JS file -->
+    <script type="module" src="../assets/js/unhcrincludes.js"></script>
+    <!-- UNHCR main JS file -->
+    <script type="module" src="../assets/js/unhcrmain.js"></script>
+    <!-- UNHCR sidebar JS file -->
+    <script type="module" src="../assets/js/unhcrsidebar.js"></script>
+    <!-- End scripts -->
+
+</body>
+
+</html>
