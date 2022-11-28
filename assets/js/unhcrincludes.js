@@ -6,7 +6,7 @@ class hcrHeader extends HTMLElement {
             <nav class="navbar navbar-expand-lg border-bottom">
                 <div class="container p-2">
                 <a class="navbar-brand" href="/unhcr-dataviz-platform/">
-                    <img src="/unhcr-dataviz-platform/assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
+                    <img src="/assets/img/unhcr_logo_blue.svg" alt="UNHCR Logo" class="img-fluid" style="height: 3rem; max-height:2.75rem" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

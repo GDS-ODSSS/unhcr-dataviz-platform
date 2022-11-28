@@ -13,7 +13,7 @@
     <meta name="author" content="Cedric Vidonne">
     <meta name="author" content="Lei Chen">
     <link href="assets/css/unhcrmain.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -25,6 +25,88 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-WH3X382');</script>
     <!-- End Google Tag Manager -->
+    
+    
+    <style>
+      #scrolly {
+        position: relative;
+        padding: 1rem;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin: 0 auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 0;
+        top: 0;
+        height: 60vh;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: rgba(255, 255, 255, 0.5);
+        color: black;
+      }
+
+      .step p {
+        text-align: center;
+        padding: 1rem;
+        font-size: 1rem;
+      }
+
+      .hidden { visibility: hidden; }
+
+      /* When it's less than 700 pixels wide, do normal scrollytelling */
+      @media only screen and (min-width: 700px) {
+        #scrolly.side-by-side {
+          display: flex;
+        }
+
+        #scrolly.side-by-side > div {
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          padding: 0.75em;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          margin-top: 70vh;
+          order: 0;
+          /* Change these to adjust sizing options */
+          min-width: 15rem;
+          max-width: 20rem;
+        }
+
+        #scrolly.side-by-side .sticky-thing {
+          order: 1;
+          flex-grow: 2;
+        }
+      }
+
+      .hidden { visibility: hidden; }
+    </style> 
+
+
+<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -38,92 +120,1546 @@
     <!-- End Navigation -->
 
     <!-- Main -->
-    <main id="home" class="flex-shrink-0">
-        <section class="banner py-5">
-            <div class="container py-5">
-                <div class="row align-items-center gx-5 gy-4">
-                    <div class="col-12 col-sm-8 col-md-6 order-2 order-sm-1">
-                        <h1 class="display-4 text-primary">Data visualization platform</h1>
-                        <p class="fs-4">Insights, guidelines, and tools for better data storytelling.</p>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-6 order-sm-2 offset-3 offset-sm-0">
-                        <img src="assets/img/circle_cover.svg" alt="Data visualization illustration at the home page", title="UNHCR Data Visualization Platform" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="py-5 bg-light">
-            <div class="container py-3">
-                <div class="row align-items-center gx-5 gy-4">
-                    <div class="col-12 col-md-6">
-                        <h2>Chart gallery</h2>
-                        <hr class="short-hr mx-0">
-                        <p>Finding the most effective way to showcase your data and convey your message can be a
-                            daunting task. In the chart gallery, you can browse through different options and find
-                            suitable charts for the type of data you have and the attributes and relationships you want
-                            to highlight.</p>
-                        <a class="btn btn-primary" href="chart_gallery/" role="button">See more</a>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <img src="assets/img/chart_gallery_cover_white.svg" alt="Chart gallery illustration at the home page", title="Chart Gallery" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="py-5">
-            <div class="container py-3">
-                <div class="row align-items-center gx-5 gy-4">
-                    <div class="col-12 col-md-6 order-md-2">
-                        <h2>General guidance</h2>
-                        <hr class="short-hr mx-0">
-                        <p>The UNHCR Data Visualization Guidelines are practical and easy to follow. They will ensure
-                            your charts and graphics are professional, clear and brand–compliant.</p>
-                        <a class="btn btn-primary" href="general_guidance/" role="button">See more</a>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-1">
-                        <img src="assets/img/guideline_cover.svg" alt="General guidance illustration at the home page", title="General guidance" class="img-fluid">
-                    </div>
+<main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+  <div class="container my-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-5">
+        <li class="breadcrumb-item"><a href="../../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../../">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data Story</li>
+      </ol>
+    </nav>
+  <div class="row justify-content-md-center">
+    <div class="col col-md-8">
+      <h2>Low COVID-19 vaccination rates in lower income countries compound risks for refugees</h2>
+      <p>14 February 2022</p>
+      <hr>
+      <p class="fs-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+        Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+      </div>
+  </div>
 
-                </div>
-            </div>
-        </section>
-        <section class="py-5 bg-light">
-            <div class="container py-3">
-                <div class="row align-items-center gx-5 gy-4">
-                    <div class="col-12 col-md-6">
-                        <h2>Tools</h2>
-                        <hr class="short-hr mx-0">
-                        <p>To help UNHCR colleagues to create high-quality, brand-compliant charts and graphics, GDS has
-                            created a number of tools, templates and scripts. You can find useful tools to support your
-                            data visualization using Excel, Power BI, Adobe Illustrator, R, Python, D3, and for GIS.</p>
-                        <a class="btn btn-primary" href="tools/" role="button">See more</a>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <img src="assets/img/tools_cover_white.svg" alt="Tools illustration at the home page", title="Tools" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="py-5">
-            <div class="container py-3">
-                <div class="row align-items-center gx-5 gy-4">
-                    <div class="col-12 col-md-6 order-md-2">
-                        <h2>Products</h2>
-                        <hr class="short-hr mx-0">
-                        <p>Browse through the collection of storymaps, dashboards and infographics created by UNHCR’s
-                            Information Product Development and Analysis unit. Perhaps they can inspire your data
-                            storytelling?</p>
-                        <a class="btn btn-primary" href="products/" role="button">See more</a>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-1">
-                        <img src="assets/img/product_cover_white.png" alt="Products illustration at the home page", title="Products" class="img-fluid">
-                    </div>
+  <section id="scrolly">
+    <div class="sticky-thing">
+      <div class="ai2html-container">
 
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- End Main -->
+<!-- ai2html goes below this line -->
+
+
+<!-- Generated by ai2html v0.115.1 - 2022-11-28 09:31 -->
+<!-- ai file: vaccination_income.ai -->
+<style media="screen,print">
+	#g-vaccination_income-box ,
+	#g-vaccination_income-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-vaccination_income-box p {
+		margin:0;
+	}
+	#g-vaccination_income-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-vaccination_income-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-vaccination_income-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-vaccination_income-box .g-aiPointText p { white-space: nowrap; }
+	#g-vaccination_income-artboard-1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-vaccination_income-artboard-1 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:11px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:9px;
+		text-align:left;
+		color:rgb(102,102,102);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle0 {
+		font-weight:700;
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle1 {
+		font-weight:700;
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle2 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle3 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		text-align:center;
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle4 {
+		height:11px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-1 .g-pstyle5 {
+		height:11px;
+	}
+	#g-vaccination_income-artboard-2 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-vaccination_income-artboard-2 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:11px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:9px;
+		text-align:left;
+		color:rgb(102,102,102);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle0 {
+		font-weight:700;
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle1 {
+		font-weight:700;
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle2 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle3 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		text-align:center;
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle4 {
+		height:11px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-2 .g-pstyle5 {
+		height:11px;
+	}
+	#g-vaccination_income-artboard-3 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-vaccination_income-artboard-3 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:10px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:9px;
+		text-align:left;
+		color:rgb(102,102,102);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle0 {
+		font-weight:700;
+		line-height:19px;
+		font-size:16px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle1 {
+		font-weight:700;
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle2 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		color:rgb(51,51,51);
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle3 {
+		line-height:12px;
+		height:12px;
+		font-size:10px;
+		text-align:center;
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle4 {
+		line-height:11px;
+		height:11px;
+		color:rgb(0,0,0);
+	}
+	#g-vaccination_income-artboard-3 .g-pstyle5 {
+		height:10px;
+	}
+
+</style>
+
+<div id="g-vaccination_income-box" class="ai2html">
+
+	<!-- Artboard: artboard-1 -->
+	<div id="g-vaccination_income-artboard-1" class="g-artboard" style="width:620px; height:487.931905183023px;" data-aspect-ratio="1.271" data-min-width="620">
+<div style=""></div>
+		<img id="g-vaccination_income-artboard-1-img" class="g-vaccination_income-artboard-1-img g-aiImg" alt="" src="vaccination_income-artboard-1.png"/>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-vaccination_income-artboard-1-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-vaccination_income-artboard-1-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 620 487.932" overflow="visible" xml:space="preserve">
+<g>
+	<g id="not-top10" data-name="not-top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="145.763" cy="386.961" r="3.22"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="313.809" cy="341.99" r="5.862"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="317.447" cy="195.465" r="4.719"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="325.288" cy="334.801" r="2.655"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="519.905" cy="187.747" r="2.901"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="487.188" cy="198.993" r="4.388"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="358.656" cy="280.367" r="0.75"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="468.9" cy="193.695" r="3.097"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="310.097" cy="294.611" r="0.946"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="338.094" cy="212.069" r="5.494"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="353.9" cy="331.482" r="1.966"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="502.219" cy="186.174" r="4.093"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="328.84" cy="168.328" r="6.108"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="496.234" cy="159.233" r="7.595"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="488.172" cy="212.045" r="1.708"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="508.156" cy="231.5" r="0.836"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="490.507" cy="178.836" r="2.421"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="346.218" cy="199.927" r="7.718"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="477.393" cy="198.907" r="2.04"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="539.422" cy="193.929" r="7.386"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="500.892" cy="209.218" r="4.252"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="336.153" cy="326.505" r="0.787"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="513.846" cy="211.541" r="3.896"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="500.179" cy="231.316" r="1.204"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="531.532" cy="189.406" r="0.737"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="320.863" cy="270.461" r="5.002"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="321.392" cy="287.643" r="1.475"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="481.891" cy="189.32" r="1.438"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="332.625" cy="371.291" r="5.813"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="496.062" cy="194.359" r="4.228"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="288.515" cy="296.529" r="9.083"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="529.995" cy="184.896" r="0.615"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="335.796" cy="387.956" r="7.46"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="499.257" cy="165.993" r="1.008"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="294.906" cy="374.412" r="1.032"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="519.303" cy="214.22" r="0.799"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="506.57" cy="218.104" r="1.155"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="328.262" cy="243.754" r="3.994"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="316.439" cy="261.162" r="3.994"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="333.166" cy="186.813" r="4.179"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="332.748" cy="234.671" r="1.29"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="331.814" cy="296.209" r="1.893"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="528.189" cy="206.502" r="3.675"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="343.392" cy="408.076" r="3.208"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="474.492" cy="203.184" r="2.704"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="512.297" cy="192.675" r="0.787"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="339.557" cy="249.149" r="4.08"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="344.055" cy="217.317" r="7.854"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="310.884" cy="407.879" r="1.561"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="507.627" cy="248.535" r="0.971"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="506.41" cy="152.068" r="0.909"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="353.519" cy="294.169" r="1.032"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="339.016" cy="335.206" r="3.306"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="335.599" cy="276.692" r="1.708"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="504.542" cy="176.833" r="3.945"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="301.752" cy="277.946" r="2.102"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="504.174" cy="273.779" r="0.504"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="526.026" cy="198.993" r="5.543"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="496.812" cy="217.748" r="3.982"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="153.014" cy="400.394" r="1.721"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="315.517" cy="216.088" r="3.65"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="354.391" cy="313.686" r="1.278"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="502.822" cy="145.112" r="0.676"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="320.126" cy="317.643" r="0.873"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="491.22" cy="190.426" r="1.696"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="516.329" cy="230.947" r="6.416"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="370.885" cy="297.463" r="3.146"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="492.203" cy="224.888" r="0.799"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="510.614" cy="163.019" r="1.426"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="346.157" cy="263.799" r="0.922"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="325.509" cy="376.28" r="2.114"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="157.562" cy="385.338" r="1.426"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="317.557" cy="408.137" r="7.3"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="357.464" cy="385.191" r="2.47"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="141.462" cy="414.725" r="7.841"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="327.107" cy="208.137" r="2.298"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="155.903" cy="336.927" r="1.131"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="160.327" cy="296.012" r="4.056"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="320.015" cy="390.427" r="3.195"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="314.288" cy="386.445" r="1.585"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="361.839" cy="390.316" r="0.836"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="128.286" cy="412.242" r="4.154"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="299.552" cy="291.465" r="1.561"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="342.531" cy="291.207" r="1.192"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="156.738" cy="415.093" r="3.306"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="345.567" cy="377.202" r="0.713"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="141.167" cy="404.794" r="1.991"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="174.486" cy="413.176" r="7.767"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="166.497" cy="411.75" r="0.799"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="148.688" cy="374.99" r="1.241"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="118.97" cy="406.453" r="2.679"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="132.379" cy="403.417" r="1.77"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="364.347" cy="375.285" r="1.008"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="339.323" cy="398.932" r="1.684"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="188.62" cy="409.452" r="6.268"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="330.462" cy="408.813" r="5.076"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="165.12" cy="378.308" r="1.512"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="342.421" cy="352.019" r="1.438"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="305.181" cy="377.411" r="3.675"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="320.741" cy="356.936" r="3.699"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="180.864" cy="399.804" r="1.573"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="499.602" cy="272.771" r="1.364"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="158.127" cy="359.91" r="1.377"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="181.258" cy="403.54" r="5.543"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="150.003" cy="379.562" r="1.094"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="327.869" cy="302.182" r="2.028"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="293.702" cy="389.96" r="1.979"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="516.415" cy="198.759" r="1.794"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="498.557" cy="242.943" r="1.782"/>
+	</g>
+	<g id="top10" data-name="top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="352.314" cy="239.452" r="13.962"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="320.605" cy="230.972" r="9.611"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="306.508" cy="329.59" r="9.931"/>
+		
+			<ellipse transform="matrix(0.1602 -0.9871 0.9871 0.1602 -47.1163 568.0848)" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="310.294" cy="311.732" rx="12.733" ry="12.733"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="162.085" cy="405.925" r="11.037"/>
+		
+			<ellipse transform="matrix(0.1602 -0.9871 0.9871 0.1602 25.9558 502.6524)" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="308.376" cy="236.072" rx="20.107" ry="20.107"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="146.746" cy="411.283" r="9.513"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="171.241" cy="403.307" r="12.88"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="346.403" cy="310.662" r="10.115"/>
+	</g>
+	<rect id="path-11" data-name="path-11" x="422.326" y="109.433" fill-opacity="0.06" width="173.724" height="320.372"/>
+	<rect id="path-10" data-name="path-10" x="243.594" y="109.433" fill-opacity="0.06" width="173.724" height="320.372"/>
+	<rect id="path-9" data-name="path-9" x="64.432" y="109.433" fill-opacity="0.06" width="173.724" height="320.372"/>
+	
+		<circle id="legend-path-6" data-name="legend-path-6" fill="#CCCCCC" fill-opacity="0.5" stroke="#CCCCCC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="431.734" cy="74.873" r="6.993"/>
+	
+		<circle id="legend-path-5" data-name="legend-path-5" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="506.607" cy="74.873" r="6.993"/>
+	
+		<circle id="path-12" data-name="path-12" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="506.189" cy="202.864" r="11.836"/>
+</g>
+<style>
+#g-vaccination_income-artboard-1-interactions-img rect, #g-vaccination_income-artboard-1-interactions-img circle, #g-vaccination_income-artboard-1-interactions-img path, #g-vaccination_income-artboard-1-interactions-img line, #g-vaccination_income-artboard-1-interactions-img polyline, #g-vaccination_income-artboard-1-interactions-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:5.8279%;margin-top:-19.4px;left:1.7463%;width:601px;">
+			<p class="g-pstyle0">Vaccination rates in upper, middle and low-income countries hosting refugees and</p>
+			<p class="g-pstyle0">Venesuelans displaced abroad</p>
+		</div>
+		<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-12.2px;left:1.7463%;width:156px;">
+			<p class="g-pstyle1">Number of refugees and </p>
+			<p class="g-pstyle1">Venezuelans displaced abroad</p>
+		</div>
+		<div id="g-ai0-3" class="g-top10-legend g-aiAbs g-aiPointText" style="top:15.4145%;margin-top:-6.2px;left:55.3739%;width:101px;">
+			<p class="g-pstyle1">Hosting countries</p>
+		</div>
+		<div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-6.2px;left:28.2617%;width:37px;">
+			<p class="g-pstyle1">1M</p>
+		</div>
+		<div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-6.2px;left:38.0801%;width:37px;">
+			<p class="g-pstyle1">2M</p>
+		</div>
+		<div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-6.2px;left:49.5031%;width:37px;">
+			<p class="g-pstyle1">3M</p>
+		</div>
+		<div id="g-ai0-7" class="g-top10-legend g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-6.2px;left:71.2759%;width:70px;">
+			<p class="g-pstyle1">Not top 10</p>
+		</div>
+		<div id="g-ai0-8" class="g-top10-legend g-aiAbs g-aiPointText" style="top:15.414%;margin-top:-6.2px;left:83.2987%;width:52px;">
+			<p class="g-pstyle1">Top 10</p>
+		</div>
+		<div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:25.4552%;margin-top:-6.2px;left:3.7287%;width:47px;">
+			<p class="g-pstyle2">100%</p>
+		</div>
+		<div id="g-ai0-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:40.2113%;margin-top:-6.2px;left:4.6484%;width:41px;">
+			<p class="g-pstyle2">75%</p>
+		</div>
+		<div id="g-ai0-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0,-1,1,0,0,0);transform-origin: 50% 58.0598189689099%;-webkit-transform: matrix(0,-1,1,0,0,0);-webkit-transform-origin: 50% 58.0598189689099%;-ms-transform: matrix(0,-1,1,0,0,0);-ms-transform-origin: 50% 58.0598189689099%;top:54.9674%;margin-top:-6.2px;left:2.5378%;margin-left:-82px;width:164px;">
+			<p class="g-pstyle3">People fully vaccinated (percent)</p>
+		</div>
+		<div id="top10-text10" class="g-top10-text g-aiAbs g-aiPointText" style="top:42.7689%;margin-top:-5.7px;left:73.9358%;width:58px;">
+			<p class="g-pstyle4">Germany</p>
+		</div>
+		<div id="top10-text2" class="g-top10-text g-aiAbs g-aiPointText" style="top:44.6135%;margin-top:-5.7px;left:52.0097%;width:91px;">
+			<p class="g-pstyle4">Iran(Islamic Rep.) </p>
+		</div>
+		<div id="top10-text4" class="g-top10-text g-aiAbs g-aiPointText" style="top:52.4015%;margin-top:-5.7px;left:43.9021%;width:49px;">
+			<p class="g-pstyle4">Turkey</p>
+		</div>
+		<div id="top10-text3" class="g-top10-text g-aiAbs g-aiPointText" style="top:52.6063%;margin-top:-5.7px;left:57.4963%;width:60px;">
+			<p class="g-pstyle4">Columbia</p>
+		</div>
+		<div id="g-ai0-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:55.5824%;margin-top:-6.2px;left:4.6484%;width:41px;">
+			<p class="g-pstyle2">50%</p>
+		</div>
+		<div id="top10-text1" class="g-top10-text g-aiAbs g-aiPointText" style="top:60.1899%;margin-top:-5.7px;left:54.7759%;width:68px;">
+			<p class="g-pstyle4">Bangladesh</p>
+		</div>
+		<div id="top10-text5" class="g-top10-text g-aiAbs g-aiPointText" style="top:60.3944%;margin-top:-5.7px;left:45.319%;width:56px;">
+			<p class="g-pstyle4">Pakistan</p>
+		</div>
+		<div id="g-ai0-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:70.3384%;margin-top:-6.2px;left:4.6484%;width:41px;">
+			<p class="g-pstyle2">25%</p>
+		</div>
+		<div id="top10-text9" class="g-top10-text g-aiAbs g-aiPointText" style="top:70.2318%;margin-top:-5.7px;left:44.9201%;width:56px;">
+			<p class="g-pstyle4">Lebanon</p>
+		</div>
+		<div id="top10-text8" class="g-top10-text g-aiAbs g-aiPointText" style="top:79.8647%;margin-top:-5.7px;left:28.6879%;width:52px;">
+			<p class="g-pstyle4">Uganda</p>
+		</div>
+		<div id="top10-text6" class="g-top10-text g-aiAbs g-aiPointText" style="top:81.094%;margin-top:-5.7px;left:21.3485%;width:46px;">
+			<p class="g-pstyle4">Sudan</p>
+		</div>
+		<div id="g-ai0-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:85.0946%;margin-top:-6.2px;left:6.8145%;width:28px;">
+			<p class="g-pstyle2">0</p>
+		</div>
+		<div id="top10-text7" class="g-top10-text g-aiAbs g-aiPointText" style="top:85.8078%;margin-top:-5.7px;left:17.1612%;width:55px;">
+			<p class="g-pstyle4">Ethiopia</p>
+		</div>
+		<div id="g-ai0-25" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.8085%;margin-top:-6.2px;left:21.2106%;width:74px;">
+			<p class="g-pstyle2">Low income</p>
+		</div>
+		<div id="g-ai0-26" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.8085%;margin-top:-6.2px;left:48.0907%;width:86px;">
+			<p class="g-pstyle2">Middle income</p>
+		</div>
+		<div id="g-ai0-27" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.809%;margin-top:-6.2px;left:76.8798%;width:77px;">
+			<p class="g-pstyle2">High income</p>
+		</div>
+		<div id="g-ai0-28" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:95.1948%;margin-top:-16.5px;left:1.9049%;width:403px;">
+			<p class="g-pstyle5">Note: Only shows countries that host 1,00 or more refugees and/or Venezuelans displaced abroad</p>
+			<p class="g-pstyle5">Source: UNHCR Refugee Data Finder, Our World in Data, World Bank</p>
+			<p class="g-pstyle5">&copy; UNHCR, The UN Refugee Agency</p>
+		</div>
+	</div>
+
+	<!-- Artboard: artboard-2 -->
+	<div id="g-vaccination_income-artboard-2" class="g-artboard" style="width:490px; height:425.675949096643px;" data-aspect-ratio="1.151" data-min-width="490" data-max-width="619">
+<div style=""></div>
+		<img id="g-vaccination_income-artboard-2-img" class="g-vaccination_income-artboard-2-img g-aiImg" alt="" src="vaccination_income-artboard-2.png"/>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-vaccination_income-artboard-2-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-vaccination_income-artboard-2-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 490 425.676" overflow="visible" xml:space="preserve">
+<g>
+	<rect id="path-3" data-name="path-3" x="336.625" y="111.04" fill-opacity="0.06" width="141.35" height="260.67"/>
+	<rect id="path-2" data-name="path-2" x="191.2" y="111.04" fill-opacity="0.06" width="141.35" height="260.67"/>
+	<rect id="path-1" data-name="path-1" x="45.425" y="111.04" fill-opacity="0.06" width="141.35" height="260.67"/>
+	<g id="not-top10-2" data-name="not-top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="111.6" cy="336.85" r="2.62"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="248.33" cy="300.26" r="4.77"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="251.29" cy="181.04" r="3.84"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="257.67" cy="294.41" r="2.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="416.02" cy="174.76" r="2.36"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="389.4" cy="183.91" r="3.57"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="284.82" cy="250.12" r="0.61"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="374.52" cy="179.6" r="2.52"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="245.31" cy="261.71" r="0.77"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="268.09" cy="194.55" r="4.47"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="280.95" cy="291.71" r="1.6"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="401.63" cy="173.48" r="3.33"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="260.56" cy="158.96" r="4.97"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="396.76" cy="151.56" r="6.18"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="390.2" cy="194.53" r="1.39"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="406.46" cy="210.36" r="0.68"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="392.1" cy="167.51" r="1.97"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="274.7" cy="184.67" r="6.28"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="381.43" cy="183.84" r="1.66"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="431.9" cy="179.79" r="6.01"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="400.55" cy="192.23" r="3.46"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="266.51" cy="287.66" r="0.64"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="411.09" cy="194.12" r="3.17"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="399.97" cy="210.21" r="0.98"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="425.48" cy="176.11" r="0.6"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="254.07" cy="242.06" r="4.07"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="254.5" cy="256.04" r="1.2"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="385.09" cy="176.04" r="1.17"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="263.64" cy="324.1" r="4.73"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="396.62" cy="180.14" r="3.44"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="227.75" cy="263.27" r="7.39"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="424.23" cy="172.44" r="0.5"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="266.22" cy="337.66" r="6.07"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="399.22" cy="157.06" r="0.82"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="232.95" cy="326.64" r="0.84"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="415.53" cy="196.3" r="0.65"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="405.17" cy="199.46" r="0.94"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="260.09" cy="220.33" r="3.25"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="250.47" cy="234.494" r="3.25"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="264.08" cy="174" r="3.4"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="263.74" cy="212.94" r="1.05"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="262.98" cy="263.01" r="1.54"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="422.76" cy="190.02" r="2.99"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="272.4" cy="354.03" r="2.61"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="379.07" cy="187.32" r="2.2"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="409.83" cy="178.77" r="0.64"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="269.28" cy="224.72" r="3.32"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="272.94" cy="198.82" r="6.39"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="245.95" cy="353.87" r="1.27"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="406.03" cy="224.22" r="0.79"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="405.04" cy="145.73" r="0.74"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="280.64" cy="261.35" r="0.84"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="268.84" cy="294.74" r="2.69"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="266.06" cy="247.13" r="1.39"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="403.52" cy="165.88" r="3.21"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="238.52" cy="248.15" r="1.71"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="403.22" cy="244.76" r="0.41"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="421" cy="183.91" r="4.51"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="397.23" cy="199.17" r="3.24"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="117.5" cy="347.78" r="1.4"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="249.72" cy="197.82" r="2.97"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="281.35" cy="277.23" r="1.04"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="402.12" cy="140.07" r="0.55"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="253.47" cy="280.45" r="0.71"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="392.68" cy="176.94" r="1.38"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="413.11" cy="209.91" r="5.22"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="294.77" cy="264.03" r="2.56"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="393.48" cy="204.98" r="0.65"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="408.46" cy="154.64" r="1.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="274.65" cy="236.64" r="0.75"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="257.85" cy="328.16" r="1.72"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="121.2" cy="335.53" r="1.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="251.38" cy="354.08" r="5.94"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="283.85" cy="335.41" r="2.01"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="108.1" cy="359.44" r="6.38"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="259.15" cy="191.35" r="1.87"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="119.85" cy="296.14" r="0.92"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="123.45" cy="262.85" r="3.3"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="253.38" cy="339.67" r="2.6"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="248.72" cy="336.43" r="1.29"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="287.41" cy="339.58" r="0.68"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="97.38" cy="357.42" r="3.38"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="236.73" cy="259.15" r="1.27"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="271.7" cy="258.94" r="0.97"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="120.53" cy="359.74" r="2.69"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="274.17" cy="328.91" r="0.58"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="107.86" cy="351.36" r="1.62"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="134.97" cy="358.18" r="6.32"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="128.47" cy="357.02" r="0.65"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="113.98" cy="327.11" r="1.01"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="89.8" cy="352.71" r="2.18"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="100.71" cy="350.24" r="1.44"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="289.45" cy="327.35" r="0.82"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="269.09" cy="346.59" r="1.37"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="146.47" cy="355.15" r="5.1"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="261.88" cy="354.63" r="4.13"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="127.35" cy="329.81" r="1.23"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="271.61" cy="308.42" r="1.17"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="241.31" cy="329.08" r="2.99"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="253.97" cy="312.42" r="3.01"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="140.16" cy="347.3" r="1.28"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="399.5" cy="243.94" r="1.11"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="121.66" cy="314.84" r="1.12"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="140.48" cy="350.34" r="4.51"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="115.05" cy="330.83" r="0.89"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="259.77" cy="267.87" r="1.65"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="231.97" cy="339.29" r="1.61"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="413.18" cy="183.72" r="1.46"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="398.65" cy="219.67" r="1.45"/>
+	</g>
+	<g id="top10-2" data-name="top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="279.66" cy="216.83" r="11.36"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="253.86" cy="209.93" r="7.82"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="242.39" cy="290.17" r="8.08"/>
+		
+			<ellipse transform="matrix(0.1602 -0.9871 0.9871 0.1602 -65.9307 473.7877)" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="245.47" cy="275.64" rx="10.36" ry="10.36"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="124.88" cy="352.28" r="8.98"/>
+		
+			<ellipse transform="matrix(0.1602 -0.9871 0.9871 0.1602 -6.4757 420.5487)" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="243.91" cy="214.08" rx="16.36" ry="16.36"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="112.4" cy="356.64" r="7.74"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="132.33" cy="350.15" r="10.48"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="274.85" cy="274.77" r="8.23"/>
+	</g>
+	
+		<circle id="legend-path-2" data-name="legend-path-2" fill="#CCCCCC" fill-opacity="0.5" stroke="#CCCCCC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="380.295" cy="72.92" r="5.69"/>
+	
+		<circle id="legend-path-1" data-name="legend-path-1" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="448.479" cy="72.92" r="5.69"/>
+	
+		<circle id="path-4" data-name="path-4" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="404.86" cy="187.06" r="9.63"/>
+</g>
+<style>
+#g-vaccination_income-artboard-2-interactions-img rect, #g-vaccination_income-artboard-2-interactions-img circle, #g-vaccination_income-artboard-2-interactions-img path, #g-vaccination_income-artboard-2-interactions-img line, #g-vaccination_income-artboard-2-interactions-img polyline, #g-vaccination_income-artboard-2-interactions-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai1-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:5.2717%;margin-top:-19.4px;left:0.3694%;width:506px;">
+			<p class="g-pstyle0">Vaccination rates in upper, middle and low-income countries hosting</p>
+			<p class="g-pstyle0">refugees and Venesuelans displaced abroad</p>
+		</div>
+		<div id="g-ai1-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:18.1382%;margin-top:-18.2px;left:0.3694%;width:131px;">
+			<p class="g-pstyle1">Number of refugees and </p>
+			<p class="g-pstyle1">Venezuelans displaced</p>
+			<p class="g-pstyle1">abroad</p>
+		</div>
+		<div id="g-ai1-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:16.9636%;margin-top:-6.2px;left:28.8919%;width:37px;">
+			<p class="g-pstyle1">1M</p>
+		</div>
+		<div id="g-ai1-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:16.9636%;margin-top:-6.2px;left:39.0001%;width:37px;">
+			<p class="g-pstyle1">2M</p>
+		</div>
+		<div id="g-ai1-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:16.9636%;margin-top:-6.2px;left:50.7601%;width:37px;">
+			<p class="g-pstyle1">3M</p>
+		</div>
+		<div id="g-ai1-6" class="g-top10-legend g-aiAbs g-aiPointText" style="top:16.9642%;margin-top:-6.2px;left:58.6408%;width:101px;">
+			<p class="g-pstyle1">Hosting countries</p>
+		</div>
+		<div id="g-ai1-7" class="g-top10-legend g-aiAbs g-aiPointText" style="top:16.9636%;margin-top:-6.2px;left:79.2887%;width:70px;">
+			<p class="g-pstyle1">Not top 10</p>
+		</div>
+		<div id="g-ai1-8" class="g-top10-legend g-aiAbs g-aiPointText" style="top:16.9636%;margin-top:-6.2px;left:93.0851%;width:52px;">
+			<p class="g-pstyle1">Top 10</p>
+		</div>
+		<div id="g-ai1-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:28.7082%;margin-top:-6.2px;left:2.4101%;width:47px;">
+			<p class="g-pstyle2">100%</p>
+		</div>
+		<div id="g-ai1-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0,-1,1,0,0,0);transform-origin: 50% 58.0595017905631%;-webkit-transform: matrix(0,-1,1,0,0,0);-webkit-transform-origin: 50% 58.0595017905631%;-ms-transform: matrix(0,-1,1,0,0,0);-ms-transform-origin: 50% 58.0595017905631%;top:54.5494%;margin-top:-6.2px;left:1.458%;margin-left:-82px;width:164px;">
+			<p class="g-pstyle3">People fully vaccinated (percent)</p>
+		</div>
+		<div id="g-ai1-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:42.5685%;margin-top:-6.2px;left:3.357%;width:41px;">
+			<p class="g-pstyle2">75%</p>
+		</div>
+		<div id="top10-text10" class="g-top10-text g-aiAbs g-aiPointText" style="top:45.5002%;margin-top:-5.7px;left:73.3544%;width:58px;">
+			<p class="g-pstyle4">Germany</p>
+		</div>
+		<div id="top10-text2" class="g-top10-text g-aiAbs g-aiPointText" style="top:46.6748%;margin-top:-5.7px;left:52.1164%;width:91px;">
+			<p class="g-pstyle4">Iran(Islamic Rep.) </p>
+		</div>
+		<div id="top10-text4" class="g-top10-text g-aiAbs g-aiPointText" style="top:53.9573%;margin-top:-5.7px;left:43.7693%;width:49px;">
+			<p class="g-pstyle4">Turkey</p>
+		</div>
+		<div id="top10-text3" class="g-top10-text g-aiAbs g-aiPointText" style="top:54.4272%;margin-top:-5.7px;left:58.251%;width:60px;">
+			<p class="g-pstyle4">Columbia</p>
+		</div>
+		<div id="g-ai1-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:56.8986%;margin-top:-6.2px;left:3.357%;width:41px;">
+			<p class="g-pstyle2">50%</p>
+		</div>
+		<div id="top10-text1" class="g-top10-text g-aiAbs g-aiPointText" style="top:61.2404%;margin-top:-5.7px;left:54.9641%;width:68px;">
+			<p class="g-pstyle4">Bangladesh</p>
+		</div>
+		<div id="top10-text5" class="g-top10-text g-aiAbs g-aiPointText" style="top:61.2398%;margin-top:-5.7px;left:45.2282%;width:56px;">
+			<p class="g-pstyle4">Pakistan</p>
+		</div>
+		<div id="g-ai1-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:70.759%;margin-top:-6.2px;left:3.357%;width:41px;">
+			<p class="g-pstyle2">25%</p>
+		</div>
+		<div id="top10-text9" class="g-top10-text g-aiAbs g-aiPointText" style="top:70.6366%;margin-top:-5.7px;left:44.8174%;width:56px;">
+			<p class="g-pstyle4">Lebanon</p>
+		</div>
+		<div id="top10-text8" class="g-top10-text g-aiAbs g-aiPointText" style="top:79.5642%;margin-top:-5.7px;left:28.1061%;width:52px;">
+			<p class="g-pstyle4">Uganda</p>
+		</div>
+		<div id="top10-text6" class="g-top10-text g-aiAbs g-aiPointText" style="top:80.0334%;margin-top:-5.7px;left:19.8734%;width:46px;">
+			<p class="g-pstyle4">Sudan</p>
+		</div>
+		<div id="g-ai1-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:84.3843%;margin-top:-6.2px;left:5.5871%;width:28px;">
+			<p class="g-pstyle2">0</p>
+		</div>
+		<div id="top10-text7" class="g-top10-text g-aiAbs g-aiPointText" style="top:85.9066%;margin-top:-5.7px;left:15.5351%;width:55px;">
+			<p class="g-pstyle4">Ethiopia</p>
+		</div>
+		<div id="g-ai1-25" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:88.8478%;margin-top:-6.2px;left:20%;width:74px;">
+			<p class="g-pstyle2">Low income</p>
+		</div>
+		<div id="g-ai1-26" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:88.8478%;margin-top:-6.2px;left:47.6734%;width:86px;">
+			<p class="g-pstyle2">Middle income</p>
+		</div>
+		<div id="g-ai1-27" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:88.8483%;margin-top:-6.2px;left:77.3123%;width:77px;">
+			<p class="g-pstyle2">High income</p>
+		</div>
+		<div id="g-ai1-28" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:95.0219%;margin-top:-16.5px;left:0.5326%;width:403px;">
+			<p class="g-pstyle5">Note: Only shows countries that host 1,00 or more refugees and/or Venezuelans displaced abroad</p>
+			<p class="g-pstyle5">Source: UNHCR Refugee Data Finder, Our World in Data, World Bank</p>
+			<p class="g-pstyle5">&copy; UNHCR, The UN Refugee Agency</p>
+		</div>
+	</div>
+
+	<!-- Artboard: artboard-3 -->
+	<div id="g-vaccination_income-artboard-3" class="g-artboard" style="max-width: 375px;max-height: 539px" data-aspect-ratio="0.695" data-min-width="0" data-max-width="489">
+<div style="padding: 0 0 143.8242% 0;"></div>
+		<img id="g-vaccination_income-artboard-3-img" class="g-vaccination_income-artboard-3-img g-aiImg" alt="" src="vaccination_income-artboard-3.png"/>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-vaccination_income-artboard-3-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-vaccination_income-artboard-3-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 375 539.341" overflow="visible" xml:space="preserve">
+<g>
+	<rect id="path-7" data-name="path-7" x="250.098" y="142.323" fill-opacity="0.06" width="105.791" height="327.759"/>
+	<rect id="path-6" data-name="path-6" x="141.256" y="142.323" fill-opacity="0.06" width="105.791" height="327.759"/>
+	<rect id="path-5" data-name="path-5" x="32.153" y="142.323" fill-opacity="0.06" width="105.791" height="327.759"/>
+	<g id="not-top10-3" data-name="not-top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="81.681" cy="426.25" r="3.294"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="184.014" cy="380.243" r="5.998"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="186.23" cy="230.339" r="4.828"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="191.005" cy="372.887" r="2.716"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="309.52" cy="222.442" r="2.967"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="289.596" cy="233.947" r="4.489"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="211.325" cy="317.198" r="0.767"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="278.46" cy="228.528" r="3.169"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="181.754" cy="331.771" r="0.968"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="198.804" cy="247.326" r="5.62"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="208.428" cy="369.492" r="2.012"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="298.75" cy="220.833" r="4.187"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="193.168" cy="202.576" r="6.249"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="295.105" cy="193.271" r="7.771"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="290.195" cy="247.301" r="1.748"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="302.365" cy="267.205" r="2.477"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="291.617" cy="213.326" r="2.477"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="203.751" cy="234.903" r="7.896"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="283.631" cy="233.859" r="2.087"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="321.405" cy="228.767" r="7.557"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="297.941" cy="244.409" r="4.351"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="197.621" cy="364.4" r="0.805"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="305.83" cy="246.785" r="3.986"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="297.507" cy="267.016" r="1.232"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="316.6" cy="224.14" r="0.754"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="188.311" cy="307.063" r="5.118"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="188.632" cy="324.642" r="1.509"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="286.371" cy="224.052" r="1.471"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="195.473" cy="410.218" r="5.947"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="295" cy="229.207" r="4.325"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="168.612" cy="333.732" r="9.292"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="315.664" cy="219.525" r="0.629"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="197.404" cy="427.268" r="7.632"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="296.946" cy="200.187" r="1.031"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="172.504" cy="413.412" r="1.056"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="309.153" cy="249.526" r="0.817"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="301.399" cy="253.499" r="1.182"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="192.816" cy="279.741" r="4.086"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="185.616" cy="297.55" r="4.086"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="195.802" cy="221.487" r="4.275"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="195.548" cy="270.449" r="1.32"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="194.979" cy="333.405" r="1.936"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="314.564" cy="241.63" r="3.76"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="202.029" cy="447.851" r="3.282"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="281.865" cy="238.235" r="2.766"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="304.887" cy="227.484" r="0.805"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="199.694" cy="285.261" r="4.174"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="202.433" cy="252.695" r="8.035"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="182.233" cy="447.65" r="1.597"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="302.043" cy="284.632" r="0.993"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="301.302" cy="185.941" r="0.93"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="208.196" cy="331.318" r="1.056"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="199.365" cy="373.302" r="3.382"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="197.284" cy="313.438" r="1.748"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="300.164" cy="211.277" r="4.036"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="176.672" cy="314.721" r="2.15"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="299.94" cy="310.458" r="0.516"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="313.247" cy="233.947" r="5.671"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="295.457" cy="253.135" r="4.074"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="86.097" cy="439.993" r="1.76"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="185.055" cy="251.437" r="3.734"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="208.728" cy="351.285" r="1.308"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="299.116" cy="178.824" r="0.692"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="187.861" cy="355.334" r="0.893"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="292.051" cy="225.183" r="1.735"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="307.342" cy="266.639" r="6.563"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="218.772" cy="334.688" r="3.219"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="292.65" cy="260.44" r="0.817"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="303.862" cy="197.144" r="1.459"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="203.713" cy="300.249" r="0.943"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="191.14" cy="415.323" r="2.163"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="88.866" cy="424.59" r="1.459"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="186.297" cy="447.914" r="7.469"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="210.599" cy="424.439" r="2.527"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="79.061" cy="454.654" r="8.022"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="192.113" cy="243.302" r="2.351"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="87.855" cy="375.062" r="1.157"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="90.55" cy="333.204" r="4.149"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="187.794" cy="429.796" r="3.269"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="184.306" cy="425.722" r="1.622"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="213.263" cy="429.682" r="0.855"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="71.038" cy="452.114" r="4.25"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="175.333" cy="328.552" r="1.597"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="201.505" cy="328.288" r="1.22"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="88.364" cy="455.031" r="3.382"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="203.354" cy="416.266" r="0.729"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="78.882" cy="444.494" r="2.037"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="99.172" cy="453.07" r="7.947"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="94.307" cy="451.611" r="0.817"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="83.462" cy="414.003" r="1.27"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="65.365" cy="446.192" r="2.741"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="73.53" cy="443.086" r="1.811"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="214.79" cy="414.305" r="1.031"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="199.552" cy="438.497" r="1.723"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="107.779" cy="449.26" r="6.413"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="194.156" cy="448.606" r="5.193"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="93.469" cy="417.398" r="1.547"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="201.438" cy="390.503" r="1.471"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="178.76" cy="416.48" r="3.76"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="188.236" cy="395.532" r="3.785"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="103.056" cy="439.389" r="1.609"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="297.156" cy="309.427" r="1.396"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="89.21" cy="398.575" r="1.408"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="103.296" cy="443.212" r="5.671"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="84.263" cy="418.68" r="1.119"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="192.577" cy="339.516" r="2.075"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="171.77" cy="429.318" r="2.024"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="307.394" cy="233.708" r="1.836"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="296.519" cy="278.911" r="1.823"/>
+	</g>
+	<g id="top10-3" data-name="top10">
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="207.463" cy="275.34" r="10.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="188.153" cy="266.664" r="10.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="179.569" cy="367.556" r="10.16"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="181.874" cy="349.286" r="13.026"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="91.62" cy="445.651" r="11.291"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="180.706" cy="271.882" r="20.571"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="82.28" cy="451.133" r="9.732"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="97.196" cy="442.973" r="13.177"/>
+		
+			<circle fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="203.863" cy="348.192" r="10.348"/>
+	</g>
+	
+		<circle id="legend-path-4" data-name="legend-path-4" fill="#CCCCCC" fill-opacity="0.5" stroke="#CCCCCC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="107.322" cy="112.879" r="6.892"/>
+	
+		<circle id="legend-path-3" data-name="legend-path-3" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.5" cx="178.516" cy="112.879" r="6.892"/>
+	
+		<circle id="path-8" data-name="path-8" fill="#0072BC" fill-opacity="0.5" stroke="#0072BC" stroke-width="0.5" stroke-miterlimit="10" stroke-opacity="0.5" cx="301.167" cy="237.908" r="12.108"/>
+</g>
+<style>
+#g-vaccination_income-artboard-3-interactions-img rect, #g-vaccination_income-artboard-3-interactions-img circle, #g-vaccination_income-artboard-3-interactions-img path, #g-vaccination_income-artboard-3-interactions-img line, #g-vaccination_income-artboard-3-interactions-img polyline, #g-vaccination_income-artboard-3-interactions-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai2-1" class="g-Layer_1 g-aiAbs" style="top:1.4833%;left:2.1316%;width:96.2667%;">
+			<p class="g-pstyle0">Vaccination rates in upper, middle and low-income countries hosting refugees and Venesuelans </p>
+			<p class="g-pstyle0">displaced abroad</p>
+		</div>
+		<div id="g-ai2-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.7989%;margin-top:-12.2px;left:2.1315%;width:156px;">
+			<p class="g-pstyle1">Number of refugees and </p>
+			<p class="g-pstyle1">Venezuelans displaced abroad</p>
+		</div>
+		<div id="g-ai2-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.7989%;margin-top:-6.2px;left:48.0563%;width:37px;">
+			<p class="g-pstyle1">1M</p>
+		</div>
+		<div id="g-ai2-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.7989%;margin-top:-6.2px;left:63.5615%;width:37px;">
+			<p class="g-pstyle1">2M</p>
+		</div>
+		<div id="g-ai2-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:15.7989%;margin-top:-6.2px;left:81.4052%;width:37px;">
+			<p class="g-pstyle1">3M</p>
+		</div>
+		<div id="g-ai2-6" class="g-top10-legend g-aiAbs g-aiPointText" style="top:20.9909%;margin-top:-6.2px;left:2.1315%;width:101px;">
+			<p class="g-pstyle1">Hosting countries</p>
+		</div>
+		<div id="g-ai2-7" class="g-top10-legend g-aiAbs g-aiPointText" style="top:20.9904%;margin-top:-6.2px;left:31.1794%;width:70px;">
+			<p class="g-pstyle1">Not top 10</p>
+		</div>
+		<div id="g-ai2-8" class="g-top10-legend g-aiAbs g-aiPointText" style="top:20.9904%;margin-top:-6.2px;left:49.9539%;width:52px;">
+			<p class="g-pstyle1">Top 10</p>
+		</div>
+		<div id="g-ai2-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:28.2203%;margin-top:-6.2px;left:6.6854%;width:47px;">
+			<p class="g-pstyle2">100%</p>
+		</div>
+		<div id="g-ai2-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:41.9408%;margin-top:-6.2px;left:6.6854%;width:41px;">
+			<p class="g-pstyle2">75%</p>
+		</div>
+		<div id="g-ai2-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0,-1,1,0,0,0);transform-origin: 50% 58.0598189689099%;-webkit-transform: matrix(0,-1,1,0,0,0);-webkit-transform-origin: 50% 58.0598189689099%;-ms-transform: matrix(0,-1,1,0,0,0);-ms-transform-origin: 50% 58.0598189689099%;top:55.2904%;margin-top:-6.2px;left:3.4781%;margin-left:-82px;width:164px;">
+			<p class="g-pstyle3">People fully vaccinated (percent)</p>
+		</div>
+		<div id="top10-text2" class="g-top10-text g-aiAbs g-aiPointText" style="top:47.0359%;margin-top:-5.7px;left:47.4714%;width:91px;">
+			<p class="g-pstyle4">Iran(Islamic Rep.) </p>
+		</div>
+		<div id="top10-text10" class="g-top10-text g-aiAbs g-aiPointText" style="top:47.2213%;margin-top:-5.7px;left:81.5547%;width:58px;">
+			<p class="g-pstyle4">Germany</p>
+		</div>
+		<div id="top10-text3" class="g-top10-text g-aiAbs g-aiPointText" style="top:53.7107%;margin-top:-5.7px;left:55.6604%;width:60px;">
+			<p class="g-pstyle4">Columbia</p>
+		</div>
+		<div id="top10-text4" class="g-top10-text g-aiAbs g-aiPointText" style="top:54.2669%;margin-top:-5.7px;left:39.0786%;width:49px;">
+			<p class="g-pstyle4">Turkey</p>
+		</div>
+		<div id="g-ai2-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:55.8523%;margin-top:-6.2px;left:6.6854%;width:42px;">
+			<p class="g-pstyle2">50%</p>
+		</div>
+		<div id="top10-text5" class="g-top10-text g-aiAbs g-aiPointText" style="top:61.498%;margin-top:-5.7px;left:41.6865%;width:56px;">
+			<p class="g-pstyle4">Pakistan</p>
+		</div>
+		<div id="top10-text1" class="g-top10-text g-aiAbs g-aiPointText" style="top:61.8692%;margin-top:-5.7px;left:53.6734%;width:68px;">
+			<p class="g-pstyle4">Bangladesh</p>
+		</div>
+		<div id="g-ai2-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.7525%;margin-top:-6.2px;left:6.6854%;width:41px;">
+			<p class="g-pstyle2">25%</p>
+		</div>
+		<div id="top10-text9" class="g-top10-text g-aiAbs g-aiPointText" style="top:70.7685%;margin-top:-5.7px;left:43.337%;width:56px;">
+			<p class="g-pstyle4">Lebanon</p>
+		</div>
+		<div id="top10-text8" class="g-top10-text g-aiAbs g-aiPointText" style="top:79.4833%;margin-top:-5.7px;left:27.9109%;width:52px;">
+			<p class="g-pstyle4">Uganda</p>
+		</div>
+		<div id="top10-text6" class="g-top10-text g-aiAbs g-aiPointText" style="top:80.9662%;margin-top:-5.7px;left:15.6813%;width:46px;">
+			<p class="g-pstyle4">Sudan</p>
+		</div>
+		<div id="g-ai2-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:83.2875%;margin-top:-6.2px;left:6.6854%;width:28px;">
+			<p class="g-pstyle2">0</p>
+		</div>
+		<div id="top10-text7" class="g-top10-text g-aiAbs g-aiPointText" style="top:86.1577%;margin-top:-5.7px;left:14.1052%;width:55px;">
+			<p class="g-pstyle4">Ethiopia</p>
+		</div>
+		<div id="g-ai2-25" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.0353%;margin-top:-6.2px;left:17.1188%;width:74px;">
+			<p class="g-pstyle2">Low income</p>
+		</div>
+		<div id="g-ai2-26" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.0353%;margin-top:-6.2px;left:44.1823%;width:86px;">
+			<p class="g-pstyle2">Middle income</p>
+		</div>
+		<div id="g-ai2-27" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:89.0357%;margin-top:-6.2px;left:73.1677%;width:77px;">
+			<p class="g-pstyle2">High income</p>
+		</div>
+		<div id="g-ai2-28" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:95.1394%;margin-top:-15.1px;left:1.9349%;width:382px;">
+			<p class="g-pstyle5">Note: Only shows countries that host 1,00 or more refugees and/or Venezuelans displaced abroad</p>
+			<p class="g-pstyle5">Source: UNHCR Refugee Data Finder, Our World in Data, World Bank</p>
+			<p class="g-pstyle5">&copy; UNHCR, The UN Refugee Agency</p>
+		</div>
+	</div>
+
+
+</div>
+
+
+<!-- ai2html goes above this line -->
+
+      </div>
+    </div>
+
+    <div class="scrolly-overlay">
+      <div class="step" id="step-zero">
+        <p>As global income inequities combine with uneven access to vaccines, already vulnerable populations, like refugees, are being hit hardest.</p>
+      </div>
+      <div class="step" id="step-one">
+        <p>More than half of the world’s 26.6 million refugees and 3.9 million Venezuelans displaced abroad (53 per cent) are hosted in just 10 countries. 
+          Nine of these are low- and middle-income, where COVID-19 vaccination rates have remained low due to both a shortage of vaccine doses and weak health systems.</p>
+      </div>
+      <div class="step" id="step-two">
+        <p>Vaccination retes in low-income host countries are as low as 0.05%.</p>
+      </div>
+      <div class="step" id="step-three">
+        <p>Vaccination retes in middle-income countries vary greatly and can be as low as 1%.</p>
+      </div>
+      <div class="step" id="step-four">
+        <p>Germany is the only high-income country among the top 10 host countries worldwide</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="row justify-content-md-center">
+    <div class="col col-md-8">
+      <p class="fs-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+        Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+      </div>
+  </div>
+  
+  
+  </div>
+</main>
+<!-- End Main -->
+
+<script>
+      
+  /* Scrollytelling code goes under here */
+// Default
+  d3.selectAll(".g-top10-text").classed('hidden',true)
+  d3.select("#path-1").classed('hidden',true)
+  d3.select("#path-2").classed('hidden',true)
+  d3.select("#path-3").classed('hidden',true)
+  d3.select("#path-5").classed('hidden',true)
+  d3.select("#path-6").classed('hidden',true)
+  d3.select("#path-7").classed('hidden',true)
+  d3.select("#path-9").classed('hidden',true)
+  d3.select("#path-10").classed('hidden',true)
+  d3.select("#path-11").classed('hidden',true)
+  d3.selectAll(".g-top10-legend").classed('hidden',true)
+  d3.selectAll("#legend-path-1").classed('hidden',true)
+  d3.selectAll("#legend-path-2").classed('hidden',true)
+  d3.selectAll("#legend-path-3").classed('hidden',true)
+  d3.selectAll("#legend-path-4").classed('hidden',true)
+  d3.selectAll("#legend-path-5").classed('hidden',true)
+  d3.selectAll("#legend-path-6").classed('hidden',true)
+
+// Step zero
+  d3.select("#step-zero").on('stepin', function(e) {
+    d3.selectAll(".g-top10-text").classed('hidden',true)
+    d3.select("#path-1").classed('hidden',true)
+    d3.select("#path-2").classed('hidden',true)
+    d3.select("#path-3").classed('hidden',true)
+    d3.select("#path-5").classed('hidden',true)
+    d3.select("#path-6").classed('hidden',true)
+    d3.select("#path-7").classed('hidden',true)
+    d3.select("#path-9").classed('hidden',true)
+    d3.select("#path-10").classed('hidden',true)
+    d3.select("#path-11").classed('hidden',true)
+    d3.selectAll(".g-top10-legend").classed('hidden',true)
+    d3.selectAll("#legend-path-1").classed('hidden',true)
+    d3.selectAll("#legend-path-2").classed('hidden',true)
+    d3.selectAll("#legend-path-3").classed('hidden',true)
+    d3.selectAll("#legend-path-4").classed('hidden',true)
+    d3.selectAll("#legend-path-5").classed('hidden',true)
+    d3.selectAll("#legend-path-6").classed('hidden',true)
+    d3.selectAll("[data-name='not-top10'] circle").style('fill', '#0072BC')
+    d3.selectAll("[data-name='not-top10'] circle").style('stroke', '#0072BC')
+  })
+
+// Step one
+  d3.select("#step-one").on('stepin', function(e) {
+    d3.selectAll("[data-name='not-top10'] circle").style('fill', '#CCCCCC')
+    d3.selectAll("[data-name='not-top10'] circle").style('stroke', '#CCCCCC')
+    d3.selectAll(".g-top10-legend").classed('hidden',false)
+    d3.selectAll("#legend-path-1").classed('hidden',false)
+    d3.selectAll("#legend-path-2").classed('hidden',false)
+    d3.selectAll("#legend-path-3").classed('hidden',false)
+    d3.selectAll("#legend-path-4").classed('hidden',false)
+    d3.selectAll("#legend-path-5").classed('hidden',false)
+    d3.selectAll("#legend-path-6").classed('hidden',false)
+    d3.selectAll(".g-top10-text").classed('hidden',false)
+
+    d3.select("#path-1").classed('hidden',true)
+    d3.select("#path-5").classed('hidden',true)
+    d3.select("#path-9").classed('hidden',true)
+
+  })
+
+// Step two
+  d3.select("#step-two").on('stepin', function(e) {
+    d3.select("#path-1").classed('hidden',false)
+    d3.select("#path-5").classed('hidden',false)
+    d3.select("#path-9").classed('hidden',false)
+
+    d3.select("#path-2").classed('hidden',true)
+    d3.select("#path-6").classed('hidden',true)
+    d3.select("#path-10").classed('hidden',true)
+  })
+
+// Step three
+  d3.select("#step-three").on('stepin', function(e) {
+    d3.select("#path-1").classed('hidden',true)
+    d3.select("#path-2").classed('hidden',false)
+    d3.select("#path-5").classed('hidden',true)
+    d3.select("#path-6").classed('hidden',false)
+    d3.select("#path-9").classed('hidden',true)
+    d3.select("#path-10").classed('hidden',false)
+
+    d3.select("#path-3").classed('hidden',true)
+    d3.select("#path-7").classed('hidden',true)
+    d3.select("#path-11").classed('hidden',true)
+    d3.select("#path-4").style('stroke', '#0072BC')
+    d3.select("#path-4").style('stroke-width', '0.5')
+    d3.select("#path-8").style('stroke', '#0072BC')
+    d3.select("#path-8").style('stroke-width', '0.5')
+    d3.select("#path-12").style('stroke', '#0072BC')
+    d3.select("#path-12").style('stroke-width', '0.5')
+  })
+
+// Step four
+  d3.select("#step-four").on('stepin', function(e) {
+    d3.select("#path-1").classed('hidden',true)
+    d3.select("#path-2").classed('hidden',true)
+    d3.select("#path-3").classed('hidden',false)
+    d3.select("#path-5").classed('hidden',true)
+    d3.select("#path-6").classed('hidden',true)
+    d3.select("#path-7").classed('hidden',false)
+    d3.select("#path-10").classed('hidden',true)
+    d3.select("#path-11").classed('hidden',false)
+    d3.select("#path-4").style('stroke', '#EF4A60')
+    d3.select("#path-4").style('stroke-width', '2')
+    d3.select("#path-8").style('stroke', '#EF4A60')
+    d3.select("#path-8").style('stroke-width', '2')
+    d3.select("#path-12").style('stroke', '#EF4A60')
+    d3.select("#path-12").style('stroke-width', '2')
+
+  })
+  
+
+
+
+</script>
+
+<script>
+const scroller = scrollama();
+
+scroller
+.setup({
+  step: "#scrolly .scrolly-overlay .step",
+  offset: 0.6,
+  debug: false
+})
+.onStepEnter(function({ element, index, direction}) {
+  const event = new CustomEvent('stepin', { detail: { direction: direction } })
+  element.dispatchEvent(event);
+})
+.onStepExit(function({ element, index, direction }) {
+  const event = new CustomEvent('stepout', { detail: { direction: direction } })
+  element.dispatchEvent(event);
+});
+
+window.addEventListener("resize", scroller.resize);
+</script>
+
+
+
+  
+<!-- ai2html resizer script -->
+
+<script type="text/javascript">
+  (function() {
+      // only want one resizer on the page
+      if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+      document.documentElement.className += " g-resizer-v3-init";
+      // require IE9+
+      if (!("querySelector" in document)) return;
+      function resizer() {
+          var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+              widthById = {};
+          elements.forEach(function(el) {
+              var parent = el.parentNode,
+                  width = widthById[parent.id] || parent.getBoundingClientRect().width,
+                  minwidth = el.getAttribute("data-min-width"),
+                  maxwidth = el.getAttribute("data-max-width");
+              widthById[parent.id] = width;
+
+              if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+                  el.style.display = "block";
+              } else {
+                  el.style.display = "none";
+              }
+          });
+          try {
+              if (window.parent && window.parent.$) {
+                  window.parent.$("body").trigger("resizedcontent", [window]);
+              }
+              if (window.require) {
+                  require(['foundation/main'], function() {
+                      require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+                          AppCommunicator.triggerResize();
+                      });
+                  });
+              }
+          } catch(e) { console.log(e); }
+      }
+
+      document.addEventListener('DOMContentLoaded', resizer);
+      // feel free to replace throttle with _.throttle, if available
+      window.addEventListener('resize', throttle(resizer, 200));        
+
+      function throttle(func, wait) {
+          // from underscore.js
+          var _now = Date.now || function() { return new Date().getTime(); },
+              context, args, result, timeout = null, previous = 0;
+          var later = function() {
+              previous = _now();
+              timeout = null;
+              result = func.apply(context, args);
+              if (!timeout) context = args = null;
+          };
+          return function() {
+              var now = _now(), remaining = wait - (now - previous);
+              context = this;
+              args = arguments;
+              if (remaining <= 0 || remaining > wait) {
+                  if (timeout) {
+                      clearTimeout(timeout);
+                      timeout = null;
+                  }
+                  previous = now;
+                  result = func.apply(context, args);
+                  if (!timeout) context = args = null;
+              } else if (!timeout && options.trailing !== false) {
+                  timeout = setTimeout(later, remaining);
+              }
+              return result;
+          };
+      }
+
+     
+  })();
+</script>
+
+
+
 
     <!-- Footer -->
     <hcr-footer></hcr-footer>
