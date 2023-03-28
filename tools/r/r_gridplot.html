@@ -14,9 +14,9 @@
 <meta name="author" content="Lei Chen" />
 
 
-<title>UNHCR Dataviz Platform - 100% stacked column chart with R</title>
+<title>UNHCR Dataviz Platform - Grid plot with R</title>
 
-<script src="r_column_stacked_100perc_chart_files/header-attrs-2.20/header-attrs.js"></script>
+<script src="r_gridplot_files/header-attrs-2.20/header-attrs.js"></script>
 <meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for part-to-a-whole purpose.">
 <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Part-to-a-whole,Pie chart,Donut chart,100% stacked column chart,Grid plot,Treemap,Waterfall">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 
-<h1 class="title toc-ignore">100% stacked column chart with R</h1>
+<h1 class="title toc-ignore">Grid plot with R</h1>
 <h4 class="author">Cedric Vidonne</h4>
 <h4 class="author">Lei Chen</h4>
 
@@ -218,74 +218,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="../r/">R</a>
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-100% stacked column chart with R
+Grid plot with R
 </li>
 </ol>
 </nav>
 <!-- Intro header -->
-<div id="stacked-column-chart-with-r"
-class="section level2 my-5 text-center">
-<h2>100% stacked column chart with R</h2>
+<div id="grid-plot-with-r" class="section level2 my-5 text-center">
+<h2>Grid plot with R</h2>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Only text to change below, the rest comes from the YAML -->
-<p>100% stacked column charts are similar to stacked column charts in
-that categories are represented as vertical bars and series as
-components of those bars. However, in a 100% stacked column chart, each
-series bar represents the percentage of the whole to which it belongs,
-where the total (cumulative) of each stacked bar always equals 100%.</p>
+<p>A grid plot is a type of visualization that shows progress towards a
+target or a completion percentage. The value (percentage) is represented
+by a grid of coloured small cells. Multiple grid plot can be put
+together to show the differences among percentages.</p>
 <p>More about:
-<a href="../../chart_gallery/part_to_a_whole.html#column-stacked-100perc">100%
-stacked column chart</a></p>
+<a href="../../chart_gallery/part_to_a_whole.html#grid-plot">Grid
+plot</a></p>
 </div>
 </div>
 </div>
 <hr />
 <!-- Beginning of section, should be preceded by hr (----) -->
 <section class="my-5">
-<div id="stacked-column-chart" class="section level3">
-<h3>100% stacked column chart</h3>
+<div id="grid-plot-small-muliples" class="section level3">
+<h3>Grid plot small muliples</h3>
 <div class="row">
 <!-- First column for large screen -->
 <div class="col-lg-6">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unhcrthemes)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/column_stacked_100perc.csv&quot;</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> year,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> percentage,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> funding_type</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="fl">0.7</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">position =</span> <span class="fu">position_fill</span>()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">9</span>)) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.01</span>)),</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> percent</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Levels of earmarking | 2012-2020&quot;</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> <span class="st">&quot;Y&quot;</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_title =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;waffle&quot;, repos = &quot;https://cinc.rud.is&quot;)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(waffle)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/gridplot_multiple.csv&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coping_short =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(coping_mechanism,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">width =</span> <span class="dv">25</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="fu">aes</span>(<span class="at">fill =</span> category, <span class="at">values =</span> households_num),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">make_proportional =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">flip =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Top 5 negative coping mechanisms&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Percentage of households&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: UNHCR Post-distribution Monitoring for Cash-based Assistance, January 2021</span><span class="sc">\n</span><span class="st">© UNHCR, The UN Refugee Agency&quot;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_unhcr_d</span>(<span class="at">palette =</span> <span class="st">&quot;pal_unhcr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>coping_short, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_unhcr</span>(<span class="at">axis =</span> <span class="cn">FALSE</span>, <span class="at">grid =</span> <span class="cn">FALSE</span>, <span class="at">axis_text =</span> <span class="cn">FALSE</span>, <span class="at">font_size =</span> <span class="dv">13</span>)</span></code></pre></div>
 </div>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_column_stacked_100perc_chart-1.svg" alt="A 100% stacked column chart showing levels of earmarking | 2012-2020" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/grid_plot-1.svg" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>

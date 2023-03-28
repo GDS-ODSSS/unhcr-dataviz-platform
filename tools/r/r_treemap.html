@@ -16,7 +16,7 @@
 
 <title>UNHCR Dataviz Platform - Treemap with R</title>
 
-<script src="r_treemap_files/header-attrs-2.14/header-attrs.js"></script>
+<script src="r_treemap_files/header-attrs-2.20/header-attrs.js"></script>
 <meta name="description" content="A collection of reproducible R code examples to create UNHCR branded charts for part-to-a-whole purpose.">
 <meta name="keywords" content="Data,Data viz,Data visualization,Plot,Chart,Graphic,Infographic,Templates,Learning,Reproducible code,R,R tutorial,ggplot2,ggplot2 tutorial,Part-to-a-whole,Pie chart,Donut chart,100% stacked column chart,Grid plot,Treemap,Waterfall">
 <link href="../../assets/css/unhcrmain.min.css" rel="stylesheet" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -126,13 +126,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -281,7 +288,7 @@ other.</p>
 <!-- End First column --->
 <!-- Second column for large screen -->
 <div class="col-lg-6">
-<p><img src="../../assets/img/tools/r/r_treemap-1.svg" title="A treemap showing UNHCR global workforce by region | 2021" alt="A treemap showing UNHCR global workforce by region | 2021" width="100%" /></p>
+<p><img src="../../assets/img/tools/r/r_treemap-1.svg" alt="A treemap showing UNHCR global workforce by region | 2021" width="100%" /></p>
 </div>
 <!-- End Second column --->
 </div>
@@ -328,7 +335,7 @@ other.</p>
                 </div>
             </a>
         </div>
-        <!-- <div class="col item-filter filter-part-to-a-whole chart-item">
+        <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_gridplot.html">
               <div class="chart-img d-inline-flex justify-content-center">
                 <img src="../../assets/img/part_to_a_whole/gridplot_icon.svg" class="img-fluid" alt="Grid plot thumbnail">
@@ -337,7 +344,7 @@ other.</p>
                 </div>
               </div>
             </a>
-          </div> -->
+          </div>
         <div class="col item-filter filter-part-to-a-whole chart-item">
             <a href="r_treemap.html">
                 <div class="chart-img d-inline-flex justify-content-center">
@@ -386,7 +393,7 @@ other.</p>
         <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
             us</a>
         </div>
-        <p class="text-muted px-3"><small>© UNHCR 2022</small></p>
+        <p class="text-muted px-3"><small>© UNHCR 2023</small></p>
     </div>
 </footer>
 <!-- Scripts -->

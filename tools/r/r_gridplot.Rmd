@@ -1,0 +1,144 @@
+---
+title: "Grid plot with R"
+title-prefix: "UNHCR Dataviz Platform"
+author:
+  - "Cedric Vidonne"
+  - "Lei Chen"
+output:
+  html_document:
+    theme: null
+    self_contained: false
+    highlight: "pygments"
+    includes:
+      in_header:
+        - "../rmd_includes/r_part_to_a_whole_head.html"
+        - "../rmd_includes/in_head.html"
+      before_body: "../rmd_includes/header.html"
+      after_body:
+        - "../rmd_includes/r_part_to_a_whole.html"
+        - "../rmd_includes/footer.html"
+        - "../rmd_includes/footer_script.html"
+params:
+  tool: R
+  chart_type: Grid plot
+  url_cat: part_to_a_whole
+  url_chart: grid-plot
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+  base.dir = "../../assets/img/tools/",
+  base.url = "../../assets/img/tools/"
+)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.path = paste0(tolower(params$tool), "/"),
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svglite",
+  fig.showtext = TRUE,
+  fig.retina = 2,
+  dpi = 300
+)
+library(unhcrthemes)
+library(tidyverse)
+```
+
+<main id="tools" class="container mt-5">
+
+<!-- Breadcrumb is filled automatically with the text from Title and Tool parameter in YAML --> 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../">Home</a></li>
+        <li class="breadcrumb-item"><a href="../">Tools</a></li>
+        <li class="breadcrumb-item"><a href="../`r tolower(params$tool)`/">`r params$tool`</a></li>
+        <li class="breadcrumb-item active" aria-current="page">`r rmarkdown::metadata$title`</li>
+    </ol>
+</nav>
+
+<!-- Intro header --> 
+<div class="my-5 text-center">
+
+## `r rmarkdown::metadata$title`
+
+<div class="row justify-content-center">
+<div class="col-lg-8">
+
+<!-- Only text to change below, the rest comes from the YAML --> 
+A grid plot is a type of visualization that shows progress towards a target or a completion percentage. The value (percentage) is represented by a grid of coloured small cells. Multiple grid plot can be put together to show the differences among percentages.
+
+More about: <a href="../../chart_gallery/`r params$url_cat`.html#`r params$url_chart`">`r params$chart_type`</a>
+
+</div>
+</div>
+</div>
+
+
+----
+
+<!-- Beginning of section, should be preceded by hr (----) --> 
+<section class="my-5">
+
+### Grid plot small muliples
+
+<div class="row">
+
+<!-- First column for large screen --> 
+<div class="col-lg-6">
+
+```{r grid_code, echo=TRUE, fig.show = 'hide', warning=FALSE, message=FALSE}
+# Loading required packages
+library(unhcrthemes)
+library(tidyverse)
+# install.packages("waffle", repos = "https://cinc.rud.is")
+library(waffle)
+
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/part_to_a_whole/gridplot_multiple.csv") |> 
+  mutate(coping_short = stringr::str_wrap(coping_mechanism,
+                                          width = 25))
+
+
+
+# Plot
+ggplot(df) +
+  geom_waffle(aes(fill = category, values = households_num),
+              make_proportional = TRUE,
+              flip = TRUE,
+              color = "white",
+              size = .5
+              ) +
+  labs(
+    title = "Top 5 negative coping mechanisms",
+    subtitle = "Percentage of households",
+    caption = "Source: UNHCR Post-distribution Monitoring for Cash-based Assistance, January 2021\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_fill_unhcr_d(palette = "pal_unhcr") +
+  coord_equal() +
+  facet_wrap(~coping_short, ncol = 2) +
+  theme_unhcr(axis = FALSE, grid = FALSE, axis_text = FALSE, font_size = 13)
+```
+
+</div>
+<!-- End First column --->
+
+<!-- Second column for large screen --> 
+<div class="col-lg-6">
+
+
+```{r grid_plot, ref.label= 'grid_code', echo=FALSE, error=FALSE, results='hide', out.width="100%", fig.height=10}
+```
+
+</div>
+<!-- End Second column --->
+
+</div>
+</section>
+<!-- End of section --->
+
+<!-- To add sections just copy the whole code between the above section tag --->
+
+</main>

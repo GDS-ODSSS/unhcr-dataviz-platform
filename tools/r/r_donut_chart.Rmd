@@ -103,17 +103,18 @@ df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platfo
 
 # Plot
 ggplot(df) +
-  geom_arc_bar(aes(
-    x0 = 0,
-    y0 = 0,
-    r0 = 0.6,
-    r = 1,
-    amount = funding_value,
-    fill = funding_type
-  ),
-  stat = "pie",
-  size = 1,
-  color = "#FFFFFF"
+  geom_arc_bar(
+    aes(
+      x0 = 0,
+      y0 = 0,
+      r0 = 0.6,
+      r = 1,
+      amount = funding_value,
+      fill = funding_type
+    ),
+    stat = "pie",
+    size = 1,
+    color = "#FFFFFF"
   ) +
   geom_richtext(
     x = c(1.25, -1.25),
@@ -152,6 +153,7 @@ ggplot(df) +
     direction = -1
   ) +
   scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
+  coord_equal() +
   theme_unhcr(
     grid = FALSE,
     axis = FALSE,
@@ -192,6 +194,7 @@ ggplot(df) +
   ) +
   scale_fill_unhcr_d(palette = "pal_unhcr", direction = -1) +
   scale_x_continuous(expand = expansion(c(0.3, 0.5))) +
+  coord_equal() +
   theme_unhcr(font_size = 13, grid = FALSE, axis = FALSE, axis_title = FALSE, axis_text = FALSE, legend = FALSE)
 ```
 
