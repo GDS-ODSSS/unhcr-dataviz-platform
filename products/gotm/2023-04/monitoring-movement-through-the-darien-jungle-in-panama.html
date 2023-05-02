@@ -426,19 +426,19 @@
           const length = this.getTotalLength();
           return d3.interpolate(`0, ${length}`, `${length}, 0`);
         })
-        .on("end", animateRoute1); // restart the animation when it ends
+        // .on("end", animateRoute1); // restart the animation when it ends
     }
     
     function animateRoute2() {
       d3.selectAll("#route4, #route5, #route6, #route7, #route8, #route9, #route10, #route11, #route12, #route13, #route14, #route15, #route16, #route17, #route18, #route19, #route20, #route21, #route22, #route23, #route24, #route25, #route26, #route27, #route28, #route29, #route30, #route31, #route32, #route33, #route34, #route35, #route36")
         .transition()
-        .duration(1000)
+        .duration(2500)
         .ease(d3.easeLinear)
         .attrTween('stroke-dasharray', function() {
           const length = this.getTotalLength();
           return d3.interpolate(`0, ${length}`, `${length}, 0`);
         })
-        .on("end", animateRoute2); // restart the animation when it ends
+        // .on("end", animateRoute2); // restart the animation when it ends
     }
     animateRoute1();
     animateRoute2();
