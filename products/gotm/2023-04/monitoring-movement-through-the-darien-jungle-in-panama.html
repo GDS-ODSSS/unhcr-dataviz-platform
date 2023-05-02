@@ -426,7 +426,7 @@
           const length = this.getTotalLength();
           return d3.interpolate(`0, ${length}`, `${length}, 0`);
         })
-        // .on("end", animateRoute1); // restart the animation when it ends
+        .on("end", animateRoute1); // restart the animation when it ends
     }
     
     function animateRoute2() {
@@ -438,7 +438,7 @@
           const length = this.getTotalLength();
           return d3.interpolate(`0, ${length}`, `${length}, 0`);
         })
-        // .on("end", animateRoute2); // restart the animation when it ends
+        .on("end", animateRoute2); // restart the animation when it ends
     }
     animateRoute1();
     animateRoute2();
