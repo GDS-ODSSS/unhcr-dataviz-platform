@@ -1,131 +1,221 @@
+/* darien routes */
 #g-darien_routes-box ,
-	#g-darien_routes-box .g-artboard {
+#g-darien_routes-box .g-artboard {
+	margin:0 auto;
+}
+#g-darien_routes-box p {
+	margin:0;
+}
+#g-darien_routes-box .g-aiAbs {
+	position:absolute;
+}
+#g-darien_routes-box .g-aiImg {
+	position:absolute;
+	top:0;
+	display:block;
+	width:100% !important;
+}
+#g-darien_routes-box .g-aiSymbol {
+	position: absolute;
+	box-sizing: border-box;
+}
+#g-darien_routes-box .g-aiPointText p { white-space: nowrap; }
+#g-darien_routes-_360 {
+	position:relative;
+	overflow:hidden;
+}
+#g-darien_routes-_360 p {
+	font-family:Lato;
+	font-weight:400;
+	line-height:9px;
+	height:auto;
+	filter:alpha(opacity=100);
+	-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity:1;
+	padding-bottom:0;
+	letter-spacing:0em;
+	font-size:10px;
+	text-align:left;
+	color:rgb(128,129,132);
+	text-transform:none;
+	padding-top:0;
+	mix-blend-mode:normal;
+	font-style:normal;
+	position:static;
+}
+#g-darien_routes-_360 .g-pstyle0 {
+	height:9px;
+	padding-bottom:4px;
+	text-align:center;
+}
+#g-darien_routes-_360 .g-pstyle1 {
+	line-height:12px;
+	height:12px;
+	padding-bottom:4px;
+	font-size:9px;
+	text-align:center;
+}
+#g-darien_routes-_480 {
+	position:relative;
+	overflow:hidden;
+}
+#g-darien_routes-_480 p {
+	font-family:Lato;
+	font-weight:400;
+	line-height:9px;
+	height:auto;
+	filter:alpha(opacity=100);
+	-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity:1;
+	padding-bottom:0;
+	letter-spacing:0em;
+	font-size:11px;
+	text-align:left;
+	color:rgb(128,129,132);
+	text-transform:none;
+	padding-top:0;
+	mix-blend-mode:normal;
+	font-style:normal;
+	position:static;
+}
+#g-darien_routes-_480 .g-pstyle0 {
+	height:9px;
+	padding-bottom:4px;
+	text-align:center;
+}
+#g-darien_routes-_480 .g-pstyle1 {
+	line-height:11px;
+	height:11px;
+	padding-bottom:4px;
+	text-align:center;
+}
+#g-darien_routes-_480 .g-pstyle2 {
+	line-height:12px;
+	height:12px;
+	padding-bottom:4px;
+	font-size:10px;
+	text-align:center;
+}
+#g-darien_routes-_640 {
+	position:relative;
+	overflow:hidden;
+}
+#g-darien_routes-_640 p {
+	font-family:Lato;
+	font-weight:400;
+	line-height:9px;
+	height:auto;
+	filter:alpha(opacity=100);
+	-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity:1;
+	padding-bottom:0;
+	letter-spacing:0em;
+	font-size:12px;
+	text-align:left;
+	color:rgb(128,129,132);
+	text-transform:none;
+	padding-top:0;
+	mix-blend-mode:normal;
+	font-style:normal;
+	position:static;
+}
+#g-darien_routes-_640 .g-pstyle0 {
+	height:9px;
+	padding-bottom:4px;
+	text-align:center;
+}
+#g-darien_routes-_640 .g-pstyle1 {
+	line-height:12px;
+	height:12px;
+	padding-bottom:4px;
+	text-align:center;
+}
+
+/* darien crossing */
+#g-darien_crossing-box ,
+	#g-darien_crossing-box .g-artboard {
 		margin:0 auto;
 	}
-	#g-darien_routes-box p {
+	#g-darien_crossing-box p {
 		margin:0;
 	}
-	#g-darien_routes-box .g-aiAbs {
+	#g-darien_crossing-box .g-aiAbs {
 		position:absolute;
 	}
-	#g-darien_routes-box .g-aiImg {
+	#g-darien_crossing-box .g-aiImg {
 		position:absolute;
 		top:0;
 		display:block;
 		width:100% !important;
 	}
-	#g-darien_routes-box .g-aiSymbol {
+	#g-darien_crossing-box .g-aiSymbol {
 		position: absolute;
 		box-sizing: border-box;
 	}
-	#g-darien_routes-box .g-aiPointText p { white-space: nowrap; }
-	#g-darien_routes-_360 {
+	#g-darien_crossing-box .g-aiPointText p { white-space: nowrap; }
+	#g-darien_crossing-326-graphic {
 		position:relative;
 		overflow:hidden;
 	}
-	#g-darien_routes-_360 p {
+	#g-darien_crossing-326-graphic p {
 		font-family:Lato;
-		font-weight:400;
-		line-height:9px;
+		font-weight:700;
+		line-height:24px;
 		height:auto;
 		filter:alpha(opacity=100);
 		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 		opacity:1;
-		padding-bottom:0;
 		letter-spacing:0em;
-		font-size:10px;
+		font-size:20px;
 		text-align:left;
-		color:rgb(128,129,132);
+		color:rgb(0,0,0);
 		text-transform:none;
+		padding-bottom:0;
 		padding-top:0;
 		mix-blend-mode:normal;
 		font-style:normal;
 		position:static;
 	}
-	#g-darien_routes-_360 .g-pstyle0 {
-		height:9px;
-		padding-bottom:4px;
-		text-align:center;
+	#g-darien_crossing-326-graphic .g-pstyle0 {
+		height:24px;
 	}
-	#g-darien_routes-_360 .g-pstyle1 {
-		line-height:12px;
-		height:12px;
-		padding-bottom:4px;
-		font-size:9px;
-		text-align:center;
+	#g-darien_crossing-326-graphic .g-pstyle1 {
+		font-weight:400;
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(26,26,26);
 	}
-	#g-darien_routes-_480 {
+	#g-darien_crossing-516-graphic {
 		position:relative;
 		overflow:hidden;
 	}
-	#g-darien_routes-_480 p {
+	#g-darien_crossing-516-graphic p {
 		font-family:Lato;
-		font-weight:400;
-		line-height:9px;
+		font-weight:700;
+		line-height:24px;
 		height:auto;
 		filter:alpha(opacity=100);
 		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 		opacity:1;
-		padding-bottom:0;
 		letter-spacing:0em;
-		font-size:11px;
+		font-size:20px;
 		text-align:left;
-		color:rgb(128,129,132);
+		color:rgb(0,0,0);
 		text-transform:none;
+		padding-bottom:0;
 		padding-top:0;
 		mix-blend-mode:normal;
 		font-style:normal;
 		position:static;
 	}
-	#g-darien_routes-_480 .g-pstyle0 {
-		height:9px;
-		padding-bottom:4px;
-		text-align:center;
+	#g-darien_crossing-516-graphic .g-pstyle0 {
+		height:24px;
 	}
-	#g-darien_routes-_480 .g-pstyle1 {
-		line-height:11px;
-		height:11px;
-		padding-bottom:4px;
-		text-align:center;
-	}
-	#g-darien_routes-_480 .g-pstyle2 {
-		line-height:12px;
-		height:12px;
-		padding-bottom:4px;
-		font-size:10px;
-		text-align:center;
-	}
-	#g-darien_routes-_640 {
-		position:relative;
-		overflow:hidden;
-	}
-	#g-darien_routes-_640 p {
-		font-family:Lato;
+	#g-darien_crossing-516-graphic .g-pstyle1 {
 		font-weight:400;
-		line-height:9px;
-		height:auto;
-		filter:alpha(opacity=100);
-		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-		opacity:1;
-		padding-bottom:0;
-		letter-spacing:0em;
-		font-size:12px;
-		text-align:left;
-		color:rgb(128,129,132);
-		text-transform:none;
-		padding-top:0;
-		mix-blend-mode:normal;
-		font-style:normal;
-		position:static;
-	}
-	#g-darien_routes-_640 .g-pstyle0 {
-		height:9px;
-		padding-bottom:4px;
-		text-align:center;
-	}
-	#g-darien_routes-_640 .g-pstyle1 {
-		line-height:12px;
-		height:12px;
-		padding-bottom:4px;
-		text-align:center;
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(26,26,26);
 	}
