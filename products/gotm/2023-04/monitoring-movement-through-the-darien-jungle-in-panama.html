@@ -60,7 +60,7 @@
             to ensure those entitle to international protection receive the help they need. </p>
           <h5>Main routes going from south America towards north America via the Darien Jungle</h5>
           <!-- Route animation-->
-          <div id="g-darien_routes-box" class="ai2html mt-4 mb-5">
+          <div id="g-darien_routes-box" class="ai2html mt-2, mb-4">
 
             <!-- Artboard: _360 -->
             <div id="g-darien_routes-_360" class="g-artboard" style="max-width: 479px;max-height: 445px" data-aspect-ratio="1.077" data-min-width="0" data-max-width="479">
@@ -70,6 +70,15 @@
           <svg class="g-aiImg" version="1.2" baseProfile="tiny" id="g-darien_routes-_360-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              x="0px" y="0px" viewBox="0 0 360 334.194" overflow="visible" xml:space="preserve">
           <g>
+            
+              <path id="route39" data-name="route39" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+              M230.37,46.849c3.085,4.057,4.93,9.072,5.219,14.188"/>
+            
+              <path id="route38" data-name="route38" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+              M341.002,70.515c-3.586-2.466-8.708-2.656-12.376-0.254"/>
+            
+              <path id="route37" data-name="route37" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+              M214.767,41.927c2.759,4.284,4.029,9.535,3.537,14.629"/>
             
               <path id="route14" data-name="route14" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
               M273.953,300.692c-14.475,5.876-28.19,7.736-37.717,6.55c-9.527-1.186-15.36-5.108-19.828-9.643"/>
@@ -94,15 +103,6 @@
             
               <path id="route7" data-name="route7" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
               M274.593,201.259c0,0,28.051,24.122,17.696,71.707"/>
-            
-              <path id="route6" data-name="route6" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-              M214.767,41.927c2.759,4.284,4.029,9.535,3.537,14.629"/>
-            
-              <path id="route39" data-name="route39" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-              M230.37,46.849c3.085,4.057,4.93,9.072,5.219,14.188"/>
-            
-              <path id="route38" data-name="route38" fill="none" stroke="#EF4960" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-              M341.002,70.515c-3.586-2.466-8.708-2.656-12.376-0.254"/>
             
               <path id="route2" data-name="route2" fill="none" stroke="#EF4960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
               M183.317,193.842c1.845-4.492,1.99-9.506,4.163-13.883c2.22-4.471,5.256-8.479,7.068-13.172
@@ -295,7 +295,7 @@
               <path id="route26" data-name="route26" fill="none" stroke="#EF4960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
               M606.236,125.36c-6.375-4.385-15.481-4.721-22.001-0.452"/>
             
-              <path id="route37" data-name="route37" fill="none" stroke="#EF4960" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+              <path id="route6" data-name="route6" fill="none" stroke="#EF4960" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
               M326.875,340.587c1.656-6.274,3.518-14.789,6.432-20.658c3.947-7.948,9.345-15.074,12.565-23.418
               c7.227-18.726-2.192-35.088-22.88-35.902c-11.615-0.457-19.911,2.692-28.141-7.714c-3.654-4.62-6.355-9.95-9.976-14.596
               c-7.584-9.732-18.532-15.667-29.189-21.269c-7.574-3.982-14.302-9.491-21.984-13.269c-6.897-3.391-14.567-2.84-21.277-6.024
@@ -587,7 +587,7 @@
   <!-- D3 script -->
   <script>
     function animateRoute1() {
-      d3.selectAll("#route1, #route2, #route3")
+      d3.selectAll("#route1, #route2, #route3, #route4, #route5, #route6")
         .transition()
         .duration(5000)
         .ease(d3.easeLinear)
@@ -599,7 +599,7 @@
     }
     
     function animateRoute2() {
-      d3.selectAll("#route4, #route5, #route6, #route7, #route8, #route9, #route10, #route11, #route12, #route13, #route14, #route15, #route16, #route17, #route18, #route19, #route20, #route21, #route22, #route23, #route24, #route25, #route26, #route27, #route28, #route29, #route30, #route31, #route32, #route33, #route34, #route35, #route36, #route37, #route38, #route39")
+      d3.selectAll("#route7, #route8, #route9, #route10, #route11, #route12, #route13, #route14, #route15, #route16, #route17, #route18, #route19, #route20, #route21, #route22, #route23, #route24, #route25, #route26, #route27, #route28, #route29, #route30, #route31, #route32, #route33, #route34, #route35, #route36, #route37, #route38, #route39, #route40")
         .transition()
         .duration(3500)
         .ease(d3.easeLinear)
