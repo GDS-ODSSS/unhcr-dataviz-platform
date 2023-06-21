@@ -166,13 +166,13 @@
 	#g-darien_nationalities-_540 p {
 		font-family:Lato;
 		font-weight:700;
-		line-height:24px;
+		line-height:23px;
 		height:auto;
 		filter:alpha(opacity=100);
 		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 		opacity:1;
 		letter-spacing:0em;
-		font-size:20px;
+		font-size:19px;
 		text-align:left;
 		color:rgb(0,0,0);
 		text-transform:none;
@@ -183,7 +183,7 @@
 		position:static;
 	}
 	#g-darien_nationalities-_540 .g-pstyle0 {
-		height:24px;
+		height:23px;
 	}
 	#g-darien_nationalities-_540 .g-pstyle1 {
 		font-weight:400;
@@ -200,6 +200,22 @@
 		color:rgb(26,26,26);
 	}
 	#g-darien_nationalities-_540 .g-pstyle3 {
+		font-weight:400;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+		text-align:center;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle4 {
+		font-weight:400;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+		text-align:right;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle5 {
 		font-weight:400;
 		line-height:14px;
 		height:14px;
