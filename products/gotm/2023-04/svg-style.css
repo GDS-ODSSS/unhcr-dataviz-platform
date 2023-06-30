@@ -228,16 +228,16 @@
 	}
 	#g-darien_nationalities-_720 p {
 		font-family:Lato;
-		font-weight:700;
-		line-height:24px;
+		font-weight:400;
+		line-height:14px;
 		height:auto;
 		filter:alpha(opacity=100);
 		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 		opacity:1;
 		letter-spacing:0em;
-		font-size:20px;
+		font-size:12px;
 		text-align:left;
-		color:rgb(0,0,0);
+		color:rgb(77,77,77);
 		text-transform:none;
 		padding-bottom:0;
 		padding-top:0;
@@ -246,28 +246,31 @@
 		position:static;
 	}
 	#g-darien_nationalities-_720 .g-pstyle0 {
+		font-weight:700;
+		line-height:24px;
 		height:24px;
+		font-size:20px;
+		color:rgb(0,0,0);
 	}
 	#g-darien_nationalities-_720 .g-pstyle1 {
-		font-weight:400;
 		line-height:19px;
 		height:19px;
 		font-size:16px;
 		color:rgb(26,26,26);
 	}
 	#g-darien_nationalities-_720 .g-pstyle2 {
-		font-weight:400;
 		line-height:17px;
 		height:17px;
 		font-size:14px;
 		color:rgb(26,26,26);
 	}
 	#g-darien_nationalities-_720 .g-pstyle3 {
-		font-weight:400;
-		line-height:14px;
-		height:14px;
-		font-size:12px;
+		line-height:15px;
+		height:15px;
 		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_720 .g-pstyle4 {
+		height:14px;
 	}
 	#g-darien_nationalities-_960 {
 		position:relative;
@@ -284,7 +287,7 @@
 		letter-spacing:0em;
 		font-size:14px;
 		text-align:left;
-		color:rgb(26,26,26);
+		color:rgb(77,77,77);
 		text-transform:none;
 		padding-bottom:0;
 		padding-top:0;
@@ -303,7 +306,12 @@
 		line-height:19px;
 		height:19px;
 		font-size:16px;
+		color:rgb(26,26,26);
 	}
 	#g-darien_nationalities-_960 .g-pstyle2 {
+		height:17px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_960 .g-pstyle3 {
 		height:17px;
 	}
