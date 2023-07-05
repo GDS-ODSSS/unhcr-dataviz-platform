@@ -1,0 +1,317 @@
+/* darien routes */
+#g-darien_routes-box ,
+	#g-darien_routes-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-darien_routes-box p {
+		margin:0;
+	}
+	#g-darien_routes-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-darien_routes-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-darien_routes-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-darien_routes-box .g-aiPointText p { white-space: nowrap; }
+	#g-darien_routes-_360 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_routes-_360 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:9px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		padding-bottom:0;
+		letter-spacing:0em;
+		font-size:10px;
+		text-align:left;
+		color:rgb(128,129,132);
+		text-transform:none;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_routes-_360 .g-pstyle0 {
+		height:9px;
+		padding-bottom:4px;
+		text-align:center;
+	}
+	#g-darien_routes-_360 .g-pstyle1 {
+		line-height:12px;
+		height:12px;
+		padding-bottom:4px;
+		font-size:9px;
+		text-align:center;
+	}
+	#g-darien_routes-_360 .g-pstyle2 {
+		height:9px;
+		padding-bottom:4px;
+		font-size:11px;
+		text-align:center;
+	}
+	#g-darien_routes-_480 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_routes-_480 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:9px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		padding-bottom:0;
+		letter-spacing:0em;
+		font-size:11px;
+		text-align:left;
+		color:rgb(128,129,132);
+		text-transform:none;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_routes-_480 .g-pstyle0 {
+		height:9px;
+		padding-bottom:4px;
+		text-align:center;
+	}
+	#g-darien_routes-_480 .g-pstyle1 {
+		line-height:11px;
+		height:11px;
+		padding-bottom:4px;
+		text-align:center;
+	}
+	#g-darien_routes-_480 .g-pstyle2 {
+		line-height:12px;
+		height:12px;
+		padding-bottom:4px;
+		font-size:10px;
+		text-align:center;
+	}
+	#g-darien_routes-_640 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_routes-_640 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:9px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		padding-bottom:0;
+		letter-spacing:0em;
+		font-size:12px;
+		text-align:left;
+		color:rgb(128,129,132);
+		text-transform:none;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_routes-_640 .g-pstyle0 {
+		height:9px;
+		padding-bottom:4px;
+		text-align:center;
+	}
+	#g-darien_routes-_640 .g-pstyle1 {
+		line-height:12px;
+		height:12px;
+		padding-bottom:4px;
+		text-align:center;
+	}
+
+/* darien nationalities */
+#g-darien_nationalities-box ,
+	#g-darien_nationalities-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-darien_nationalities-box p {
+		margin:0;
+	}
+	#g-darien_nationalities-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-darien_nationalities-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-darien_nationalities-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-darien_nationalities-box .g-aiPointText p { white-space: nowrap; }
+	#g-darien_nationalities-_540 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_nationalities-_540 p {
+		font-family:Lato;
+		font-weight:700;
+		line-height:23px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		font-size:19px;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_nationalities-_540 .g-pstyle0 {
+		height:23px;
+	}
+	#g-darien_nationalities-_540 .g-pstyle1 {
+		font-weight:400;
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle2 {
+		font-weight:400;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle3 {
+		font-weight:400;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+		text-align:center;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle4 {
+		font-weight:400;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+		text-align:right;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_540 .g-pstyle5 {
+		font-weight:400;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_720 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_nationalities-_720 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:14px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		font-size:12px;
+		text-align:left;
+		color:rgb(77,77,77);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_nationalities-_720 .g-pstyle0 {
+		font-weight:700;
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+		color:rgb(0,0,0);
+	}
+	#g-darien_nationalities-_720 .g-pstyle1 {
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_720 .g-pstyle2 {
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_720 .g-pstyle3 {
+		line-height:15px;
+		height:15px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_720 .g-pstyle4 {
+		height:14px;
+	}
+	#g-darien_nationalities-_960 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-darien_nationalities-_960 p {
+		font-family:Lato;
+		font-weight:400;
+		line-height:17px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		font-size:14px;
+		text-align:left;
+		color:rgb(77,77,77);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-darien_nationalities-_960 .g-pstyle0 {
+		font-weight:700;
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+		color:rgb(0,0,0);
+	}
+	#g-darien_nationalities-_960 .g-pstyle1 {
+		line-height:19px;
+		height:19px;
+		font-size:16px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_960 .g-pstyle2 {
+		height:17px;
+		color:rgb(26,26,26);
+	}
+	#g-darien_nationalities-_960 .g-pstyle3 {
+		height:17px;
+	}
