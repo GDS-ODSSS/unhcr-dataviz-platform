@@ -67,7 +67,7 @@ class hcrFooter extends HTMLElement {
                 <a class="btn btn-primary" href="mailto:ipda@unhcr.org?subject=Mail from Dataviz Platform" role="button">Contact
                     us</a>
                 </div>
-                <p class="text-muted px-3"><small>© UNHCR 2023</small></p>
+                <p class="text-muted px-3"><small>© UNHCR 2024</small></p>
             </div>
         </footer>
     `
