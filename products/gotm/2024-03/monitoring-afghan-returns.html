@@ -8,6 +8,8 @@
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - 20 years of monitoring Afghan returns: Can new technology help UNHCR better support returnees?</title>
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <script src="../../../assets/js/vendor/d3.min.js"></script>
+  <link rel="stylesheet" href="style.css">
   <!-- jquery JS file -->
   <script src="../../../assets/js/vendor/jquery.min.js"></script>
   <!-- Google Tag Manager -->
@@ -46,7 +48,7 @@
           <hr>
           <h4>Returning Afghans; voluntarily or deported</h4>
           <p>In October 2023 a law issued by the Pakistani government caused thousands of Afghans to uproot their lives and cross the border into Afghanistan.  Some of these people had been in Pakistan for decades and were in possession of registration documents such as the Proof of Registration Cards, asylum certificates and slips issued by UNHCR.  This is just the most recent development in a long history of displacement and return to Afghanistan. According to the data collected by UNHCR on returns, already in 2014, 20% of the Afghan populations were returnees (WB & UNHCR 2016).</p>
-          <p class="text-danger">TODO: graph on number of returns and cumulative share of population</p>
+          <div id="line_column_container"class="justify-content-center my-5"></div>
           <p>Since 2002, UNHCR has facilitated returns of nearly 5.3 million Afghan refugees. To support the return, UNHCR began registering returns including information from and to where Afghans were returning to get a better sense of the support required in return areas. This data on voluntary repatriation allows UNHCR to map out where returns concentrate in time and space posing possible challenges to local absorption capacity.</p>
           <p class="text-danger">TODO: animated mapped showing provinces or district depending on availability receiving the most volrep year by year</p>
           <p>Not all returns to Afghanistan have been voluntary. Deportations from both Iran and Pakistan have been monitored since 2015 and by UNHCR since 2021. The availability of this data has allowed UNHCR to… . Between the years of 2015 and 2023, xx deportations were registered. </p>
@@ -93,6 +95,8 @@
   <script src="../../../assets/js/vendor/isotope.pkgd.min.js"></script>
   <!-- ai2html resizer JS file-->
   <script src="../../../assets/js/vendor/ai2html-resizer.js"></script>
+ <!-- d3 line column chart -->
+  <script src="line-column.js"></script>
   <!-- End scripts -->
 
 </body>
