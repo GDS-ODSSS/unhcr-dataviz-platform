@@ -138,7 +138,7 @@ const invisibleLine = svg.append("path")
   .attr("opacity", 0)
   .attr("d", d3.line()
     .x(d => xScale(d.year) + xScale.bandwidth() / 2)
-    .y(d => yScale2(d.max_year_perc))
+    .y(d => yScale2(d.current_year_perc))
   )
 
 // Get the total length of the invisible line
@@ -155,7 +155,7 @@ const line = svg.append("path")
   .attr("stroke-dashoffset", totalLength) 
   .attr("d", d3.line()
     .x(d => xScale(d.year) + xScale.bandwidth() / 2)
-    .y(d => yScale2(d.max_year_perc))
+    .y(d => yScale2(d.current_year_perc))
   )
 
 // Animate the line
@@ -170,7 +170,7 @@ svg.selectAll("dot")
 .data(data)
 .enter().append("circle")
 .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-.attr("cy", d => yScale2(d.max_year_perc))
+.attr("cy", d => yScale2(d.current_year_perc))
 .attr("r", 6)
 .attr("opacity", 0)
 .on("mouseover", () => {
@@ -182,7 +182,7 @@ svg.selectAll("dot")
 .on("mousemove", (event, d) => {
     tooltip.style("display", "block")
 
-        .html("<div style='color: #0072BC'<b>Year: "  +(d.year)+ "</b></div><div><b>Percentage:</b> " +d3.format(".1f")(d.max_year_perc)+"%"+"</div>")
+        .html("<div style='color: #0072BC'<b>Year: "  +(d.year)+ "</b></div><div><b>Percentage:</b> " +d3.format(".1f")(d.current_year_perc)+"%"+"</div>")
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 10) + "px");
     
@@ -227,6 +227,6 @@ svg
      .attr("y", -(margin.top/4))
      .attr("text-anchor", "end")
      .style("fill", "#EF4A60")
-   .text("Percentage to total population")
+   .text("Accumulated returns compared to the overall Afghan population")
 
 })
