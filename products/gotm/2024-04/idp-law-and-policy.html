@@ -8,6 +8,7 @@
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - IDP Law & Policy – a data story</title>
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
   <!-- jquery JS file -->
   <script src="../../../assets/js/vendor/jquery.min.js"></script>
   <!-- Google Tag Manager -->
@@ -46,7 +47,14 @@
           <hr>
           <h4>Internal displacement</h4>
           <p>As of June 2023, some XX million people were internally displaced due to conflict, violence, human rights violations and disasters. Numbers have climbed every year of the last decade, and forced displacement grows increasingly protracted.</p>
-          <p class="text-danger">TODO: Add map or graph with IDP figures over time?</p>
+          <div class="my-5">
+            <h5>Number of IDP from 2002 to 2023</h5>
+            <div class="wrapper">
+              <div id="clock">Year</div>
+              <button id="play" class="btn btn-secondary btn-sm">Play</button>
+            </div>
+   		        <div id="idp-map"></div>
+          </div>
           <h4>UNHCR's role</h4>
           <p>UNHCR exists to protect and assist everyone who has been affected by forced displacement, including internally displaced people (IDPs). In collaboration with our humanitarian, human rights, peacebuilding and development partners, we work closely with countries affected by internal displacement to assist them in the exercise of their primary responsibility towards IDPs.</p>
           <h4>Why a focus on IDP law and policy?</h4>
@@ -73,7 +81,12 @@
           <p class="text-danger">TODO: Add graph: Trends in IDP-inclusive and IDP-specific Instruments 1991-2023 </p>
           <h4>The Kampala convention</h4>
           <p>In 2009, the African Union (AU) adopted the AU Convention for the Protection and Assistance of Internally Displaced Persons in Africa (also known as the “Kampala Convention”) - a landmark instrument that constitutes the only legally binding continental treaty to advance prevention, protection and solutions for IDPs, based on a combined framework of international human rights law and international humanitarian law in line with the Guiding Principles on Internal DIsplacement. As of March 2024, 33 out of 55 AU Member States were parties to the Kampala Convention.</p>
-          <p class="text-danger">TODO: Africa map showing countries who have signed and ratified the convention.</p>
+          
+          <div class="my-5">
+            <h5>Countries signed and ratified the convention in Africa </h5>
+            <div id="africa-map"></div>
+          </div>
+
           <p>Becoming a State Party at the international level only represents an initial step towards the full implementation of the Convention. Action towards its incorporation into domestic law should swiftly follow to realize its full potential.</p>
           <h4>Conclusion - needs a better title</h4>
           <p>National instruments on internal displacement are not a silver bullet for resolving internal displacement, and their adoption is but an important first step. Ultimately, what matters is their implementation, which remains a challenge in many contexts. As we are grappling with these issues every day, we at UNHCR remain strongly committed to continuing our work with governments and all partners to ensure that existing frameworks and tools translate effectively into better protection to people on the ground.</p>
@@ -105,8 +118,14 @@
   <script type="module" src="../../../assets/js/unhcrfilter.js"></script>
   <!-- isotope JS file -->
   <script src="../../../assets/js/vendor/isotope.pkgd.min.js"></script>
-  <!-- ai2html resizer JS file-->
-  <script src="../../../assets/js/vendor/ai2html-resizer.js"></script>
+  
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+  <script type="module" src="d3-idp-map.js"></script>
+  <script type="module" src="d3-africa-map.js"></script>
   <!-- End scripts -->
 
 </body>
