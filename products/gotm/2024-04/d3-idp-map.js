@@ -109,11 +109,12 @@ function processData(data) {
         }
     }
 
-    console.log(countryData);
-    d3.select('#clock').html(attributeArray[currentAttribute]); 
     drawMap(world);
     drawLines(boundary);
-    console.log(world)
+
+    totalRefugeeNumber = getTotalRefugeeNumber(attributeArray[currentAttribute]);
+
+    d3.select('#clock').html('In ' + attributeArray[currentAttribute] + ', there are <span style="font-size: 1.4rem; color: #0072BC ">' + totalRefugeeNumber + '</span> IDPs across the world.');
 }
 
 // Draw polygon
@@ -159,34 +160,39 @@ function sequenceMap() {
 
         
 // Get color based on value
-const colorScale = d3.scaleSequential()
-    .range(["#ccc", "#0072BC"])
-    .unknown("#ccc");
+const colorScale = d3.scaleThreshold()
+.domain([100000, 2000000, 4000000])
+.range(["#8EBEFF", "#589BE5", "#0072BC", "#044F85"])
+.unknown("#CCCCCC");;
 
 
 function getColor(valueIn) {
-    const dataRange = getDataRange(); 
-    colorScale.domain(dataRange); 
-    return colorScale(valueIn); 
-}
+    if (valueIn === 0) {
+      return colorScale.unknown();
+    }
+    return colorScale(valueIn);
+  }
 
 // Get data range
 function getDataRange() {
     let min = Infinity,
-        max = -Infinity;
+        max = Infinity; // Initialize both min and max to Infinity
 
     d3.selectAll('.country').each(function(d) {
         const currentValue = d.properties[attributeArray[currentAttribute]];
-        if (currentValue <= min && currentValue != -99 && currentValue != 'undefined') {
+
+        if (currentValue < min) {
             min = currentValue;
         }
-        if (currentValue >= max && currentValue != -99 && currentValue != 'undefined') {
+
+        if (currentValue > max) {
             max = currentValue;
         }
     });
 
     return [min, max];
 }
+
 
 function animateMap() {
     let timer;
@@ -218,6 +224,23 @@ function animateMap() {
     });
 }
 
+
+// set legend
+svg.append("g")
+  .attr("class", "legendThreshold")
+  .attr("transform", "translate(5,200)");
+
+const legend = d3.legendColor()
+.labelFormat(d3.format(".1s"))
+.shapeWidth(12)
+.shapeHeight(12)
+.labels(d3.legendHelpers.thresholdLabels)
+.labelOffset(3)
+.shapePadding(0)
+.scale(colorScale);
+
+svg.select(".legendThreshold")
+    .call(legend);
 
 window.onload = function() {
     init();
