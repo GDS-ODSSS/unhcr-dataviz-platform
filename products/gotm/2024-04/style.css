@@ -10,29 +10,6 @@ text {
 	fill: #666666;
 }
 
-.stroke {
-  fill: none;
-  stroke: #888;
-  stroke-width: 2px;
-}
-
-.fill {
-  fill: #fff;
-}
-
-.graticule {
-  fill: none;
-  stroke: #777;
-  stroke-width: .5px;
-  stroke-opacity: .5;
-}
-
-.boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-width: .5px;
-}
-
 .solid{
 	stroke:white;
 	stroke-width:0.2;

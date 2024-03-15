@@ -8,8 +8,6 @@ const projection = d3.geoNaturalEarth1()
     .center([0, 0])
     .translate([width / 2.2, height / 1.8])
 
-
-
 // Path generator
 const path = d3.geoPath()
     .projection(projection);
@@ -22,16 +20,11 @@ const svg = d3.select("#idp-map")
     .attr("viewBox","0 0  450 280")
     .attr("preserveAspectRatio","xMinYMin");
 
-// Graticule
-const graticule = d3.geoGraticule();
-
 // Array to store attribute data
 const attributeArray = [];
 let currentAttribute = 0;
 let playing = false;
 let totalRefugeeNumber = 0; 
-
-
 
 // Initialize the map
 function init() {
@@ -41,27 +34,13 @@ function init() {
 
 // Set up the map
 function setMap() {
-    // svg.append("defs").append("path")
-    //     .datum({ type: "Sphere" })
-    //     .attr("id", "sphere")
-    //     .attr("d", path);
-
-    // svg.append("use")
-    //     .attr("class", "stroke")
-    //     .attr("xlink:href", "#sphere");
-
-    // svg.append("path")
-    //     .datum(graticule)
-    //     .attr("class", "graticule")
-    //     .attr("d", path);
-
     loadData();
 }
 
 // Load data using promises
 function loadData() {
-    const polygonsURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_polygons_simplified.json";
-    const polylinesURL = "https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/geospatial/world_lines_simplified.json";
+    const polygonsURL = "world_polygons_simplified.json";
+    const polylinesURL = "world_lines_simplified.json";
     const countryDataURL = "idp_pop_wide.csv";
 
     Promise.all([
@@ -70,7 +49,6 @@ function loadData() {
         d3.csv(countryDataURL)
     ]).then(processData).catch(error => console.log("Error loading data:", error));
 }
-
 
 // Function to calculate total refugee number for the current year
 function getTotalRefugeeNumber(year) {
@@ -113,7 +91,6 @@ function processData(data) {
     drawLines(boundary);
 
     totalRefugeeNumber = getTotalRefugeeNumber(attributeArray[currentAttribute]);
-
     d3.select('#clock').html('In ' + attributeArray[currentAttribute] + ', there are <span style="font-size: 1.4rem; color: #0072BC ">' + totalRefugeeNumber + '</span> IDPs across the world.');
 }
 
@@ -124,7 +101,7 @@ function drawMap(world) {
         .enter().append("path")
         .attr("class", "country")
         .attr("d", path)
-        .attr("fill", function(d) { // Set fill color using scaleSequential
+        .attr("fill", function(d) {
             return getColor(d.properties[attributeArray[currentAttribute]]);
         })
         .append("title")
@@ -134,7 +111,7 @@ function drawMap(world) {
 
 // Draw polylines
 function drawLines(boundary) {
-    const lineGroup = svg.append("g").attr("class", "lines"); // Create a group for lines
+    const lineGroup = svg.append("g").attr("class", "lines");
     lineGroup.selectAll("path")
         .data(topojson.feature(boundary, boundary.objects.world_lines_simplified).features)
         .enter()
@@ -149,15 +126,14 @@ function sequenceMap() {
     svg.selectAll('.country')
         .transition()
         .duration(100)
-        .attr('fill', function(d) { // Update fill color during transition
+        .attr('fill', function(d) {
             return getColor(d.properties[attributeArray[currentAttribute]]);
         })
-        .select("title") // Select the title element
-        .text(function(d) { // Update its text content
+        .select("title")
+        .text(function(d) {
             return `${d.properties.gis_name}\nIDP Population: ${d3.format(",")(d.properties[attributeArray[currentAttribute]])}`;
         });;
 }
-
         
 // Get color based on value
 const colorScale = d3.scaleThreshold()
@@ -176,7 +152,7 @@ function getColor(valueIn) {
 // Get data range
 function getDataRange() {
     let min = Infinity,
-        max = Infinity; // Initialize both min and max to Infinity
+        max = Infinity;
 
     d3.selectAll('.country').each(function(d) {
         const currentValue = d.properties[attributeArray[currentAttribute]];
@@ -241,6 +217,7 @@ const legend = d3.legendColor()
 
 svg.select(".legendThreshold")
     .call(legend);
+
 
 window.onload = function() {
     init();

@@ -83,7 +83,7 @@ function ready([topology, convention]) {
         if (data[d.properties.iso3cd]) {
             return colorScale(d.newcolor = data[d.properties.iso3cd].color);
         } else {
-            return "#CCCCCC"; // Default color
+            return "#CCCCCC";
         }
     })
       .attr("d", path)
@@ -111,8 +111,10 @@ line
      .attr("d", path)
      .style("fill","none")
      .attr("class", function(d) {return d.properties.type;})
+
 });
 
+//legend
 var ordinal = d3.scaleOrdinal()
   .domain(["Countries with ratification", "Countries with signature"])
   .range([ "#0072BC", "#00B398"]);
@@ -127,7 +129,6 @@ var legendOrdinal = d3.legendColor()
   .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
   .shapePadding(2)
   .labelOffset(3)
-  //use cellFilter to hide the "e" cell
   .cellFilter(function(d){ return d.label !== "e" })
   .scale(ordinal);
 
