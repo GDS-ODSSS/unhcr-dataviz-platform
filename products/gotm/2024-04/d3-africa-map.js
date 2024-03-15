@@ -83,7 +83,7 @@ function ready([topology, convention]) {
         if (data[d.properties.iso3cd]) {
             return colorScale(d.newcolor = data[d.properties.iso3cd].color);
         } else {
-            return "#E6E6E6"; // Default color
+            return "#CCCCCC"; // Default color
         }
     })
       .attr("d", path)
