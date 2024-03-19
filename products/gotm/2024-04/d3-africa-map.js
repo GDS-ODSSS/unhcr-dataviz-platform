@@ -9,7 +9,7 @@ const svg = d3.select("#africa-map")
      .attr("preserveAspectRatio","xMinYMin");
 
 // set map scale, location on screen and its projection
-const projection = d3.geoRobinson()
+const projection = d3.geoMercator()
         .scale(200)
         .center([0, 0])
         .translate([width/2.5, height/1.8]);
