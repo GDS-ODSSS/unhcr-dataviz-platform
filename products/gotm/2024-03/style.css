@@ -1,37 +1,29 @@
 
-#line-column-container text {
+.line-column text {
   font-family: lato;
   font-size: 10px;
   fill: #333333;
 }
-#line-column-container .grid path {
+.line-column .grid path {
   stroke-width: 0;
   stroke: #333333;
 }
-#line-column-container .grid .tick line {
+.line-column .grid .tick line {
   stroke: #333333;
   stroke-width: 0.3px;
   stroke-opacity: 0.3;
 }
-#line-column-container text.chart-title {
+.line-column text.chart-title {
   font-size: 14px;
   font-weight: bold;
   fill:#222222
 }
-#line-column-container text.chart-label {
+.line-column text.chart-label {
   font-size: 10px;
   font-weight: 400;
   fill: #999999;
 }
-#line-column-container text.chart-source {
-  font-size: 8px;
-  fill: #999999;
-}
-#line-column-container text.copyright {
-  font-size: 8px;
-  fill: #999999;
-}
-#line-column-container .tooltip {
+.tooltip {
   position: absolute;
   background-color: #ffffff;
   font-family: lato;
@@ -64,5 +56,6 @@
   margin-right: 15px;
 }
 .legendThreshold .label{
-  font-size: 0.9rem
+  font-size: 0.9rem;
+  color: #666666;
 }
