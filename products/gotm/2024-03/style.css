@@ -1,46 +1,68 @@
-svg {
-    width: 100%;
-    height: 100%;
-  }
-  text {
-    font-family: lato;
-    font-size: 10px;
-    fill: #333333;
-  }
-  .grid path {
-    stroke-width: 0;
-    stroke: #333333;
-  }
-  .grid .tick line {
-    stroke: #333333;
-    stroke-width: 0.3px;
-    stroke-opacity: 0.3;
-  }
-  text.chart-title {
-    font-size: 14px;
-    font-weight: bold;
-    fill:#222222
-  }
-  text.chart-label {
-    font-size: 10px;
-    font-weight: 400;
-    fill: #999999;
-  }
-  text.chart-source {
-    font-size: 8px;
-    fill: #999999;
-  }
-  text.copyright {
-    font-size: 8px;
-    fill: #999999;
-  }
-  .tooltip {
-    position: absolute;
-    background-color: #ffffff;
-    font-family: lato;
-    font-size: 13px;
-    padding: 6px;
-    color: #666666;
-    border: none;
-    box-shadow: 0px 0px 5px 0px #dddcdc;
-  }
+
+#line-column-container text {
+  font-family: lato;
+  font-size: 10px;
+  fill: #333333;
+}
+#line-column-container .grid path {
+  stroke-width: 0;
+  stroke: #333333;
+}
+#line-column-container .grid .tick line {
+  stroke: #333333;
+  stroke-width: 0.3px;
+  stroke-opacity: 0.3;
+}
+#line-column-container text.chart-title {
+  font-size: 14px;
+  font-weight: bold;
+  fill:#222222
+}
+#line-column-container text.chart-label {
+  font-size: 10px;
+  font-weight: 400;
+  fill: #999999;
+}
+#line-column-container text.chart-source {
+  font-size: 8px;
+  fill: #999999;
+}
+#line-column-container text.copyright {
+  font-size: 8px;
+  fill: #999999;
+}
+#line-column-container .tooltip {
+  position: absolute;
+  background-color: #ffffff;
+  font-family: lato;
+  font-size: 13px;
+  padding: 6px;
+  color: #666666;
+  border: none;
+  box-shadow: 0px 0px 5px 0px #dddcdc;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+#clock-1{
+  font-size: 40px;
+  color: #0072BC;
+}
+#clock-2{
+  font-size: 40px;
+  color: #CCCCCC;
+}
+.timer {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+.timer span {
+  margin-right: 15px;
+}
+.legendThreshold .label{
+  font-size: 0.9rem
+}
