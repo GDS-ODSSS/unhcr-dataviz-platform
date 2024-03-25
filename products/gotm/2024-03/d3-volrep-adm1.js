@@ -39,7 +39,7 @@ function setMap() {
 // Load data using promises
 function loadData() {
     const polygonsURL = "afg_poly_simplied.json";
-    const adminDataURL = "volrep_adm1_year.csv";
+    const adminDataURL = "afg_volrep_2002_2022.csv";
 
     Promise.all([
         d3.json(polygonsURL),
@@ -70,9 +70,9 @@ function processData(data) {
 
     for (let i in country) {
         for (let j in adminData) {
-            if (country[i].properties.ADM1_PCODE == adminData[j].pcode) {
+            if (country[i].properties.ADM1_PCODE == adminData[j].adm1_pcode) {
                 for (let k in adminData[j]) {
-                    if (k != 'name' && k != 'pcode') {
+                    if (k != 'name' && k != 'adm1_pcode') {
                         if (attributeArray.indexOf(k) == -1) {
                             attributeArray.push(k);
                         }
@@ -124,7 +124,7 @@ function sequenceMap() {
 
 // Get color based on value
 const colorScale = d3.scaleThreshold()
-.domain([1000, 5000, 10000])
+.domain([1000, 50000, 100000])
 .range(["#8EBEFF", "#589BE5", "#0072BC", "#044F85"])
 .unknown("#CCCCCC");
 
