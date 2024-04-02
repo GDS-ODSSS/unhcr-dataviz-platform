@@ -8,7 +8,9 @@
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - Seeking asylum during COVID-19 and what it means today</title>
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-scrollytelling.css">
   <!-- jquery JS file -->
   <script src="../../../assets/js/vendor/jquery.min.js"></script>
   <!-- Google Tag Manager -->
@@ -41,10 +43,14 @@
       </nav>
       <div class="row justify-content-md-center">
         <div class="col col-lg-8">
-          <h2>IDP Seeking asylum during COVID-19 and what it means today</h2>
+          <h2>Seeking asylum during COVID-19 and what it means today</h2>
           <p class="lead">Supporting intro text</p>
           <p>XX April 2024</p>
           <hr>
+          <figure class="figure my-4">
+            <img src="RF2252422_50_20190829__DSF6045-Edit_esj.jpg" class="figure-img img-fluid" alt="South Sudan. Thousands of refugee returnees cross border fleeing Sudan violence.">
+            <figcaption class="figure-caption"> Caption here</figcaption>
+          </figure>
           <p>How did the COVID-19 pandemic affect people’s ability to seek asylum? With the end of the global public health emergency, 
             this data story takes a look back at how the world’s forcibly displaced were able to access protection during the crisis. 
             We all remember the seemingly unprecedented restrictions on human mobility, with states closing their borders to travelers and 
@@ -58,6 +64,10 @@
             Index (CARI) to track the overall impact of the wider set of measures related to asylum during the pandemic. For every month where data is available, 
             CARI scores for each country range from 0 (no restrictions) to 100 (most restrictive). This index allows for analysis both across countries and over time. 
             Below we discuss three major takeaways of this research, and some of their implications for the long-term impact of the crisis on asylum globally.</p>
+            <figure class="figure my-4">
+              <img src="RF2312407_Casa_Maria_amor090120_15.jpg" class="figure-img img-fluid" alt="South Sudan. Thousands of refugee returnees cross border fleeing Sudan violence.">
+              <figcaption class="figure-caption"> Caption here</figcaption>
+            </figure>
           <h4>Access to asylum did not open when ‘borders’ opened</h4>
           <p>In the immediate aftermath of the declaration of the public health emergency in March 2020, the majority of countries in the world moved towards restricting 
             border closures and halting travel to try and stem the spread of the virus (do we want a heat map/gif to show this?). Alongside restrictions on travel for 
@@ -72,7 +82,7 @@
             as shutting down asylum processing, closing reception facilities, or limiting access to asylum documentation—that are fundamental to the protection 
             of millions of forcibly displaced persons worldwide.</p>
           
-          <p class="text-danger">TODO: Graph 1</p>
+          <div class="my-5" style="min-height:411px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/QttCe/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/QttCe/full.png" alt="" /></noscript></div>
 
           <h4>Core Refugee Institutions Matter</h4>
           <p>The UN Refugee Agency’s mandate to protect and safeguard the rights of refugees is guided by the 1951 Refugee Convention and its 1967 Protocol. 
@@ -83,7 +93,9 @@
             This is particularly notable given that at the outset of the pandemic, as states worldwide adopted restrictive measures towards asylum, many scholars 
             and international organizations were concerned that such behavior could erode the strength of the international refugee protection regime established 
             through the 1951 Refugee Convention.</p>
-          <p class="text-danger">TODO: Graph 2</p>
+          
+          <div class="my-5" style="min-height:426px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sFoG9/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/sFoG9/full.png" alt="" /></noscript></div>
+
           <h4>Asylum Trajectories Matter</h4>
           <p>In understanding the impact of restrictions on seeking asylum during the COVID-19 pandemic, it is important to bear in mind the trajectories that the 
             majority of asylum-seekers take in their attempt to seek a safe refuge. While comprehensive statistics are not available, of more than 40,000 people 
@@ -96,21 +108,51 @@
             on in the pandemic, when fears of the risk of border crossing to public health were high, source and transit countries showed greater propensity towards 
             loosening restrictions over time alongside the broadening opening of borders. However, as destination countries maintained restrictions in place, transit 
             countries increasingly became holding places for asylum-seekers in these regions.</p>
-          <p>The data show how this played out, for example, in both the Americas and the Mediterranean region, where migrants and refugees often pass through 
-            several transit countries in the hope of reaching their final destination.</p>
-
-          <p>In the Americas, most asylum-seekers are trying to reach North America, and the United States in particular. Central and South America, 
-            the destination and transit countries for the majority of asylum-seekers in the region during this period, had higher levels of restrictiveness towards 
-            refugee and asylum-seekers early on in the pandemic. However, both subregions began to loosen their restrictions within a few months. In the case of Central America, 
-            restrictions fall well below those imposed in North America within the first month of the declaration of the global health emergency.</p>
-          <p class="text-danger">TODO: Graph 3</p>
-          
-          <p>We see a similar pattern in and around the Mediterranean region. In this case, where source countries are more varied, we focus on Western and Eastern 
-            Africa alongside the Middle East, as source subregions, and North Africa as a major transit point. As with the case of the Americas, the source and transit 
-            subregions displayed greater restrictiveness early in the pandemic but moved towards loosening their restrictions fairly quickly. Southern and Western Europe, 
-            while adopting fewer restrictions on average, were more likely to maintain those that they did institute. Ultimately, as the desired final destinations of most asylum-seekers 
-            undertaking these trajectories, the maintenance of restrictions on asylum-seeking resulted in large numbers of refugees and asylum-seekers remaining trapped in transit countries 
-            where access to protection may be significantly limited, either due to capacity or legal rights.</p>
+        </div>
+        <div class="row justify-content-md-center">
+        <div class="col">
+          <section id="scrolly">
+            <figure id="cari-regionl-line">
+            </figure>
+            <article>
+              <div class="step" data-step="1">
+                <h2>Step one</h2>
+                <p>The data show how this played out, for example, in both the <strong><span style="color: #000000;">Americas</span></strong> and the <strong><span style="color:#000000">Mediterranean</span></strong> region, where migrants and refugees often pass through 
+                  several transit countries in the hope of reaching their final destination.</p>
+              </div>
+              <div class="step" data-step="2">
+                <h2>Step two</h2>
+                <p>In the Americas, most asylum-seekers are trying to reach North America, and the United States in particular. </p>
+              </div>
+              <div class="step" data-step="3">
+                <h2>Step three</h2>
+                <p><strong><span style="color: #00B398;">Central</span></strong> and <strong><span style="color: #18375F;">South America</span></strong>, the destination and transit countries for the majority of asylum-seekers in the region during this period, had higher levels of restrictiveness towards refugee and asylum-seekers early on in the pandemic. However, both subregions began to loosen their restrictions within a few months.</p>
+              </div>
+              <div class="step" data-step="4">
+                <h2>Step four</h2>
+                <p>In the case of <strong><span style="color: #00B398;">Central America</span></strong>, restrictions fall well below those imposed in <strong><span style="color: #0072BC">North America</span></strong> within the first month of the declaration of the global health emergency.</p>
+              </div>
+              <div class="step" data-step="5">
+                <h2>Step five</h2>
+                <p>We see a similar pattern in and around the <strong><span style="color: #000000;">Mediterranean region</span></strong>. </p>
+              </div>
+              <div class="step" data-step="6">
+                <h2>Step six</h2>
+                <p>In this case, where source countries are more varied, we focus on <strong><span style="color: #18375F">Western</span></strong> and <strong><span style="color: #0072BC">Eastern Africa</span></strong> alongside the <strong><span style="color: #EF4A60">Middle East</span></strong>, as source subregions, and <strong><span style="color: #00B398">North Africa</span></strong> as a major transit point. As with the case of the Americas, the source and transit subregions displayed greater restrictiveness early in the pandemic but moved towards loosening their restrictions fairly quickly. </p>
+              </div>
+              <div class="step" data-step="7">
+                <h2>Step seven</h2>
+                <p><strong><span style="color: #506489">Southern</span></strong>, and <strong><span style="color: #BB9D21">Western Europe</span></strong>,, while adopting fewer restrictions on average, were more likely to maintain those that they did institute. Ultimately, as the desired final destinations of most asylum-seekers undertaking these trajectories, the maintenance of restrictions on asylum-seeking resulted in large numbers of refugees and asylum-seekers remaining trapped in transit countries where access to protection may be significantly limited, either due to capacity or legal rights.</p>
+              </div>
+            </article>
+          </section>
+    
+            <section id="outro">
+            </section>
+        </div>  
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
           <h4>Asylum Post-Pandemic</h4>
           <p>The evidence shows that the COVID-19 pandemic seriously disrupted people’s ability to access asylum - but not just in the ways most anticipated. In addition to border restrictions, 
           now largely lifted, asylum-seekers also faced significant barriers to accessing protection that were both less immediately visible and more persistent. 
@@ -145,14 +187,9 @@
   <script type="module" src="../../../assets/js/unhcrfilter.js"></script>
   <!-- isotope JS file -->
   <script src="../../../assets/js/vendor/isotope.pkgd.min.js"></script>
-
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
-  <script src="https://unpkg.com/topojson@3"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-  <script type="module" src="d3-idp-map.js"></script>
-  <script type="module" src="d3-africa-map.js"></script>
+  <script src="../../../assets/js/vendor/scrollama.min.js"></script>
+  <script src="d3-custom.js"></script>
+  <script src="scrollama-custom.js"></script>
   <!-- End scripts -->
 
 </body>
