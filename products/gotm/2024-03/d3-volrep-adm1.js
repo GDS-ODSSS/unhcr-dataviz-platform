@@ -39,7 +39,7 @@ function setMap() {
 // Load data using promises
 function loadData() {
     const polygonsURL = "afg_poly_simplied.json";
-    const adminDataURL = "afg_volrep_2002_2022.csv";
+    const adminDataURL = "volrep_cumul_2002_2022_wide.csv";
 
     Promise.all([
         d3.json(polygonsURL),
@@ -124,7 +124,7 @@ function sequenceMap() {
 
 // Get color based on value
 const colorScale = d3.scaleThreshold()
-.domain([1000, 50000, 100000])
+.domain([100000, 500000, 1000000])
 .range(["#8EBEFF", "#589BE5", "#0072BC", "#044F85"])
 .unknown("#CCCCCC");
 
