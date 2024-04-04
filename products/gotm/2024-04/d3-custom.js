@@ -76,54 +76,28 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
     .attr("class", d => "line_" + d[0])
     .attr("fill", "none")
     .attr("stroke", d => color(d[0]))
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 0)
     .attr("d", function(d){
       return d3.line()
+        .curve(d3.curveCardinal)
         .x(d => xScale(d.date))
         .y(d => yScale(d.cari))
         (d[1])
     });
 
-// Get the maximum length of all lines
-const maxLength = d3.max(svg.selectAll("path").nodes(), function(d) {
-  return d.getTotalLength();
 });
 
-// Set up stroke-dasharray and stroke-dashoffset
-line.each(function() {
-  const currentLine = d3.select(this);
-  const totalLength = currentLine.node().getTotalLength();
-  const speed = maxLength / totalLength;
-  currentLine
+// Function to animate stroke-dasharray and stroke-dashoffset
+function animateStroke(path, duration) {
+  const totalLength = path.node().getTotalLength();
+  path
     .attr("stroke-dasharray", totalLength + " " + totalLength)
     .attr("stroke-dashoffset", totalLength)
     .transition()
-    .delay(1000)
-    .duration(1000 * speed)
+    .duration(duration)
     .ease(d3.easeLinear)
     .attr("stroke-dashoffset", 0);
-});
-
-  // set title
-svg
-.append("text")
-  .attr("class", "chart-title-1")
-  .attr("x", -(margin.left)*0.7)
-  .attr("y", -(margin.top)/1.7)
-  .attr("text-anchor", "start")
-.text("Average CARI score by region from May 2020 to April 2022")
-
-// set Y axis label
-svg
-.append("text")
-  .attr("class", "chart-label")
-  .attr("x", -(margin.left)*0.7)
-  .attr("y", -(margin.top/7))
-  .attr("text-anchor", "start")
-.text("Average CARI score")
-
-
-});
+}
 
 function stepOne() {
   xScale.domain(d3.extent(lineData, d => d.date)).nice();
@@ -132,53 +106,112 @@ function stepOne() {
   yAxis.call(d3.axisLeft(yScale).ticks(6).tickSize(0).tickPadding(4))
   .call(d => d.select(".domain").remove());
 
-  svg.selectAll(".line_south_america, .line_central_america, .line_northern_america, .line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe")
-  .transition()
-  .duration(1000)
-  .attr("stroke", "#333333")
-  .attr("stroke-width", 2);
+  svg.selectAll(".line_south_america, .line_central_america") 
+    .attr("stroke-width", 2)
+    .attr("stroke", "#CCCCCC");
 
-  svg.selectAll(".chart-title-2")
-  .attr("opacity", 0)
+    svg.selectAll(".line_northern_america") 
+    .attr("stroke-width", 4)
+    .attr("stroke", "#0072BC")
+    .raise();
+  
+  svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe")
+    .attr("stroke", "#333333")
+    .attr("stroke-width", 0);
 
   svg
-.append("text")
-  .attr("class", "chart-title-1")
-  .attr("x", -(margin.left)*0.7)
-  .attr("y", -(margin.top)/1.7)
-  .attr("text-anchor", "start")
-.text("Average CARI score by region from May 2020 to April 2022")
+  .append("text")
+    .attr("class", "chart-title-1")
+    .attr("x", -(margin.left)*0.7)
+    .attr("y", -(margin.top)/1.7)
+    .attr("text-anchor", "start")
+  .text("Average CARI score in Americas region from May 2020 to April 2022")
+
+  svg.selectAll(".line_northern_america, .line_south_america, .line_central_america").each(function() {
+    animateStroke(d3.select(this), 1500);
+  });
 
 }
 
 function stepTwo(){
-
   svg.selectAll(".line_northern_america") 
   .transition()
   .duration(1000)
-  .attr("stroke-width", 3)
-  .attr("stroke", "#0072BC");
-svg.selectAll(".line_central_america") 
+  .attr("stroke", "#CCCCCC")
+  .attr("stroke-width", 2);
+  svg.selectAll(".line_central_america") 
   .transition()
   .duration(1000)
-  .attr("stroke-width", 3)
-  .attr("stroke", "#00B398");
+  .attr("stroke", "#00B398")
+  .attr("stroke-width", 4);
 svg.selectAll(".line_south_america") 
   .transition()
   .duration(1000)
-  .attr("stroke-width", 3)
-  .attr("stroke", "#18375F");
+  .attr("stroke", "#18375F")
+  .attr("stroke-width", 4);
 
-svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe")
+}
+
+function stepThree(){
+  svg.selectAll(".line_south_america") 
+  .transition()
+  .duration(1000)
+  .attr("stroke", "#CCCCCC")
+  .attr("stroke-width", 2);
+svg.selectAll(".line_northern_america") 
+  .transition()
+  .duration(1000)
+  .attr("stroke", "#0072BC")
+  .attr("stroke-width", 4);
+svg.selectAll(".line_central_america") 
+  .transition()
+  .duration(1000)
+  .attr("stroke", "#00B398")
+  .attr("stroke-width", 4);
+  
+  svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe")
   .transition()
   .duration(1000)
   .attr("stroke", "#333333")
   .attr("stroke-width", 0);
 
-
-  svg.selectAll(".chart-title-1")
+  svg.selectAll(".chart-title-2")
   .attr("opacity", 0)
 
+  svg
+  .append("text")
+    .attr("class", "chart-title-1")
+    .attr("x", -(margin.left)*0.7)
+    .attr("y", -(margin.top)/1.7)
+    .attr("text-anchor", "start")
+  .text("Average CARI score in Americas region from May 2020 to April 2022")
+}
+
+function stepFour(){
+  svg.selectAll(".line_south_america, .line_northern_america, .line_central_america")
+  .transition()
+  .duration(1000)
+  .attr("stroke", "#333333")
+  .attr("stroke-width", 0);
+
+  svg.selectAll(".line_eastern_africa") 
+    .attr("stroke", "#0072BC")
+    .attr("stroke-width", 4);
+  svg.selectAll(".line_northern_africa") 
+    .attr("stroke", "#00B398")
+    .attr("stroke-width", 4);
+  svg.selectAll(".line_western_africa") 
+    .attr("stroke", "#18375F")
+    .attr("stroke-width", 4);
+  svg.selectAll(".line_western_asia") 
+    .attr("stroke", "#EF4A60")
+    .attr("stroke-width", 4);
+  svg.selectAll(".line_southern_europe, .line_western_europe") 
+    .attr("stroke", "#CCCCCC")
+    .attr("stroke-width", 2);
+
+  svg.selectAll(".chart-title-1")
+    .attr("opacity", 0);
 
   svg
   .append("text")
@@ -186,88 +219,21 @@ svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europ
     .attr("x", -(margin.left)*0.7)
     .attr("y", -(margin.top)/1.7)
     .attr("text-anchor", "start")
-  .text("Average CARI score in Americas region from May 2020 to April 2022")
-  
-  
-}
+  .text("Average CARI score in Mediterranean region from May 2020 to April 2022")
 
-function stepThree(){
-  svg.selectAll(".line_central_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#00B398")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_south_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#18375F")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_northern_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#CCCCCC")
-    .attr("stroke-width", 2);
-  
-  
-}
-
-function stepFour(){
-  svg.selectAll(".line_south_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#CCCCCC")
-    .attr("stroke-width", 2);
-  svg.selectAll(".line_northern_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#0072BC")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_central_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#00B398")
-    .attr("stroke-width", 4);
-  
-    svg.selectAll(".chart-title-3")
-    .attr("opacity", 0)
+  svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe").each(function() {
+    animateStroke(d3.select(this), 1500);
+  });
 }
 
 function stepFive(){
-  svg.selectAll(".line_eastern_africa, .line_northern_africa, .line_southern_europe, .line_western_africa, .line_western_asia, .line_western_europe")
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#333333")
-    .attr("stroke-width", 2);
-
-    svg.selectAll(".line_northern_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke-width", 0);
-  svg.selectAll(".line_central_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke-width", 0);
-  svg.selectAll(".line_south_america") 
-    .transition()
-    .duration(1000)
-    .attr("stroke-width", 0);
   
-  svg.selectAll(".chart-title-2")
-  .attr("opacity", 0)
+  svg.selectAll(".line_southern_europe, .line_western_europe") 
+  .transition()
+  .duration(1000)
+  .attr("stroke", "#CCCCCC")
+  .attr("stroke-width", 2);
 
-
-  svg
-  .append("text")
-    .attr("class", "chart-title-3")
-    .attr("x", -(margin.left)*0.7)
-    .attr("y", -(margin.top)/1.7)
-    .attr("text-anchor", "start")
-  .text("Average CARI score in Mediterranean region from May 2020 to April 2022")
-
-
-}
-
-function stepSix(){
   svg.selectAll(".line_eastern_africa") 
     .transition()
     .duration(1000)
@@ -288,16 +254,10 @@ function stepSix(){
     .duration(1000)
     .attr("stroke", "#EF4A60")
     .attr("stroke-width", 4);
-  svg.selectAll(".line_southern_europe, .line_western_europe") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#CCCCCC")
-    .attr("stroke-width", 2);
-
 
 }
 
-function stepSeven(){
+function stepSix(){
   svg.selectAll(".line_southern_europe") 
     .transition()
     .duration(1000)
@@ -313,6 +273,12 @@ function stepSeven(){
     .duration(1000)
     .attr("stroke", "#CCCCCC")
     .attr("stroke-width", 2);
+
+
+}
+
+function stepSeven(){
+  
 }
 
 function toggleAxesOpacity(toggleX, toggleY, opacity){

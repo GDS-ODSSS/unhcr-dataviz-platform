@@ -50,53 +50,22 @@ function handleStepEnter(response) {
 	// update graphic based on step
     switch(currentIndex){
         case 0:
-            if(currentDirection === 'up'){
-            toggleAxesOpacity(true, true, 1)
             stepOne()
-            }
             break;
         case 1:
             stepTwo()
-            if(currentDirection === 'up'){
-            }else{
-                toggleAxesOpacity(true, true, 1)
-            }
             break;
         case 2:
             stepThree()
-            if(currentDirection === 'up'){
-            }else{
-                toggleAxesOpacity(true, true, 1)
-            }
             break;
         case 3:
             stepFour();
-            
-            if(currentDirection === 'up'){
-                stepTwo()
-            }
-            else{
-                toggleAxesOpacity(true, true, 1)
-            }
             break;
         case 4:
             stepFive()
-            if(currentDirection === 'up'){
-                toggleAxesOpacity(true, true, 1)
-            }
-            else{
-                toggleAxesOpacity(true, true, 1)
-            }
             break;
         case 5:
             stepSix()
-            if(currentDirection === 'up'){
-            }else{
-                toggleAxesOpacity(true, true, 1)
-            }
-            break;
-        case 6:
-			stepSeven()
             break;
         default:
             break;
