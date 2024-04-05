@@ -100,7 +100,7 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
     .attr("y", -(margin.top)/2.7)
     .attr("text-anchor", "start")
     .attr("transform", "rotate(-90)")
-  .text("Less restritive")
+  .text("Less restrictive")
 
 
 
@@ -111,7 +111,7 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
     .attr("y", -(margin.top)/2.7)
     .attr("text-anchor", "start")
     .attr("transform", "rotate(-90)")
-  .text("More restritive")
+  .text("More restrictive")
 
 
 });
