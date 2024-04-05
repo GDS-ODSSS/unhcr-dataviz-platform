@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-const margin = {top: 100, right: 20, bottom: 40, left: 40};
+const margin = {top: 100, right: 20, bottom: 40, left: 60};
 const width = 800 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
@@ -85,7 +85,247 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
         (d[1])
     });
 
+  svg
+  .append("text")
+    .attr("class", "chart-label")
+    .attr("x", -(margin.left)*0.8)
+    .attr("y", -(margin.top)/4.5)
+    .attr("text-anchor", "start")
+  .text("Average CARI score")
+
+  svg
+  .append("text")
+    .attr("class", "chart-label")
+    .attr("x", -(margin.left)*5.7)
+    .attr("y", -(margin.top)/2.7)
+    .attr("text-anchor", "start")
+    .attr("transform", "rotate(-90)")
+  .text("Less restritive")
+
+
+
+  svg
+  .append("text")
+    .attr("class", "chart-label")
+    .attr("x", -(margin.left)*2)
+    .attr("y", -(margin.top)/2.7)
+    .attr("text-anchor", "start")
+    .attr("transform", "rotate(-90)")
+  .text("More restritive")
+
+
 });
+
+
+  // Define all annotations
+  const allAnnotations = [
+    {
+      note: {
+        title: "North Americas",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 250,
+      y: 232,
+      dy: -30,
+      dx: -50,
+      color: "#0072BC"
+    },
+    {
+      note: {
+        title: "South Americas",
+        wrap: 150,
+        align: "left"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 220,
+      y: 147,
+      dy: -15,
+      dx: 50,
+      color: "#18375F"
+    },
+    {
+      note: {
+        title: "Central Americas",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 600,
+      y: 310,
+      dy: -30,
+      dx: -30,
+      color: "#00B398"
+    },
+    {
+      type: d3.annotationCalloutCircle,
+      note: {
+        label: "Central America fall below North America",
+        wrap: 150,
+        align: "left"
+      },
+      x: 110,
+      y: 260,
+      dy: 80,
+      dx: 45,
+      color: "#EF4A60",
+      subject: { radius: 10 },
+    },
+    {
+      note: {
+        title: "North Africa",
+        wrap: 150,
+        align: "left"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 285,
+      y: 140,
+      dy: 0,
+      dx: 50,
+      color: "#00B398"
+    },
+    {
+      note: {
+        title: "Eastern Africa",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 280,
+      y: 240,
+      dy: -30,
+      dx: -30,
+      color: "#0072BC"
+    },
+    {
+      note: {
+        title: "Middle East",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 610,
+      y: 245,
+      dy: -30,
+      dx: -30,
+      color: "#EF4A60"
+    },
+    {
+      note: {
+        title: "Western Africa",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 340,
+      y: 310,
+      dy: -25,
+      dx: -20,
+      color: "#18375F"
+    },
+    {
+      note: {
+        title: "Western Europe",
+        wrap: 150,
+        align: "right"
+      },
+      connector: {
+        end: "arrow",
+        type: "curve",
+        curve: d3.curveBasis
+      },
+      x: 170,
+      y: 307,
+      dy: -25,
+      dx: -30,
+      color: "#BB9D21"
+    },
+    {
+      note: {
+        title: "Southern Europe",
+        wrap: 150,
+        align: "left"
+      },
+      connector: {
+        end: "arrow",
+      },
+      x: 275,
+      y: 345,
+      dy: 10,
+      dx: 30,
+      color: "#506489"
+    },
+
+  ];
+  
+  function updateAnnotations(step) {
+    // Remove existing annotation group
+    d3.selectAll(".annotation-group").remove();
+
+    const selectedAnnotations = [];
+    // Determine which annotations to display based on the step
+    if (step === 1) {
+        selectedAnnotations.push(allAnnotations[0]);
+    } else if (step === 2) {
+        selectedAnnotations.push(allAnnotations[1]);
+        selectedAnnotations.push(allAnnotations[2]); 
+    } else if (step === 3) {
+        selectedAnnotations.push(allAnnotations[0]);
+        selectedAnnotations.push(allAnnotations[2]);
+        selectedAnnotations.push(allAnnotations[3]);
+    } else if (step === 4) {
+        selectedAnnotations.push(allAnnotations[4]);
+        selectedAnnotations.push(allAnnotations[5]);
+        selectedAnnotations.push(allAnnotations[6]);
+        selectedAnnotations.push(allAnnotations[7]);
+    } else if (step === 5) {
+        selectedAnnotations.push(allAnnotations[8]);
+        selectedAnnotations.push(allAnnotations[9]);
+
+    };
+
+    // Create new annotation groups
+    const makeAnnotations = d3.annotation()
+        .type(d3.annotationLabel)
+        .notePadding(2)
+        .annotations(selectedAnnotations);
+    // Call annotations with unique class
+    d3.select("svg")
+        .append("g")
+        .attr("class", "annotation-group annotation-step-" + step)
+        .call(makeAnnotations);
+}
+
+  
 
 // Function to animate stroke-dasharray and stroke-dashoffset
 function animateStroke(path, duration) {
@@ -100,6 +340,9 @@ function animateStroke(path, duration) {
 }
 
 function stepOne() {
+
+  updateAnnotations(1);
+
   xScale.domain(d3.extent(lineData, d => d.date)).nice();
   xAxis.call(d3.axisBottom(xScale).ticks(5).tickSize(0).tickPadding(8));
   yScale.domain([0, 100]).nice();
@@ -122,7 +365,7 @@ function stepOne() {
   svg
   .append("text")
     .attr("class", "chart-title-1")
-    .attr("x", -(margin.left)*0.7)
+    .attr("x", -(margin.left)*0.8)
     .attr("y", -(margin.top)/1.7)
     .attr("text-anchor", "start")
   .text("Average CARI score in Americas region from May 2020 to April 2022")
@@ -131,9 +374,14 @@ function stepOne() {
     animateStroke(d3.select(this), 1500);
   });
 
+  
+
 }
 
 function stepTwo(){
+
+  updateAnnotations(2);
+
   svg.selectAll(".line_northern_america") 
   .transition()
   .duration(1000)
@@ -153,6 +401,9 @@ svg.selectAll(".line_south_america")
 }
 
 function stepThree(){
+
+  updateAnnotations(3);
+
   svg.selectAll(".line_south_america") 
   .transition()
   .duration(1000)
@@ -181,13 +432,18 @@ svg.selectAll(".line_central_america")
   svg
   .append("text")
     .attr("class", "chart-title-1")
-    .attr("x", -(margin.left)*0.7)
+    .attr("x", -(margin.left)*0.8)
     .attr("y", -(margin.top)/1.7)
     .attr("text-anchor", "start")
   .text("Average CARI score in Americas region from May 2020 to April 2022")
 }
 
 function stepFour(){
+
+  d3.selectAll(".annotation-group").remove();
+
+  updateAnnotations(4);
+
   svg.selectAll(".line_south_america, .line_northern_america, .line_central_america")
   .transition()
   .duration(1000)
@@ -216,7 +472,7 @@ function stepFour(){
   svg
   .append("text")
     .attr("class", "chart-title-2")
-    .attr("x", -(margin.left)*0.7)
+    .attr("x", -(margin.left)*0.8)
     .attr("y", -(margin.top)/1.7)
     .attr("text-anchor", "start")
   .text("Average CARI score in Mediterranean region from May 2020 to April 2022")
@@ -227,37 +483,11 @@ function stepFour(){
 }
 
 function stepFive(){
+
+  d3.selectAll(".annotation-group").remove();
+
+  updateAnnotations(5);
   
-  svg.selectAll(".line_southern_europe, .line_western_europe") 
-  .transition()
-  .duration(1000)
-  .attr("stroke", "#CCCCCC")
-  .attr("stroke-width", 2);
-
-  svg.selectAll(".line_eastern_africa") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#0072BC")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_northern_africa") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#00B398")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_western_africa") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#18375F")
-    .attr("stroke-width", 4);
-  svg.selectAll(".line_western_asia") 
-    .transition()
-    .duration(1000)
-    .attr("stroke", "#EF4A60")
-    .attr("stroke-width", 4);
-
-}
-
-function stepSix(){
   svg.selectAll(".line_southern_europe") 
     .transition()
     .duration(1000)
@@ -274,12 +504,8 @@ function stepSix(){
     .attr("stroke", "#CCCCCC")
     .attr("stroke-width", 2);
 
-
 }
 
-function stepSeven(){
-  
-}
 
 function toggleAxesOpacity(toggleX, toggleY, opacity){
   if(toggleX){
