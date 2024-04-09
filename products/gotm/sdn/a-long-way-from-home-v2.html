@@ -10,6 +10,18 @@
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <!-- jquery JS file -->
   <script src="../../../assets/js/vendor/jquery.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+  <style>
+    #map { 
+      position: relative;
+      width: 100%; 
+      height: 100%;
+      min-height: 640px;
+      background-color: #e7effd;
+    }
+    .legend-icon { display: inline-block; width: 20px; height: 10px; margin-right: 5px; border-radius: 2px; }
+  </style>
   <!-- Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
   <script>
@@ -41,8 +53,8 @@
       <div class="row justify-content-md-center mb-0">
         <div class="col col-lg-8">
           <h2>Sudan: One year of spiraling conflict and displacement</h2>
-          <p class="lead">To Be Defined</p>
-          <p>XX April 2024 <span class="text-danger">v.2024-04-08@1pm</span></p>
+          <!-- <p class="lead">To Be Defined</p> -->
+          <p>XX April 2024 <span class="text-danger">v.2024-04-09@4pm</span></p>
           <hr>
           <!-- <div class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/x2pxs/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/x2pxs/full.png" alt="" /></noscript></div>
           <p class="mb-4">
@@ -57,8 +69,8 @@
       <div class="row justify-content-md-center mt-0">
         <div class="col">
           <figure class="figure my-4">
-            <img src="RF1317127_021123_AK409464.jpg" class="figure-img img-fluid" alt="Sudan. The influx of returnees and IDPs kept on growing especially after the clashes in Darfur increased.">
-            <figcaption class="figure-caption">Sudan. The influx of returnees and IDPs kept on growing especially after the clashes in Darfur increased.<br>©UNHCR/Ala Kheir</figcaption>
+            <img src="RF1301228_20230827.jpg" class="figure-img img-fluid" alt="Heavy rains flood UNHCR's transit centre in Renk in South Sudan's Upper Nile State. The centre is hosting thousands of people who have fled the conflict in Sudan, the majority of them returning South Sudanese.">
+            <figcaption class="figure-caption">Heavy rains flood UNHCR's transit centre in Renk in South Sudan's Upper Nile State. The centre is hosting thousands of people who have fled the conflict in Sudan, the majority of them returning South Sudanese.<br>©UNHCR/Samuel Otieno</figcaption>
           </figure>
         </div>
       </div> 
@@ -75,9 +87,9 @@
               </picture>
             </p>
           </div>
-          <p>As always, people on the move are at higher risk to their physical safety. UNHCR and partners work to understand and mitigate these risks where possible. In Chad, people fleeing the conflict in Sudan were asked which dangers they felt most exposed to.</p>
+          <p>People on the move are at higher risk to their physical safety. UNHCR and partners work to understand their reasons for fleeing and to ensure appropriate support. In Chad, people fleeing the conflict in Sudan were asked to which dangers they felt most exposed.</p>
           <div style="min-height:230px" class="my-5"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mxbnl/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/mxbnl/full.png" alt="" /></noscript></div>
-          <p>In addition to those displaced inside the country, <strong>nearly 1.8 million people have fled to the Central African Republic, Chad, Egypt, Ethiopia, and South Sudan</strong>, with the pace of new arrivals increasing exponentially between May and July 2023. Thousands continue to arrive daily to remote and insecure border areas, where the logistical challenges and costs of operating are enormous. Chad has received the most refugees since the conflict erupted.</p>
+          <p>In addition to those displaced inside the country, nearly 1.8 million people have fled to the Central African Republic, Chad, Egypt, Ethiopia, and South Sudan, with the pace of new arrivals increasing exponentially between May and July 2023. Thousands continue to arrive daily to remote and insecure border areas, where the logistical challenges and costs of operating are enormous. Chad has received the most refugees since the conflict erupted.</p>
           <p>Almost three quarters of all those who have fled across borders are Sudanese refugees and asylum-seekers while the remainder are refugees who had been living in Sudan before being forced to return to their home countries prematurely.</p>
           <div class="my-5">
             <h5>Refugee population origin and destination</h5>
@@ -88,48 +100,67 @@
               </picture>
             </p>
           </div>
-          <p>Some 1.8 million people have now fled Sudan – 1.3 million refugees, and nearly half a million returnees. Without an end to the conflict and more resources and access for aid agencies to respond to the crisis, more people will be forced to flee to neighbouring countries, and beyond.</p>
+          <p>Without an end to the conflict and more resources and access for aid agencies to continue to respond to the crisis, more people will be forced to flee to neighbouring countries, and beyond.</p>
           <h5 class="text-primary">The crisis is continuing to grow</h5>
-          <p>Since the beginning of the crisis, over 1.8 million individuals have fled Sudan, 71 per cent of whom are refugees and the remainder are returnees. By mid-September 2023, a million people had fled Sudan, and by the end of January 2024, this number had climbed to approximately 1.5 million people. Over fifty percent of the 1.8 million persons currently displaced outside Sudan fled between May and July. Chad and Egypt have received the most refugees, and South Sudan has received the most returnees.</p>
+          <p>Over 50 per cent of displaced people fled Sudan in the first four months of the crisis. By mid-September 2023, it was up to 1 million people and by the end of January 2024, this number had climbed to approximately 1.5 million. While South Sudan has received the most people, including refugees and South Sudanese returnees, Chad and Egypt have received the most refugees.</p>
           <div style="min-height:432px"  class="my-5"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Chs5P/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/Chs5P/full.png" alt="" /></noscript></div>
           <h3 class="mt-5">An Acute Protection Crisis</h3>
           <h5 class="text-primary">The crisis is spreading</h5>
-          <p>Smuggling and trafficking networks are taking advantage of the chaos and many people are experiencing exploitation, extortion, and abuse as they attempt to to reach safety and assistance.</p>
-          <p>Since the onset of the Sudan conflict on 15 April 2023, there has been significant onward movement  of over 50,000 registered asylum-seekers and refugees within the East and Horn of Africa and Great Lakes region, and to North Africa and  Europe via the Central and Western Mediterranean Sea. Others have moved through Ethiopia, Somalia and Djibouti via Yemen towards the Arabian Peninsula.</p>
-          <p>In June 2023, Egyptian authorities introduced new entry regulations stipulating that all Sudanese should obtain a visa prior to entering Egypt. This created an opportunity for smugglers and traffickers as some people, regardless of nationality or legal status, have been risking their lives to travel to Egypt using illegal routes with the support of smugglers.</p>
-          <p>Since last April, 14,615 Sudanese refugees have registered with UNHCR in Libya after travelling through Chad and Egypt while another 2,280 Sudanese are awaiting registration. According to the latest UNHCR registration figures from January 2024, the number of refugees and asylum-seekers registered with UNHCR in Tunisia has reached 14,371.</p>
-          <p>Both Libya and Tunisia are functioning as a departure point for refugees, asylum-seekers and migrants attempting to move onwards to Europe. Nearly 6,000 Sudanese arrivals were recorded in Italy last year compared to 1,000 in 2022. Sudanese refugees in Europe are relatively new and their journeys differ from those of more established refugee populations from the Horn of Africa who often have family and kinship ties in Europe. This makes them more susceptible to exploitation and abuse.</p> 
-          <p class="text-danger my-5">TODO: Add Map of the movements, including to Uganda, Libya, to the Mediterranean and the middle east</p>
-          <h5 class="text-primary">Education</h5>
-          <p>In Sudan, the government can no longer ensure the regular and timely payment of teacher salaries, even in states unaffected by the conflict. Many teachers have also been displaced. In addition, schools have been destroyed or are being used to shelter internally displaced people. About 19 million children are waiting for schools to re-open.</p>
-          <p>Host countries were struggling  to provide education to all national students even before the crisis and have little space or capacity to enroll Sudanese refugee children who have already lost several months of school. So far, the education response in host countries has been limited in scope, and hampered by a lack of funding To add to the challenges, refugee students often need extra help with language and transitioning to a different curriculum and school system. They may also need psychosocial support to resume learning. In 2024, over 1 million Sudanese refugee children will need education. If funding levels cannot support activities beyond what was achieved in 2023, 80 per cent of these children risk remaining out of school.</p>
+          <p>Smuggling and trafficking networks are taking advantage of the chaos and many people are experiencing exploitation, extortion, and abuse as they attempt to   reach safety and assistance.</p>
+          <p>Since the onset of the Sudan conflict on 15 April 2023, there has been significant onward movement around 15,000 registered asylum-seekers and refugees within the East and Horn of Africa and Great Lakes region, to North Africa and Europe via the Central and Western Mediterranean Sea. Others have moved through Ethiopia, Somalia and Djibouti via Yemen towards the Arabian Peninsula.</p>
+          <p>Since last April, 15 close to 16,000 Sudanese refugees have registered with UNHCR in Libya after travelling through Chad and Egypt while another 2,700 Sudanese are awaiting registration. According to the latest UNHCR registration figures from post 15 April, the number of refugees and asylum-seekers registered with UNHCR in Tunisia has reached around 6,500.</p>
+          <p>Both Libya and Tunisia have arrivals as it is a departure point for people attempting to move onwards to Europe. Nearly 6,000 Sudanese arrivals were recorded in Italy last year compared to 1,000 in 2022. Sudanese refugees in Europe are relatively new and their journeys differ from those of more established refugee populations from the Horn of Africa who often have family and kinship ties in Europe. This makes them more susceptible to exploitation and abuse.</p>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <div class="my-5">
+            <h5>Movements from Sudan</h5>
+            <div class="legend-container">
+              <ul class="legend list-inline">
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #EF4A60;"></span> Air movement</li>
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #00B398;"></span> Sea movement</li>
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #18375F;"></span> Land movement</li>
+              </ul>
+            </div>
+            <div id="map" class="border"></div>
+          </div>
+          
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          
+          <h5 class="text-primary">Education disrupted</h5>
+          <p>In Sudan, the government can no longer ensure the regular and timely payment of teacher salaries, even in states unaffected by the conflict. Many teachers have also been displaced. In addition, schools have been destroyed or are being used to shelter internally displaced people. <strong>About 19 million children are unable to attend school within Sudan.</strong></p>
+          <p>Host countries were already facing challenges with providing education to national students even before the crisis and have little space or capacity to enroll Sudanese refugee children who have already lost months of school. So far, the education response in host countries has been limited in scope and hampered by a lack of funding To add to the challenges, refugee students often need extra help with language and transitioning to a different curriculum and school system. They may also need psychosocial support to resume learning. In 2024, over 1 million Sudanese refugee children will need education. If funding levels do not improve, 80 per cent of these children risk remaining out of school.</p>
           <figure class="figure my-4">
-            <img src="RF1338688_20240131-20240131_093334_RC (1).jpg" class="figure-img img-fluid" alt="Sudan. IDP teacher gives English class to children in a shelter for displaced families in Wadi Halfa.">
-            <figcaption class="figure-caption">Sudan. IDP teacher gives English class to children in a shelter for displaced families in Wadi Halfa.<br>©UNHCR</figcaption>
+            <img src="RF1338688_20240131-20240131_093334.jpg" class="figure-img img-fluid" alt="A displaced teacher gives an English class to children in a shelter for displaced families in Wadi Halfa, near Sudan’s border with Egypt.">
+            <figcaption class="figure-caption">A displaced teacher gives an English class to children in a shelter for displaced families in Wadi Halfa, near Sudan’s border with Egypt.<br>©UNHCR/Mohamed Rached Cherif</figcaption>
           </figure>
           <h5 class="text-primary">Alarming levels of gender-based violence</h5>
           <p>On top of the inherent dangers posed by conflict and displacement, women and girls have been exposed to shocking levels of sexual violence, whether in conflict-affected areas inside Sudan, on the move, or in countries of asylum.</p>
-          <p>In a report on gender-based violence during the crisis published at the end of 2023, UNHCR said women and girls inside Sudan were bearing the brunt of consequences from the conflict, including “alarming” levels of sexual violence. Women and girls trapped in the Darfur and Kordofan regions are at particularly high risk of all forms of gender-based violence.</p>
+          <p>In a <a href="https://data.unhcr.org/en/documents/details/105508" target="_blank">report</a> published at the end of 2023, UNHCR said women and girls inside Sudan were bearing the brunt of consequences from the conflict, including “alarming” levels of sexual violence. Women and girls trapped in the Darfur and Kordofan regions are at particularly high risk.</p>
           <div style="min-height:237px" class="my-5"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/EvtEx/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/EvtEx/full.png" alt="" /></noscript></div>
-          <p>Many of those seeking asylum have also experienced or witnessed harassment, abduction, rape, sexual assault, and other forms of violence during their journeys. Conflict-related sexual violence, as well as intimate partner violence, child marriage and sexual exploitation are particularly prevalent but such incidents are severely under-reported as survivors struggle to reach services, or use telecommunications networks affected by the hostilities or out of fear of stigma and retaliation.</p>
-          <p>Dire conditions in neighbouring countries, including the scarcity of natural resources, limited infrastructure and essential services, and a lack of livelihood activities, have increased the vulnerability of women and girls. Meanwhile, severe underfunding has created gaps in assistance and service delivery, and further heightening risks of sexual exploitation and women resorting to harmful coping mechanisms to survive.</p>
+          <p>Many of those seeking asylum have also experienced or witnessed harassment, abduction, rape, sexual assault, and other forms of violence during their journeys. Conflict-related sexual violence, as well as intimate partner violence, child marriage and sexual exploitation are particularly prevalent, but such incidents are severely under-reported as survivors struggle to reach services or due to fear of stigma and retaliation.</p>
+          <p>Dire conditions in neighbouring countries, including the scarcity of natural resources, limited infrastructure and essential services, and a lack of livelihood activities, have increased the vulnerability of women and girls. Meanwhile, severe underfunding has created gaps in assistance and service delivery, further heightening the risks of sexual exploitation and with women resorting to harmful coping mechanisms to survive.</p>
         </div>
       </div>  
       <div class="row justify-content-md-center mt-0">
         <div class="col">
           <figure class="figure my-4">
-            <img src="RF1317057_021123_AK409144.jpg" class="figure-img img-fluid" alt="Sudan. Khor Ajwal is an IDP camp that hosts IDPs from Blue Nile state in 2022. the camp is small yet with a population of two families per tent.">
-            <figcaption class="figure-caption">Sudan. Khor Ajwal is an IDP camp that hosts IDPs from Blue Nile state in 2022. the camp is small yet with a population of two families per tent.<br>©UNHCR/Ala Kheir</figcaption>
+            <img src="RF1317057_021123_AK409144.jpg" class="figure-img img-fluid" alt="A woman carries firewood in Khor Ajwal camp for internally displaced people in Sudan’s White Nile State.">
+            <figcaption class="figure-caption">A woman carries firewood in Khor Ajwal camp for internally displaced people in Sudan’s White Nile State.<br>©UNHCR/Ala Kheir</figcaption>
           </figure>
         </div>
       </div> 
       <div class="row justify-content-md-center">
         <div class="col col-lg-8">
           
-          <p>UNHCR is coordinating the response to gender-based violence in areas hosting refugees, jointly with its partners. This includes medical services, psychosocial support, material assistance, and referral to appropriate services.</p>
+          <p>UNHCR is coordinating the response to gender-based violence in areas hosting refugees with its partners. This includes medical services, psychosocial support, material assistance, and referral to appropriate services.</p>
           <h3 class="mt-5">Hunger is worsening</h3>
-          <p>People have lost their jobs due to the war, they cannot open their businesses and they cannot safely  farm their land. Without an income or a harvest and with aid delivery disrupted, and no harvest, food security has deteriorated significantly, prompting warnings of potential famine-like conditions in some areas. For refugees living in Sudan, the situation has been made worse by the introduction of a 50 per cent food ration cut since January 2024 due to funding shortfalls</p>
-          <p>With alarming levels of acute malnutrition inside Sudan, both refugees and returnees are increasingly likely to arrive to host countries in a poor nutritional state. In Chad, nearly 50,000 malnourished children have crossed the border. Without a dramatically scaled-up response to the food security crisis inside Sudan,– we will see many more.</p>
+          <p>People have lost their jobs due to the war, they cannot open their businesses and they cannot safely farm their land. Without an income or a harvest and with aid delivery disrupted, food security has deteriorated significantly, prompting warnings of worsening hunger in some areas.    For refugees living in Sudan, the situation has been made worse by the introduction of a 50 per cent food ration cut since January 2024 due to funding shortfalls.</p>
+          <p>With alarming levels of acute malnutrition inside Sudan, both refugees and returnees are increasingly likely to arrive to host countries in a poor nutritional state. In Chad, nearly 50,000 malnourished children have crossed the border. Without a dramatically scaled-up response to the food security crisis inside Sudan, we will see many more.</p>
           <div style="min-height:663px"  class="my-5"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ZPXZF/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ZPXZF/full.png" alt="" /></noscript></div>
           <h3 class="mt-5">What are UNHCR and humanitarian partners doing?</h3>
           <p>Inside Sudan, the ongoing clashes in Khartoum, Kordofan, and Darfur regions have hindered the ability of UNHCR and other agencies to deliver much-needed assistance, although some distribution of relief items has been possible with the presence of local staff and partners. In areas where the security situation permits, such as Gedaref, Kassala, White Nile, and Blue Nile states, UNHCR has strengthened its operations to continue providing protection and assistance to refugees, and to respond to new displacement patterns. Additionally, UNHCR has established new offices in Port Sudan, Wad Madani, and Wadi Halfa, where our teams and partners are assisting refugees, internally displaced and other affected Sudanese people. We provide relief items, emergency shelters, cash assistance, and critical services, including education programmes, legal aid for individuals lacking civil documentation, and psychosocial support.</p>
@@ -175,7 +206,10 @@
             </div>
           </div>
   
-          <p>In neighbouring countries, UNHCR is coordinating the response to the influx of refugees and returnees together with governments, other UN agencies and partners. Our teams have been working around the clock to support new arrivals, set up transit centres where people can rest and receive essential protection services and emergency aid, establish and expand camps and settlements where they can access longer-term support, and facilitate onward transfers away from overcrowded border areas.  We have set up 10 new refugee settlements in Chad, the Central African Republic, Ethiopia and South Sudan. Yet with millions who have fled to neighbouring countries or other parts of Sudan in urgent need of help, waning international attention and a chronic lack of funding is hampering the capacity of UNHCR and other organizations to save lives.</p>
+          <p>In neighbouring countries, UNHCR is coordinating the response to the influx of refugees and returnees together with governments, other UN agencies and partners. Our teams have been working around the clock to support new arrivals, set up transit centres where people can rest and receive essential protection services and emergency aid, establish and expand camps and settlements where they can access longer-term support, and facilitate onward transfers away from overcrowded border areas.  We have set up a total of 10 new refugee settlements in Chad, the Central African Republic, Ethiopia and South Sudan.</p>
+          <h5 class="text-primary">What can you do to help?</h5>
+          <p>With millions in urgent need of help, waning international attention and a chronic lack of funding is hampering the capacity of UNHCR and other organizations to save lives.</p>
+          <p>The Regional Refugee Response Plan , which calls for $1.4  billion for 82 partners to assist 2.7 million people in five neighbouring countries, is only 7 per cent funded.</p>
         </div>
       </div>  
       <div class="row justify-content-md-center mt-0">
@@ -185,8 +219,8 @@
       </div> 
       <div class="row justify-content-md-center">
         <div class="col col-lg-8">
-          
-          <a class="btn btn-primary" href="https://data2.unhcr.org/en/situations/sudansituation">Sudan Situation Portal</a>
+          <p>We cannot let this become another forgotten emergency. To support people forced to flee Sudan click below.</p>
+          <a class="btn btn-primary" href="https://donate.unhcr.org/int/en/sudan-emergency">Donate</a>
         </div>
       </div>
 
@@ -215,6 +249,106 @@
   <script src="../../../assets/js/vendor/ai2html-resizer.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script type="module" src="d3-custom.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/unhcr/clus1tma300uq01ntaxt2f9jr',
+        center: [30, 19],
+        zoom: 3.2
+    });
+
+    map.on('load', () => {
+        const layers = map.getStyle().layers;
+        let firstSymbolId;
+        for (const layer of layers) {
+            if (layer.type === 'symbol') {
+                firstSymbolId = layer.id;
+                break;
+            }
+        }
+
+        // Define colors for each route
+        const colors = ['#EF4A60', '#00B398', '#18375F'];
+
+        // Add source and layers for each JSON file
+        const jsonFiles = ['route-air.json', 'route-sea.json', 'route-land.json'];
+        jsonFiles.forEach((file, index) => {
+            const color = colors[index];
+
+            map.addSource(`line-${index}`, {
+                type: 'geojson',
+                data: file
+            });
+
+            map.addLayer({
+                type: 'line',
+                source: `line-${index}`,
+                id: `line-background-${index}`,
+                paint: {
+                    'line-color': color,
+                    'line-width': 3,
+                    'line-opacity': 0.3
+                }
+            },
+            firstSymbolId
+            );
+
+            map.addLayer({
+                type: 'line',
+                source: `line-${index}`,
+                id: `line-dashed-${index}`,
+                paint: {
+                    'line-color': color,
+                    'line-width': 3,
+                    'line-dasharray': [0, 4, 3]
+                }
+            },
+            firstSymbolId
+            );
+        });
+
+        const dashArraySequence = [
+            [0, 4, 3],
+            [0.5, 4, 2.5],
+            [1, 4, 2],
+            [1.5, 4, 1.5],
+            [2, 4, 1],
+            [2.5, 4, 0.5],
+            [3, 4, 0],
+            [0, 0.5, 3, 3.5],
+            [0, 1, 3, 3],
+            [0, 1.5, 3, 2.5],
+            [0, 2, 3, 2],
+            [0, 2.5, 3, 1.5],
+            [0, 3, 3, 1],
+            [0, 3.5, 3, 0.5]
+        ];
+
+        let step = 0;
+
+        function animateDashArray(timestamp) {
+            const newStep = parseInt(
+                (timestamp / 80) % dashArraySequence.length
+            );
+
+            if (newStep !== step) {
+                jsonFiles.forEach((file, index) => {
+                    map.setPaintProperty(
+                        `line-dashed-${index}`,
+                        'line-dasharray',
+                        dashArraySequence[step]
+                    );
+                });
+                step = newStep;
+            }
+
+            requestAnimationFrame(animateDashArray);
+        }
+
+        animateDashArray(0);
+    });
+  </script>
   <!-- End scripts -->
 
 <span style="color:#0072bc; font-weight: bold"></span>
