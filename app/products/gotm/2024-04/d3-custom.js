@@ -37,8 +37,9 @@ function startCountingAnimation(elementId, endValue) {
 
 
 // Call the function to start counting animations for each key figure
-startCountingAnimation('key-figure-1', 613000);
-startCountingAnimation('key-figure-2', 1300000);
-startCountingAnimation('key-figure-3', 209000);
+startCountingAnimation('key-figure-1', 959000);
+startCountingAnimation('key-figure-2', 1800000);
+startCountingAnimation('key-figure-3', 265000);
 startCountingAnimation('key-figure-4', 558000);
-startCountingAnimation('key-figure-5', 299000);
+startCountingAnimation('key-figure-5', 387000);
+startCountingAnimation('key-figure-6', 634000);
