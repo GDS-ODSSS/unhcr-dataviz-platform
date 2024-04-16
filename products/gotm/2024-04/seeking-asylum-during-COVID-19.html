@@ -8,7 +8,6 @@
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - Seeking asylum during COVID-19 and what it means today</title>
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
-  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style-scrollytelling.css">
   <!-- jquery JS file -->
@@ -44,31 +43,34 @@
       <div class="row justify-content-md-center">
         <div class="col col-lg-8">
           <h2>Seeking asylum during COVID-19 and what it means today</h2>
-          <p class="lead">Supporting intro text</p>
+          <p class="lead">How did the COVID-19 pandemic affect people’s ability to seek asylum? With the end of the global public health emergency, this data story takes a look back at how the world’s forcibly displaced were able to access protection during the crisis.</p>
           <p>XX April 2024</p>
           <hr>
           <figure class="figure my-4">
-            <img src="RF2252422_50_20190829__DSF6045-Edit_esj.jpg" class="figure-img img-fluid" alt="South Sudan. Thousands of refugee returnees cross border fleeing Sudan violence.">
-            <figcaption class="figure-caption"> Ethiopia. Young South Sudanese refugees desperate to access education. @UNHCR</figcaption>
+            <img src="RF1134830__AM_9354.jpg" class="figure-img img-fluid" alt="Italy. UNHCR staff meet unaccompanied minors migrants disembarking from the Ocean Viking ship of the NGO SOS Mediterranée in the port of Augusta.">
+            <figcaption class="figure-caption"> Italy. UNHCR staff meet unaccompanied minors migrants disembarking from the Ocean Viking ship of the NGO SOS Mediterranée in the port of Augusta. ©UNHCR/Alessio Mamo</figcaption>
           </figure>
-          <p>How did the COVID-19 pandemic affect people’s ability to seek asylum? With the end of the global public health emergency, 
-            this data story takes a look back at how the world’s forcibly displaced were able to access protection during the crisis. 
-            We all remember the seemingly unprecedented restrictions on human mobility, with states closing their borders to travelers and 
+          <p>We all remember the seemingly unprecedented restrictions on human mobility, with states closing their borders to travelers and 
             in some cases to refugees and asylum-seekers as well. But access to asylum is not just about the ability to reach and cross a border. 
             The pandemic also brought with it a wide array of restrictions that affected refugee and asylum-seekers’ ability to receive necessary food, 
             medical and shelter on arrival, apply for refugee status, and get the necessary legal documentation to reside in a host country. 
             In the immediate aftermath of the pandemic declaration, the UN High Commissioner for Refugees declared that the pandemic did not provide an 
             exemption to states’ obligations to provide access to international protection, and that doing so would not interfere with protecting public health.</p>
-          <p>To keep track of these multifaceted ways in which the changing pandemic situation was affecting people's ability to access asylum, UNHCR launched the 
-            Global Protection Platform in April 2020, tracking these issues through April 2022. Using this extensive data, we developed the COVID-19 Asylum Restrictiveness 
-            Index (CARI) to track the overall impact of the wider set of measures related to asylum during the pandemic. For every month where data is available, 
+          <div class="my-5">
+            <h5>Title</h5>
+            <div id="cari-map"></div>
+          </div>
+          <p>To keep track of these multifaceted ways in which the changing pandemic situation was affecting people's ability to access asylum, UNHCR launched the Global 
+            Protection Platform in April 2020, tracking these issues through April 2022. Using this extensive data, Dr. Lama Mourad (Carleton University) and 
+            Dr. Stephanie Schwartz (The London School of Economics & Political Science) developed the Covid Asylum Restrictiveness Index (CARI) to track the overall 
+            impact of the wider set of measures related to asylum during the pandemic. For every month where data is available, 
             CARI scores for each country range from 0 (no restrictions) to 100 (most restrictive). This index allows for analysis both across countries and over time. 
             Below we discuss three major takeaways of this research, and some of their implications for the long-term impact of the crisis on asylum globally.</p>
-            <figure class="figure my-4">
-              <img src="RF2312407_Casa_Maria_amor090120_15.jpg" class="figure-img img-fluid" alt="South Sudan. Thousands of refugee returnees cross border fleeing Sudan violence.">
-              <figcaption class="figure-caption"> Ecuador. COVID-19 tests carried out at women’s shelter. @UNHCR</figcaption>
-            </figure>
-          <h4>Access to asylum did not open when ‘borders’ opened</h4>
+          <figure class="figure my-5">
+            <img src="RF2312407_Casa_Maria_amor090120_15.jpg" class="figure-img img-fluid" alt="Ecuador. COVID-19 tests carried out at women’s shelter">
+            <figcaption class="figure-caption"> Ecuador. COVID-19 tests carried out at women’s shelter. © UNHCR/Fabiola Cedillo</figcaption>
+          </figure>
+          <h4 class="text-primary" >Access to asylum did not open when ‘borders’ opened</h4>
           <p>In the immediate aftermath of the declaration of the public health emergency in March 2020, the majority of countries in the world moved towards restricting 
             border closures and halting travel to try and stem the spread of the virus. Alongside restrictions on travel for 
             leisure or business, many states also applied these measures to asylum-seekers. This occurred despite the fact that under international law, individuals have 
@@ -81,10 +83,8 @@
           <p>This indicates that even as states were opening their borders, they maintained or, in some cases, adopted more restrictive measures–such 
             as shutting down asylum processing, closing reception facilities, or limiting access to asylum documentation—that are fundamental to the protection 
             of millions of forcibly displaced persons worldwide.</p>
-          
           <div class="my-5" style="min-height:411px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/QttCe/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/QttCe/full.png" alt="" /></noscript></div>
-
-          <h4>Core Refugee Institutions Matter</h4>
+          <h4 class="text-primary">Core Refugee Institutions Matter</h4>
           <p>The UN Refugee Agency’s mandate to protect and safeguard the rights of refugees is guided by the 1951 Refugee Convention and its 1967 Protocol. 
             The core precept enshrined in these documents is non-refoulement, or the prohibition against states returning refugees to places where their lives or 
             liberty are in danger. While all states must uphold the principle of non-refoulement, as a bedrock of asylum norms globally, 
@@ -93,16 +93,15 @@
             This is particularly notable given that at the outset of the pandemic, as states worldwide adopted restrictive measures towards asylum, many scholars 
             and international organizations were concerned that such behavior could erode the strength of the international refugee protection regime established 
             through the 1951 Refugee Convention.</p>
-          
-            <p class="my-5">
-              <picture>
-                <source media="(min-width:768px)" srcset="cari-scores-720.png">
-                <source media="(min-width:576px)" srcset="cari-scores-540.png">
-                <img src="cari-scores-320.png" class="img-fluid" alt="...">
-              </picture>
-            </p>
-
-          <h4>Asylum Trajectories Matter</h4>
+          <div class="my-5">
+            <h5 class="mb-3">Comparing average CARI scores for <span style="color:#0072BC">signatory</span> and <span style="color:#18375F">non-signatory</span> countries </h5>
+            <picture>
+              <source media="(min-width:768px)" srcset="cari-scores-720.svg">
+              <source media="(min-width:576px)" srcset="cari-scores-540.svg">
+              <img src="cari-scores-320.svg" class="img-fluid" alt="...">
+            </picture>
+          </div>
+          <h4 class="text-primary">Asylum Trajectories Matter</h4>
           <p>In understanding the impact of restrictions on seeking asylum during the COVID-19 pandemic, it is important to bear in mind the trajectories that the 
             majority of asylum-seekers take in their attempt to seek a safe refuge. While comprehensive statistics are not available, of more than 40,000 people 
             interviewed in Europe, Africa and the Middle East, 24% report transiting three or more countries between their starting point and their intended destination.
@@ -117,7 +116,7 @@
           <p>The data show how this played out, for example, in both the Americas and the Mediterranean region, where migrants and refugees often pass through 
             several transit countries in the hope of reaching their final destination.</p>
         </div>
-        <div class="row justify-content-md-center">
+      <div class="row justify-content-md-center">
         <div class="col">
           <section id="scrolly">
             <figure id="cari-regionl-line">
@@ -140,14 +139,13 @@
               </div>
             </article>
           </section>
-    
-            <section id="outro">
-            </section>
+          <section id="outro">
+          </section>
         </div>  
       </div>
       <div class="row justify-content-md-center mb-5">
         <div class="col col-lg-8">
-          <h4>Asylum Post-Pandemic</h4>
+          <h4 class="text-primary">Asylum Post-Pandemic</h4>
           <p>The evidence shows that the COVID-19 pandemic seriously disrupted people’s ability to access asylum - but not just in the ways most anticipated. In addition to border restrictions, 
           now largely lifted, asylum-seekers also faced significant barriers to accessing protection that were both less immediately visible and more persistent. 
           Looking at the policies of individual states, we see that despite a wide range of responses to the public health crisis in the early stages, states party to the 
@@ -156,12 +154,14 @@
           key insight into where and why refugees are unable to access the protection they are entitled to. This can inform the design of ‘whole-of-route’ 
           interventions that seek to alleviate human suffering during displacement while also maintaining the fundamental principle of access to asylum and reaffirming 
           all states’ asylum obligations.</p>
-
-
+        <div class="card p-1 bg-light border-0 my-5">
+          <div class="card-body">
+            <p class="card-text" style="font-style: italic;">Data Source: The Covid Asylum Restrictiveness Index (CARI) (2023), developed by Dr Lama Mourad (Carleton University) and Dr Stephanie Schwartz (the London School of Economics and Political Science), with Dr. Sarah Cueva-Egan (University of Southern California).</p>
+          </div>
+        </div>
+        </div>
       </div>
 
-      
-    </div>
   </main>
   <!-- End Main -->
 
@@ -182,7 +182,13 @@
   <!-- isotope JS file -->
   <script src="../../../assets/js/vendor/isotope.pkgd.min.js"></script>
   <script src="../../../assets/js/vendor/scrollama.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
   <script src="../../../assets/js/vendor/d3-annotation.min.js"></script>
+  <script type="module" src="d3-cari-map.js"></script>
   <script src="d3-custom.js"></script>
   <script src="scrollama-custom.js"></script>
   <!-- End scripts -->

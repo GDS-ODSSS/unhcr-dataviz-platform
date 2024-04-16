@@ -6,6 +6,7 @@ const height = 500 - margin.top - margin.bottom;
 // append the svg object to the body of the page
 var svg = d3.select("#cari-regionl-line")
   .append("svg")
+    .attr("id","cari-line-svg")
     .attr("width", "100%")
     .attr("height", "100%")
     .attr("viewBox", "0 0 800 600")
@@ -69,7 +70,7 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
 
 
   // create line
-  const line = svg
+  svg
   .selectAll("lines")
   .data(dataGrouped)
   .join("path")
@@ -319,7 +320,7 @@ d3.csv("cari_region_americas_centralmed_long.csv", function(d){
         .notePadding(2)
         .annotations(selectedAnnotations);
     // Call annotations with unique class
-    d3.select("svg")
+    d3.select("#cari-line-svg")
         .append("g")
         .attr("class", "annotation-group annotation-step-" + step)
         .call(makeAnnotations);
