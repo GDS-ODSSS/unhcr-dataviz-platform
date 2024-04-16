@@ -4,20 +4,20 @@
   align-items: center;
 }
 
-#cari-map {
-	.label{
+
+#cari-map text.label {
 	font-family: lato;
-	font-size: 9px;
+	font-size: 8px;
 	fill: #666666;
-	};
-	.legendTitle{
-	font-family: lato;
-	font-size: 0px;
-	fill: #333333;
-	}
 }
 
+#cari-map text.legendTitle{
+	font-family: lato;
+	font-size: 9px;
+	font-weight: 700;
+	fill: #333333;
 
+}
 
 .solid{
 	stroke:white;
