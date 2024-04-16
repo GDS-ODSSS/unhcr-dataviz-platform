@@ -1,11 +1,11 @@
 //set svg parameters
 const width = 450,
-      height = 280;
+      height = 320;
 const svg = d3.select("#cari-map")
    .append("svg")
      .attr("width", "100%")
      .attr("height", "100%")
-     .attr("viewBox","0 0  450 280")
+     .attr("viewBox","0 0  450 320")
      .attr("preserveAspectRatio","xMinYMin");
 
 // set map scale, location on screen and its projection
@@ -20,8 +20,8 @@ const path = d3.geoPath()
 
 // set color scale
 const color = d3.scaleOrdinal()
-        .domain(["0/No data",25,50,75,100])
-        .range(["#CCCCCC","#B8C9EE", "#8395B9", "#506489", "#18375F"])
+        .domain(["No data",0,25,50,75,100])
+        .range(["#CCCCCC", "#E0E9FE","#B8C9EE", "#8395B9", "#506489", "#18375F"])
         .unknown("#CCCCCC");
 
 //declare polygon and polyline
@@ -81,7 +81,7 @@ function ready([topology, population]) {
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
     .append("title")
-      .text(function(d) { return `${d.properties.gis_name} \nCARI 2 score: ${d3.format(",")(d.cari2scaled)}`
+      .text(function(d) { return `${d.properties.gis_name} \nCARI score: ${d3.format(",")(d.cari2scaled)}`
   }
 )};
 
@@ -101,13 +101,18 @@ line
 // set legend
 svg.append("g")
   .attr("class", "legendOrdinal")
-  .attr("transform", "translate(5,180)");
+  .attr("transform", "translate(0,8)");
 
 var legendOrdinal = d3.legendColor()
-  .shape("path", d3.symbol().type(d3.symbolSquare).size(100)())
-  .shapePadding(3)
-  .title("CARI score")
-  .labelOffset(3)
+  .shape("path", d3.symbol().type(d3.symbolSquare).size(100))
+  .shapePadding(0)
+  .title("Simplified CARI")
+  .shapeWidth(40)
+  .shapeHeight(5)
+  .orient("horizontal")
+  .labelAlign("start")
+  .labels(["No data", "Least restrictive", "","","","Most restrictive" ])
+  .labelOffset(1)
   .cellFilter(function(d){ return d.label !== "e" })
   .scale(color);
 
