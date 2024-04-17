@@ -29,7 +29,7 @@ const poly = svg.append("g");
 const line = svg.append("g");
 
 // declare URL
-const dataURL = "CARI2_map.csv";
+const dataURL = "cari_map.csv";
 const polygonsURL = "world_polygons_simplified.json";
 const polylinesURL = "world_lines_simplified.json";
 
@@ -40,11 +40,11 @@ const promises = [
 ];
 
 Promise.all(promises).then(ready)
-function ready([topology, population]) {
+function ready([topology, cariScore]) {
 
   // prepare pop data to join shapefile
   const data = {};
-  population.forEach(function(d){
+  cariScore.forEach(function(d){
     data[d.iso3] = +d.cari2scaled
   });
 
@@ -104,16 +104,15 @@ svg.append("g")
   .attr("transform", "translate(0,8)");
 
 var legendOrdinal = d3.legendColor()
-  .shape("path", d3.symbol().type(d3.symbolSquare).size(100))
-  .shapePadding(0)
   .title("Simplified CARI")
+  .shape("rect")
+  .shapePadding(0)
   .shapeWidth(40)
   .shapeHeight(5)
   .orient("horizontal")
   .labelAlign("start")
   .labels(["No data", "Least restrictive", "","","","Most restrictive" ])
   .labelOffset(1)
-  .cellFilter(function(d){ return d.label !== "e" })
   .scale(color);
 
 svg.select(".legendOrdinal")

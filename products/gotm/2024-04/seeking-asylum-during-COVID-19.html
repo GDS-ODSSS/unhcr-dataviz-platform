@@ -9,9 +9,8 @@
   <title>UNHCR Dataviz - Seeking asylum during COVID-19 and what it means today</title>
   <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style-scrollytelling.css">
-  <!-- jquery JS file -->
   <script src="../../../assets/js/vendor/jquery.min.js"></script>
+  <script src="../../../assets/js/vendor/d3.min.js"></script>
   <!-- Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
   <script>
@@ -44,7 +43,7 @@
         <div class="col col-lg-8">
           <h2>Seeking asylum during COVID-19 and what it means today</h2>
           <p class="lead">How did the COVID-19 pandemic affect people’s ability to seek asylum?</p>
-          <p>XX April 2024</p>
+          <p>17 April 2024</p>
           <hr>
           <figure class="figure my-5">
             <img src="RF2312407_Casa_Maria_amor090120_15.jpg" class="figure-img img-fluid" alt="Ecuador. COVID-19 tests carried out at women’s shelter">
@@ -53,7 +52,7 @@
           <p>With the end of the global public health emergency, this data story takes a look back at how the world’s forcibly displaced were able to access protection during the crisis. We all remember the seemingly unprecedented restrictions on human mobility, with states closing their borders to travelers and 
             in some cases to refugees and asylum-seekers as well. But access to asylum is not just about the ability to reach and cross a border. 
             The pandemic also brought with it a wide array of restrictions that affected refugee and asylum-seekers’ ability to receive necessary food, 
-            medical and shelter on arrival, apply for refugee status, and get the necessary legal documentation to reside in a host country. 
+            medical assistance and shelter on arrival, apply for refugee status, and get the necessary legal documentation to reside in a host country. 
             In the immediate aftermath of the pandemic declaration, the UN High Commissioner for Refugees declared that the pandemic did not provide an 
             exemption to states’ obligations to provide access to international protection, and that doing so would not interfere with protecting public health.</p>
           <p>To keep track of these multifaceted ways in which the changing pandemic situation was affecting people's ability to access asylum, UNHCR launched the Global 
@@ -68,12 +67,12 @@
           </div>
           <h4 class="text-primary" >Access to asylum did not open when ‘borders’ opened</h4>
           <p>In the immediate aftermath of the declaration of the public health emergency in March 2020, the majority of countries in the world moved towards restricting 
-            border closures and halting travel to try and stem the spread of the virus. Alongside restrictions on travel for 
+            border crossings and halting travel to try and stem the spread of the virus. Alongside restrictions on travel for 
             leisure or business, many states also applied these measures to asylum-seekers. This occurred despite the fact that under international law, individuals have 
             the right to seek asylum and states are prohibited from sending people who are entitled to international protection back to places where their lives or 
             liberty are in danger, a core principle of international refugee protection known as non-refoulement. As the urgency of the pandemic abated in 2021 states began 
             reopening their borders, but the Global Protection Platform and CARI data show that other restrictive policies that severely restricted access to asylum and 
-            hindered the protection available for refugee and asylum-seekers persisted long after. Among these measures are procedural hindrances to filing asylum claims, 
+            hindered the protection available for refugees and asylum-seekers persisted long after. Among these measures are procedural hindrances to filing asylum claims, 
             as well as access to adequate reception facilities. As we see below, as more and more countries loosened restrictions related to the border (‘Access to Territory”), 
             their overall asylum restrictiveness as measured by the CARI index remained, on average, fairly consistent.</p>
           <p>This indicates that even as states were opening their borders, they maintained or, in some cases, adopted more restrictive measures–such 
@@ -131,7 +130,7 @@
                 <p>We see a similar pattern in and around the Mediterranean region. In this case, where source countries are more varied, we focus on <strong><span style="color: #18375F">Western</span></strong> and <strong><span style="color: #0072BC">Eastern Africa</span></strong> alongside the <strong><span style="color: #EF4A60">Middle East</span></strong>, as source subregions, and <strong><span style="color: #00B398">North Africa</span></strong> as a major transit point. As with the case of the Americas, the source and transit subregions displayed greater restrictiveness early in the pandemic but moved towards loosening their restrictions fairly quickly.</p>
               </div>
               <div class="step" data-step="5">
-                <p><strong><span style="color: #506489">Southern</span></strong>, and <strong><span style="color: #BB9D21">Western Europe</span></strong>, while adopting fewer restrictions on average, were more likely to maintain those that they did institute. Ultimately, as the desired final destinations of most asylum-seekers undertaking these trajectories, the maintenance of restrictions on asylum-seeking resulted in large numbers of refugees and asylum-seekers remaining trapped in transit countries where access to protection may be significantly limited, either due to capacity or legal rights.</p>
+                <p><strong><span style="color: #506489">Southern</span></strong> and <strong><span style="color: #BB9D21">Western Europe</span></strong>, while adopting fewer restrictions on average, were more likely to maintain those that they did institute. Ultimately, as the desired final destinations of most asylum-seekers undertaking these trajectories, the maintenance of restrictions on asylum-seeking resulted in large numbers of refugees and asylum-seekers remaining trapped in transit countries where access to protection may be significantly limited, either due to capacity or legal rights.</p>
               </div>
             </article>
           </section>
@@ -139,7 +138,7 @@
           </section>
         </div>  
       </div>
-      <div class="row justify-content-md-center mb-5">
+      <div class="row justify-content-md-center my-5">
         <div class="col col-lg-8">
           <h4 class="text-primary">Asylum Post-Pandemic</h4>
           <p>The evidence shows that the COVID-19 pandemic seriously disrupted people’s ability to access asylum - but not just in the ways most anticipated. In addition to border restrictions, 
@@ -178,14 +177,13 @@
   <!-- isotope JS file -->
   <script src="../../../assets/js/vendor/isotope.pkgd.min.js"></script>
   <script src="../../../assets/js/vendor/scrollama.min.js"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
   <script src="../../../assets/js/vendor/d3-annotation.min.js"></script>
   <script type="module" src="d3-cari-map.js"></script>
-  <script src="d3-custom.js"></script>
+  <script src="d3-scrolly.js"></script>
   <script src="scrollama-custom.js"></script>
   <!-- End scripts -->
 
