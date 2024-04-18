@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Soudan&nbsp;: un an d’une spirale de conflit et de déplacement</title>
+  <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <!-- jquery JS file -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/jquery.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+  <style>
+    #map { 
+      position: relative;
+      width: 100%; 
+      height: 100%;
+      min-height: 640px;
+      background-color: #e7effd;
+    }
+    .legend-icon { display: inline-block; width: 20px; height: 10px; margin-right: 5px; border-radius: 2px; }
+  </style>
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-EGKK4QPCNL');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <h1 class="title">Soudan&nbsp;: un an d’une spirale de conflit et de déplacement</h1>
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-5">
+          <li class="breadcrumb-item"><a href="../../../">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../">Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data Story</li>
+        </ol>
+      </nav>
+      <div class="row justify-content-md-center mb-0">
+        <div class="col col-lg-8">
+          <h2>Soudan&nbsp;: un an d’une spirale de conflit et de déplacement</h2>
+          <!-- <p class="lead">To Be Defined</p> -->
+          <p>11 avril 2024 <span class="text-secondary">| Egalement disponible en&nbsp;: <a href="https://dataviz.unhcr.org/products/gotm/2024-04/sudan-one-year-spiralling-conflict.html">English</a></span></p>
+          <hr>
+          <!-- <div class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/x2pxs/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/x2pxs/full.png" alt="" /></noscript></div>
+          <p class="mb-4">
+            <picture>
+              <source media="(min-width:768px)" srcset="map-720.png">
+              <source media="(min-width:576px)" srcset="map-540.png">
+              <img src="map-360.png" class="img-fluid" alt="Map representing Sudan and its neighboring countries with the number of people that fled.">
+            </picture>
+          </p> -->
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <figure class="figure my-4">
+            <img src="RF1301228_20230827.jpg" class="figure-img img-fluid" alt="Heavy rains flood UNHCR's transit centre in Renk in South Sudan's Upper Nile State. The centre is hosting thousands of people who have fled the conflict in Sudan, the majority of them returning South Sudanese.">
+            <figcaption class="figure-caption">De fortes pluies inondent le centre de transit du HCR à Renk, dans l’État du Haut-Nil, au Soudan du Sud. Le centre accueille des milliers de personnes qui ont fui le conflit au Soudan, la majorité d’entre elles étant des Sud-Soudanais de retour.<br>©HCR/Samuel Otieno</figcaption>
+          </figure>
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>Depuis que le conflit meurtrier et la violence ont éclaté au Soudan en avril dernier, des millions de personnes ont été contraintes de fuir, en quête de sécurité et d’aide humanitaire.</p>
+          <div class="my-5">
+            <h5>Plus de <span class="text-danger">8,6 millions</span> de personnes déplacées de force</h5>
+            <p>
+              <picture>
+                <source media="(min-width:768px)" srcset="idp-ref-720.svg">
+                <source media="(min-width:576px)" srcset="idp-ref-540.svg">
+                <img src="idp-ref-360.svg" class="img-fluid" alt="Graphic representing the proportion of ">
+              </picture>
+            </p>
+          </div>
+          <p>Les personnes en déplacement courent un risque plus élevé d’atteinte à leur sécurité physique. Le HCR et ses partenaires s’efforcent de comprendre les raisons de leur fuite et de leur apporter un soutien approprié. Au Tchad, les personnes fuyant le conflit au Soudan ont été interrogées sur les dangers auxquels elles se sentaient le plus exposées.</p>
+          <div class="my-5">
+            <h5>À quels dangers vous êtes-vous senti le plus exposé&nbsp;?</h5>
+            <div style="min-height:230px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/NUNAb/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/NUNAb/full.png" alt="" /></noscript></div>
+          </div>
+          <p>En plus des personnes déplacées à l’intérieur du pays, <strong>près de 1,8 million de personnes ont fui en Égypte, en Éthiopie, en République centrafricaine, au Soudan du Sud et au Tchad.</strong> Des milliers de personnes continuent d’arriver chaque jour dans des zones frontalières reculées et peu sûres, où les défis logistiques et les coûts opérationnels sont énormes. Le Tchad est le pays qui a accueilli le plus de réfugiés depuis le début du conflit.</p>
+          <p>Près des trois quarts de tous ceux qui ont fui au-delà des frontières sont des réfugiés et des demandeurs d’asile soudanais, tandis que les autres sont des réfugiés qui vivaient au Soudan avant d’être forcés de retourner prématurément dans leur pays d’origine.</p>
+          <div class="my-5">
+            <h5>Population réfugiée – par origine et destination</h5>
+            <p>
+              <picture>
+                <source media="(min-width:576px)" srcset="ref-district_map-720-fr.png">
+                <img src="ref-district_map-360-fr.png" class="img-fluid" alt="Graphic representing the proportion of ">
+              </picture>
+            </p>
+          </div>
+          <p>Si le conflit ne prend pas fin et si les organisations humanitaires ne disposent pas de plus de ressources et d’un meilleur accès pour continuer à répondre à la crise, davantage de personnes seront contraintes de fuir dans les pays voisins et au-delà.</p>
+          <h4 class="text-primary mt-5">La crise continue de s’intensifier</h4>
+          <p>Plus de 50 % des personnes déracinées ont fui le Soudan au cours des quatre premiers mois de la crise. Leur nombre atteignait un million mi-septembre 2023 et avait grimpé à environ 1,5 million fin janvier 2024. Un an après le début de la guerre, des milliers de personnes continuent de traverser les frontières chaque jour, le Soudan du Sud recevant le plus grand nombre de personnes, y compris des réfugiés et des rapatriés sud-soudanais, l’Égypte et le Tchad accueillant le plus grand nombre de réfugiés.</p>
+          <div class="my-5">
+            <h5>Nouvelles arrivées du Soudan au <span style="color: #589BE5;">Soudan du Sud</span>, <span style="color: #18375F;">au Tchad</span>, <span style="color: #0072bc;">en Égypte</span>, <span style="color: #00B398;">en Éthiopie</span> et <span style="color: #666666;">en République centrafricaine</span></h5>
+            <div style="min-height:355px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/lFNpw/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/lFNpw/full.png" alt="" /></noscript></div>
+          </div>
+          
+          <h4 class="text-primary mt-5">La crise s’étend</h4>
+          <p>Les réseaux de passeurs et de trafiquants profitent du chaos, si bien que de nombreuses personnes sont victimes d’exploitation, d’extorsion et d’abus alors qu’elles tentent de se mettre en sécurité et d’obtenir de l’aide.</p>
+          <p>Depuis le début du conflit, le 15 avril 2023, des mouvements secondaires importants, d’environ 15&nbsp;000 demandeurs d’asile et réfugiés enregistrés, ont été constatés à l’intérieur de la région de l’Afrique de l’Est, de la Corne de l’Afrique et des Grands Lacs, ainsi que vers l’Afrique du Nord et l’Europe via la mer Méditerranée centrale et occidentale. D’autres ont traversé l’Éthiopie, la Somalie et Djibouti, pour gagner la péninsule Arabique, via le Yémen.</p>
+          <p>L’Ouganda, qui compte déjà plus d’un million de réfugiés, a accueilli 30&nbsp;000 réfugiés soudanais, dont plus de 14&nbsp;000 depuis le début de l’année. La plupart des Soudanais qui arrivent viennent de Khartoum et ont fait des études universitaires.</p>
+          <p>Au cours de l’année écoulée, près de 16&nbsp;000 réfugiés soudanais se sont enregistrés auprès du HCR en Libye après avoir voyagé soit directement depuis le Soudan, soit via l’Égypte et le Tchad, tandis que 2700 autres Soudanais attendent d’être enregistrés. Selon les derniers chiffres du HCR, le nombre de réfugiés et de demandeurs d’asile enregistrés auprès du HCR en Tunisie a atteint environ 6500 personnes.</p>
+          <p>La Libye et la Tunisie sont toutes deux des points de départ pour les personnes qui tentent de se rendre en Europe. Près de 6000 arrivées de Soudanais ont été enregistrées en Italie l’année dernière, contre 1000 en 2022. La présence de réfugiés soudanais en Europe est relativement nouvelle et leurs parcours diffèrent de ceux des populations de réfugiés plus établies de la Corne de l’Afrique, qui ont souvent des liens familiaux en Europe. Cette caractéristique les rend plus vulnérables à l’exploitation et aux abus.</p>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <div class="my-5">
+            <h5>Mouvements depuis le Soudan</h5>
+            <div class="legend-container">
+              <ul class="legend list-inline">
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #EF4A60;"></span> Déplacement par voie aérienne</li>
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #00B398;"></span> Déplacement par voie maritime</li>
+                <li class="list-inline-item"><span class="legend-icon" style="background-color: #18375F;"></span> Déplacement par voie terrestre</li>
+              </ul>
+            </div>
+            <div id="map" class="border"></div>
+            <p class="text-secondary"><small>Les traits figurant sur la carte illustrent les déplacements des Soudanais vers différents pays. Elles ne représentent pas les routes ou les itinéraires réellement empruntés.</small></p>
+          </div>
+          
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          
+          
+          <h4 class="text-primary mt-5">Des niveaux alarmants de violence basée sur le genre</h4>
+          <p>En plus des dangers inhérents aux conflits et aux déplacements, les femmes et les jeunes filles ont été exposées à des niveaux de violence sexuelle choquants, que ce soit dans les zones touchées par le conflit au Soudan, en déplacement ou dans les pays d’asile.</p>
+          <p>Dans un <a href="https://data.unhcr.org/en/documents/details/105508" target="_blank">rapport</a> publié fin 2023, le HCR a déclaré que les femmes et les filles au Soudan étaient les premières victimes des conséquences du conflit, notamment des niveaux « alarmants » de violence sexuelle. Les femmes et les filles prises au piège dans les régions du Darfour et du Kordofan sont particulièrement exposées.</p>
+          <div class="my-5">
+            <h5>Répartition démographique des nouveaux arrivants</h5>
+            <div style="min-height:217px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sTge4/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/sTge4/full.png" alt="" /></noscript></div>
+          </div>
+          
+          <p>Nombre de celles et ceux qui demandent l’asile ont également été victimes ou témoins de harcèlement, d’enlèvement, de viol, d’agression sexuelle et d’autres formes de violence au cours de leur voyage. Les violences sexuelles liées aux conflits, ainsi que la violence exercée par le partenaire intime, le mariage des enfants et l’exploitation sexuelle sont particulièrement répandus, mais ces atteintes sont gravement sous-déclarées car les victimes ont du mal à accéder aux services ou ont peur de la stigmatisation et des représailles.</p>
+          <p>Les conditions désastreuses qui règnent dans les pays voisins, notamment la rareté des ressources naturelles, le manque d’infrastructures et de services essentiels, et l’absence d’activités de subsistance, ont accru la vulnérabilité des femmes et des filles. Dans le même temps, un grave sous-financement a créé des lacunes dans l’assistance et la fourniture de services, accroissant encore les risques d’exploitation sexuelle et de recours par les femmes à des mécanismes d’adaptation préjudiciables pour survivre.</p>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <figure class="figure my-4">
+            <img src="RF1317057_021123_AK409144.jpg" class="figure-img img-fluid" alt="A woman carries firewood in Khor Ajwal camp for internally displaced people in Sudan’s White Nile State.">
+            <figcaption class="figure-caption">Une femme transporte du bois de chauffage dans le camp de Khor Ajwal pour les déplacés internes, dans l’État soudanais du Nil Blanc.<br>©HCR/Ala Kheir</figcaption>
+          </figure>
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          
+          <p>Avec ses partenaires, le HCR coordonne la réponse à la violence basée sur le genre dans les zones qui accueillent des réfugiés. Cela comprend des services médicaux, un soutien psychosocial, une assistance matérielle et une orientation vers les services appropriés.</p>
+          <h4 class="text-primary mt-5">Éducation perturbée</h4>
+          <p>Au Soudan, le système éducatif est confronté à une crise. Le gouvernement n’est plus en mesure d’assurer le paiement régulier et ponctuel du salaire des enseignants, même dans les États qui ne sont pas touchés par le conflit. De nombreux enseignants ont eux aussi été déracinés. En outre, des écoles ont été détruites ou sont utilisées pour abriter des personnes déplacées à l’intérieur du pays. <strong>Plus de 19 millions d’enfants ne sont pas scolarisés actuellement et beaucoup d’entre eux ont manqué une année scolaire complète.</strong></p>
+          <p>Les pays d’accueil avaient déjà du mal à assurer l’éducation des élèves nationaux avant la crise et ont peu d’espace ou de capacités pour scolariser les enfants réfugiés soudanais, qui ont déjà perdu des mois d’école. Jusqu’à présent, la réponse éducative dans les pays d’accueil a été limitée et entravée par un manque de financement. Autres problèmes, les élèves réfugiés ont souvent besoin de cours de langue et d’un soutien supplémentaire pour passer à un programme et à un système scolaire différents. Ils peuvent aussi avoir besoin d’un soutien psychosocial pour reprendre les cours. En 2024, plus d’un million d’enfants réfugiés soudanais auront besoin de suivre un enseignement. Si les niveaux de financement ne s’améliorent pas, 80&nbsp;% de ces enfants risquent de ne pas pouvoir aller à l’école.</p>
+          <figure class="figure my-4">
+            <img src="RF1338688_20240131-20240131_093334.jpg" class="figure-img img-fluid" alt="A displaced teacher gives an English class to children in a shelter for displaced families in Wadi Halfa, near Sudan’s border with Egypt.">
+            <figcaption class="figure-caption">Une enseignante déplacée donne un cours d’anglais à des enfants dans un centre d’accueil pour familles déplacées à Wadi Halfa, au Soudan, près de la frontière avec l’Égypte.<br>©HCR/Mohamed Rached Cherif</figcaption>
+          </figure>
+          <h4 class="text-primary mt-5">La faim s’aggrave</h4>
+          <p>Les Soudanais ont perdu leur emploi à cause de la guerre, ils ne peuvent ouvrir leurs commerces et ils ne peuvent cultiver leurs terres en toute sécurité. En l’absence de revenu ou de récolte et l’acheminement de l’aide étant perturbée, la sécurité alimentaire s’est considérablement détériorée, si bien que l’on entend s’élever des avertissements annonçant une aggravation de la faim dans certaines régions. Pour les réfugiés vivant au Soudan, la situation a été aggravée par l’introduction d’une réduction de 50&nbsp;% des rations alimentaires depuis janvier 2024 en raison d’un manque de financement.</p>
+          <p>Avec des niveaux alarmants de malnutrition aiguë à l’intérieur du Soudan, il est de plus en plus probable que les réfugiés comme les rapatriés arriveront dans les pays d’accueil dans un mauvais état nutritionnel. Près de 50&nbsp;000 enfants souffrant de malnutrition ont été recensés au Tchad. En l’absence d’un renforcement considérable de la réponse à la crise de la sécurité alimentaire au Soudan, ils seront encore beaucoup plus nombreux à l’avenir.</p>
+          <div class="my-5">
+            <h5>Soudan&nbsp;: Insécurité alimentaire aiguë – oct. 2023 – fév. 2024</h5>
+            <div style="min-height:623px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/tdR0N/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/tdR0N/full.png" alt="" /></noscript></div>
+          </div>
+          
+          <h3 class="mt-5">Que font le HCR et ses partenaires humanitaires&nbsp;?</h3>
+          <p>À l’intérieur du Soudan, les affrontements en cours dans les régions de Khartoum, du Kordofan et du Darfour ont entravé la capacité du HCR et d’autres organisations à fournir l’aide dont la population a tant besoin, bien que certains articles de secours aient pu être distribués grâce à la présence du personnel et des partenaires locaux. Dans les zones où les conditions de sécurité le permettent, comme les États de Gedaref, Kassala, du Nil blanc et du Nil bleu, le HCR a renforcé ses opérations pour continuer à apporter une protection et une assistance aux réfugiés, et pour répondre aux nouveaux schémas de déplacement. En outre, le HCR a ouvert de nouveaux bureaux à Port-Soudan, Wad Madani et Wadi Halfa, où nos équipes et nos partenaires viennent en aide aux réfugiés, aux déplacés internes et à d’autres Soudanais touchés par les conséquences des affrontements. Nous fournissons des articles de secours, des abris d’urgence, une assistance en espèces et des services essentiels, notamment des programmes d’éducation, une aide juridique pour les personnes dépourvues de documents d’état civil et un soutien psychosocial.</p>
+          
+          <div class="key-highlights mt-5 mb-3">
+            <h5>Faits saillants et réalisations dans les pays qui accueillent des réfugiés</h5>
+            <p class="small text-secondary">Données au 29 février 2024.</p>
+            <div class="row mt-4">
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="protection.svg" class="my-2" alt="...">
+              </div>
+                <h2 id="key-figure-1" class="text-primary mb-0"></h2>
+                <p class="text-secondary">personnes ont reçu des services de protection</p>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="food-security.svg" class="my-2" alt="...">
+              </div>
+                <h2 id="key-figure-2" class="text-primary mb-0"></h2>
+                <p class="text-secondary">de personnes ont reçu une assistance alimentaire</p>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="shelter.svg" class="my-2" alt="...">
+              </div>
+                <h2 id="key-figure-3" class="text-primary mb-0"></h2>
+                <p class="text-secondary">personnes ont reçu une aide pour un abri ou un logement</p>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="cash.svg" class="my-2" alt="...">
+              </div>
+                <h2 id="key-figure-4" class="text-primary mb-0"></h2>
+                <p class="text-secondary">personnes ont été relocalisées ou ont reçu une aide au transport en espèces<br><span class="small text-secondary">à la fin décembre 2023</span></p>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="nfi.svg" class="my-2" alt="...">
+                </div>
+                <h2 id="key-figure-5" class="text-primary mb-0"></h2>
+                <p class="text-secondary">personnes ont reçu des articles non alimentaires</p>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4 mb-4 pe-3">
+                <div class="img-container" style="height: 55px; display: flex; align-items: flex-end;">
+                <img src="health.svg" class="my-2" alt="...">
+                </div>
+                <h2 id="key-figure-6" class="text-primary mb-0"></h2>
+                <p class="text-secondary">personnes ont bénéficié de consultations pour des soins de santé primaires</p>
+              </div>
+            </div>
+            
+          </div>
+  
+          <p>Dans les pays voisins, le HCR coordonne la réponse à l’afflux de réfugiés et de rapatriés en collaboration avec les gouvernements, d’autres organismes des Nations Unies et des partenaires. Nos équipes travaillent 24 heures sur 24 pour soutenir les nouveaux arrivants, mettre en place des centres de transit où les personnes peuvent se reposer et recevoir des services de protection essentiels et une aide d’urgence, établir et agrandir des camps et des zones d’installation où elles peuvent avoir accès à un soutien à plus long terme, et faciliter les transferts loin des zones frontalières surpeuplées. Nous avons mis en place un total de 10 nouvelles zones d’installation de réfugiés en Éthiopie, en République centrafricaine, au Soudan du Sud et au Tchad.</p>
+          <h4 class="text-primary mt-5">Que pouvez-vous faire pour aider&nbsp;?</h4>
+          <p>Des millions de personnes ont un besoin urgent d’aide, mais le désintérêt progressif de la communauté internationale et le manque chronique de financement limitent la capacité du HCR et d’autres organisations à sauver des vies.</p>
+          <p>Le <a href="https://data.unhcr.org/en/documents/details/106482" target="_blank">Plan de réponse régional pour les réfugiés</a>, qui prévoit 1,4 milliard de dollars pour 82 partenaires afin d’aider 2,7 millions de personnes dans cinq pays voisins, n’est financé qu’à hauteur de 7&nbsp;%.</p>
+          <p>Au Soudan, le <a href="https://fts.unocha.org/plans/1188/summary" target="_blank">Plan de réponse humanitaire 2024</a> a besoin de 2,7 milliards de dollars pour accélérer l’intensification de l’aide vitale et de la protection et éviter une nouvelle détérioration de la situation humanitaire pour 14,7 millions de personnes – il n’est actuellement financé qu’à hauteur de 6 %.</p>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <div class="my-5">
+            <h5>État du financement du Plan de réponse régional pour les réfugiés (RPP) pour le Soudan</h5>
+            <div style="min-height:466px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Vh1pN/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/Vh1pN/full.png" alt="" /></noscript></div>
+          </div>
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>Nous ne pouvons pas laisser cette situation devenir une autre situation d’urgence oubliée. Pour soutenir les personnes contraintes de fuir le Soudan, cliquez ci-dessous.</p>
+          <a class="btn btn-primary" href="https://donate.unhcr.org/int/en/sudan-emergency">Donner</a>
+        </div>
+      </div>
+
+      
+    </div>
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrfilter.js"></script>
+  <!-- isotope JS file -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- ai2html resizer JS file-->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/ai2html-resizer.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script type="module" src="d3-custom.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/unhcr/clv56l3sa004301o01j4h2l0a',
+        center: [30, 19],
+        zoom: 3.1
+    });
+
+    map.on('load', () => {
+        const layers = map.getStyle().layers;
+        let firstSymbolId;
+        for (const layer of layers) {
+            if (layer.type === 'symbol') {
+                firstSymbolId = layer.id;
+                break;
+            }
+        }
+
+        // Define colors for each route
+        const colors = ['#EF4A60', '#00B398', '#18375F'];
+
+        // Add source and layers for each JSON file
+        const jsonFiles = ['route-air.json', 'route-sea.json', 'route-land.json'];
+        jsonFiles.forEach((file, index) => {
+            const color = colors[index];
+
+            map.addSource(`line-${index}`, {
+                type: 'geojson',
+                data: file
+            });
+
+            map.addLayer({
+                type: 'line',
+                source: `line-${index}`,
+                id: `line-background-${index}`,
+                paint: {
+                    'line-color': color,
+                    'line-width': 3,
+                    'line-opacity': 0.3
+                }
+            },
+            firstSymbolId
+            );
+
+            map.addLayer({
+                type: 'line',
+                source: `line-${index}`,
+                id: `line-dashed-${index}`,
+                paint: {
+                    'line-color': color,
+                    'line-width': 3,
+                    'line-dasharray': [0, 4, 3]
+                }
+            },
+            firstSymbolId
+            );
+        });
+
+        const dashArraySequence = [
+            [0, 4, 3],
+            [0.5, 4, 2.5],
+            [1, 4, 2],
+            [1.5, 4, 1.5],
+            [2, 4, 1],
+            [2.5, 4, 0.5],
+            [3, 4, 0],
+            [0, 0.5, 3, 3.5],
+            [0, 1, 3, 3],
+            [0, 1.5, 3, 2.5],
+            [0, 2, 3, 2],
+            [0, 2.5, 3, 1.5],
+            [0, 3, 3, 1],
+            [0, 3.5, 3, 0.5]
+        ];
+
+        let step = 0;
+
+        function animateDashArray(timestamp) {
+            const newStep = parseInt(
+                (timestamp / 80) % dashArraySequence.length
+            );
+
+            if (newStep !== step) {
+                jsonFiles.forEach((file, index) => {
+                    map.setPaintProperty(
+                        `line-dashed-${index}`,
+                        'line-dasharray',
+                        dashArraySequence[step]
+                    );
+                });
+                step = newStep;
+            }
+
+            requestAnimationFrame(animateDashArray);
+        }
+
+        animateDashArray(0);
+    });
+  </script>
+  <!-- End scripts -->
+
+<span style="color:#0072bc; font-weight: bold"></span>
+</body>
+
+</html>
