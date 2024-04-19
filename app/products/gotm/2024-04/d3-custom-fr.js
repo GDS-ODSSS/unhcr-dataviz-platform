@@ -1,18 +1,15 @@
 function customFormat(value) {
- 
   const locale = d3.formatLocale({
-      decimal: ",",
-      thousands: "\u00a0",
-      grouping: [3],
-    })
-  const fformat = locale.format(",")
-      // Check if the value is within the range to be displayed as "k" or "m"
+    "decimal": ",",
+    "thousands": "\u00a0",
+    "grouping": [3],
+  });
+  const fformat = locale.format(",");
+ 
       if (value >= 1000 && value < 1000000) {
-          // Round the value and append "k" suffix
           return fformat(value);
       } else if (value >= 1000000) {
-          // Round the value and append "m" suffix
-          return (value / 1000000).toFixed(1) + " million";
+          return fformat(value / 1000000) + " million";
       }
 }
 
