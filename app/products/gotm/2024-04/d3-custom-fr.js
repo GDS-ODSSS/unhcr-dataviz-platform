@@ -1,17 +1,19 @@
 function customFormat(value) {
-    // Check if the value is within the range to be displayed as "k" or "m"
-    if (value >= 1000 && value < 1000000) {
-
-        return Intl.NumberFormat('fr-FR',).format(
-          value,
-        );
-    } else if (value >= 1000000) {
-        // Round the value and append "m" suffix
-        return (value / 1000000).toFixed(1) + " million";
-    } else {
-        // Use d3.format(".2s") for other values
-        return d3.format(".2s")(value).replace(/G/, "B").replace(/M/, "M");
-    }
+ 
+  const locale = d3.formatLocale({
+      decimal: ",",
+      thousands: "\u00a0",
+      grouping: [3],
+    })
+  const fformat = locale.format(",")
+      // Check if the value is within the range to be displayed as "k" or "m"
+      if (value >= 1000 && value < 1000000) {
+          // Round the value and append "k" suffix
+          return fformat(value);
+      } else if (value >= 1000000) {
+          // Round the value and append "m" suffix
+          return (value / 1000000).toFixed(1) + " million";
+      }
 }
 
 function startCountingAnimation(elementId, endValue) {
