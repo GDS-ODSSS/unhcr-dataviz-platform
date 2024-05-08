@@ -8,8 +8,10 @@
   <meta name="author" content="IPDA/GDS">
   <title>UNHCR Dataviz - Forced returns to Afghanistan</title>
   <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
-  <!-- jquery JS file -->
+  <link rel="stylesheet" href="style.css">
+  <!-- JS file -->
   <script src="https://dataviz.unhcr.org/assets/js/vendor/jquery.min.js"></script>
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
   <!-- Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
   <script>
@@ -140,15 +142,37 @@
           <p>While the idea that anti-Afghan sentiment contributes to discrimination against Afghans living abroad and that such rhetoric may lead to the decision of families to return prematurely is intuitive, it is difficult to prove. In an effort to examine ways to measure the impact of words, UNHCR has monitored social media to track rates of hateful discourse, the prominence of such statements, and compared it with timelines of deportations. Comparing the timelines of spikes in hateful discourse and deportation allows us to explore potential links between the two.</p>
           <p class="text-danger">Figure n12 - Explore alternatives</p>
           <p>Technology advances has also allowed UNHCR to monitor coverage of Afghanistan in traditional media. The graph below shows articles published in English speaking media relating to Afghan Returns from the announcement of and during the first phase of Pakistan’s Illegal Foreigners Repatriation Plan.</p>
-          <p class="text-danger">Scrolling section using figure n13 and highlighting lines following below bullets</p>
-          <ul>
-            <li>Using language models, the content of articles are classified into eight main categories, and counted over time.</li>
-            <li>In the initial days after the launch of the plan we see many articles categorising Afghans as illegal despite their many years of tolerated stay in the country, as well as attempts to link refugees to terrorist groups in Pakistan. This was the narrative employed by the Pakistani government launching the plan and subsequently seen in the media coverage.</li>
-            <li>Towards the end of October we see two smaller spikes one in awareness raising, caused by an Afghan cricketer speaking out against the deportations, and one related to the Taliban, when the de facto authorities officially plea for host countries not to deport Afghans.</li>
-            <li>With the official start of deportations, the story is mostly covered as a humanitarian catastrophe unfolding. A number of NGOs make statements contributing to this narrative.</li>
-            <li>There is another spike toward the enter of the year in coverage on Afghans in Iran as Iran bans Afghan merchants from operating in bazaars sparking fear of similar sentiment in Iran.</li>
-          </ul>
-
+        </div>
+      </div>  
+      <div class="row justify-content-md-center">
+        <div class="col">
+          <section id="scrolly">
+            <figure id="media-coverage-line">
+            </figure>
+            <article>
+              <div class="step" data-step="1">
+                <p>Using language models, the content of articles are classified into eight main categories, and counted over time. </p>
+              </div>
+              <div class="step" data-step="2">
+                <p>In the initial days after the launch of the plan we see many articles categorising Afghans as illegal despite their many years of tolerated stay in the country, as well as attempts to link refugees to terrorist groups in Pakistan. This was the narrative employed by the Pakistani government launching the plan and subsequently seen in the media coverage.</p>
+              </div>
+              <div class="step" data-step="3">
+                <p>Towards the end of October we see two smaller spikes one in awareness raising, caused by an Afghan cricketer speaking out against the deportations, and one related to the Taliban, when the de facto authorities officially plea for host countries not to deport Afghans.</p>
+              </div>
+              <div class="step" data-step="4">
+                <p>With the official start of deportations, the story is mostly covered as a humanitarian catastrophe unfolding. A number of NGOs make statements contributing to this narrative.</p>
+              </div>
+              <div class="step" data-step="5">
+                <p>There is another spike toward the enter of the year in coverage on Afghans in Iran as Iran bans Afghan merchants from operating in bazaars sparking fear of similar sentiment in Iran.</p>
+              </div>
+            </article>
+          </section>
+          <section id="outro">
+          </section>
+        </div>  
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
           <h4>How AI plays a role in better understanding the needs of returning Afghans</h4>
           <p>During the most recent returns from Pakistan, UNHCR piloted a tool that captured needs and characteristics of households from structured conversations with returnee families. Survey outputs include descriptive and thematic analyses of the conversations, allowing UNHCR to better understand the experience of those returning and how to best help. This analysis is automatic, allowing UNHCR to keep an eye on how the perceptions of the returnees change over time.</p>
           <p class="text-danger">Figure n14 - To be decided what to use</p>
@@ -180,8 +204,13 @@
   <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrmain.js"></script>
   <!-- UNHCR filter JS file -->
   <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrfilter.js"></script>
-  <!-- isotope JS file -->
-  <script src="https://dataviz.unhcr.org/assets/js/vendor/isotope.pkgd.min.js"></script>
+  <!-- other JS files -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/scrollama.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3-annotation.min.js"></script>
+  <script src="d3-scrolly.js"></script>
+  <script src="scrollama-custom.js"></script>
 
  
 </body>

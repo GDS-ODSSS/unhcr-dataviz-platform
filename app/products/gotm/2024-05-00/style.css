@@ -1,0 +1,122 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+
+
+
+.grid path {
+	stroke-width: 0;
+	stroke: #333333;
+  }
+  .grid .tick line {
+	stroke: #333333;
+	stroke-width: 0.5px;
+	stroke-opacity: 0.5;
+  }
+
+
+
+#scrolly {
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+#scrolly>* {
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+article {
+	position: relative;
+	padding: 10rem 1rem;
+	max-width: 20rem;
+}
+figure {
+	position: -webkit-sticky;
+	position: sticky;
+	width: 100%;
+	margin: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	z-index: 0;
+}
+
+text.chart-title {
+	font-size: 23px;
+	font-weight: 700;
+}
+
+text.label {
+	font-family: lato;
+	font-size: 9px;
+	fill: #666666;
+}
+text.chart-label {
+	font-family: lato;
+	fill: #666666;
+}
+.tick text {
+	font-family: lato;
+	fill: #666666;
+}
+.step {
+	opacity: .8;
+	width: 300px;
+    height: 950px;
+    margin-bottom: 150;
+	margin-top: 400px;
+}
+
+.step:last-child {
+	margin-bottom: 0;
+}
+
+.step h2{
+    font-size: 2em;
+	margin-bottom: 0;
+    padding-bottom: 25px;
+    line-height: .9em;
+}
+
+.step h2, .step p{
+	background-color: #ffffff;
+    padding: 15px;
+    color: #CCCCCC;
+}
+
+.step.is-active h2, .step.is-active p{
+    color: #01080D;
+}
+
+#intro {
+    max-width: 60rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+  
+#outro {
+  height: 0em;
+}
+
+/* Styles for the overlay layout (initially hidden) */
+@media (max-width: 992px) {
+	#scrolly.overlay {
+	  position: relative;
+	  display: block;
+	}
+	article{
+		margin: 0 auto;
+	}
+  }
+
+ svg .annotation.callout.rect path.subject {
+   fill: var(--annotation-context-color);
+   stroke: none;
+   stroke-dasharray: 2, 8;
+ }
+
