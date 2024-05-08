@@ -121,7 +121,7 @@ svg.selectAll("line-labels")
     .attr("y", -(margin.top)/1.7)
     .attr("text-anchor", "start")
     .style("opacity", 0)
-  .text("Analysis of media coverage | Jan 2023 - Dec 2023")
+  .text("Analysis of media coverage | Oct 2023 - Dec 2023")
 
   svg
   .append("text")
