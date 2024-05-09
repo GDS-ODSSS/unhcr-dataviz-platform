@@ -177,7 +177,7 @@ grandparent.append("text")
     function name(d) {
       return breadcrumbs(d) +
         (d.parent
-          ? " -  Click here zoom out"
+          ? " -  Click here to zoom out"
           : " - Click inside square to zoom in");
     }
   
