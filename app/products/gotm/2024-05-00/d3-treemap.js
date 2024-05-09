@@ -1,11 +1,12 @@
 // Set the dimensions and margins of the graph
-const tree_margin = { top: 30, right: 10, bottom: 0, left: 0 };
+const tree_margin = { top: 30, right: 10, bottom: 20, left: 0 };
 const tree_width = 480 - tree_margin.left - tree_margin.right;
 const tree_height = 350 - tree_margin.top - tree_margin.bottom;
 
 // Append the SVG object to the container
 const tree_svg = d3.select("#treemap-container")
   .append("svg")
+  .attr("id","treemap-svg")
   .attr("width", "100%")
   .attr("height", "100%")
   .attr("viewBox", `0 0 ${tree_width + tree_margin.left + tree_margin.right} ${tree_height + tree_margin.top + tree_margin.bottom}`)
@@ -186,6 +187,18 @@ grandparent.append("text")
       const res = ancestors.map(i => i.data.name).join(" > ");
       return res;
     }
+    
   });
+  tree_svg
+  .append('text')
+      .attr('class', 'chart-source')
+      .attr('x', 0)
+      .attr('y', tree_height*1.04)
+      .attr('text-anchor', 'start')
+      .style('font-size', 8)
+      .style('color', '#cccccc')
+  .text('Source: UNHCR FARE');
+
+  
   
   

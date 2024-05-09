@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-const margin = {top: 100, right: 20, bottom: 40, left: 40};
+const margin = {top: 100, right: 20, bottom: 50, left: 40};
 const width = 800 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
@@ -132,6 +132,15 @@ svg.selectAll("line-labels")
     .style("opacity", 0)
   .text("Count of occurencies");
 
+  svg
+  .append('text')
+      .attr('class', 'chart-source')
+      .attr('x', -(margin.left)*0.6)
+      .attr('y', height*1.13)
+      .attr('text-anchor', 'start')
+      .style("opacity", 0)
+  .text('Source: Quid Discover Media ');
+
 
   // Define all annotations
 allAnnotations = [
@@ -195,7 +204,7 @@ allAnnotations = [
     },
     disable: ["connector"],
     x: 120,
-    y: 455,
+    y: 448,
     dy: -60,
     dx: 0,
     color: "#0072BC"
@@ -227,7 +236,7 @@ allAnnotations = [
     },
     disable: ["connector"],
     x: 370,
-    y: 480,
+    y: 456,
     dy: -40,
     dx: 0,
     color: "#EF4A60"
@@ -243,7 +252,7 @@ allAnnotations = [
     },
     disable: ["connector"],
     x: 230,
-    y: 460,
+    y: 447,
     dy: -60,
     dx: 0,
     color: "#8395B9"
@@ -259,7 +268,7 @@ allAnnotations = [
     },
     disable: ["connector"],
     x: 369,
-    y: 490,
+    y: 484,
     dy: -60,
     dx: 0,
     color: "#00B398"
@@ -382,6 +391,11 @@ svg.selectAll(".line-label")
     .duration(1000)
     .style("opacity", 0);
 
+    svg.selectAll(".chart-source")
+    .transition()
+    .duration(1000)
+    .style("opacity", 0);
+  
 }
 
 function stepTwo() {
@@ -442,7 +456,14 @@ function stepTwo() {
   .transition()
   .duration(1000)
   .style("opacity", 1);
+
+  svg.selectAll(".chart-source")
+  .transition()
+  .duration(1000)
+  .style("opacity", 1);
+
   };
+  
 
 
 function stepThree() {
