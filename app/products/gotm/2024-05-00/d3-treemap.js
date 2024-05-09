@@ -42,7 +42,7 @@ grandparent.append("rect")
 
 grandparent.append("text")
   .attr("x", 6)
-  .attr("y", 6 - tree_margin.top)
+  .attr("y", 10- tree_margin.top)
   .attr("dy", ".75em");
 
   d3.json("data.json").then(data => {
