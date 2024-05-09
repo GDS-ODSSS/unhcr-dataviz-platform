@@ -1,0 +1,38 @@
+{
+    "name": "Root",
+    "children": [
+      {
+        "name": "Experience leaving Pakistan",
+        "color": "#18375F",
+        "children": [
+          {"name": "Arrested", "value": 215, "color": "#18375F"},
+          {"name": "Documentation issues", "value": 10, "color": "#18375F"},
+          {"name": "Harassed/threatened by authorities", "value": 156, "color": "#18375F"},
+          {"name": "Paid bribes", "value": 82, "color": "#18375F"}
+        ]
+      },
+      {
+        "name": "Household Vulnerability",
+        "color": "#00B398",
+        "children": [
+          {"name": "Debt", "value": 9, "color": "#00B398"},
+          {"name": "Health Issues & Disabilities", "value": 130, "color": "#00B398"},
+          {"name": "Minor or older person at risk", "value": 34, "color": "#00B398"},
+          {"name": "Political protection risk", "value": 70, "color": "#00B398"},
+          {"name": "Separated family", "value": 18, "color": "#00B398"},
+          {"name": "Woman at risk", "vlaue": 108, "color": "#00B398"}
+        ]
+      },
+      {
+        "name": "Support Needs",
+        "color": "#0072BC",
+        "children": [
+          {"name": "Financial Assistance Request", "value": 112, "color": "#0072BC"},
+          {"name": "In need of support other than Protection services", "value": 156, "color": "#0072BC"},
+          {"name": "Shelter and Food Needs", "value": 319, "color": "#0072BC"},
+          {"name": "Support for livelihoods or finding a job", "value": 67, "color": "#0072BC"}
+        ]
+      }
+    ]
+  }
+  
