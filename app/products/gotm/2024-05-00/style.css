@@ -120,3 +120,63 @@ text.chart-label {
    stroke-dasharray: 2, 8;
  }
 
+ /* treemap style */
+ .grandparent text {
+	font-weight: bold;
+  }
+
+  rect.parent,
+  .grandparent rect {
+	stroke-width: 1px;
+	stroke: #fff;
+  }
+
+  .grandparent:hover rect {
+	fill: grey;
+  }
+  .grandparent:hover text {
+	fill: #fff;
+  }
+
+  .grandparent text {
+	font-size: 12px;
+  }
+
+  .children rect.parent,
+  .grandparent rect {
+	cursor: pointer;
+	stroke: #fff;
+  }
+
+  .children rect.child {
+	opacity: 0;
+	stroke: #fff;
+  }
+  .children:hover rect.child {
+	opacity: 1;
+	stroke-width: 0.5px;
+  }
+  .children:hover rect.parent {
+	opacity: 0;
+  }
+
+  .textdiv {
+	  font-size: 10px;
+	  padding: 4px;
+	  cursor: pointer;
+	  overflow:none;
+  }
+  .textdiv .title {
+	  font-weight: bold;
+	  color: #ffffff;
+	  margin-top: 8px;
+	  font-size:9px !important;
+  }
+  .textdiv p{
+	  line-height: 9px;
+	  color: #ffffff;
+	  margin:0 0 1px !important;
+	  padding:0px;
+	  font-size:8px !important;
+  }
+
