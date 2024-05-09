@@ -74,7 +74,7 @@ grandparent.append("text")
       grandparent
         .datum(d.parent)
         .select("rect")
-        .attr("fill", '#bbbbbb');
+        .attr("fill", '#E6E6E6');
   
       const g1 = tree_svg.insert("g", ".grandparent")
         .datum(d)

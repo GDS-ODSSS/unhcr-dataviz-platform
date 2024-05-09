@@ -121,10 +121,6 @@ text.chart-label {
  }
 
  /* treemap style */
- .grandparent text {
-	font-weight: bold;
-  }
-
   rect.parent,
   .grandparent rect {
 	stroke-width: 1px;
