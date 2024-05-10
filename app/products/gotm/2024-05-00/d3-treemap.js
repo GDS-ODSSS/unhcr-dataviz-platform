@@ -178,13 +178,16 @@ grandparent.append("text")
     function name(d) {
       return breadcrumbs(d) +
         (d.parent
-          ? " -  Click here to zoom out"
-          : " - Click inside square to zoom in");
+          ? " - Click here to zoom out"
+          : " Click inside square to zoom in");
     }
-  
+    
     function breadcrumbs(d) {
       const ancestors = d.ancestors().reverse();
-      const res = ancestors.map(i => i.data.name).join(" > ");
+      const res = ancestors
+        .slice(1) // Exclude the root node (first element)
+        .map(i => i.data.name)
+        .join(" > ");
       return res;
     }
     
