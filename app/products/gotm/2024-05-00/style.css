@@ -163,5 +163,12 @@ text.chart-source {
 	  font-size:8px !important;
   }
 
+  .legendTitle{
+	font-size: 10px;
+  }
+  .map-source{
+	color: #cccccc !important;
+  }
+
   
 
