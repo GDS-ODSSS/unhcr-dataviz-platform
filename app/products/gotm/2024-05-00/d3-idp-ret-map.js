@@ -198,7 +198,7 @@ map_svg
       .attr('y', map_height*0.90)
       .attr('text-anchor', 'start')
       .style('font-size', 10)
-  .text('Source: UNHCR');
+  .text('Source: UNHCR, IOM');
 
 
 
