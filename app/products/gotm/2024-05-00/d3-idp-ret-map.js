@@ -1,6 +1,6 @@
 //set svg parameters
 const map_width = 700,
-      map_height = 500;
+      map_height = 480;
 const map_svg = d3.select("#idp-ret-map")
    .append("svg")
      .attr("width", "100%")
@@ -11,7 +11,7 @@ const map_svg = d3.select("#idp-ret-map")
 // set map scale, location on screen and its projection
 const projection = d3.geoMercator()
     .scale(2000)
-    .center([67, 34])
+    .center([67, 35])
     .translate([width/2, height/2])
 
 // path generator
@@ -21,8 +21,7 @@ const path = d3.geoPath()
 // set color scale
 const map_color = d3.scaleThreshold()
         .domain([1000,10000,100000,1000000])
-        .range(["#DCE9FF", "#8EBEFF", "#589BE5", "#0072BC"])
-        .unknown("#E6E6E6");
+        .range(["#B8C9EE", "#8395B9", "#506489", "#18375F"]);
 
 
 
@@ -99,8 +98,8 @@ const size = d3.scaleSqrt()
   .attr("cx", d => projection([d.lon, d.lat])[0])
   .attr("cy", d => projection([d.lon, d.lat])[1])
   .attr("r", d => size(d.idp_tot)) // Ensure `size` scale is defined
-  .attr("fill", "rgba(255, 0, 0, 0.5)")
-  .attr("stroke", "red")
+  .attr("fill", "rgba(239, 74, 96, 0.6)")
+  .attr("stroke", "#EF4A60")
   .attr("stroke-width", 1)
   .attr("opacity", 0.7)
   .append("title")
@@ -196,7 +195,7 @@ map_svg
   .append('text')
       .attr('class', 'map-source')
       .attr('x', map_width*0.01)
-      .attr('y', map_height*0.80)
+      .attr('y', map_height*0.90)
       .attr('text-anchor', 'start')
       .style('font-size', 10)
   .text('Source: UNHCR');
