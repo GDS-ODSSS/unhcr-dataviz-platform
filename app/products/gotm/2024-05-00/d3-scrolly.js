@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-const margin = {top: 100, right: 20, bottom: 50, left: 40};
+const margin = {top: 100, right: 25, bottom: 50, left: 40};
 const width = 800 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
@@ -39,7 +39,7 @@ d3.csv("media_coverage_long.csv", function(d){
 
   // X scale and Axis
   xScale = d3.scaleTime()
-  .domain(d3.extent(lineData, d => d.date))
+  .domain([parseTime("01/10/2023"), parseTime("01/01/2024")])
   .range([0, width]); 
   xAxis = svg
   .append('g')
@@ -219,7 +219,7 @@ allAnnotations = [
       end: "dot",
     },
     disable: ["connector"],
-    x: 150,
+    x: 145,
     y: 500,
     dy: -60,
     dx: 0,
@@ -235,8 +235,8 @@ allAnnotations = [
       end: "dot",
     },
     disable: ["connector"],
-    x: 370,
-    y: 456,
+    x: 360,
+    y: 460,
     dy: -40,
     dx: 0,
     color: "#EF4A60"
@@ -251,7 +251,7 @@ allAnnotations = [
       end: "dot",
     },
     disable: ["connector"],
-    x: 230,
+    x: 225,
     y: 447,
     dy: -60,
     dx: 0,
@@ -267,7 +267,7 @@ allAnnotations = [
       end: "dot",
     },
     disable: ["connector"],
-    x: 369,
+    x: 354,
     y: 484,
     dy: -60,
     dx: 0,
@@ -283,7 +283,7 @@ allAnnotations = [
       end: "dot",
     },
     disable: ["connector"],
-    x: 677,
+    x: 640,
     y: 475,
     dy: -60,
     dx: 0,
@@ -402,7 +402,7 @@ function stepTwo() {
   updateAnnotations(2);
 
   // Update scales based on new data or conditions
-  xScale.domain(d3.extent(lineData, d => d.date));
+  xScale.domain([parseTime("01/10/2023"), parseTime("01/01/2024")]);
   xAxis.call(d3.axisBottom(xScale).ticks(2).tickSize(0).tickPadding(8).tickFormat(d3.timeFormat("%b %d"))).transition().duration(1000);
   yScale.domain([0, 100]);
   yAxis.call(d3.axisLeft(yScale).ticks(6).tickSize(0).tickPadding(4))
