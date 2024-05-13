@@ -24,8 +24,6 @@ const map_color = d3.scaleThreshold()
         .domain([1000,10000,100000,1000000])
         .range(["#B8C9EE", "#8395B9", "#506489", "#18375F"]);
 
-
-
 //declare polygon and polyline
 const poly = map_svg.append("g");
 const bubble = map_svg.append("g");
@@ -91,7 +89,7 @@ const size = d3.scaleSqrt()
       .style("opacity", 1)
   };
 
-  bubble
+bubble
  .selectAll("circle")
   .data(population)
   .join("circle")
@@ -107,18 +105,18 @@ const size = d3.scaleSqrt()
   
 
   // load and draw polygons
-  poly
-    .selectAll("path")
-    .data(topojson.feature(topology, topology.objects.afg_poly_simplied).features)
-    .join("path")
-      .attr("fill", function(d) { return map_color(d.ret = data[d.properties.ADM1_PCODE].ret)})
-      .attr("d", path)
-      .attr("class", "admin")
-      .attr("stroke","#ffffff")
-    .on("mouseover", mouseover)
-    .on("mouseleave", mouseleave)
-    .append("title")
-      .text(d => `${d.properties.ADM1_EN} \nNumber of returnees: ${d3.format(",")(d.ret)}`);
+poly
+  .selectAll("path")
+  .data(topojson.feature(topology, topology.objects.afg_poly_simplied).features)
+  .join("path")
+    .attr("fill", function(d) { return map_color(d.ret = data[d.properties.ADM1_PCODE].ret)})
+    .attr("d", path)
+    .attr("class", "admin")
+    .attr("stroke","#ffffff")
+  .on("mouseover", mouseover)
+  .on("mouseleave", mouseleave)
+  .append("title")
+    .text(d => `${d.properties.ADM1_EN} \nNumber of returnees: ${d3.format(",")(d.ret)}`);
 
  
 
@@ -167,11 +165,6 @@ map_svg
       .style('font-size', 13)
   .text('Number of IDPs');
 
-
-
-
-
-
 // // set legend
 map_svg.append("g")
   .attr("class", "legendThreshold")
@@ -199,7 +192,6 @@ map_svg
       .attr('text-anchor', 'start')
       .style('font-size', 12)
   .text('Source: UNHCR, IOM');
-
 
 
 };
