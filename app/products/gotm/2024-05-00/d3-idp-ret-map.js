@@ -1,8 +1,9 @@
 //set svg parameters
 const map_width = 700,
-      map_height = 480;
+      map_height = 500;
 const map_svg = d3.select("#idp-ret-map")
    .append("svg")
+   .attr("class", "idp-ret-map")
      .attr("width", "100%")
      .attr("height", "100%")
      .attr("viewBox","0 0  700 500")
@@ -10,8 +11,8 @@ const map_svg = d3.select("#idp-ret-map")
 
 // set map scale, location on screen and its projection
 const projection = d3.geoMercator()
-    .scale(2000)
-    .center([67, 35])
+    .scale(2200)
+    .center([69, 35])
     .translate([width/2, height/2])
 
 // path generator
@@ -70,7 +71,7 @@ const size = d3.scaleSqrt()
 
   // set mouse events
   const mouseover = function(d) {
-    d3.selectAll(".countries")
+    d3.selectAll(".admin")
       .transition()
       .duration(100)
       .style("opacity", .3)
@@ -80,7 +81,7 @@ const size = d3.scaleSqrt()
       .style("opacity", 1)
   };
   const mouseleave = function(d) {
-    d3.selectAll(".countries")
+    d3.selectAll(".admin")
       .transition()
       .duration(100)
       .style("opacity", 1)
@@ -93,8 +94,7 @@ const size = d3.scaleSqrt()
   bubble
  .selectAll("circle")
   .data(population)
-  .enter()
-  .append("circle")
+  .join("circle")
   .attr("cx", d => projection([d.lon, d.lat])[0])
   .attr("cy", d => projection([d.lon, d.lat])[1])
   .attr("r", d => size(d.idp_tot)) // Ensure `size` scale is defined
@@ -103,7 +103,7 @@ const size = d3.scaleSqrt()
   .attr("stroke-width", 1)
   .attr("opacity", 0.7)
   .append("title")
-  .text(d => `${d.adm1_en} \nNumber of IDPs: ${d.idp_tot}`);
+  .text(d => `${d.adm1_en} \nNumber of IDPs: ${d3.format(",")(d.idp_tot)}`);
   
 
   // load and draw polygons
@@ -126,14 +126,14 @@ const size = d3.scaleSqrt()
 
 // set bubble legend
 const legendLabel = [10000,100000,400000];
-const xCircle = 25;
-const xLabel = 55;
+const xCircle = 550;
+const xLabel = 580;
 map_svg
   .selectAll("bubblelegend")
   .data(legendLabel)
   .join("circle")
     .attr("cx", xCircle)
-    .attr("cy", d => map_height*0.50 - size(d))
+    .attr("cy", d => map_height*0.80 - size(d))
     .attr("r", d => size(d))
     .style("fill", "none")
     .attr("stroke", "#666666")
@@ -144,28 +144,27 @@ map_svg
   .join("line")
     .attr('x1', xCircle)
     .attr('x2', xLabel)
-    .attr('y1', d => map_height*0.5 - size(d)*2)
-    .attr('y2', d => map_height*0.5 - size(d)*2)
+    .attr('y1', d => map_height*0.8 - size(d)*2)
+    .attr('y2', d => map_height*0.8 - size(d)*2)
     .attr('stroke', '#666666')
     .attr("stroke-width", 0.75);
 map_svg
   .selectAll("bubblelegend")
   .data(legendLabel)
   .join("text")
+    .attr("class", "bubble-legend-text")
     .attr('x', xLabel)
-    .attr('y', d => map_height*0.5 - size(d)*2)
+    .attr('y', d => map_height*0.8 - size(d)*2)
     .text(d => d3.format(",")(d))
-    .style("font-size", 9)
-    .style("fill", "#666666")
     .attr('alignment-baseline', 'middle');
 // set note
 map_svg
   .append('text')
       .attr('class', 'bubble-legend-title')
-      .attr('x', map_width*0.01)
-      .attr('y', map_height*0.38)
+      .attr('x', map_width*0.76)
+      .attr('y', map_height*0.67)
       .attr('text-anchor', 'start')
-      .style('font-size', 10)
+      .style('font-size', 13)
   .text('Number of IDPs');
 
 
@@ -176,12 +175,13 @@ map_svg
 // // set legend
 map_svg.append("g")
   .attr("class", "legendThreshold")
-  .attr("transform", "translate(5,60)");
+  .attr("transform", "translate(530,200)");
 
 const legend = d3.legendColor()
 .labelFormat(d3.format(",.0f"))
 .labels(d3.legendHelpers.thresholdLabels)
 .labelOffset(3)
+.shapeHeight(20)
 .title("Number of returnees")
   .titleWidth(200)
 .shapePadding(0)
@@ -195,9 +195,9 @@ map_svg
   .append('text')
       .attr('class', 'map-source')
       .attr('x', map_width*0.01)
-      .attr('y', map_height*0.90)
+      .attr('y', map_height*0.96)
       .attr('text-anchor', 'start')
-      .style('font-size', 10)
+      .style('font-size', 12)
   .text('Source: UNHCR, IOM');
 
 

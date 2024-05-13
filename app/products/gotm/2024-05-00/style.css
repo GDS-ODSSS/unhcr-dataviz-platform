@@ -40,7 +40,7 @@ text.chart-title {
 }
 text.label {
 	font-family: lato;
-	font-size: 9px;
+	font-size: 10px;
 	fill: #666666;
 }
 text.chart-label {
@@ -163,12 +163,24 @@ text.chart-source {
 	  font-size:8px !important;
   }
 
-  .legendTitle{
-	font-size: 10px;
+  .idp-ret-map .legendTitle{
+	font-size: 13px;
   }
-  .map-source{
+
+.idp-ret-map .map-source{
 	color: #cccccc !important;
   }
 
+  .idp-ret-map text.label {
+	font-family: lato;
+	font-size: 12px;
+	fill: #666666;
+}
+
+.idp-ret-map .bubble-legend-text{
+	font-family: lato;
+	font-size: 12px;
+	fill: #666666;
+}
   
 
