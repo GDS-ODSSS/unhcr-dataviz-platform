@@ -200,7 +200,7 @@ grandparent.append("text")
       .attr('text-anchor', 'start')
       .style('font-size', 8)
       .style('color', '#cccccc')
-  .text('Source: UNHCR FARE');
+  .text('Source: UNHCR Afghanistan');
 
   
   

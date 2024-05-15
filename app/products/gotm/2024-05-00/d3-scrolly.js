@@ -130,7 +130,7 @@ svg.selectAll("line-labels")
     .attr("y", -(margin.top)/4.5)
     .attr("text-anchor", "start")
     .style("opacity", 0)
-  .text("Count of occurencies");
+  .text("Count of occurrences");
 
   svg
   .append('text')
