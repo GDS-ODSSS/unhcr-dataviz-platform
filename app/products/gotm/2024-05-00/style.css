@@ -241,7 +241,7 @@ text.chart-source {
   #features  .mapstep img {
 	width: 100%;
   }
-  @media (max-width: 750px) {
+  @media (max-width: 992px) {
 	.centered, .lefty, .righty, .fully {
 		width: 90vw;
 		margin: 0 auto;
@@ -256,5 +256,5 @@ text.chart-source {
   .story-paragraph {
 	  margin-top: 10px; 
   }
-  
+
 

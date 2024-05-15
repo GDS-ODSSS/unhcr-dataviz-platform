@@ -195,6 +195,21 @@ var initLoad = true;
     // setup resize event
     window.addEventListener('resize', () => mapScoller.resize());
 
+    // setup fitBound
+    function fitMapToBounds() {
+        map.fitBounds([
+            [59.88513, 39.78526], 
+            [75.51345, 28.31649]
+        ]);
+    };
+    window.addEventListener('resize', () => {
+        if (window.innerWidth < 768) {
+            fitMapToBounds(); // Call the fitBounds function
+        } else if ($(window).width() >= 992) {
+            fitMapToBounds(); // Call the fitBounds function
+        }
+    });
+
 };
 
 mapInit()
