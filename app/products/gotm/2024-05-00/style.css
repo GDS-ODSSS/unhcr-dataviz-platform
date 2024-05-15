@@ -57,7 +57,6 @@ text.chart-source {
 }
 .chartStep {
 	opacity: .8;
-	width: 300px;
     height: 950px;
     margin-bottom: 150;
 	margin-top: 400px;
@@ -223,7 +222,6 @@ text.chart-source {
   }
   #features .mapstep {
 	padding-bottom: 50vh;
-	width: 500px;
 	margin-bottom: 10vh;
 	opacity: 0.9;
   }
