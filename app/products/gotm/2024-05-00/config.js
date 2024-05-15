@@ -164,7 +164,7 @@ var config = {
             location: {
                 center: [66.5, 33.8],
                 zoom: 5.77,
-                pitch: 45.00,
+                pitch: 0.00,
                 bearing: 0.00
             },
             mapAnimation: 'flyTo',
@@ -200,7 +200,7 @@ var config = {
             location: {
                 center: [66.5, 33.8],
                 zoom: 5.77,
-                pitch: 45.00,
+                pitch: 0.00,
                 bearing: 0.00
             },
             mapAnimation: 'flyTo',
@@ -289,7 +289,7 @@ var config = {
             location: {
                 center: [66.4, 34.15423],
                 zoom: 5.63,
-                pitch: 45.00,
+                pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
                 // These options control the flight curve, making it move
