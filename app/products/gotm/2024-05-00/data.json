@@ -20,7 +20,7 @@
           {"name": "Minor or older person at risk", "value": 34, "color": "#00B398"},
           {"name": "Political protection risk", "value": 70, "color": "#00B398"},
           {"name": "Separated family", "value": 18, "color": "#00B398"},
-          {"name": "Woman at risk", "vlaue": 108, "color": "#00B398"}
+          {"name": "Woman at risk", "value": 108, "color": "#00B398"}
         ]
       },
       {
