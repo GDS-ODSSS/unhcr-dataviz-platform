@@ -12,8 +12,8 @@ const map_svg = d3.select("#idp-ret-map")
 // set map scale, location on screen and its projection
 const projection = d3.geoMercator()
     .scale(2200)
-    .center([69, 35])
-    .translate([width/2, height/2])
+    .center([69, 31.5])
+    .translate([map_width/2, map_width/2])
 
 // path generator
 const path = d3.geoPath()
