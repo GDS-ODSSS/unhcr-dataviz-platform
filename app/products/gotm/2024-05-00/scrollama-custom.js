@@ -3,10 +3,10 @@ var main = d3.select("main");
 var scrolly = main.select("#scrolly");
 var figure = scrolly.select("figure");
 var article = scrolly.select("article");
-var step = article.selectAll(".step");
+var step = article.selectAll(".chartStep");
 
 // initialize the scrollama
-var scroller = scrollama();
+var chartScroller = scrollama();
 
 // generic window resize listener event
 function handleResize() {
@@ -30,7 +30,7 @@ function handleResize() {
 		.style("top", figureMarginTop + "px");
 
 	// tell scrollama to update new element dimensions
-	scroller.resize();
+	chartScroller.resize();
 }
 
 // scrollama event handlers
@@ -102,9 +102,9 @@ function init() {
     // 		this will also initialize trigger observations
     // 3. bind scrollama event handlers (this can be chained like below)
     
-    scroller
+    chartScroller
       .setup({
-      	step: "#scrolly article .step",
+      	step: "#scrolly article .chartStep",
       	offset: 0.5,
       	debug: false
       })
@@ -116,3 +116,63 @@ function init() {
 
 // kick things off
 init();
+
+
+
+// instantiate the scrollama
+var mapScoller = scrollama();
+
+    
+    
+map.on("load", function() {
+
+     // setup the instance, pass callback functions
+     mapScoller
+     .setup({
+         step: '.chartStep',
+         offset: 0.9,
+         progress: true
+     })
+     .onStepEnter(async response => {
+         const current_chapter = config.chapters[0].findIndex(chap => chap.id === response.element.id);
+         const chapter = config.chapters[0][current_chapter];
+         
+         response.element.classList.add('active');
+         map[chapter.mapAnimation || 'flyTo'](chapter.location);
+ 
+         if (config.showMarkers) {
+             marker.setLngLat(chapter.location.center);
+         }
+         if (chapter.onChapterEnter.length > 0) {
+             chapter.onChapterEnter.forEach(setLayerOpacity);
+         }
+         if (chapter.callback) {
+             window[chapter.callback]();
+         }
+         if (chapter.rotateAnimation) {
+             map.once('moveend', () => {
+                 const rotateNumber = map.getBearing();
+                 map.rotateTo(rotateNumber + 180, {
+                     duration: 30000, easing: function (t) {
+                         return t;
+                     }
+                 });
+             });
+         }
+         if (config.auto) {
+             document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+         }
+     })
+     .onStepExit(response => {
+         const chapter = config.chapters.find(chap => chap.id === response.element.id);
+         response.element.classList.remove('active');
+         if (chapter.onChapterExit.length > 0) {
+             chapter.onChapterExit.forEach(setLayerOpacity);
+         }
+     });
+
+ })
+
+ 
+ // setup resize event
+ window.addEventListener('resize', mapScoller.resize);
