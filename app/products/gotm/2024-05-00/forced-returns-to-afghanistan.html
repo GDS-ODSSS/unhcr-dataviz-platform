@@ -9,7 +9,10 @@
   <title>UNHCR Dataviz - Forcibly returned to Afghanistan</title>
   <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
-  <!-- JS file -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
   <script src="https://dataviz.unhcr.org/assets/js/vendor/jquery.min.js"></script>
   <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
   <!-- Google Tag Manager -->
@@ -102,10 +105,10 @@
               <figcaption class="figure-caption text-light">Picture caption<br>©UNHCR/Oxygen Empire Media Production</figcaption>
             </figure>
           </div>
-          </div>
-          </div>
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-8">
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
           <p>Many of the areas to which Afghans are returning are already hosting large numbers of internally displaced populations.</p>
           
           <div class="my-5">
@@ -118,22 +121,21 @@
             <h5>Afghans deported from Iran | 2015-2023</h5>
             <div style="min-height:376px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Qd561/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/Qd561/full.png" alt="" /></noscript></div>
           </div>
+        </div>
+      </div> 
 
+      <div class="row justify-content-md-center my-5">
+        <div class="col">
           <h3 class="text-primary">How UNHCR helps those returning</h3>
-          <p>To meet the protection and material needs of those forcibly returned in this challenging environment, UNHCR supports Afghans at the border and in their communities. Taking advantage of UNHCR’s 35 year history supporting Afghans to rebuild their lives and their country, the organization can leverage both its deep roots in the community and cutting edge technology.</p>
-          <p><b>At the point of entry:</b> UNHCR teams conduct protection centric border monitoring, surveying returning individuals to understand the triggers, intentions and motives behind Afghan cross-border movements, and assessing individuals’ access to “the right to seek asylum”, while also identifying barriers to movement for those in need of international protection. Afghans returning are met by UNHCR and partners at border crossing points, receiving immediate relief and protection services. Returnees are then referred to Encashment Centers run by UNHCR to receive full aid and protection packages including cash. Protection screenings take place at the encashment centres to identify vulnerable individuals, and referrals to specialized services are made accordingly. An anonymised information collection mechanism for women and girls’ protection concerns is also in place.</p>
           <div class="my-5">
-            <h5>Locations of entry points and UNHCR encashment centres</h5>
-            <div style="min-height:647px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/G8qYA/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/G8qYA/full.png" alt="" /></noscript></div>
+            <div id="map"></div>
+            <div id="story"></div>
           </div>
-          <p>Services include basic healthcare and vaccination, mental health and psychosocial services, mine awareness information, child friendly spaces and legal aid. Returnees also receive cash grants, ensuring that families can buy food and clothes, pay for transportation costs, and cover expenses of other immediate needs and services. UNHCR staff also work to identify, assist, and refer persons with specific needs or vulnerabilities, including unaccompanied and separated children, older persons, and women-headed households, among others, to ensure appropriate and tailored support is received as needed.</p>
-          <p><b>In areas of return:</b> UNHCR’s assistance in areas of return is delivered through a ‘whole-of-community’ approach, improving access to basic services for the entire population, including services for women and children, the recovery of civil documentation, and other legal assistance, access to education, healthcare, housing, water, and employment, among others. Working in over 80 Priority Areas of Return and Reintegration (PARRs), UNHCR initiatives include investments in education and healthcare services in communities. UNHCR is also building durable accommodation to support local infrastructure and community development, with housing structures designed to be earthquake resilient.</p>
-          <p>Moreover, UNHCR is working with returning and displaced individuals to improve their financial and economic inclusion, including by supporting the development of micro, small, and medium sized businesses. Particular attention is given by UNHCR teams to empower women and youth through economic opportunity and inclusion programs. UNHCR’s support to entire populations in areas of return helps mitigate future displacement, aids returning Afghans as they integrate into communities, and improves living conditions of the entire community.</p>
-          <div class="my-5">
-            <h5>UNHCR Priority Areas for Return and Reintegration</h5>
-            <div style="min-height:475px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mKS85/embed.js" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/mKS85/full.png" alt="" /></noscript></div>
-          </div>
+        </div>
+      </div>
 
+      <div class="row justify-content-md-center my-5">
+        <div class="col col-lg-8">
           <h3 class="text-primary">Robust data analysis and new technology</h3>
           <p>Humanitarian responders have frequently carried out assessments targeting returning Afghans to better understand the needs faced by families on their return. Thanks to these surveys, we know that returnees make use of social networks and assets acquired while abroad to assist their return and reintegration process.</p>
           <p>According to a desk review of currently available data on the most recent wave of returns in 2023, they are more likely to be families, with only 0.6% of crossings from Pakistan having been single individuals. Returnees also tend to be younger, with 56% under the age of 15. This means that most families returning now have more dependents than working members. Moreover, 94% have no education and 82% are low-skilled workers.</p>
@@ -161,19 +163,19 @@
             <figure id="media-coverage-line">
             </figure>
             <article>
-              <div class="step" data-step="1">
+              <div class="chartStep" data-step="1">
                 <p>Using language models, the content of articles are classified into eight main categories, and counted over time.</p>
               </div>
-              <div class="step" data-step="2">
+              <div class="chartStep" data-step="2">
                 <p>In the initial days after the launch of the plan we see many articles categorising Afghans as illegal despite their many years of tolerated stay in the country, as well as attempts to link refugees to terrorist groups in Pakistan. This was the narrative employed by the Pakistani government launching the plan and subsequently seen in the media coverage.</p>
               </div>
-              <div class="step" data-step="3">
+              <div class="chartStep" data-step="3">
                 <p>Towards the end of October we see two smaller spikes one in awareness raising, caused by an Afghan cricketer speaking out against the deportations, and one related to the Taliban, when the de facto authorities officially plea for host countries not to deport Afghans.</p>
               </div>
-              <div class="step" data-step="4">
+              <div class="chartStep" data-step="4">
                 <p>With the official start of deportations, the story is mostly covered as a humanitarian catastrophe unfolding. A number of NGOs make statements contributing to this narrative.</p>
               </div>
-              <div class="step" data-step="5">
+              <div class="chartStep" data-step="5">
                 <p>There is another spike toward the enter of the year in coverage on Afghans in Iran as Iran bans Afghan merchants from operating in bazaars sparking fear of similar sentiment in Iran.</p>
               </div>
             </article>
@@ -199,7 +201,6 @@
           <a class="btn btn-primary" href="https://donate.unhcr.org/int/en/afghanistan-situation">Donate</a>
           <hr>
           <p class="text-muted small"><em>The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Dotted line represents approximately the Line of Control in Jammu and Kashmir agreed upon by India and Pakistan. The final status of Jammu and Kashmir has not yet been agreed upon by the parties.</em></p>
-
         </div>
       </div>  
 
@@ -232,9 +233,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
   <script src="https://dataviz.unhcr.org/assets/js/vendor/d3-annotation.min.js"></script>
   <script src="d3-treemap.js"></script>
-  <script src="d3-scrolly.js"></script>
+  <script src="config.js"></script>
+  <!-- <script src="scrollama.js"></script> -->
+  <script src="mapbox-scrolly.js"></script>
   <script src="d3-idp-ret-map.js"></script>
   <script src="scrollama-custom.js"></script>
+  <script src="d3-scrolly.js"></script>
 
  
 </body>
