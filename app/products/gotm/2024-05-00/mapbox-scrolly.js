@@ -191,10 +191,6 @@ var initLoad = true;
 
     })
 
-    
-    // setup resize event
-    window.addEventListener('resize', () => mapScoller.resize());
-
     // setup fitBound
     function fitMapToBounds() {
         map.fitBounds([
@@ -209,6 +205,17 @@ var initLoad = true;
             fitMapToBounds(); // Call the fitBounds function
         }
     });
+
+    // setup zoom for different screen sizes
+    const mq = window.matchMedia( "(min-width: 576px)" );
+    if (mq.matches){
+        map.setZoom(5.4);
+    } else {
+        map.setZoom(3.9);
+    };
+    
+    // setup resize event
+    window.addEventListener('resize', () => mapScoller.resize());
 
 };
 
