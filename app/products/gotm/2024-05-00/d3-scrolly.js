@@ -143,162 +143,154 @@ svg.selectAll("line-labels")
 
 
   // Define all annotations
-allAnnotations = [
-  //moved recession annotation to front of array so it's behind 
-  {
-    subject: {
-      height: height,
-      width: xScale(parseTime("14/10/2023")) - xScale(parseTime("8/10/2023"))
+  allAnnotations = [
+    //moved recession annotation to front of array so it's behind 
+    {
+      subject: {
+        height: height,
+        width: xScale(parseTime("14/10/2023")) - xScale(parseTime("8/10/2023"))
+      },
+      type: d3.annotationCalloutRect,
+      y: margin.top,
+      disable: ["connector"], // doesn't draw the connector
+      //can pass "subject" "note" and "connector" as valid options
+      dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
+      data: { x: "8/10/2023"}
     },
-    type: d3.annotationCalloutRect,
-    y: margin.top,
-    disable: ["connector"], // doesn't draw the connector
-    //can pass "subject" "note" and "connector" as valid options
-    dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
-    data: { x: "8/10/2023"}
-  },
-  {
-    subject: {
-      height: height,
-      width: xScale(parseTime("10/11/2023")) - xScale(parseTime("26/10/2023"))
+    {
+      subject: {
+        height: height,
+        width: xScale(parseTime("10/11/2023")) - xScale(parseTime("26/10/2023"))
+      },
+      type: d3.annotationCalloutRect,
+      y: margin.top,
+      disable: ["connector"],
+      dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
+      data: { x: "27/10/2023"}
     },
-    type: d3.annotationCalloutRect,
-    y: margin.top,
-    disable: ["connector"], // doesn't draw the connector
-    //can pass "subject" "note" and "connector" as valid options
-    dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
-    data: { x: "27/10/2023"}
-  },
-  {
-    subject: {
-      height: height,
-      width: xScale(parseTime("19/11/2023")) - xScale(parseTime("4/11/2023"))
+    {
+      subject: {
+        height: height,
+        width: xScale(parseTime("19/11/2023")) - xScale(parseTime("4/11/2023"))
+      },
+      type: d3.annotationCalloutRect,
+      y: margin.top,
+      disable: ["connector"],
+      dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
+      data: { x: "4/11/2023"}
     },
-    type: d3.annotationCalloutRect,
-    y: margin.top,
-    disable: ["connector"], // doesn't draw the connector
-    //can pass "subject" "note" and "connector" as valid options
-    dx: (xScale(parseTime("20/10/2023")) - xScale(parseTime("12/10/2023")))/2,
-    data: { x: "4/11/2023"}
-  },
-  {
-    subject: {
-      height: height,
-      width: xScale(parseTime("32/12/2023")) - xScale(parseTime("27/12/2023"))
+    {
+      subject: {
+        height: height,
+        width: xScale(parseTime("32/12/2023")) - xScale(parseTime("27/12/2023"))
+      },
+      type: d3.annotationCalloutRect,
+      y: margin.top,
+      disable: ["connector"],
+      data: { x: "27/12/2023"}
     },
-    type: d3.annotationCalloutRect,
-    y: margin.top,
-    disable: ["connector"], // doesn't draw the connector
-    //can pass "subject" "note" and "connector" as valid options
-    
-    data: { x: "27/12/2023"}
-  },
-  {
-    note: {
-      title: "Pakistan narrative",
-      wrap: 150,
-      align: "left"
+    {
+      note: {
+        title: "Pakistan narrative",
+        wrap: 150,
+        align: "left"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 120,
+      y: 448,
+      dy: -60,
+      dx: 0,
+      color: "#0072BC"
     },
-    connector: {
-      end: "dot",
+    {
+      note: {
+        title: "Awareness raising",
+        wrap: 150,
+        align: "middle"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 145,
+      y: 500,
+      dy: -60,
+      dx: 0,
+      color: "#18375F"
     },
-    disable: ["connector"],
-    x: 120,
-    y: 448,
-    dy: -60,
-    dx: 0,
-    color: "#0072BC"
-  },
-  {
-    note: {
-      title: "Awareness raising",
-      wrap: 150,
-      align: "middle"
+    {
+      note: {
+        title: "Taliban",
+        wrap: 150,
+        align: "middle"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 360,
+      y: 460,
+      dy: -40,
+      dx: 0,
+      color: "#EF4A60"
     },
-    connector: {
-      end: "dot",
+    {
+      note: {
+        title: "Humanitarian situation",
+        wrap: 150,
+        align: "middle"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 225,
+      y: 447,
+      dy: -60,
+      dx: 0,
+      color: "#8395B9"
     },
-    disable: ["connector"],
-    x: 145,
-    y: 500,
-    dy: -60,
-    dx: 0,
-    color: "#18375F"
-  },
-  {
-    note: {
-      title: "Taliban",
-      wrap: 150,
-      align: "middle"
+    {
+      note: {
+        title: "Mentions of int org",
+        wrap: 80,
+        align: "middle"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 354,
+      y: 484,
+      dy: -60,
+      dx: 0,
+      color: "#00B398"
     },
-    connector: {
-      end: "dot",
+    {
+      note: {
+        title: "Refugees in Iran",
+        wrap: 150,
+        align: "middle"
+      },
+      connector: {
+        end: "dot",
+      },
+      disable: ["connector"],
+      x: 640,
+      y: 475,
+      dy: -60,
+      dx: 0,
+      color: "#E1CC0D"
     },
-    disable: ["connector"],
-    x: 360,
-    y: 460,
-    dy: -40,
-    dx: 0,
-    color: "#EF4A60"
-  },
-  {
-    note: {
-      title: "Humanitarian situation",
-      wrap: 150,
-      align: "middle"
-    },
-    connector: {
-      end: "dot",
-    },
-    disable: ["connector"],
-    x: 225,
-    y: 447,
-    dy: -60,
-    dx: 0,
-    color: "#8395B9"
-  },
-  {
-    note: {
-      title: "Mentions of int org",
-      wrap: 80,
-      align: "middle"
-    },
-    connector: {
-      end: "dot",
-    },
-    disable: ["connector"],
-    x: 354,
-    y: 484,
-    dy: -60,
-    dx: 0,
-    color: "#00B398"
-  },
-  {
-    note: {
-      title: "Refugees in Iran",
-      wrap: 150,
-      align: "middle"
-    },
-    connector: {
-      end: "dot",
-    },
-    disable: ["connector"],
-    x: 640,
-    y: 475,
-    dy: -60,
-    dx: 0,
-    color: "#E1CC0D"
-  },
-]
+  ]
   
 });
 
 
-
-
-
-
-
+// Update annoation based on the step
 function updateAnnotations(step) {
   // Remove existing annotation group
   d3.selectAll(".annotation-group").remove();
@@ -323,13 +315,8 @@ function updateAnnotations(step) {
   } else if (step === 5) {
     selectedAnnotations.push(allAnnotations[3]);
     selectedAnnotations.push(allAnnotations[9]);
-
-
   };
 
-
-
-  
   const makeAnnotations = d3.annotation()
     .type(d3.annotationLabel)
     .accessors({ 
@@ -342,13 +329,7 @@ function updateAnnotations(step) {
     .append("g")
     .attr("class", "annotation-group annotation-step-" + step)
     .call(makeAnnotations)
-    
-
 }
-
-
-
-
 
 
 
@@ -422,10 +403,9 @@ function stepTwo() {
     .style("opacity", 0.2)
     .attr("stroke", "#CCCCCC")
     .attr("d", d => d3.line()
-                      .x(d => xScale(d.date))
-                      .y(d => yScale(d.value))
-                      (d[1])
-    );
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1]));
     
 
    // Update 'pakistan_narrative' line separately
@@ -474,14 +454,24 @@ function stepThree() {
   .duration(1000)
   .attr("stroke-width", 2)
   .style("opacity", 0.2)
-  .attr("stroke", "#CCCCCC");
+  .attr("stroke", "#CCCCCC")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );;
 
   svg.selectAll(".awareness_raising") 
   .transition()
   .duration(1000)
   .attr("stroke-width", 3)
   .style("opacity", 1)
-  .attr("stroke", "#18375F");
+  .attr("stroke", "#18375F")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
 
   svg.selectAll(".taliban") 
@@ -489,7 +479,12 @@ function stepThree() {
   .duration(1000)
   .attr("stroke-width", 3)
   .style("opacity", 1)
-  .attr("stroke", "#EF4A60");
+  .attr("stroke", "#EF4A60")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
 };
 
@@ -501,14 +496,24 @@ function stepFour() {
   .duration(1000)
   .attr("stroke-width", 2)
   .style("opacity", 0.2)
-  .attr("stroke", "#CCCCCC");
+  .attr("stroke", "#CCCCCC")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );;
 
   svg.selectAll(".humanitarian_situation") 
   .transition()
   .duration(1000)
   .attr("stroke-width", 3)
   .style("opacity", 1)
-  .attr("stroke", "#8395B9");
+  .attr("stroke", "#8395B9")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
 
   svg.selectAll(".mentions_of_int_org") 
@@ -516,7 +521,12 @@ function stepFour() {
   .duration(1000)
   .attr("stroke-width", 3)
   .style("opacity", 1)
-  .attr("stroke", "#00B398");
+  .attr("stroke", "#00B398")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
 
 };
@@ -530,14 +540,24 @@ function stepFive() {
   .duration(1000)
   .attr("stroke-width", 2)
   .style("opacity", 0.2)
-  .attr("stroke", "#CCCCCC");
+  .attr("stroke", "#CCCCCC")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
   svg.selectAll(".refugees_in_iran") 
   .transition()
   .duration(1000)
   .attr("stroke-width", 3)
   .style("opacity", 1)
-  .attr("stroke", "#E1CC0D");
+  .attr("stroke", "#E1CC0D")
+  .attr("d", d => d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.value))
+    (d[1])
+  );
 
 
 };
