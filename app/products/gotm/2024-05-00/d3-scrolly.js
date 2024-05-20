@@ -139,6 +139,8 @@ svg.selectAll("line-labels")
       .attr('y', height*1.13)
       .attr('text-anchor', 'start')
       .style("opacity", 0)
+      .style('font-size', 13)
+      .style('color', '#cccccc')
   .text('Source: Quid Discover Media ');
 
 

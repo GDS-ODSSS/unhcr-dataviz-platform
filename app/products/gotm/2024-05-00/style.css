@@ -49,7 +49,7 @@ text.chart-label {
 }
 text.chart-source {
 	font-family: lato;
-	fill: #666666;
+	fill: rgb(136, 136, 136);;
 }
 .tick text {
 	font-family: lato;

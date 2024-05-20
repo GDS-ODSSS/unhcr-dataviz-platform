@@ -186,11 +186,11 @@ map_svg.select(".legendThreshold")
 // set note
 map_svg
   .append('text')
-      .attr('class', 'map-source')
+      .attr('class', 'chart-source')
       .attr('x', map_width*0.01)
       .attr('y', map_height*0.96)
       .attr('text-anchor', 'start')
-      .style('font-size', 12)
+      .style('font-size', 11)
   .text('Source: UNHCR, IOM');
 
 
