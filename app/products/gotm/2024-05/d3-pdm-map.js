@@ -97,26 +97,3 @@ line
      .style("fill","none")
      .attr("class", function(d) {return d.properties.type;})
 });
-
-//footnote
-svg
-  .append('text')
-      .attr('class', 'chart-note')
-      .attr('x', 0)
-      .attr('y', height*0.95)
-      .attr('text-anchor', 'start')
-      .style('font-size', 8)
-      .style('fill', '#666666')
-  .text('Note: UNHCR has more than doubled its cash assistance since 2015. Fluctuations in assistance levels are explained');
-
-  svg
-  .append('text')
-      .attr('class', 'chart-note')
-      .attr('x', 0)
-      .attr('y', height*0.99)
-      .attr('text-anchor', 'start')
-      .style('font-size', 8)
-      .style('fill', '#666666')
-  .text('by to changes in global funding and needs, and e.g. 2022 increase is largely ex-plained by the Ukraine situation.');
-
-
