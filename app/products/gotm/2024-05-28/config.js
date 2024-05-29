@@ -21,7 +21,7 @@ var config = {
             hidden: false,
             title: '',
             image: '',
-            description: 'To meet the protection and material needs of those forcibly returned in this challenging environment, UNHCR supports Afghans at the border and in their communities. Taking advantage of UNHCR’s 35 year history supporting Afghans to rebuild their lives and their country, the organization can leverage both its deep roots in the community and cutting edge technology.',
+            description: 'To meet the protection and material needs of those returned in this challenging environment, UNHCR supports Afghans at the border and in their communities. Taking advantage of UNHCR’s 35 year history supporting Afghans to rebuild their lives and their country, the organization can leverage both its deep roots in the community and cutting edge technology.',
             location: {
                 center: [66.0, 33.8],
                 zoom: 4.6,
