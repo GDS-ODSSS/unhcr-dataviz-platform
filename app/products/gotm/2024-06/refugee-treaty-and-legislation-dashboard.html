@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Returns to Afghanistan</title>
+  <link href="../../../assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="../../../assets/js/vendor/d3.min.js"></script>
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-EGKK4QPCNL');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <h1 class="title">Refugee Treaty and Legislation Dashboard (RTLD) – A Data Story</h1>
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-5">
+          <li class="breadcrumb-item"><a href="../../../">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../">Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data Story</li>
+        </ol>
+      </nav>
+      <div class="row justify-content-md-center mb-0">
+        <div class="col col-lg-8">
+          <h2>Refugee Treaty and Legislation Dashboard (RTLD) – A Data Story</h2>
+          <p class="lead">Subtitle</p>
+          <p>XX June 2024</p>
+          <hr>
+        </div>
+      </div>  
+      <!-- <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <figure class="figure my-4">
+            <img src="##" class="figure-img img-fluid" alt="">
+            <figcaption class="figure-caption">Cover picture caption<br>©UNHCR/Oxygen Empire Media Production</figcaption>
+          </figure>
+        </div>
+      </div>  -->
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+
+          <p>Refugees are among the most vulnerable people in the world because they do not enjoy the protection of their countries. International instruments and domestic asylum laws and policies help protect refugees, ensuring they can access their rights. UNHCR has launched the Refugee Treaty and Legislation Dashboard (RTLD),  an interactive compilation of data on the global legal protection framework for refugees covering more than 200 countries and territories. The RTLD is a component of UNHCR’s Rights Mapping and Analysis Platform (RiMAP).</p>
+        
+          <h3 class="text-primary mt-5">The 1951 Convention relating to the Status of Refugees and its 1967 Protocol</h3>
+          <p>The 1951 Convention relating to the Status of Refugees and its 1967 Protocol (1951 Convention) are the cornerstone of refugee protection and the key legal documents that form the basis of UNHCR’s work. The 1951 Convention provides the internationally recognized definition of a refugee. </p>
+          <div class="p-4 bg-primary text-light mb-3">
+            <p class="mb-0">Article 1 of the 1951 Convention defines a refugee as someone who owing to well-founded fear of being persecuted for reasons of race, religion, nationality, membership of a particular social group or political opinion, is outside their country of origin and is unable or unwilling to avail themself of the protection of that country. </p>
+          </div>
+          <p>Initially, the 1951 Convention was essentially limited to protecting European refugees in the aftermath of the Second World War. The 1967 Protocol removed the geographic and time-based limitations and expanded the 1951 Convention to apply globally to protect all persons fleeing persecution. </p>
+          <p>Three States have chosen to limit the geographic application of the 1951 Convention to protecting people fleeing from Europe.</p>
+          <p>The temporal limitation to protect only people who have fled events of the Second World War still applied to two States.</p>
+          <p>In 2024, 149 States worldwide are party to the 1951 Convention, its 1967 Protocol, or both. Importantly, States who are only party to the 1967 Protocol are also bound by the provisions of the 1951 Convention. </p>
+          <p style="color: red">TODO: World map showing States party to and territories to which the 1951 Convention and/or its 1967 Protocol extends  Can have the ability to select the 51 convention, the 67 protocol, and an option for “both”.</p>
+          <p>When compared to the almost universal accession to the Convention on the Rights of the Child and the 1949 Geneva Conventions, with each 196 State Parties, more commitment by States to the 1951 Convention and its 1967 Protocol is still needed, in particular in Asia and in the Middle East, as well as among Small Island States in the Caribbean and the Pacific.</p>
+          <p style="color: red">TODO: World map using the scrolly-telling tool.  Starts with a plain world map</p>
+          <p>Positively, 17 States have withdrawn some or all their reservations and/or declarations to the 1951 Convention. Most of the withdrawn reservations relate to refugees’ right to decent work. This is important because refugees’ access to decent work is essential to the achievement of self-reliance and generally benefits the host communities and the domestic economy.</p>
+          <p style="color: red">TODO: Bar chart showing number of reservations or declarations to Articles of the 1951 Convention</p>
+          <p style="color: red">TODO: Bar chart showing number of withdrawn reservations or declarations to Articles of the 1951 Convention</p>
+
+          <h3 class="text-primary mt-5">1969 Organisation of African Unity (OAU) Convention Governing the Specific Aspects of Refugee Problems in Africa</h3>
+          <p>The 1969 OAU Convention Governing the Specific Aspects of Refugee Problems in Africa (1969 OAU Convention) complements the 1951 Convention, building upon its definition. While it includes the globally applicable definition of the 1951 Convention, it also defines as refugees people who have been compelled to flee their countries of origin because of objective circumstances, namely external aggression, occupation, foreign domination or events seriously disturbing public order (Article 1(2)). This definition, particularly the notion of events seriously disturbing public order, remains very relevant today.</p>
+          <p>For example, in 2020, when thousands fled fighting in northern Ethiopia’s Tigray region, Sudan recognized refugees on a prima facie basis under the broader OAU Convention definition because they were fleeing events seriously disturbing public order. Only a few years later, in 2023, when conflict erupted in Sudan causing one of the largest and most challenging humanitarian and displacement crises in the world, Ethiopia applied the same definition on a prima facie basis to persons fleeing Sudan.</p>
+          <p style="color: red">TODO: Insert photo of refugees from either Tigray or Sudan</p>
+          <p>The 1969 OAU Convention contains several other important innovations. It articulates an early notion of international responsibility-sharing and it was the first international refugee instrument that elaborates on the principles relating to voluntary repatriation. </p>
+          <p style="color: red">Africa map showing African Union Member States and territories that have ratified and signed the 1969 OAU Convention (call out box showing year they signed or ratified)</p>
+        
+          <h3 class="text-primary mt-5">Incorporation of the broader refugee definition of the 1984 Cartagena Declaration on Refugees into domestic law</h3>
+          <p>The 1969 OAU Convention has not only influenced the development of laws and policies in Africa, but also in other regions across the world. , In the Americas, the 1984 Cartagena Declaration on Refugees complements the global refugee definition by including among refugees people who have fled their country because their lives, safety or freedom has been threatened by generalized violence, foreign aggression, internal conflicts, massive violations of human rights or other circumstances which have seriously disturbed public order (paragraph III(3)).</p>
+          <p>Although the 1984 Cartagena Declaration is not legally binding, 15 States in the region have incorporated its broader refugee definition into domestic law.</p>
+          <p style="color: red">Americas map showing States that have incorporated the broader refugee definition of the 1984 Cartagena Declaration into domestic law (call out box showing the year)</p>
+          <p>For example, in 2019, Brazil’s National Committee for Refugees (CONARE) recognized that the situation in Venezuela amounted to massive human rights violations as included in the 1984 Cartagena Declaration and moved to recognize thousands of Venezuelan refugees on a prima facie basis. Asylum claims by Venezuelans who fulfil the necessary criteria are processed through an accelerated procedure. This constituted a milestone in refugee protection in the region.</p>
+          
+          <div class="p-4 bg-primary text-light mb-3">
+            <p class="mb-0">Every refugee, regardless of the definition under which they are recognized, enjoys the same rights under international law. </p>
+          </div>
+
+          <h3 class="text-primary mt-5">Domestic laws relating to the protection of refugees</h3>
+        </div>
+      </div>
+    </div>
+    <div >
+      <div id="map"></div>
+      <div id="story"></div>
+    </div>
+
+    <div class="container my-5">
+      <div class="row justify-content-md-center mb-0">
+        <div class="col col-lg-8">
+          <p>The information on domestic legal frameworks provided in the RTLD links directly with the legislation collection in Refworld, UNHCR's Global Law and Policy Database.</p>
+          <ul>
+            <li>Explore the Refugee Treaty and Legislation Dashboard here.</li>
+            <li>Explore UNHCR’s IDP Law and Policy Dashboard here. </li>
+            <li>Read more about IDP law and policy here.</li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+
+
+
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrfilter.js"></script>
+  <!-- other JS files -->
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="../../../assets/js/vendor/scrollama.min.js"></script>
+  <script src="../../../assets/js/vendor/d3-legend.min.js"></script>
+  <script src="../../../assets/js/vendor/d3-annotation.min.js"></script>
+  
+  <script src="config.js"></script>
+  <script src="mapbox-scrolly.js"></script>
+
+ 
+</body>
+
+</html>
