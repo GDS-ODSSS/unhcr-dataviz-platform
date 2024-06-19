@@ -1,5 +1,5 @@
-function mapInit(){
-var initLoad = true;
+function mapInit(mapId, storyId, config) {
+    var initLoad = true;
     var layerTypes = {
         'fill': ['fill-opacity'],
         'line': ['line-opacity'],
@@ -8,20 +8,20 @@ var initLoad = true;
         'raster': ['raster-opacity'],
         'fill-extrusion': ['fill-extrusion-opacity'],
         'heatmap': ['heatmap-opacity']
-    }
-    
+    };
+
     var alignments = {
         'left': 'lefty',
         'center': 'centered',
         'right': 'righty',
         'full': 'fully'
-    }
-    
+    };
+
     function getLayerPaintType(layer) {
         var layerType = map.getLayer(layer).type;
         return layerTypes[layerType];
     }
-    
+
     function setLayerOpacity(layer) {
         var paintProps = getLayerPaintType(layer.layer);
         paintProps.forEach(function(prop) {
@@ -34,45 +34,40 @@ var initLoad = true;
             map.setPaintProperty(layer.layer, prop, layer.opacity, options);
         });
     }
-    
-    var story = document.getElementById('story');
+
+    var storyContainer = document.getElementById(storyId);
     var features = document.createElement('div');
     features.setAttribute('id', 'features');
-    
-    
+
     config.chapters[0].forEach((record, idx) => {
         const container = document.createElement('div');
         const chapter = document.createElement('div');
-    
+
         if (record.title) {
             const title = document.createElement('h3');
             title.innerText = record.title;
             chapter.appendChild(title);
         }
-    
+
         if (record.image) {
             const image = new Image();
             image.src = record.image;
             chapter.appendChild(image);
         }
-    
+
         if (record.description) {
-    const story = document.createElement('p');
-    story.innerHTML = record.description;
+            const story = document.createElement('p');
+            story.innerHTML = record.description;
+            story.classList.add('story-paragraph');
+            chapter.appendChild(story);
+        }
 
-    // Add a CSS class to the <p> element
-    story.classList.add('story-paragraph');
-
-    chapter.appendChild(story);
-}
-
-    
         container.setAttribute('id', record.id);
         container.classList.add('mapstep');
         if (idx === 0) {
             container.classList.add('active');
         }
-    
+
         chapter.classList.add(config.theme);
         container.appendChild(chapter);
         container.classList.add(alignments[record.alignment] || 'centered');
@@ -81,47 +76,44 @@ var initLoad = true;
         }
         features.appendChild(container);
     });
-    
-    story.appendChild(features);
 
-    
+    storyContainer.appendChild(features);
+
     mapboxgl.accessToken = config.accessToken;
-    
+
     const transformRequest = (url) => {
         const hasQuery = url.indexOf("?") !== -1;
         const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
         return {
-          url: url + suffix
-        }
-    }
-    
+            url: url + suffix
+        };
+    };
+
+    console.log('Initializing map with projection:', config.projection);
+
     var map = new mapboxgl.Map({
-        container: 'map',
+        container: mapId,
         style: config.style[0],
         center: config.chapters[0][0].location.center,
         zoom: config.chapters[0][0].location.zoom,
         bearing: config.chapters[0][0].location.bearing,
         pitch: config.chapters[0][0].location.pitch,
-        interactive: false,
-        scrollZoom: false,
+        interactive: true,
+        scrollZoom: true,
         transformRequest: transformRequest,
-        projection: config.projection
+        projection: config.projection // Set the projection here
     });
 
+    console.log('Map initialized:', map);
 
     var marker = new mapboxgl.Marker();
     if (config.showMarkers) {
         marker.setLngLat(config.chapters[0][0].location.center).addTo(map);
     }
 
-    
-
-    // instantiate the scrollama
     var mapScoller = scrollama();
 
-    
-    
-   map.on("load", function() {
+    map.on("load", function() {
         if (config.use3dTerrain) {
             map.addSource('mapbox-dem', {
                 'type': 'raster-dem',
@@ -129,10 +121,9 @@ var initLoad = true;
                 'tileSize': 512,
                 'maxzoom': 14
             });
-            // add the DEM source as a terrain layer with exaggerated height
+
             map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-    
-            // add a sky layer that will show when the map is highly pitched
+
             map.addLayer({
                 'id': 'sky',
                 'type': 'sky',
@@ -143,80 +134,78 @@ var initLoad = true;
                 }
             });
         };
- 
-        // setup the instance, pass callback functions
+
         mapScoller
-        .setup({
-            step: '.mapstep',
-            offset: 0.9,
-            progress: true
-        })
-        .onStepEnter(async response => {
-            const current_chapter = config.chapters[0].findIndex(chap => chap.id === response.element.id);
-            const chapter = config.chapters[0][current_chapter];
-            
-            response.element.classList.add('active');
-            map[chapter.mapAnimation || 'flyTo'](chapter.location);
-    
-            if (config.showMarkers) {
-                marker.setLngLat(chapter.location.center);
-            }
-            if (chapter.onChapterEnter.length > 0) {
-                chapter.onChapterEnter.forEach(setLayerOpacity);
-            }
-            if (chapter.callback) {
-                window[chapter.callback]();
-            }
-            if (chapter.rotateAnimation) {
-                map.once('moveend', () => {
-                    const rotateNumber = map.getBearing();
-                    map.rotateTo(rotateNumber + 180, {
-                        duration: 30000, easing: function (t) {
-                            return t;
-                        }
+            .setup({
+                step: '.mapstep',
+                offset: 0.9,
+                progress: true
+            })
+            .onStepEnter(async response => {
+                const current_chapter = config.chapters[0].findIndex(chap => chap.id === response.element.id);
+                const chapter = config.chapters[0][current_chapter];
+
+                response.element.classList.add('active');
+                map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+                if (config.showMarkers) {
+                    marker.setLngLat(chapter.location.center);
+                }
+                if (chapter.onChapterEnter && chapter.onChapterEnter.length > 0) {
+                    chapter.onChapterEnter.forEach(setLayerOpacity);
+                }
+                if (chapter.callback) {
+                    window[chapter.callback]();
+                }
+                if (chapter.rotateAnimation) {
+                    map.once('moveend', () => {
+                        const rotateNumber = map.getBearing();
+                        map.rotateTo(rotateNumber + 180, {
+                            duration: 30000,
+                            easing: function(t) {
+                                return t;
+                            }
+                        });
                     });
-                });
-            }
-            if (config.auto) {
-                document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
-            }
-        })
-        .onStepExit(response => {
-            const chapter = config.chapters.find(chap => chap.id === response.element.id);
-            response.element.classList.remove('active');
-            if (chapter.onChapterExit.length > 0) {
-                chapter.onChapterExit.forEach(setLayerOpacity);
-            }
-        });
+                }
+                if (config.auto) {
+                    document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+                }
+            })
+            .onStepExit(response => {
+                const chapter = config.chapters[0].find(chap => chap.id === response.element.id);
+                response.element.classList.remove('active');
+                if (chapter && chapter.onChapterExit && chapter.onChapterExit.length > 0) {
+                    chapter.onChapterExit.forEach(setLayerOpacity);
+                }
+            });
+    });
 
-    })
-
-    // setup fitBound
     function fitMapToBounds() {
         map.fitBounds([
-            [59.88513, 39.78526], 
-            [75.51345, 28.31649]
+            [-164.55388, 65.88492],
+            [177.39229, -44.56058]
         ]);
     };
+
     window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
-            fitMapToBounds(); // Call the fitBounds function
-        } else if ($(window).width() >= 992) {
-            fitMapToBounds(); // Call the fitBounds function
+            fitMapToBounds();
+        } else if (window.innerWidth >= 992) {
+            fitMapToBounds();
         }
     });
 
-    // setup zoom for different screen sizes
-    const mq = window.matchMedia( "(min-width: 576px)" );
-    if (mq.matches){
+    const mq = window.matchMedia("(min-width: 576px)");
+    if (mq.matches) {
         map.setZoom(5.4);
     } else {
         map.setZoom(3.9);
     };
-    
-    // setup resize event
-    window.addEventListener('resize', () => mapScoller.resize());
 
+    window.addEventListener('resize', () => mapScoller.resize());
 };
 
-mapInit()
+// Initialize the maps
+mapInit('map-1', 'story-1', config1);
+mapInit('map-2', 'story-2', config2);
