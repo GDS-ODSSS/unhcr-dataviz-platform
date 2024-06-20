@@ -183,8 +183,8 @@ function mapInit(mapId, storyId, config) {
 
     function fitMapToBounds() {
         map.fitBounds([
-            [-164.55388, 65.88492],
-            [177.39229, -44.56058]
+            [-180, 180],
+            [180, 180] 
         ]);
     };
 

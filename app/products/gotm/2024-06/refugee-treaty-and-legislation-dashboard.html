@@ -70,7 +70,15 @@
           <p style="color: red">TODO: Photo of WWII refugees</p>
           <p>The 1967 Protocol expanded the 1951 Convention to apply globally to protect all persons fleeing persecution at any time. However, Madagascar, the Republic of Congo and Türkiye continue to limit the application to people fleeing from Europe. Also, the time-based limitation to events occurring before 1951 still applies for Saint Kitts and Nevis and Madagascar. </p>
           <p>In 2024, 149 States worldwide are party to the 1951 Convention, its 1967 Protocol, or both. </p>
-          <p style="color: red">TODO: World map showing States party to and territories to which the 1951 Convention and/or its 1967 Protocol extends  Can have the ability to select the 51 convention, the 67 protocol, and an option for “both”.</p>
+          
+          <div class="mt-5">
+            <h5>States party to the 1951 Convention, its 1967 Protocol, or both</h5>
+            <button onclick="update(dataset1)" class="btn btn-outline-primary btn-sm mt-2">All</button>
+            <button onclick="update(dataset2)" class="btn btn-outline-primary btn-sm mt-2">1951 Convention</button>
+            <button onclick="update(dataset3)" class="btn btn-outline-primary btn-sm mt-2">1967 Protocol</button>
+            <button onclick="update(dataset4)" class="btn btn-outline-primary btn-sm mt-2">Both 1951 Convention and 1967 Protocol</button>
+            <div id="signatory-map"></div>  
+          </div>
           <p>When compared to the almost universal accession to the Convention on the Rights of the Child and the 1949 Geneva Conventions, with each 196 State Parties, more commitment by States to the 1951 Convention and its 1967 Protocol is still needed, in particular among States in Asia and in the Middle East, as well as in the Caribbean and the Pacific. </p>
         </div>
       </div>
@@ -91,12 +99,20 @@
           <p>For example, in 2020, when thousands fled fighting in northern Ethiopia’s Tigray region, Sudan recognized refugees on a prima facie basis under the broader OAU Convention definition because they were fleeing events seriously disturbing public order. Only a few years later, in 2023, when conflict erupted in Sudan causing one of the largest and most challenging humanitarian and displacement crises in the world, Ethiopia applied the same definition on a prima facie basis to persons fleeing Sudan. </p>
           <p style="color: red">TODO: Insert photo of refugees from either Tigray or Sudan</p>
           <p>The 1969 OAU Convention contains several other important innovations. It articulates an early notion of international responsibility-sharing and it was the first international refugee instrument that elaborates on the principles relating to voluntary repatriation.</p>
-          <p style="color: red">Africa map showing African Union Member States and territories that have ratified and signed the 1969 OAU Convention (call out box showing year they signed or ratified)</p>
+          <div class="my-5">
+            <h5>Countries signed and ratified the 1969 Organisation of African Unity (OAU) Convention</h5>
+            <div id="africa-map"></div>
+          </div>
         
           <h3 class="text-primary mt-5">Incorporation of the broader refugee definition of the 1984 Cartagena Declaration on Refugees into domestic law</h3>
           <p>The 1969 OAU Convention has not only influenced the development of laws and policies in Africa, but also in other regions across the world. In the Americas, the 1984 Cartagena Declaration on Refugees complements the global refugee definition by including among refugees people who have fled their country because their lives, safety or freedom has been threatened by generalized violence, foreign aggression, internal conflicts, massive violations of human rights or other circumstances which have seriously disturbed public order (paragraph III(3)).</p>
           <p>Although the 1984 Cartagena Declaration is not legally binding, 15 States in the region have incorporated its broader refugee definition into domestic law. </p>
-          <p style="color: red">Americas map showing States that have incorporated the broader refugee definition of the 1984 Cartagena Declaration into domestic law (call out box showing the year)</p>
+          
+          <div class="my-5">
+            <h5>Countries incorporated the broader refugee definition of the 1984 Cartagena Declaration into domestic law</h5>
+            <div id="americas-map"></div>
+          </div>
+
           <p>For example, in 2019, Brazil’s National Committee for Refugees (CONARE) recognized that the situation in Venezuela amounted to massive human rights violations as included in the 1984 Cartagena Declaration and moved to recognize thousands of Venezuelan refugees on a prima facie basis. Asylum claims by Venezuelans who fulfil the necessary criteria are processed through an accelerated procedure. This constituted a milestone in refugee protection in the region.</p>
           <p style="color: red">TODO: Photo of Venezuelan refugees in Brazil</p>
           <div class="p-4 bg-primary text-light mb-3">
@@ -115,7 +131,7 @@
         <div class="col col-lg-8">
           <p>The information on domestic legal frameworks provided in the RTLD links directly with the legislation collection in Refworld, UNHCR's Global Law and Policy Database.</p>
           <ul>
-            <li>Explore the Refugee Treaty and Legislation Dashboard here.</li>
+            <li>Explore the Refugee Treaty and Legislation Dashboard <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjJjMjlkZjgtOTNiNy00NjJmLWEzNWYtZTIyZmQ1YWM1NTJiIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9">here</a>.</li>
             <li>Explore UNHCR’s IDP Law and Policy Dashboard here. </li>
             <li>Read more about IDP law and policy here.</li>
           </ul>
@@ -154,6 +170,9 @@
   
   <script src="config.js"></script>
   <script src="mapbox-scrolly.js"></script>
+  <script src="d3-signatory-map.js"></script>
+  <script src="d3-oau-convention-map.js"></script>
+  <script src="d3-cartagena-declaration-map.js"></script>
 
  
 </body>

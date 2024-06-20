@@ -2,14 +2,11 @@ var config1 = {
     style: ['mapbox://styles/unhcr/clxkdps0p00d901qw4bbl7hap'],
     accessToken: 'pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw',
     showMarkers: false,
-    markerColor: '#3FB1CE',
-    //projection: 'equirectangular',
-    //Read more about available projections here
-    //https://docs.mapbox.com/mapbox-gl-js/example/projections/
+    markerColor: '',
     inset: false,
     theme: 'light',
     projection: 'naturalEarth', 
-    use3dTerrain: false, //set true for enabling 3D maps.
+    use3dTerrain: false,
     auto: false,
     title: '',
     subtitle: '',
@@ -201,14 +198,11 @@ var config2 = {
     style: ['mapbox://styles/unhcr/clxkdps0p00d901qw4bbl7hap'],
     accessToken: 'pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw',
     showMarkers: false,
-    markerColor: '#3FB1CE',
-    //projection: 'equirectangular',
-    //Read more about available projections here
-    //https://docs.mapbox.com/mapbox-gl-js/example/projections/
+    markerColor: '',
     inset: false,
     theme: 'light',
     projection: 'naturalEarth', 
-    use3dTerrain: true, //set true for enabling 3D maps.
+    use3dTerrain: false, 
     auto: false,
     title: '',
     subtitle: '',
@@ -410,7 +404,7 @@ var config2 = {
             description: 'Also in 2023, Chad signed the implementing decree of its 2020 Asylum Law, which was a result of the country’s commitments made during the first Global Refugee Forum (GRF) in 2019. The law is expected to strengthen the framework for the protection of refugees and asylum-seekers and to ensure the respect for their civil and socio-economic rights.',
             location: {
                 center: [18.40685, 15.17010],
-                zoom: 5,
+                zoom: 4.5,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -439,7 +433,7 @@ var config2 = {
             description: 'In 2022, Benin and Senegal have also adopted national laws that are largely in line with international and regional legal standards, providing refugees with extensive rights that can lead to solutions.',
             location: {
                 center: [-8.07265, 11.06195],
-                zoom: 5,
+                zoom: 4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
