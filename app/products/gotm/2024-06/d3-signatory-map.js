@@ -109,7 +109,7 @@ function ready([topology, convention, polylines]) {
       if (countryData) {
           return color2(countryData.all);
       } else {
-          return "#CCCCCC";
+          return "#E6E6E6";
       }
     })
     .attr("d", path2)
@@ -140,7 +140,7 @@ function update(data) {
       if (value !== undefined) {
         return color2(value);
       } else {
-        return "#CCCCCC";
+        return "#E6E6E6";
       }
     });
 }
