@@ -17,7 +17,7 @@ const svg = d3.select("#idp-map")
     .append("svg")
     .attr("width", "100%")
     .attr("height", "100%")
-    .attr("viewBox", "0 0 450 280")
+    .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("preserveAspectRatio", "xMinYMin");
 
 // Array to store attribute data
@@ -25,6 +25,7 @@ const attributeArray = [];
 let currentAttribute = 0;
 let playing = false;
 let totalRefugeeNumber = 0;
+let countryData
 
 // Initialize the map
 function init() {
@@ -51,11 +52,11 @@ function loadData() {
       .catch(error => console.log("Error loading data:", error));
 }
 
-// Calculate total refugee number for the current year
-function getTotalRefugeeNumber(year) {
+// Calculate total refugee number for the current year from CSV data
+function getTotalRefugeeNumber(year, countryData) {
     let totalRefugees = 0;
-    d3.selectAll('.country').each(function(d) {
-        const currentValue = parseFloat(d.properties[year]); // Parse as float
+    countryData.forEach(country => {
+        const currentValue = parseFloat(country[year]); // Parse as float
         if (!isNaN(currentValue)) {
             totalRefugees += currentValue;
         }
@@ -64,12 +65,11 @@ function getTotalRefugeeNumber(year) {
     return (totalRefugees / 1000000).toFixed(2) + ' million';
 }
 
-
-
+// Process loaded data
 function processData(data) {
     const world = data[0];
     const boundary = data[1];
-    const countryData = data[2];
+    countryData = data[2]; // This is the CSV data
 
     const countries = world.objects.world_polygons_simplified.geometries;
 
@@ -98,7 +98,7 @@ function processData(data) {
     drawMap(world);
     drawLines(boundary);
 
-    updateInfo();
+    updateInfo(countryData); // Pass countryData to updateInfo
 }
 
 // Draw polygons
@@ -157,7 +157,7 @@ function animateMap() {
                 currentAttribute = (currentAttribute < attributeArray.length - 1) ? currentAttribute + 1 : 0;
                 sequenceMap();
                 updateSlider();
-                updateInfo();
+                updateInfo(countryData); // Pass countryData to updateInfo
             }, 500);
             d3.select(this).html('stop');
             playing = true;
@@ -171,7 +171,7 @@ function animateMap() {
     d3.select("#year-slider").on("input", function() {
         currentAttribute = +this.value;
         sequenceMap();
-        updateInfo();
+        updateInfo(countryData); // Pass countryData to updateInfo
         if (playing) {
             clearInterval(timer);
             d3.select('#play').html('play');
@@ -184,8 +184,8 @@ function updateSlider() {
     d3.select("#year-slider").property("value", currentAttribute);
 }
 
-function updateInfo() {
-    totalRefugeeNumber = getTotalRefugeeNumber(attributeArray[currentAttribute]);
+function updateInfo(countryData) {
+    totalRefugeeNumber = getTotalRefugeeNumber(attributeArray[currentAttribute], countryData);
     d3.select('#clock').html(`In ${attributeArray[currentAttribute]}, there are <span style="font-size: 1.4rem; color: #0072BC ">${totalRefugeeNumber}</span> IDPs across the world.`);
     d3.select('#year-label').text(attributeArray[currentAttribute]);
 }
@@ -213,4 +213,3 @@ window.onload = function() {
     // Start animation
     d3.select('#play').dispatch('click');
 };
-
