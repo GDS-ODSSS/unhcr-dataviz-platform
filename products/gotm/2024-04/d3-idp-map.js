@@ -188,7 +188,7 @@ function animateMap() {
                 
                 // Update the message
                 d3.select('#clock').html('In ' + attributeArray[currentAttribute] + ', there are <span style="font-size: 1.4rem; color: #0072BC ">' + totalRefugeeNumber + '</span> IDPs across the world.');
-            }, 1000);
+            }, 500);
 
             d3.select(this).html('stop');
             playing = true;
