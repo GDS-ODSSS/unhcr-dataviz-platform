@@ -341,7 +341,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In early 2024, Kenya has brought its legal framework further in line with international and regional legal standards by adopting regulations implementing its 2021 Refugees Act, which will have a positive impact on the lives of refugees and asylum-seekers in the country. ',
+            description: 'In early 2024, Kenya has brought its legal framework further in line with international and regional legal standards by adopting regulations implementing its 2021 Refugees Act, which will have a positive impact on the lives of refugees and asylum-seekers in the country.<figure class="figure mt-4 mb-0"><img src="RF1355903_206A9859.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Deline with her friend Said Mohamed a 30-year-old business man from Somalia in Kakuma refugee camp at his shop.<br>©UNHCR/Charity Nzomo</figcaption></figure>',
             location: {
                 center: [37.50825, 0.47116],
                 zoom: 5,
@@ -371,7 +371,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In 2023, Côte d’Ivoire adopted its first national law on asylum. Positively, the law promotes the non-penalization of illegal entry, facilitates family reunification for refugees, foresees the issuance of biometric identity cards for refugees serving as residence permits and reiterates several essential rights for refugees, including the right to education and work. ',
+            description: 'In 2023, Côte d’Ivoire adopted its first national law on asylum. Positively, the law promotes the non-penalization of illegal entry, facilitates family reunification for refugees, foresees the issuance of biometric identity cards for refugees serving as residence permits and reiterates several essential rights for refugees, including the right to education and work.<figure class="figure mt-4 mb-0"><img src="RF1290985_DSC05508.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Gbetibwa Gode in her shop in Koumassi market, where she sells shoes, clothes and accessories.<br>©UNHCR/Lath Divia Kibangou</figcaption></figure>',
             location: {
                 center: [-5.43782, 7.01636],
                 zoom: 5.8,
@@ -401,7 +401,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'Also in 2023, Chad signed the implementing decree of its 2020 Asylum Law, which was a result of the country’s commitments made during the first Global Refugee Forum (GRF) in 2019. The law is expected to strengthen the framework for the protection of refugees and asylum-seekers and to ensure the respect for their civil and socio-economic rights.',
+            description: 'Also in 2023, Chad signed the implementing decree of its 2020 Asylum Law, which was a result of the country’s commitments made during the first Global Refugee Forum (GRF) in 2019. The law is expected to strengthen the framework for the protection of refugees and asylum-seekers and to ensure the respect for their civil and socio-economic rights.<figure class="figure mt-4 mb-0"><img src="RF1219449_Colin_delfosse_09_04_2022-11.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Refugee teacher Hassanie Ahmad Hussein, 28, teaches a class outdoors at the school in Kouchaguine-Moura refugee camp in eastern Chad.<br>©UNHCR/Colin Delfosse</figcaption></figure>',
             location: {
                 center: [18.40685, 15.17010],
                 zoom: 4.5,
@@ -466,7 +466,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In 2021, Colombia enacted a decree providing Temporary Protection Status (TPS) for an estimated 1.8 million Venezuelans. The creation of the TPS was a milestone in the region because it allows eligible Venezuelans to regularize their stay and reside in Colombia for ten years, which includes accessing a full range of rights.',
+            description: 'In 2021, Colombia enacted a decree providing Temporary Protection Status (TPS) for an estimated 1.8 million Venezuelans. The creation of the TPS was a milestone in the region because it allows eligible Venezuelans to regularize their stay and reside in Colombia for ten years, which includes accessing a full range of rights.<figure class="figure mt-4 mb-0"><img src="RF1217449_Foto_08_Entregas_Masivas_PPTBogota_26012022_Daniela_Camargo.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">On February 2022, Andrés from Venezuela received his Temporary Protection Permit in Bogotá.<br>©UNHCR/Daniela Camargo</figcaption></figure>',
             location: {
                 center: [-73.89097, 4.34697],
                 zoom: 4.5,
