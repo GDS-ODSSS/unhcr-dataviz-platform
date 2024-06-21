@@ -31,9 +31,31 @@ const poly2 = svg2.append("g");
 const line2 = svg2.append("g");
 
 // Declare URL
-const dataURL2 = "map_signatories.csv";
+const dataURL2 = "laws_policies_strategies.csv";
 const polygonsURL2 = "world_polygons_simplified.json";
 const polylinesURL2 = "world_lines_simplified.json";
+
+// Define the update function
+function update(data) {
+  poly2.selectAll("path")
+    .attr("fill", function(d) {
+      const value = data[d.properties.color_code];
+      if (value !== undefined) {
+        return color2(value.all || value.imp_ins || value.law || value.pol_str);
+      } else {
+        return "#E6E6E6";
+      }
+    })
+    .select("title")
+    .text(function(d) {
+      const value = data[d.properties.color_code];
+      if (value) {
+        return `${d.properties.gis_name}\nNational: ${value.all_nat || value.imp_ins_nat || value.law_nat || value.pol_str_nat || 'N/A'}\nSubnational: ${value.all_sub || value.imp_ins_sub || value.law_sub || value.pol_str_sub || 'N/A'}`;
+      } else {
+        return `${d.properties.gis_name}\nData not available`;
+      }
+    });
+}
 
 // Load data
 const promises2 = [
@@ -42,19 +64,6 @@ const promises2 = [
   d3.json(polylinesURL2),
 ];
 
-// function to update data
-function update(data) {
-  poly2.selectAll("path")
-    .attr("fill", function(d) {
-      const value = data[d.properties.color_code];
-      if (value !== undefined) {
-        return color2(value);
-      } else {
-        return "#E6E6E6";
-      }
-    });
-}
-
 Promise.all(promises2).then(ready);
 
 function ready([topology, convention, polylines]) {
@@ -62,11 +71,15 @@ function ready([topology, convention, polylines]) {
   joinData = {};
   convention.forEach(function(d) {
     joinData[d.iso] = {
-      all: +d.all,
-      c_1951: +d.c_1951,
-      p_1967: +d.p_1967,
-      c_1951_p_1967: +d.c_1951_p_1967,
-      no_application: +d.no_application
+      imp_ins: +d.imp_ins,
+      imp_ins_nat: +d.imp_ins_nat,
+      imp_ins_sub: +d.imp_ins_sub,
+      law: +d.law,
+      law_nat: +d.law_nat,
+      law_sub: +d.law_sub,
+      pol_str: +d.pol_str,
+      pol_str_nat: +d.pol_str_nat,
+      pol_str_sub: +d.pol_str_sub
     };
   });
 
@@ -77,10 +90,26 @@ function ready([topology, convention, polylines]) {
   dataset4 = {};
 
   convention.forEach(function(d) {
-    dataset1[d.iso] = +d.all;
-    dataset2[d.iso] = +d.c_1951;
-    dataset3[d.iso] = +d.p_1967;
-    dataset4[d.iso] = +d.c_1951_p_1967;
+    dataset1[d.iso] = {
+      all: +d.all,
+      all_nat: +d.all_nat,
+      all_sub: +d.all_sub
+    };
+    dataset2[d.iso] = {
+      imp_ins: +d.imp_ins,
+      imp_ins_nat: +d.imp_ins_nat,
+      imp_ins_sub: +d.imp_ins_sub
+    };
+    dataset3[d.iso] = {
+      law: +d.law,
+      law_nat: +d.law_nat,
+      law_sub: +d.law_sub
+    };
+    dataset4[d.iso] = {
+      pol_str: +d.pol_str,
+      pol_str_nat: +d.pol_str_nat,
+      pol_str_sub: +d.pol_str_sub
+    };
   });
 
   // Log the datasets to verify they are correctly assigned
@@ -130,7 +159,12 @@ function ready([topology, convention, polylines]) {
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
     .append("title")
-    .text(d => `${d.properties.gis_name}`);
+    .text(d => {
+      const data = joinData[d.properties.color_code];
+      return data
+        ? `${d.properties.gis_name}\nNational: ${data.all_nat || 'N/A'}\nSubnational: ${data.all_sub || 'N/A'}`
+        : `${d.properties.gis_name}\nData not available`;
+    });
 
   // Load and draw lines
   line2
@@ -146,7 +180,6 @@ function ready([topology, convention, polylines]) {
   update(dataset1);
   highlightButton('dataset1-btn'); // Highlight the default button
 }
-
 
 // Function to highlight the active button
 function highlightButton(activeButtonId) {

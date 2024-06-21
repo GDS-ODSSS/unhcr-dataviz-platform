@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
   <!-- jquery JS file -->
-  <script src="https://dataviz.unhcr.org/assets/js/vendor/jquery.min.js"></script>
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
   <!-- Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
   <script>
@@ -91,7 +91,16 @@
             <li>90 policies and strategies/action plans.</li>
           </ul>
           <p>In addition, IDP-specific national frameworks were under development or pending adoption in at least 17 countries.</p>
-          <p class="text-danger">TODO: Add global map showing laws, policies, strategies/action plan</p>
+          
+          <div class="mt-5">
+            <h5>Laws, policies, strategies/action plan</h5>
+            <button id="dataset1-btn" class="btn btn-outline-primary btn-sm mt-2">All</button>
+            <button id="dataset2-btn" class="btn btn-outline-primary btn-sm mt-2">Implementing Instrument</button>
+            <button id="dataset3-btn" class="btn btn-outline-primary btn-sm mt-2">Law</button>
+            <button id="dataset4-btn" class="btn btn-outline-primary btn-sm mt-2">Policy & Strategy</button>
+            <div id="signatory-map"></div>  
+          </div>
+
           <p>When it comes to causes of displacement, legal and policy instruments on internal displacement have tended to focus mainly on displacement associated with armed conflict, generalized violence and human rights violations. However, over time, there has been an increasing recognition of the importance of addressing causes of displacement other than conflict and violence, particularly disasters and the adverse effects of climate change. </p>
           <div style="min-height:400px" class="my-5"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/1tx1q/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/1tx1q/full.png" alt="" /></noscript></div>
           <p>Comprehensive IDP-specific instruments should articulate the concrete measures for the state to take around three main objectives: to protect people from displacement and prevent the conditions leading to it; to protect and assist people once they have been displaced; and to support durable solutions for IDPs. However, the majority of existing IDP laws and policies do not comprehensively address all phases of displacement. Prevention in particular has received relatively limited attention, though the number of IDP-specific instruments that include prevention-related provisions is increasing over time.</p>
@@ -150,13 +159,14 @@
   <!-- isotope JS file -->
   <script src="https://dataviz.unhcr.org/assets/js/vendor/isotope.pkgd.min.js"></script>
 
-  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/d3-geo@"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
   <script type="module" src="d3-idp-map.js"></script>
   <script type="module" src="d3-africa-map.js"></script>
+  <script type="module" src="d3-laws-policies-map.js"></script>
   <!-- End scripts -->
 
 </body>
