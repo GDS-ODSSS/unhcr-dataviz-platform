@@ -21,7 +21,7 @@ var config1 = {
             image: '',
             description: '46 per cent of State Parties maintain reservations and/or declarations to the 1951 Convention and its 1967 Protocol. This means that they do not consider themselves to be bound by some important provisions of the 1951 Convention. This limits the rights of refugees in these countries. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -56,7 +56,7 @@ var config1 = {
             image: '',
             description: 'For example, most reservations are made to the rights of refugees to (self-)employment (Articles 17, 18 and 19) and social protection (Article 24), which together provide for the right of refugees to decent work. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -91,7 +91,7 @@ var config1 = {
             image: '',
             description: 'Many States also made reservations to providing administrative assistance to refugees (Article 25). This is an important right specific to the situation of refugees because they are unable to access administrative services, such as the issuance of documents, by their countries of origin. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -126,7 +126,7 @@ var config1 = {
             image: '',
             description: 'States also often decide to restrict the freedom of movement of refugees (Article 26). This often prevents refugees from accessing education or employment opportunities. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -162,7 +162,7 @@ var config1 = {
             image: '',
             description: 'Positively, 17 States have withdrawn some or all their reservations, granting refugees more rights. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -217,7 +217,7 @@ var config2 = {
             image: '',
             description: 'To ensure that refugees are protected and that they can exercise their rights, it is important that countries and territories incorporate international and regional refugee law instruments into their domestic legal framework. In exercising UNHCR’s mandate and supervisory responsibility, the RTLD provides basic information on the domestic laws relating to the protection of refugees. ',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -269,7 +269,7 @@ var config2 = {
             image: '',
             description: ' At least 114 countries and territories have secondary instruments in place that relate to the protection of refugees and asylum-seekers. This includes legislative, executive or judicial instruments that are legally binding, are based on primary laws and regulate refugee protection issues.',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0.00,
                 bearing: 0.00
@@ -307,7 +307,7 @@ var config2 = {
             image: '',
             description: 'In 2023, UNHCR has recorded at least 92 legislative developments in 77 countries, 49 of which represented advances in refugee rights.',
             location: {
-                center: [0, 0],
+                center: [20, 20],
                 zoom: 1.7,
                 pitch: 0,
                 bearing: 0.00

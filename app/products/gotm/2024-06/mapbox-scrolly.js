@@ -183,10 +183,10 @@ function mapInit(mapId, storyId, config) {
 
     function fitMapToBounds() {
         map.fitBounds([
-            [-180, 180],
-            [180, 180] 
+            [-180, -90], // Southwest coordinates
+            [180, 90] // Northeast coordinates
         ]);
-    };
+    }
 
     window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
@@ -200,7 +200,7 @@ function mapInit(mapId, storyId, config) {
     if (mq.matches) {
         map.setZoom(5.4);
     } else {
-        map.setZoom(3.9);
+        map.setZoom(1.7);
     };
 
     window.addEventListener('resize', () => mapScoller.resize());
