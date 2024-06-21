@@ -55,7 +55,7 @@ function loadData() {
 function getTotalRefugeeNumber(year) {
     let totalRefugees = 0;
     d3.selectAll('.country').each(function(d) {
-        const currentValue = d.properties[year];
+        const currentValue = parseFloat(d.properties[year]); // Parse as float
         if (!isNaN(currentValue)) {
             totalRefugees += currentValue;
         }
@@ -63,6 +63,8 @@ function getTotalRefugeeNumber(year) {
     // Format the total number in millions
     return (totalRefugees / 1000000).toFixed(2) + ' million';
 }
+
+
 
 function processData(data) {
     const world = data[0];

@@ -430,7 +430,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In 2022, Benin and Senegal have also adopted national laws that are largely in line with international and regional legal standards, providing refugees with extensive rights that can lead to solutions.',
+            description: 'In 2022, Benin and Senegal have also adopted national laws that are largely in line with international and regional legal standards, providing refugees with extensive rights that can lead to solutions.<figure class="figure mt-4 mb-0"><img src="RF1224695_IMG_6788.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Two Ivorian refugees and two Senegalese and their artwork in progress. Refugees and other participants are in the midst of creating the piece by painting and drawing.<br>©UNHCR/Gosia Courtay</figcaption></figure>',
             location: {
                 center: [-8.07265, 11.06195],
                 zoom: 4,
