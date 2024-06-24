@@ -186,7 +186,7 @@ function updateSlider() {
 
 function updateInfo(countryData) {
     totalRefugeeNumber = getTotalRefugeeNumber(attributeArray[currentAttribute], countryData);
-    d3.select('#clock').html(`In ${attributeArray[currentAttribute]}, there are <span style="font-size: 1.4rem; color: #0072BC ">${totalRefugeeNumber}</span> IDPs across the world.`);
+    d3.select('#clock').html(`In <span style="font-size: 1.4rem; color: #0072BC ">${attributeArray[currentAttribute]}</span>, there were <span style="font-size: 1.4rem; color: #0072BC ">${totalRefugeeNumber}</span> IDPs across the world due to conflict and violence.`);
     d3.select('#year-label').text(attributeArray[currentAttribute]);
 }
 
