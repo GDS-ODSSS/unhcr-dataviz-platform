@@ -116,7 +116,7 @@ line
 
 //legend
 var ordinal = d3.scaleOrdinal()
-  .domain(["Countries with ratification", "Countries with signature"])
+  .domain(["AU Member States with ratification", "AU Member States with signature"])
   .range([ "#0072BC", "#00B398"]);
 
 d3.select("svg");
