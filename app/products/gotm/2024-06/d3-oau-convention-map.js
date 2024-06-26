@@ -21,8 +21,8 @@ const path = d3.geoPath()
 // set color scale
 const colorScale = d3.scaleOrdinal()
         .domain([1, 0])
-        .range(["#0072BC", "#CCCCCC"])
-        .unknown("#CCCCCC");
+        .range(["#0072BC", "#8EBEFF"])
+        .unknown("#8EBEFF");
 
 // declare polygon and polyline
 const poly = svg.append("g");
@@ -84,7 +84,7 @@ function ready([topology, convention]) {
         if (data[d.properties.iso3cd]) {
             return colorScale(data[d.properties.iso3cd].status);
         } else {
-            return "#CCCCCC";
+            return "#8EBEFF";
         }
     })
     .attr("d", path)
@@ -92,13 +92,7 @@ function ready([topology, convention]) {
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
     .append("title")
-      .text(function(d) {
-          if (data[d.properties.iso3cd]) {
-              return `${d.properties.nam_en} \nYear of signature or ratification: ${data[d.properties.iso3cd].year}`;
-          } else {
-              return `${d.properties.nam_en} \nNot signed or ratified`;
-          }
-      });
+      .text(d => `${d.properties.nam_en}`);
 }
 
 // load and draw lines
@@ -110,13 +104,13 @@ d3.json(polylinesURL).then(function(topology) {
     .append("path")
     .attr("d", path)
     .style("fill", "none")
-    .attr("class", function(d) { return d.properties.type; });
+    .attr("class", d => d.properties.type );
 });
 
 // legend
 const ordinal = d3.scaleOrdinal()
-  .domain(["Countries with signature or ratification", "Countries without signature or ratification"])
-  .range(["#0072BC", "#CCCCCC"]);
+  .domain(["Ratified", "Signed"])
+  .range(["#0072BC", "#8EBEFF"]);
 
 svg.append("g")
   .attr("class", "legendOrdinal")

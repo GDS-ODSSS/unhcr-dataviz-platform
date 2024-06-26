@@ -99,6 +99,9 @@ text.label {
   #features  .mapstep img {
 	width: 100%;
   }
+  .light{
+	box-shadow: 0 3px 14px 0 rgba(0, 0, 0, .14), 0 5px 5.5px 0 rgba(0, 0, 0, .12);
+  }
   @media (max-width: 992px) {
 	.centered, .lefty, .righty, .fully {
 		width: 90vw;

@@ -133,7 +133,7 @@ function mapInit(mapId, storyId, config) {
                     'sky-atmosphere-sun-intensity': 15
                 }
             });
-        };
+        }
 
         mapScoller
             .setup({
@@ -144,6 +144,9 @@ function mapInit(mapId, storyId, config) {
             .onStepEnter(async response => {
                 const current_chapter = config.chapters[0].findIndex(chap => chap.id === response.element.id);
                 const chapter = config.chapters[0][current_chapter];
+
+                // if mobile, adjust map zoom
+                // chapter.location.zoom = window.innerWidth < 960 ? chapter.location.zoom - 1.5 : chapter.location.zoom;
 
                 response.element.classList.add('active');
                 map[chapter.mapAnimation || 'flyTo'](chapter.location);
@@ -181,30 +184,23 @@ function mapInit(mapId, storyId, config) {
             });
     });
 
-    function fitMapToBounds() {
-        map.fitBounds([
-            [-180, -90], // Southwest coordinates
-            [180, 90] // Northeast coordinates
-        ]);
-    }
+    // function updateMapZoom() {
+    //     const mq = window.matchMedia("(min-width: 576px)");
+    //     if (mq.matches) {
+    //         map.setZoom(5.4);
+    //     } else {
+    //         map.setZoom(0);
+    //     }
+    // }
 
-    window.addEventListener('resize', () => {
-        if (window.innerWidth < 768) {
-            fitMapToBounds();
-        } else if (window.innerWidth >= 992) {
-            fitMapToBounds();
-        }
-    });
+    // // Set initial zoom level
+    // updateMapZoom();
 
-    const mq = window.matchMedia("(min-width: 576px)");
-    if (mq.matches) {
-        map.setZoom(5.4);
-    } else {
-        map.setZoom(1.7);
-    };
+    // // Update zoom level on window resize
+    // window.addEventListener('resize', updateMapZoom);
 
     window.addEventListener('resize', () => mapScoller.resize());
-};
+}
 
 // Initialize the maps
 mapInit('map-1', 'story-1', config1);

@@ -90,11 +90,5 @@ console.log(topology)
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
     .append("title")
-      .text(function(d) {
-          if (data[d.properties.iso3cd]) {
-              return `${d.properties.nam_en} \nIncorporated into domestic low`;
-          } else {
-              return `${d.properties.nam_en} \nNot incorporated into domestic low`;
-          }
-      });
+      .text(d => `${d.properties.nam_en}`);
 }
