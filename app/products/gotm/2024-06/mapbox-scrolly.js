@@ -1,5 +1,4 @@
 function mapInit(mapId, storyId, config) {
-    var initLoad = true;
     var layerTypes = {
         'fill': ['fill-opacity'],
         'line': ['line-opacity'],
@@ -56,7 +55,7 @@ function mapInit(mapId, storyId, config) {
         }
 
         if (record.description) {
-            const story = document.createElement('p');
+            const story = document.createElement('div');
             story.innerHTML = record.description;
             story.classList.add('story-paragraph');
             chapter.appendChild(story);
@@ -89,8 +88,6 @@ function mapInit(mapId, storyId, config) {
         };
     };
 
-    console.log('Initializing map with projection:', config.projection);
-
     var map = new mapboxgl.Map({
         container: mapId,
         style: config.style[0],
@@ -98,13 +95,12 @@ function mapInit(mapId, storyId, config) {
         zoom: config.chapters[0][0].location.zoom,
         bearing: config.chapters[0][0].location.bearing,
         pitch: config.chapters[0][0].location.pitch,
-        interactive: true,
-        scrollZoom: true,
+        interactive: false,
+        scrollZoom: false,
         transformRequest: transformRequest,
-        projection: config.projection // Set the projection here
+        projection: config.projection,
+        minZoom: 2,
     });
-
-    console.log('Map initialized:', map);
 
     var marker = new mapboxgl.Marker();
     if (config.showMarkers) {
@@ -114,31 +110,10 @@ function mapInit(mapId, storyId, config) {
     var mapScoller = scrollama();
 
     map.on("load", function() {
-        if (config.use3dTerrain) {
-            map.addSource('mapbox-dem', {
-                'type': 'raster-dem',
-                'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-                'tileSize': 512,
-                'maxzoom': 14
-            });
-
-            map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-            map.addLayer({
-                'id': 'sky',
-                'type': 'sky',
-                'paint': {
-                    'sky-type': 'atmosphere',
-                    'sky-atmosphere-sun': [0.0, 0.0],
-                    'sky-atmosphere-sun-intensity': 15
-                }
-            });
-        }
-
-        mapScoller
+           mapScoller
             .setup({
                 step: '.mapstep',
-                offset: 0.9,
+                offset: 0.75,
                 progress: true
             })
             .onStepEnter(async response => {
@@ -146,7 +121,7 @@ function mapInit(mapId, storyId, config) {
                 const chapter = config.chapters[0][current_chapter];
 
                 // if mobile, adjust map zoom
-                // chapter.location.zoom = window.innerWidth < 960 ? chapter.location.zoom - 1.5 : chapter.location.zoom;
+                chapter.location.zoom = window.innerWidth < 960 ? chapter.location.zoom - 0.5 : chapter.location.zoom;
 
                 response.element.classList.add('active');
                 map[chapter.mapAnimation || 'flyTo'](chapter.location);

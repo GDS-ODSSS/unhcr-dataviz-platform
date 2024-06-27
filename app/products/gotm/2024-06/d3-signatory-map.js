@@ -3,6 +3,7 @@ const width2 = 450,
       height2 = 300;
 const svg2 = d3.select("#signatory-map")
    .append("svg")
+     .attr("id", "signatory-map-svg")
      .attr("width", "100%")
      .attr("height", "100%")
      .attr("viewBox","0 0 450 350")
@@ -42,7 +43,7 @@ const promises2 = [
   d3.json(polylinesURL2),
 ];
 
-// function to update data
+// Function to update data
 function update(data) {
   poly2.selectAll("path")
     .attr("fill", function(d) {
@@ -55,7 +56,9 @@ function update(data) {
     });
 }
 
-Promise.all(promises2).then(ready);
+Promise.all(promises2).then(ready).catch(error => {
+  console.error("Error loading data:", error);
+});
 
 function ready([topology, convention, polylines]) {
   // Prepare data to join shapefile
@@ -126,7 +129,7 @@ function ready([topology, convention, polylines]) {
       }
     })
     .attr("d", path2)
-    .attr("class", "countries")
+    .attr("class", d => `${d.properties.color_code}`)
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
     .append("title")
@@ -147,7 +150,6 @@ function ready([topology, convention, polylines]) {
   highlightButton('dataset1-btn'); // Highlight the default button
 }
 
-
 // Function to highlight the active button
 function highlightButton(activeButtonId) {
   // Remove 'active' class from all buttons
@@ -157,23 +159,61 @@ function highlightButton(activeButtonId) {
   document.getElementById(activeButtonId).classList.add('active');
 }
 
+// Function to add annotation
+function addAnnotation() {
+  const allAnnotations = [
+    {
+      note: {
+        label: "Saint Kitts and Nevis",
+        wrap: 50,
+        align: "left",
+        padding: 2
+      },
+      connector: {
+        end: "dot",
+        endScale: 0.1
+      },
+      x: 113,
+      y: 139,
+      dy: -15,
+      dx: 10,
+      color: "#666666"
+    },
+  ];
+
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCallout)
+    .annotations(allAnnotations);
+
+  d3.select("#signatory-map-svg")
+    .append("g")
+    .attr("class", "annotation-group")
+    .style("font-size", 8)
+    .call(makeAnnotations);
+}
+
 // Button click handlers
 document.getElementById('dataset1-btn').onclick = function() {
   update(dataset1);
   highlightButton('dataset1-btn');
+  d3.selectAll(".annotation-group").remove();
 };
 
 document.getElementById('dataset2-btn').onclick = function() {
   update(dataset2);
   highlightButton('dataset2-btn');
+  d3.selectAll(".annotation-group").remove();
+  addAnnotation();
 };
 
 document.getElementById('dataset3-btn').onclick = function() {
   update(dataset3);
   highlightButton('dataset3-btn');
+  d3.selectAll(".annotation-group").remove();
 };
 
 document.getElementById('dataset4-btn').onclick = function() {
   update(dataset4);
   highlightButton('dataset4-btn');
+  d3.selectAll(".annotation-group").remove();
 };

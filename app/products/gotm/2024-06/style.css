@@ -91,10 +91,12 @@ text.label {
   #features .mapstep.active p {
 	  opacity: 1;
   }
-  #features  .mapstep div {
+  #features  .mapstep .light {
 	padding:  25px 30px;
-	line-height: 25px;
-	font-size: 16px;
+  }
+  #features .mapstep div p {
+		line-height: 25px;
+		font-size: 16px;
   }
   #features  .mapstep img {
 	width: 100%;
