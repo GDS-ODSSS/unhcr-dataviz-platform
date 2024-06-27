@@ -125,7 +125,7 @@ var config1 = {
             hidden: false,
             title: '',
             image: '',
-            description: '<p>Some States made reservations to providing administrative assistance to refugees (Article 25). This is an important right specific to the situation of refugees because they are unable to access administrative services, such as the issuance of documents, by their countries of origin. </p>',
+            description: '<p>Some States made reservations to providing administrative assistance to refugees (Article 25). This is an important right specific to the situation of refugees because they are unable to access administrative services, such as the issuance of documents, by their countries of origin. </p><figure class="figure mt-4 mb-0"><img src="RF1288385_ABR03191.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Sediqa Danish Nawrozi, a 29-year-old Afghan refugee works as an intercultural mediator in the small city of Fundão in eastern Portugal with an organization called MEDEIA. Sediqa helps her fellow Afghans to secure crucial documentation, access services and connect them with job opportunities.<br>©UNHCR/Ana Brigida</figcaption></figure>',
             location: {
                 center: [20, 20],
                 zoom: 1.7,
