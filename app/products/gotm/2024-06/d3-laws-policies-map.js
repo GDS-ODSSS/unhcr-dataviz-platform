@@ -1,7 +1,7 @@
 // Set SVG parameters
 const width2 = 450,
       height2 = 300;
-const svg2 = d3.select("#signatory-map")
+const svg2 = d3.select("#law-policy-map")
    .append("svg")
      .attr("width", "100%")
      .attr("height", "100%")
