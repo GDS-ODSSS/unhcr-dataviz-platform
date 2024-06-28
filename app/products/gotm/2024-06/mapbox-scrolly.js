@@ -106,7 +106,7 @@ function mapInit(mapId, storyId, config) {
     });
 
     // Add zoom and rotation controls to the map.
-    mapInstance.addControl(new mapboxgl.NavigationControl());
+    // mapInstance.addControl(new mapboxgl.NavigationControl());
 
     var marker = new mapboxgl.Marker();
     if (config.showMarkers) {
