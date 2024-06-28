@@ -7,7 +7,7 @@ var config1 = {
     theme: 'light',
     projection: 'naturalEarth', 
     use3dTerrain: false,
-    auto: false,
+    auto: true,
     title: '',
     subtitle: '',
     byline: '',
@@ -23,6 +23,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -58,6 +59,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -93,6 +95,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -129,6 +132,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -154,39 +158,39 @@ var config1 = {
                 },
               ]
         },
-        {
-            id: 'chap-4',
-            alignment: 'left',
-            hidden: false,
-            title: '',
-            image: '',
-            description: '<p>Some States are also hesitant to provide refugees with their full rights related to public education and maintain reservations to Article 22. This may include limitations to access secondary education, the recognition of certificates, and opportunities for refugees to finance their studies. This may affect refugees’ ability to build their future and lead independent lives.</p><figure class="figure mt-4 mb-0"><img src="RF1265680_20220913_DAFI-MEX_TARDY_0086.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Roxana, 23 years old, from Maracaibo in northwestern Venezuela, is a final-year BA student of Accounting at the University of Guanajuato, in Mexico, on a DAFI scholarship.<br>©UNHCR/Antoine Tardy</figcaption></figure>',
-            location: {
-                center: [20, 20],
-                zoom: 1.7,
-                pitch: 0.00,
-                bearing: 0.00
-                // flyTo additional controls-
-                // These options control the flight curve, making it move
-                // slowly and zoom out almost completely before starting
-                // to pan.
-                //speed: 2, // make the flying slow
-                //curve: 1, // change the speed at which it zooms out
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [
-                {
+        // {
+        //     id: 'chap-4',
+        //     alignment: 'left',
+        //     hidden: false,
+        //     title: '',
+        //     image: '',
+        //     description: '<p>Some States are also hesitant to provide refugees with their full rights related to public education and maintain reservations to Article 22. This may include limitations to access secondary education, the recognition of certificates, and opportunities for refugees to finance their studies. This may affect refugees’ ability to build their future and lead independent lives.</p><figure class="figure mt-4 mb-0"><img src="RF1265680_20220913_DAFI-MEX_TARDY_0086.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Roxana, 23 years old, from Maracaibo in northwestern Venezuela, is a final-year BA student of Accounting at the University of Guanajuato, in Mexico, on a DAFI scholarship.<br>©UNHCR/Antoine Tardy</figcaption></figure>',
+        //     location: {
+        //         center: [20, 20],
+        //         zoom: 1.7,
+        //         pitch: 0.00,
+        //         bearing: 0.00
+        //         // flyTo additional controls-
+        //         // These options control the flight curve, making it move
+        //         // slowly and zoom out almost completely before starting
+        //         // to pan.
+        //         //speed: 2, // make the flying slow
+        //         //curve: 1, // change the speed at which it zooms out
+        //     },
+        //     mapAnimation: 'flyTo',
+        //     rotateAnimation: false,
+        //     callback: '',
+        //     onChapterEnter: [
+        //         {
 
-                },
-              ],
-              onChapterExit: [
-                {
+        //         },
+        //       ],
+        //       onChapterExit: [
+        //         {
 
-                },
-              ]
-        },
+        //         },
+        //       ]
+        // },
         {
             id: 'chap-5',
             alignment: 'left',
@@ -197,6 +201,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -252,6 +257,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.5,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -288,6 +294,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.5,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -326,6 +333,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
+                mobileZoom: 0.5,
                 pitch: 0,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -362,6 +370,7 @@ var config2 = {
             location: {
                 center: [37.50825, 0.47116],
                 zoom: 5,
+                mobileZoom: 4,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -392,6 +401,7 @@ var config2 = {
             location: {
                 center: [-5.43782, 7.01636],
                 zoom: 5.8,
+                mobileZoom: 5.2,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -422,6 +432,7 @@ var config2 = {
             location: {
                 center: [18.40685, 15.17010],
                 zoom: 4.5,
+                mobileZoom: 4,
                 pitch: 0.00,
                 bearing: 0.00
             },
@@ -451,6 +462,7 @@ var config2 = {
             location: {
                 center: [-8.07265, 11.06195],
                 zoom: 4,
+                mobileZoom: 3.5,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -487,6 +499,7 @@ var config2 = {
             location: {
                 center: [-73.89097, 4.34697],
                 zoom: 4.5,
+                mobileZoom: 4,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
