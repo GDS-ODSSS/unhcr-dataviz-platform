@@ -23,7 +23,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -59,7 +59,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -95,7 +95,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -132,7 +132,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -201,7 +201,7 @@ var config1 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -257,7 +257,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -294,7 +294,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0.00,
                 bearing: 0.00
                 // flyTo additional controls-
@@ -333,7 +333,7 @@ var config2 = {
             location: {
                 center: [20, 20],
                 zoom: 1.7,
-                mobileZoom: 0.3,
+                mobileZoom: 0.2,
                 pitch: 0,
                 bearing: 0.00
                 // flyTo additional controls-
