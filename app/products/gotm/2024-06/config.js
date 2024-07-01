@@ -158,39 +158,42 @@ var config1 = {
                 },
               ]
         },
-        // {
-        //     id: 'chap-4',
-        //     alignment: 'left',
-        //     hidden: false,
-        //     title: '',
-        //     image: '',
-        //     description: '<p>Some States are also hesitant to provide refugees with their full rights related to public education and maintain reservations to Article 22. This may include limitations to access secondary education, the recognition of certificates, and opportunities for refugees to finance their studies. This may affect refugees’ ability to build their future and lead independent lives.</p><figure class="figure mt-4 mb-0"><img src="RF1265680_20220913_DAFI-MEX_TARDY_0086.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Roxana, 23 years old, from Maracaibo in northwestern Venezuela, is a final-year BA student of Accounting at the University of Guanajuato, in Mexico, on a DAFI scholarship.<br>©UNHCR/Antoine Tardy</figcaption></figure>',
-        //     location: {
-        //         center: [20, 20],
-        //         zoom: 1.7,
-        //         pitch: 0.00,
-        //         bearing: 0.00
-        //         // flyTo additional controls-
-        //         // These options control the flight curve, making it move
-        //         // slowly and zoom out almost completely before starting
-        //         // to pan.
-        //         //speed: 2, // make the flying slow
-        //         //curve: 1, // change the speed at which it zooms out
-        //     },
-        //     mapAnimation: 'flyTo',
-        //     rotateAnimation: false,
-        //     callback: '',
-        //     onChapterEnter: [
-        //         {
-
-        //         },
-        //       ],
-        //       onChapterExit: [
-        //         {
-
-        //         },
-        //       ]
-        // },
+        {
+            id: 'chap-4',
+            alignment: 'left',
+            hidden: false,
+            title: '',
+            image: '',
+            description: '<p>Some States are also hesitant to provide refugees with their full rights related to public education and maintain reservations to Article 22. This may include limitations to access secondary education, the recognition of certificates, and opportunities for refugees to finance their studies. This may affect refugees’ ability to build their future and lead independent lives.</p><figure class="figure mt-4 mb-0"><img src="RF1265680_20220913_DAFI-MEX_TARDY_0086.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Roxana, 23 years old, from Maracaibo in northwestern Venezuela, is a final-year BA student of Accounting at the University of Guanajuato, in Mexico, on a DAFI scholarship.<br>©UNHCR/Antoine Tardy</figcaption></figure>',
+            location: {
+                center: [20, 20],
+                zoom: 1.7,
+                mobileZoom: 0.1,
+                pitch: 0.00,
+                bearing: 0.00
+                // flyTo additional controls-
+                // These options control the flight curve, making it move
+                // slowly and zoom out almost completely before starting
+                // to pan.
+                //speed: 2, // make the flying slow
+                //curve: 1, // change the speed at which it zooms out
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                    layer: 'rimap-public-education',
+                    opacity: 1
+                },
+              ],
+              onChapterExit: [
+                {
+                    layer: 'rimap-public-education',
+                    opacity: 0
+                },
+              ]
+        },
         {
             id: 'chap-5',
             alignment: 'left',
