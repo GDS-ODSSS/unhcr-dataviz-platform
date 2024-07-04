@@ -128,7 +128,7 @@ var config1 = {
             hidden: false,
             title: '',
             image: '',
-            description: '<p>Some States made reservations to providing administrative assistance to refugees (Article 25). This is an important right specific to the situation of refugees because they are unable to access administrative services, such as the issuance of documents, by their countries of origin. </p><figure class="figure mt-4 mb-0"><img src="RF1288385_ABR03191.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Sediqa Danish Nawrozi, a 29-year-old Afghan refugee works as an intercultural mediator in the small city of Fundão in eastern Portugal with an organization called MEDEIA. Sediqa helps her fellow Afghans to secure crucial documentation, access services and connect them with job opportunities.<br>©UNHCR/Ana Brigida</figcaption></figure>',
+            description: '<p>Some States made reservations to providing administrative assistance to refugees (Article 25). This is an important right specific to the situation of refugees because they are unable to access administrative services, such as the issuance of documents, from their countries of origin. </p><figure class="figure mt-4 mb-0"><img src="RF1288385_ABR03191.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Sediqa Danish Nawrozi, a 29-year-old Afghan refugee works as an intercultural mediator in the small city of Fundão in eastern Portugal with an organization called MEDEIA. Sediqa helps her fellow Afghans to secure crucial documentation, access services and connect them with job opportunities.<br>©UNHCR/Ana Brigida</figcaption></figure>',
             location: {
                 center: [20, 20],
                 zoom: 1.7,
@@ -369,7 +369,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In early 2024, Kenya has brought its legal framework further in line with international and regional legal standards by adopting regulations implementing its 2021 Refugees Act, which will have a positive impact on the lives of refugees and asylum-seekers in the country.<figure class="figure mt-4 mb-0"><img src="RF1355903_206A9859.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Deline with her friend Said Mohamed a 30-year-old business man from Somalia in Kakuma refugee camp at his shop.<br>©UNHCR/Charity Nzomo</figcaption></figure>',
+            description: 'As an example, in early 2024, Kenya has brought its legal framework further in line with international and regional legal standards by adopting regulations implementing its 2021 Refugees Act, which will have a positive impact on the lives of refugees and asylum-seekers in the country.<figure class="figure mt-4 mb-0"><img src="RF1355903_206A9859.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Deline with her friend Said Mohamed a 30-year-old business man from Somalia in Kakuma refugee camp at his shop.<br>©UNHCR/Charity Nzomo</figcaption></figure>',
             location: {
                 center: [37.50825, 0.47116],
                 zoom: 5,
@@ -400,7 +400,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In 2023, Côte d’Ivoire adopted its first national law on asylum. Positively, the law promotes the non-penalization of illegal entry, facilitates family reunification for refugees, foresees the issuance of biometric identity cards for refugees serving as residence permits and reiterates several essential rights for refugees, including the right to education and work.<figure class="figure mt-4 mb-0"><img src="RF1290985_DSC05508.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Gbetibwa Gode in her shop in Koumassi market, where she sells shoes, clothes and accessories.<br>©UNHCR/Lath Divia Kibangou</figcaption></figure>',
+            description: 'As another example, in 2023, Côte d’Ivoire adopted its first national law on asylum. Positively, the law promotes the non-penalization of illegal entry, facilitates family reunification for refugees, foresees the issuance of biometric identity cards for refugees serving as residence permits and reiterates several essential rights for refugees, including the right to education and work.<figure class="figure mt-4 mb-0"><img src="RF1290985_DSC05508.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Gbetibwa Gode in her shop in Koumassi market, where she sells shoes, clothes and accessories.<br>©UNHCR/Lath Divia Kibangou</figcaption></figure>',
             location: {
                 center: [-5.43782, 7.01636],
                 zoom: 5.8,

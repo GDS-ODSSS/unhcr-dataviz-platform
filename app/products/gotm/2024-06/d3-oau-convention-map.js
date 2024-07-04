@@ -30,8 +30,8 @@ const line = svg.append("g");
 
 // declare URL
 const dataURL = "oau_convention.csv";
-const polygonsURL = "afr_poly.topojson";
-const polylinesURL = "afr_line.topojson";
+const polygonsURL = "afr_poly.json";
+const polylinesURL = "afr_line.json";
 
 // load data
 const promises = [
