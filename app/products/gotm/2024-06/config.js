@@ -293,7 +293,7 @@ var config2 = {
             hidden: false,
             title: '',
             image: '',
-            description: ' At least 114 countries and territories have secondary instruments in place that relate to the protection of refugees and asylum-seekers. This includes legislative, executive or judicial instruments that are legally binding, are based on primary laws and regulate refugee protection issues.',
+            description: ' At least 118 countries and territories have secondary instruments in place that relate to the protection of refugees and asylum-seekers. This includes legislative, executive or judicial instruments that are legally binding, are based on primary laws and regulate refugee protection issues.',
             location: {
                 center: [20, 20],
                 zoom: 1.7,
