@@ -38,6 +38,19 @@
   z-index: 1;
 }
 
+/* .timeline-body::after {
+  content: '';
+  background: inherit;
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  position: absolute;
+  left: -.5rem;
+  top: 1.2rem;
+  transform: rotate(45deg);
+  border-radius: 0 0 0 2px;
+} */
+
 .timeline-body:last-child,
 .timeline-body > :last-child {
   margin-bottom: 0;
@@ -52,132 +65,6 @@
   font-size: 1.1rem;
   margin-bottom: 0;
 }
-
-/* .timeline-section {
-    background-color: rgb(241, 239, 239);
-    padding: 0;
-}
-
-.top-section {
-    text-align: center;
-    padding: 4rem 0;
-    max-width: 40rem;
-    margin: 0 auto;
-}
-
-.timeline {
-    position: relative;
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-
-.timeline h3 {
-    color: #0072BC;
-    margin-top: 0;
-}
-
-.line {
-    background-color: #0072BC;
-    position: absolute;
-    padding: 4rem 0;
-    left: 2%;
-    width: 2px;
-    top: 0;
-    bottom: 0;
-    transform: translateX(-50%);
-}
-
-.line::before,
-.line::after {
-    content: "";
-    background-color: #0072BC;
-    position: absolute;
-    height: 1rem;
-    width: 1rem;
-    border-radius: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.line::before {
-    top: 0rem;
-}
-
-.line::after {
-    bottom: 0rem;
-}
-
-.timeline-content {
-    display: flex;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 3rem;
-    margin-left: 1.7rem;
-    padding: 0.5rem;
-    background-color: rgb(241, 239, 239);
-    border-radius: 0;
-    min-height: 10rem;
-    align-items: center;
-    opacity: 0;
-}
-
-.timeline-content:nth-child(odd) {
-    flex-direction: row-reverse;
-    text-align: left;
-}
-
-.timeline-content:nth-child(even) {
-    text-align: left;
-}
-
-.timeline-content:nth-last-child(1) {
-    margin-bottom: 0;
-}
-
-.bead {
-    position: absolute;
-    height: 0.7rem;
-    width: 0.7rem;
-    border-radius: 50%;
-    
-    background-color: #0072BC;
-    left: 0%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.content {
-    width: calc(50%);
-    background: rgb(255, 255, 255);
-    border-radius: 6px;
-    box-shadow: 0px 0px 7px 0px #dcdcdc;
-    padding: .7rem;
-}
-
-@media (max-width: 768px) {
-    .timeline-content:nth-child(odd),
-    .timeline-content:nth-child(even) {
-        text-align: left;
-    }
-    .content {
-        width: 100%;
-    }
-    .bead {
-        background-color: transparent;
-    }
-    .arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0.5rem 0.5rem 0 0.5rem;
-    border-color: #0072BC transparent transparent transparent;
-    left: 50%;
-    top: 120%;
-    transform: translate(-50%, -50%);
-    }
-} */
 
 
 /* mapbox-scrolly */
