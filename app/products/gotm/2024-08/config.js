@@ -178,10 +178,10 @@ var config1 = {
                 //curve: 1, // change the speed at which it zooms out
             },
             mapAnimation: 'flyTo',
-            rotateAnimation: false,
+            rotateAnimation: true,
             callback: '',
             onChapterEnter: [
-                
+
               ],
               onChapterExit: [
 
