@@ -38,15 +38,13 @@ var config1 = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: '',
-                    opacity: 1
-                },
-              ],
-              onChapterExit: [
-                {
-                    layer: '',
+                    layer: 'hti-ipc-phase',
                     opacity: 0
                 },
+
+              ],
+              onChapterExit: [
+
               ]
         },
         {
@@ -96,8 +94,8 @@ var config1 = {
                 center: [-72.55437, 19.01535],
                 zoom: 6.5,
                 mobileZoom: 0.1,
-                pitch: 0.00,
-                bearing: 0.00
+                pitch: 0,
+                bearing: 0
                 // flyTo additional controls-
                 // These options control the flight curve, making it move
                 // slowly and zoom out almost completely before starting
@@ -163,6 +161,36 @@ var config1 = {
             id: 'chap-4',
             alignment: 'left',
             hidden: false,
+            title: 'Text without data layer',
+            image: '',
+            description: '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
+            location: {
+                center: [-72.55437, 19.01535],
+                zoom: 6.5,
+                mobileZoom: 0.1,
+                pitch: 90,
+                bearing: 0.00
+                // flyTo additional controls-
+                // These options control the flight curve, making it move
+                // slowly and zoom out almost completely before starting
+                // to pan.
+                //speed: 2, // make the flying slow
+                //curve: 1, // change the speed at which it zooms out
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                
+              ],
+              onChapterExit: [
+
+              ]
+        },
+        {
+            id: 'chap-5',
+            alignment: 'left',
+            hidden: false,
             title: 'IDP',
             image: '',
             description: '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
@@ -192,6 +220,43 @@ var config1 = {
               onChapterExit: [
                 {
                     layer: 'hti-adm2-point-idp',
+                    opacity: 0
+                },
+              ]
+        },
+        {
+            id: 'chap-6',
+            alignment: 'left',
+            hidden: false,
+            title: 'Access',
+            image: '',
+            description: '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
+            location: {
+                center: [-72.55437, 19.01535],
+                zoom: 6.5,
+                mobileZoom: 0.1,
+                pitch: 0.00,
+                bearing: 0.00
+                // flyTo additional controls-
+                // These options control the flight curve, making it move
+                // slowly and zoom out almost completely before starting
+                // to pan.
+                //speed: 2, // make the flying slow
+                //curve: 1, // change the speed at which it zooms out
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                    layer: 'hti-adm2-poly-access',
+                    opacity: 0.4
+                }
+                
+              ],
+              onChapterExit: [
+                {
+                    layer: 'hti-adm2-poly-access',
                     opacity: 0
                 },
               ]
