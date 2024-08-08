@@ -14,7 +14,7 @@
 	visibility: hidden;
   }
   .centered {
-	width: 50vw;
+	width: 33vw;
 	margin: 0 auto;
   }
   .lefty {
@@ -61,6 +61,21 @@
   .light{
 	box-shadow: 0 3px 14px 0 rgba(0, 0, 0, .14), 0 5px 5.5px 0 rgba(0, 0, 0, .12);
   }
+
+.legend,
+.legend h5 {
+  font-size: .875rem;
+}
+
+.legend-category span {
+  width: 1.5rem; 
+  height: 1rem; 
+  margin-right: .5rem; 
+  display: inline-block; 
+  vertical-align: text-top; 
+  opacity: .7;
+}
+
   @media (max-width: 992px) {
 	.centered, .lefty, .righty, .fully {
 		width: 90vw;
