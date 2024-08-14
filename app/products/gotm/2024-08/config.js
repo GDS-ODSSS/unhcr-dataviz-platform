@@ -314,10 +314,18 @@ var config1 = {
           layer: 'hti-route-region',
           opacity: .7
         },
+        {
+          layer: 'hti-route-arrow',
+          opacity: .7
+        },
       ],
       onChapterExit: [
         {
           layer: 'hti-route-region',
+          opacity: 0
+        },
+        {
+          layer: 'hti-route-arrow',
           opacity: 0
         },
       ]
