@@ -8,7 +8,7 @@ var config1 = {
   projection: 'naturalEarth',
   use3dTerrain: false,
   auto: false,
-  title: '',
+  title: 'This is a long title',
   subtitle: '',
   byline: '',
   footer: '',
@@ -71,12 +71,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -117,12 +111,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -161,12 +149,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -198,12 +180,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -237,12 +213,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -282,12 +252,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -313,12 +277,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -339,24 +297,8 @@ var config1 = {
         animationSpeed: 120 
       },
       onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
       ],
       onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
       ]
     },
     {
@@ -372,18 +314,10 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [],
-      onChapterExit: [],
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['sea_route_1.json'],
@@ -392,7 +326,9 @@ var config1 = {
         iconImage: ['boat'],
         iconSize: 1
       },
-      animationSpeed: 100
+      animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
     },
     {
       id: 'chap-9',
@@ -407,18 +343,10 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [],
-      onChapterExit: [],
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['air_route_1.json'],
@@ -428,6 +356,8 @@ var config1 = {
         iconSize: 1
       },
       animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
     },
     {
       id: 'chap-10',
@@ -442,18 +372,10 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [],
-      onChapterExit: [],
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['land_route_1.json'],
@@ -463,6 +385,8 @@ var config1 = {
         iconSize: 1
       },
       animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
     },
     {
       id: 'chap-11',
@@ -477,12 +401,6 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
@@ -513,36 +431,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
     {
       id: 'chap-13',
@@ -557,36 +451,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
     {
       id: 'chap-14',
@@ -601,36 +471,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
     {
       id: 'chap-15',
@@ -645,36 +491,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
     {
       id: 'chap-16',
@@ -689,36 +511,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
     {
       id: 'chap-17',
@@ -733,36 +531,12 @@ var config1 = {
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
-        // flyTo additional controls-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        //speed: 2, // make the flying slow
-        //curve: 1, // change the speed at which it zooms out
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: .7
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: .7
-        // },
-      ],
-      onChapterExit: [
-        // {
-        //   layer: 'hti-route-region',
-        //   opacity: 0
-        // },
-        // {
-        //   layer: 'hti-route-arrow',
-        //   opacity: 0
-        // },
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
   ]]
 };

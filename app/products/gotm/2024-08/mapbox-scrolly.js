@@ -400,6 +400,15 @@ function mapInit(mapId, storyId, config) {
         
         
 
+        let currentDashAnimation = null;
+        let currentPointAnimation = null;
+        let hasScrolled = false; // Track if the user has scrolled
+    
+        // Listen for scroll events to set hasScrolled to true
+        window.addEventListener('scroll', () => {
+            hasScrolled = true;
+        });
+    
         mapScroller.setup({
             step: `#${storyId} .mapstep`,
             offset: 0.75,
@@ -407,40 +416,68 @@ function mapInit(mapId, storyId, config) {
         })
         .onStepEnter(async ({ element }) => {
             const currentChapter = config.chapters[0].find(chap => chap.id === element.id);
+    
+            // Prevent animations from starting on initial load before scrolling
+            if (!hasScrolled) {
+                return;
+            }
+    
+            // Fly to the current chapter location
             mapInstance.flyTo(currentChapter.location);
-
+    
+            // Show marker if required
             if (config.showMarkers) {
                 marker.setLngLat(currentChapter.location.center);
             }
-
+    
+            // Start dash animation only when this chapter is active
             if (currentChapter.triggerDashAnimation && currentChapter.dashAnimationConfig) {
-                const cleanupDash = setupDashAnimation(currentChapter.dashAnimationConfig);
-                element.cleanupDash = cleanupDash;
+                if (currentDashAnimation) {
+                    currentDashAnimation();  // Cleanup previous animation if any
+                }
+                currentDashAnimation = setupDashAnimation(currentChapter.dashAnimationConfig);
             }
-
+    
+            // Start point animation only when this chapter is active
             if (currentChapter.triggerPointAnimation && currentChapter.pointAnimationConfig) {
-                const cleanupPoints = await setupPointAnimation(currentChapter.pointAnimationConfig);
-                element.cleanupPoints = cleanupPoints;
+                if (currentPointAnimation) {
+                    currentPointAnimation();  // Cleanup previous animation if any
+                }
+                currentPointAnimation = await setupPointAnimation(currentChapter.pointAnimationConfig);
             }
-
+    
+            // Handle onChapterEnter events for opacity changes
             if (currentChapter.onChapterEnter) {
                 currentChapter.onChapterEnter.forEach(layer => setLayerOpacity(mapInstance, layer));
             }
-
+    
+            // Custom callback function
             if (currentChapter.callback && typeof window[currentChapter.callback] === 'function') {
                 window[currentChapter.callback]();
             }
+    
+            element.classList.add('active');
         })
         .onStepExit(({ element }) => {
-            element.classList.remove('active');
             const currentChapter = config.chapters[0].find(chap => chap.id === element.id);
-
-            if (element.cleanupDash) element.cleanupDash();
-            if (element.cleanupPoints) element.cleanupPoints();
-
+    
+            // Cleanup dash and point animations when leaving the chapter
+            if (currentDashAnimation) {
+                currentDashAnimation();
+                currentDashAnimation = null;
+            }
+    
+            if (currentPointAnimation) {
+                currentPointAnimation();
+                currentPointAnimation = null;
+            }
+    
+            // Handle onChapterExit events for opacity changes
             if (currentChapter.onChapterExit) {
                 currentChapter.onChapterExit.forEach(layer => setLayerOpacity(mapInstance, layer));
             }
+    
+            element.classList.remove('active');
         });
     }
 
