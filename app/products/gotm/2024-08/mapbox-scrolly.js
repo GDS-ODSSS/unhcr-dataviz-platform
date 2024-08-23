@@ -1,5 +1,5 @@
 function mapInit(mapId, storyId, config) {
-    var layerTypes = {
+    const layerTypes = {
         'fill': ['fill-opacity'],
         'line': ['line-opacity'],
         'circle': ['circle-opacity', 'circle-stroke-opacity'],
@@ -9,170 +9,480 @@ function mapInit(mapId, storyId, config) {
         'heatmap': ['heatmap-opacity']
     };
 
-    var alignments = {
+    const alignments = {
         'left': 'lefty',
         'center': 'centered',
         'right': 'righty',
         'full': 'fully'
     };
 
-    function getLayerPaintType(mapInstance, layer) {
-        var mapLayer = mapInstance.getLayer(layer);
-        if (!mapLayer) return [];
-        var layerType = mapLayer.type;
-        return layerTypes[layerType] || [];
+    function getLayerPaintType(mapInstance, layerId) {
+        const mapLayer = mapInstance.getLayer(layerId);
+        return mapLayer ? layerTypes[mapLayer.type] || [] : [];
     }
 
     function setLayerOpacity(mapInstance, layer) {
-        var paintProps = getLayerPaintType(mapInstance, layer.layer);
-        paintProps.forEach(function(prop) {
-            var options = {};
-            if (layer.duration) {
-                var transitionProp = prop + "-transition";
-                options = { "duration": layer.duration };
-                mapInstance.setPaintProperty(layer.layer, transitionProp, options);
-            }
+        const paintProps = getLayerPaintType(mapInstance, layer.layer);
+        paintProps.forEach(prop => {
+            const transitionProp = `${prop}-transition`;
+            const options = layer.duration ? { duration: layer.duration } : {};
+            mapInstance.setPaintProperty(layer.layer, transitionProp, options);
             mapInstance.setPaintProperty(layer.layer, prop, layer.opacity, options);
         });
     }
 
-    var storyContainer = document.getElementById(storyId);
-    var features = document.createElement('div');
-    features.setAttribute('id', 'features');
+    function createChapterElement(record, idx) {
+        const container = document.createElement('div');
+        container.setAttribute('id', record.id);
+        container.classList.add('mapstep', alignments[record.alignment] || 'centered');
+        if (idx === 0) container.classList.add('active');
+        if (record.hidden) container.classList.add('hidden');
 
-    if (config.chapters && config.chapters[0]) {
-        config.chapters[0].forEach((record, idx) => {
-            const container = document.createElement('div');
-            const chapter = document.createElement('div');
+        const chapter = document.createElement('div');
+        chapter.classList.add(config.theme);
 
-            if (record.title) {
-                const title = document.createElement('h3');
-                title.innerText = record.title;
-                chapter.appendChild(title);
+        if (record.title) {
+            const title = document.createElement('h3');
+            title.innerText = record.title;
+            chapter.appendChild(title);
+        }
+
+        if (record.image) {
+            const image = new Image();
+            image.src = record.image;
+            chapter.appendChild(image);
+        }
+
+        if (record.description) {
+            const story = document.createElement('div');
+            story.innerHTML = record.description;
+            story.classList.add('story-paragraph');
+            chapter.appendChild(story);
+        }
+
+        container.appendChild(chapter);
+        return container;
+    }
+
+    function setupScroller(mapInstance, mapScroller, marker) {
+        const layers = mapInstance.getStyle().layers;
+        const firstSymbolId = layers.find(layer => layer.type === 'symbol')?.id;
+
+
+        function setupDashAnimation(dashConfig) {
+            const cleanupFunctions = [];
+    
+            dashConfig.geojson.forEach((geojsonUrl, index) => {
+                const sourceId = `line-source-${index}`;
+                const backgroundId = `line-background-${index}`;
+                const layerId = `line-dashed-${index}`;
+    
+                mapInstance.addSource(sourceId, {
+                    type: 'geojson',
+                    data: geojsonUrl
+                });
+
+                // mapInstance.addLayer({
+                //     type: 'line',
+                //     source: sourceId,
+                //     id: backgroundId,
+                //     paint: {
+                //         'line-color': dashConfig.lineColor,
+                //         'line-width': dashConfig.lineWidth,
+                //         'line-opacity': 0.3
+                //     }
+                // },firstSymbolId);
+    
+                mapInstance.addLayer({
+                    type: 'line',
+                    source: sourceId,
+                    id: layerId,
+                    paint: {
+                        'line-color': dashConfig.lineColor,
+                        'line-width': dashConfig.lineWidth,
+                        'line-dasharray': dashConfig.lineDasharray
+                    }
+                }, firstSymbolId);
+    
+                let dashStep = 0;
+                let dashAnimating = true;
+    
+                function animateDashArray() {
+                    const newStep = Math.floor((performance.now() / dashConfig.animationSpeed) % dashConfig.dashArraySequence.length);
+                    if (newStep !== dashStep) {
+                        mapInstance.setPaintProperty(layerId, 'line-dasharray', dashConfig.dashArraySequence[dashStep]);
+                        dashStep = newStep;
+                    }
+                    if (dashAnimating) requestAnimationFrame(animateDashArray);
+                }
+    
+                animateDashArray();
+    
+                cleanupFunctions.push(() => {
+                    dashAnimating = false;
+                    mapInstance.removeLayer(layerId);
+                    mapInstance.removeSource(sourceId);
+                });
+            });
+    
+            return () => {
+                cleanupFunctions.forEach(cleanup => cleanup());
+            };
+        }
+
+        // function setupPointAnimation(pointConfig) {
+        //     const cleanupFunctions = [];
+        //     const colors = pointConfig.lineColor || ['#000000'];
+        //     const icons = pointConfig.iconImage || ['circle'];
+        //     const animationSpeed = pointConfig.animationSpeed || 4000; // Speed in milliseconds
+        
+        //     const points = [];
+        
+        //     const loadAndAnimatePoints = (geojsonUrl, index) => {
+        //         return fetch(geojsonUrl)
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 data.features.forEach((feature, idx) => {
+        //                     const routeSourceId = `route${index}-${idx}`;
+        //                     const pointSourceId = `point${index}-${idx}`;
+        //                     const color = colors[index % colors.length];
+        //                     const icon = icons[index % icons.length];
+        
+        //                     // Add route line source and layer
+        //                     mapInstance.addSource(routeSourceId, { type: 'geojson', data: feature });
+        //                     mapInstance.addLayer({
+        //                         id: routeSourceId,
+        //                         source: routeSourceId,
+        //                         type: 'line',
+        //                         paint: {
+        //                             'line-width': pointConfig.lineWidth || 2,
+        //                             'line-color': color
+        //                         }
+        //                     }, firstSymbolId);
+        
+        //                     // Initialize point at the first coordinate of the route
+        //                     const pointFeature = {
+        //                         type: 'FeatureCollection',
+        //                         features: [{
+        //                             type: 'Feature',
+        //                             properties: { bearing: 0 },
+        //                             geometry: { type: 'Point', coordinates: feature.geometry.coordinates[0] }
+        //                         }]
+        //                     };
+        
+        //                     points.push(pointFeature);
+        
+        //                     // Add point source and layer
+        //                     mapInstance.addSource(pointSourceId, { type: 'geojson', data: pointFeature });
+        //                     mapInstance.addLayer({
+        //                         id: pointSourceId,
+        //                         source: pointSourceId,
+        //                         type: 'symbol',
+        //                         layout: {
+        //                             'icon-image': icon,
+        //                             'icon-size': pointConfig.iconSize || 1,
+        //                             'icon-rotate': ['get', 'bearing'],
+        //                             'icon-rotation-alignment': 'map',
+        //                             'icon-allow-overlap': true,
+        //                             'icon-ignore-placement': true
+        //                         }
+        //                     });
+        
+        //                     // Animate the point along the route
+        //                     const route = feature.geometry.coordinates;
+        //                     let counter = 0;
+        
+        //                     const segmentDuration = animationSpeed / (route.length - 1); // Duration for each segment
+        
+        //                     function animatePoint() {
+        //                         if (counter >= route.length - 1) {
+        //                             return; // Stop animation if end of route
+        //                         }
+        
+        //                         const start = route[counter];
+        //                         const end = route[counter + 1];
+        //                         if (!start || !end) {
+        //                             return; // Ensure valid coordinates
+        //                         }
+        
+        //                         const startTime = performance.now(); // Start time of the animation for this segment
+        
+        //                         function animateSegment(time) {
+        //                             const elapsed = time - startTime;
+        //                             const progress = Math.min(elapsed / segmentDuration, 1);
+        
+        //                             const lng = start[0] + (end[0] - start[0]) * progress;
+        //                             const lat = start[1] + (end[1] - start[1]) * progress;
+        
+        //                             pointFeature.features[0].geometry.coordinates = [lng, lat];
+        //                             pointFeature.features[0].properties.bearing = turf.bearing(turf.point(start), turf.point(end));
+        //                             mapInstance.getSource(pointSourceId).setData(pointFeature);
+        
+        //                             if (progress < 1) {
+        //                                 requestAnimationFrame(animateSegment);
+        //                             } else {
+        //                                 counter += 1;
+        //                                 if (counter < route.length - 1) {
+        //                                     animatePoint(); // Continue to next segment
+        //                                 }
+        //                             }
+        //                         }
+        
+        //                         requestAnimationFrame(animateSegment);
+        //                     }
+        
+        //                     animatePoint();
+        
+        //                     // Cleanup function to remove sources and layers
+        //                     cleanupFunctions.push(() => {
+        //                         mapInstance.removeLayer(routeSourceId);
+        //                         mapInstance.removeSource(routeSourceId);
+        //                         mapInstance.removeLayer(pointSourceId);
+        //                         mapInstance.removeSource(pointSourceId);
+        //                     });
+        //                 });
+        //             })
+        //             .catch(error => console.error('Error loading GeoJSON:', error));
+        //     };
+        
+        //     // Load and animate points for each geojson
+        //     return Promise.all(pointConfig.geojson.map(loadAndAnimatePoints)).then(() => {
+        //         return () => {
+        //             cleanupFunctions.forEach(cleanup => cleanup());
+        //         };
+        //     });
+        // }
+
+        function setupPointAnimation(pointConfig) {
+            const cleanupFunctions = [];
+            const colors = pointConfig.lineColor || ['#000000'];
+            const icons = pointConfig.iconImage || ['circle'];
+            const animationSpeed = pointConfig.animationSpeed || 4000; // Speed in milliseconds
+        
+            const points = [];
+        
+            const loadAndAnimatePoints = (geojsonUrl, index) => {
+                return fetch(geojsonUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.features.forEach((feature, idx) => {
+                            const routeSourceId = `route${index}-${idx}`;
+                            const pointSourceId = `point${index}-${idx}`;
+                            const color = colors[index % colors.length];
+                            const icon = icons[index % icons.length];
+        
+                            // Add route line source and layer
+                            mapInstance.addSource(routeSourceId, { type: 'geojson', data: feature });
+                            mapInstance.addLayer({
+                                id: routeSourceId,
+                                source: routeSourceId,
+                                type: 'line',
+                                paint: {
+                                    'line-width': pointConfig.lineWidth || 2,
+                                    'line-color': color
+                                }
+                            }, firstSymbolId);
+        
+                            // Initialize point at the first coordinate of the route
+                            const pointFeature = {
+                                type: 'FeatureCollection',
+                                features: [{
+                                    type: 'Feature',
+                                    properties: { bearing: 0 },
+                                    geometry: { type: 'Point', coordinates: feature.geometry.coordinates[0] }
+                                }]
+                            };
+        
+                            points.push(pointFeature);
+        
+                            // Add point source and layer
+                            mapInstance.addSource(pointSourceId, { type: 'geojson', data: pointFeature });
+                            mapInstance.addLayer({
+                                id: pointSourceId,
+                                source: pointSourceId,
+                                type: 'symbol',
+                                layout: {
+                                    'icon-image': icon,
+                                    'icon-size': pointConfig.iconSize || 1,
+                                    'icon-rotate': ['get', 'bearing'],
+                                    'icon-rotation-alignment': 'map',
+                                    'icon-allow-overlap': true,
+                                    'icon-ignore-placement': true
+                                }
+                            });
+        
+                            // Animate the point along the route and extend the line dynamically
+                            const route = feature.geometry.coordinates;
+                            let counter = 0;
+        
+                            // Initialize an empty line feature for dynamic extension
+                            const animatedLine = {
+                                type: 'FeatureCollection',
+                                features: [{
+                                    type: 'Feature',
+                                    geometry: { type: 'LineString', coordinates: [route[0]] }
+                                }]
+                            };
+        
+                            // Update the source data for the animated line
+                            mapInstance.getSource(routeSourceId).setData(animatedLine);
+        
+                            const segmentDuration = animationSpeed / (route.length - 1); // Duration for each segment
+        
+                            function animatePoint() {
+                                if (counter >= route.length - 1) {
+                                    return; // Stop animation if end of route
+                                }
+        
+                                const start = route[counter];
+                                const end = route[counter + 1];
+                                if (!start || !end) {
+                                    return; // Ensure valid coordinates
+                                }
+        
+                                const startTime = performance.now(); // Start time of the animation for this segment
+        
+                                function animateSegment(time) {
+                                    const elapsed = time - startTime;
+                                    const progress = Math.min(elapsed / segmentDuration, 1);
+        
+                                    const lng = start[0] + (end[0] - start[0]) * progress;
+                                    const lat = start[1] + (end[1] - start[1]) * progress;
+        
+                                    pointFeature.features[0].geometry.coordinates = [lng, lat];
+                                    pointFeature.features[0].properties.bearing = turf.bearing(turf.point(start), turf.point(end));
+        
+                                    // Update the point's position
+                                    mapInstance.getSource(pointSourceId).setData(pointFeature);
+        
+                                    // Extend the animated line with the new point
+                                    animatedLine.features[0].geometry.coordinates.push([lng, lat]);
+                                    mapInstance.getSource(routeSourceId).setData(animatedLine);
+        
+                                    if (progress < 1) {
+                                        requestAnimationFrame(animateSegment);
+                                    } else {
+                                        counter += 1;
+                                        if (counter < route.length - 1) {
+                                            animatePoint(); // Continue to next segment
+                                        }
+                                    }
+                                }
+        
+                                requestAnimationFrame(animateSegment);
+                            }
+        
+                            animatePoint();
+        
+                            // Cleanup function to remove sources and layers
+                            cleanupFunctions.push(() => {
+                                mapInstance.removeLayer(routeSourceId);
+                                mapInstance.removeSource(routeSourceId);
+                                mapInstance.removeLayer(pointSourceId);
+                                mapInstance.removeSource(pointSourceId);
+                            });
+                        });
+                    })
+                    .catch(error => console.error('Error loading GeoJSON:', error));
+            };
+        
+            // Load and animate points for each geojson
+            return Promise.all(pointConfig.geojson.map(loadAndAnimatePoints)).then(() => {
+                return () => {
+                    cleanupFunctions.forEach(cleanup => cleanup());
+                };
+            });
+        }
+
+        // function setupBubbleAnimation(bubbleConfig){
+
+        // }
+        
+        
+
+        mapScroller.setup({
+            step: `#${storyId} .mapstep`,
+            offset: 0.75,
+            progress: true
+        })
+        .onStepEnter(async ({ element }) => {
+            const currentChapter = config.chapters[0].find(chap => chap.id === element.id);
+            mapInstance.flyTo(currentChapter.location);
+
+            if (config.showMarkers) {
+                marker.setLngLat(currentChapter.location.center);
             }
 
-            if (record.image) {
-                const image = new Image();
-                image.src = record.image;
-                chapter.appendChild(image);
+            if (currentChapter.triggerDashAnimation && currentChapter.dashAnimationConfig) {
+                const cleanupDash = setupDashAnimation(currentChapter.dashAnimationConfig);
+                element.cleanupDash = cleanupDash;
             }
 
-            if (record.description) {
-                const story = document.createElement('div');
-                story.innerHTML = record.description;
-                story.classList.add('story-paragraph');
-                chapter.appendChild(story);
+            if (currentChapter.triggerPointAnimation && currentChapter.pointAnimationConfig) {
+                const cleanupPoints = await setupPointAnimation(currentChapter.pointAnimationConfig);
+                element.cleanupPoints = cleanupPoints;
             }
 
-            container.setAttribute('id', record.id);
-            container.classList.add('mapstep');
-            if (idx === 0) {
-                container.classList.add('active');
+            if (currentChapter.onChapterEnter) {
+                currentChapter.onChapterEnter.forEach(layer => setLayerOpacity(mapInstance, layer));
             }
 
-            chapter.classList.add(config.theme);
-            container.appendChild(chapter);
-            container.classList.add(alignments[record.alignment] || 'centered');
-            if (record.hidden) {
-                container.classList.add('hidden');
+            if (currentChapter.callback && typeof window[currentChapter.callback] === 'function') {
+                window[currentChapter.callback]();
             }
-            features.appendChild(container);
+        })
+        .onStepExit(({ element }) => {
+            element.classList.remove('active');
+            const currentChapter = config.chapters[0].find(chap => chap.id === element.id);
+
+            if (element.cleanupDash) element.cleanupDash();
+            if (element.cleanupPoints) element.cleanupPoints();
+
+            if (currentChapter.onChapterExit) {
+                currentChapter.onChapterExit.forEach(layer => setLayerOpacity(mapInstance, layer));
+            }
         });
     }
+
+    // Initial setup
+    const storyContainer = document.getElementById(storyId);
+    const features = document.createElement('div');
+    features.setAttribute('id', 'features');
+
+    config.chapters[0].forEach((record, idx) => {
+        features.appendChild(createChapterElement(record, idx));
+    });
 
     storyContainer.appendChild(features);
 
     mapboxgl.accessToken = config.accessToken;
 
-    const transformRequest = (url) => {
-        const hasQuery = url.indexOf("?") !== -1;
-        const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
-        return {
-            url: url + suffix
-        };
-    };
-
-    var mapInstance = new mapboxgl.Map({
+    const mapInstance = new mapboxgl.Map({
         container: mapId,
         style: config.style[0],
         center: config.chapters[0][0].location.center,
         zoom: window.innerWidth < 960 ? config.chapters[0][0].location.mobileZoom : config.chapters[0][0].location.zoom,
         bearing: config.chapters[0][0].location.bearing,
         pitch: config.chapters[0][0].location.pitch,
-        interactive: true,  // Enable map interactions
-        scrollZoom: false,  // Disable scroll zoom
-        transformRequest: transformRequest,
+        interactive: true,
+        scrollZoom: false,
+        transformRequest: (url) => ({
+            url: url + (url.includes("?") ? "&" : "?") + "pluginName=scrollytellingV2"
+        }),
         projection: config.projection,
     });
 
-    // Add zoom and rotation controls to the map.
-    // mapInstance.addControl(new mapboxgl.NavigationControl());
+    const marker = config.showMarkers ? new mapboxgl.Marker().setLngLat(config.chapters[0][0].location.center).addTo(mapInstance) : null;
 
-    var marker = new mapboxgl.Marker();
-    if (config.showMarkers) {
-        marker.setLngLat(config.chapters[0][0].location.center).addTo(mapInstance);
-    }
+    const mapScroller = scrollama();
 
-    var mapScroller = scrollama();
-
-    mapInstance.on("load", function() {
-        mapScroller
-            .setup({
-                step: `#${storyId} .mapstep`, // Ensure correct selector for steps within the specific storyId
-                offset: 0.75,
-                progress: true
-            })
-            .onStepEnter(async response => {
-                const current_chapter = config.chapters[0].findIndex(chap => chap.id === response.element.id);
-                const chapter = config.chapters[0][current_chapter];
-
-                console.log(chapter)
-
-                // Set zoom level based on device width
-                chapter.location.zoom = window.innerWidth < 960 ? chapter.location.mobileZoom : chapter.location.zoom;
-                
-                console.log(chapter.location.zoom)
-
-                response.element.classList.add('active');
-                mapInstance[chapter.mapAnimation || 'flyTo'](chapter.location);
-
-                if (config.showMarkers) {
-                    marker.setLngLat(chapter.location.center);
-                }
-                if (chapter.onChapterEnter && chapter.onChapterEnter.length > 0) {
-                    chapter.onChapterEnter.forEach(layer => setLayerOpacity(mapInstance, layer));
-                }
-                if (chapter.callback && typeof window[chapter.callback] === 'function') {
-                    window[chapter.callback]();
-                }
-                if (chapter.rotateAnimation) {
-                    mapInstance.once('moveend', () => {
-                        const rotateNumber = mapInstance.getBearing();
-                        mapInstance.rotateTo(rotateNumber + 180, {
-                            duration: 30000,
-                            easing: function(t) {
-                                return t;
-                            }
-                        });
-                    });
-                }
-                if (config.auto) {
-                    document.querySelector(`#${storyId} [data-scrollama-index="0"]`).scrollIntoView();
-                }
-            })
-            .onStepExit(response => {
-                const chapter = config.chapters[0].find(chap => chap.id === response.element.id);
-                response.element.classList.remove('active');
-                if (chapter && chapter.onChapterExit && chapter.onChapterExit.length > 0) {
-                    chapter.onChapterExit.forEach(layer => setLayerOpacity(mapInstance, layer));
-                }
-            });
+    mapInstance.on("load", () => {
+        setupScroller(mapInstance, mapScroller, marker);
     });
 
     window.addEventListener('resize', mapScroller.resize);
 }
 
 
-// Initialize the maps
+// Initialize the map
 mapInit('map-1', 'story-1', config1);
-// mapInit('map-2', 'story-2', config2);  
