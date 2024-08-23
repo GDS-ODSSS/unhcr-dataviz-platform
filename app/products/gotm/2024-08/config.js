@@ -5,7 +5,7 @@ var config1 = {
   markerColor: '',
   inset: false,
   theme: 'light',
-  projection: '',
+  projection: 'naturalEarth',
   use3dTerrain: false,
   auto: false,
   title: '',
@@ -64,7 +64,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Over <strong class="text-primary">578,000 people</strong> have been forced to flee their homes due to gang violence and general insecurity, with the number of internally displaced persons (IDPs) doubling between 2022 and 2023. In the first five months of 2024 alone, more than 260,000 people were displaced. This displacement has occurred nationwide, but the majority of IDPs are concentrated in the West department, which includes the capital, Port-au-Prince.</p><div class="legend mb-3"><h5 class="legend-title">Number of IDP pe province</h5><div class="legend-category"><strong class="text-danger">Legend to be developped</strong></div></div><p class="text-secondary"><small>Source: <a href="https://dtm.iom.int/haiti" target="_blank" rel="noopener noreferrer">IOM-DTM</a></small></p>',
+      description: '<p>As of 2024, over <strong class="text-primary">578,000 people</strong> have been forced to flee their homes due to gang violence and general insecurity, with the number of internally displaced persons (IDPs) doubling between 2022 and 2023. In the first five months of 2024 alone, more than 260,000 people were displaced. This displacement has occurred nationwide, but the majority of IDPs are concentrated in the West department, which includes the capital, Port-au-Prince.</p><div class="legend mb-3"><h5 class="legend-title">Number of IDP pe province</h5><div class="legend-category"><strong class="text-danger">Legend to be developped</strong></div></div><p class="text-secondary"><small>Source: <a href="https://dtm.iom.int/haiti" target="_blank" rel="noopener noreferrer">IOM-DTM</a></small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -110,7 +110,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Children are particularly vulnerable in this crisis. Over half a million children live in neighborhoods controlled by armed groups, exposing them to violence and the risk of recruitment. The ongoing violence has forced the closure of nearly 900 schools, affecting almost 200,000 children and increasing their vulnerability to exploitation by gangs. The situation is compounded by a lack of safe and private spaces for psychological support, heightening the risk of abuse and trafficking.</p><div class="legend mb-3"><h5 class="legend-title">Security incidents</h5><div class="legend-category"><span style="background-color: #ef485e;width:.75rem;height:.75rem;border-radius:50%; vertical-align:baseline;"></span>Incident location</div></div><p class="text-secondary"><small>Source: <a href="https://acleddata.com/" target="_blank" rel="noopener noreferrer">ACLED</a></small></p>',
+      description: '<p>Children are particularly vulnerable in this crisis. Over half a million children live in neighborhoods controlled by armed groups, exposing them to violence and the risk of recruitment. The ongoing violence has forced the closure of nearly 900 schools, affecting almost <strong class="text-primary">200,000 children</strong> and increasing their vulnerability to exploitation by gangs. The situation is compounded by a lack of safe and private spaces for psychological support, heightening the risk of abuse and trafficking.</p><div class="legend mb-3"><h5 class="legend-title">Security incidents</h5><div class="legend-category"><span style="background-color: #ef485e;width:.75rem;height:.75rem;border-radius:50%; vertical-align:baseline;"></span>Incident location</div></div><p class="text-secondary"><small>Source: <a href="https://acleddata.com/" target="_blank" rel="noopener noreferrer">ACLED</a></small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -191,7 +191,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Health and food security in Haiti are also at critical levels. Nearly half of the population suffers from <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">severe food insecurity</a>, with 18% in a state of emergency. The resurgence of cholera and tuberculosis, compounded by fuel shortages, has pushed the health system to the brink of collapse. Many displaced individuals lack access to medical care and basic hygiene, increasing the risk of disease outbreaks.</p><div class="legend mb-3"><h5 class="legend-title">IPC Acute Food Insecurity Phase Classification</h5><div class="legend-category"><span style="background-color: #e67700;"></span>Crisis - 3</div><div class="legend-category"><span style="background-color: #c70000;"></span>Emergency - 4</div></div><p class="text-secondary"><small>Source: <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">IPC</a></small></p>',
+      description: '<p>Health and food security in Haiti are also at critical levels. Nearly half of the population suffers from <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">severe food insecurity, with 18% in a state of emergency</a>. The resurgence of cholera and tuberculosis, compounded by fuel shortages, has pushed the health system to the brink of collapse. Many displaced individuals lack access to medical care and basic hygiene, increasing the risk of disease outbreaks.</p><div class="legend mb-3"><h5 class="legend-title">IPC Acute Food Insecurity Phase Classification</h5><div class="legend-category"><span style="background-color: #e67700;"></span>Crisis - 3</div><div class="legend-category"><span style="background-color: #c70000;"></span>Emergency - 4</div></div><p class="text-secondary"><small>Source: <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">IPC</a></small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -275,7 +275,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<h3>Outside Haiti</h3><p>The dire humanitarian situation in Haiti has increasingly forced Haitians to flee their country in search of safety. As of December 2023, over 350,000 Haitians have sought protection abroad, with the vast majority remaining within the Americas.</p><iframe title="Top 10 country of asylum for Haitians | 2023" aria-label="Stacked Bars" id="datawrapper-chart-WDZ6F" src="https://datawrapper.dwcdn.net/WDZ6F/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="412" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p>Haitians have also joined mixed movements , including crossings through the Darien,. In addition to land routes, an increasing number of Haitians are resorting to dangerous journeys in the Caribbean Sea, often in overloaded and unseaworthy boats.</p><p>Among those fleeing Haiti are people with different protection needs, profiles, and motivations, including unaccompanied and separated children, victims of trafficking, and survivors of gender-based violence. Some may have well-founded grounds to request international refugee protection, while others may have other protection needs. The diverse profiles of those fleeing underscore the urgent need for protection and support for Haitians seeking safety in the region and beyond.</p>',
+      description: '<h3>Outside Haiti</h3><p>The dire humanitarian situation in Haiti has increasingly forced Haitians to flee their country in search of safety. As of December 2023, over 350,000 Haitians have sought protection abroad, with the vast majority remaining within the Americas.</p><iframe title="Top 10 country of asylum for Haitians | 2023" aria-label="Stacked Bars" id="datawrapper-chart-WDZ6F" src="https://datawrapper.dwcdn.net/WDZ6F/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="412" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p>Among those fleeing Haiti are people with different protection needs, profiles, and motivations, including unaccompanied and separated children, victims of trafficking, and survivors of gender-based violence. Some may have well-founded grounds to request international refugee protection, while others may have other protection needs. The diverse profiles of those fleeing underscore the urgent need for protection and support for Haitians seeking safety in the region and beyond.</p>',
       location: {
         center: [-73, 8],
         zoom: 3,
@@ -400,7 +400,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>In the Americas, onward movements are primarily towards Brazil, Chile, and Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety. </p>',
+      description: '<p>In the Americas, onward movements are primarily towards Brazil, Chile, and Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p>',
       location: {
         center: [-73, 8],
         zoom: 3,
@@ -500,42 +500,269 @@ var config1 = {
       },
       animationSpeed: 50,
     },
-    // {
-    //   id: 'chap-12',
-    //   alignment: 'left',
-    //   hidden: false,
-    //   title: '',
-    //   image: '',
-    //   description: '<p>Text </p><div class="legend mb-3"><h5 class="legend-title">Key transit and destination countries by movement type</h5><div class="legend-category"><span style="background-color: #0072bc;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Primary movement</div><div class="legend-category"><span style="background-color: #0072bc;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Onward movement</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
-    //   location: {
-    //     center: [-92.08481, 16.98993],
-    //     zoom: 3.8,
-    //     mobileZoom: 0.1,
-    //     pitch: 0.00,
-    //     bearing: 0.00
-    //     // flyTo additional controls-
-    //     // These options control the flight curve, making it move
-    //     // slowly and zoom out almost completely before starting
-    //     // to pan.
-    //     //speed: 2, // make the flying slow
-    //     //curve: 1, // change the speed at which it zooms out
-    //   },
-    //   mapAnimation: 'flyTo',
-    //   rotateAnimation: false,
-    //   callback: '',
-    //   route: '',
-    //   onChapterEnter: [],
-    //   onChapterExit: [],
-    //   triggerPointAnimation: true,
-    //   pointAnimationConfig: {
-    //     geojson: ['land_route_2.json'],
-    //     lineColor: ['#0072BC'],
-    //     lineWidth: 2,
-    //     iconImage: ['bus'],
-    //     iconSize: 1
-    //   },
-    //   animationSpeed: 100,
-    // },
-
+    {
+      id: 'chap-12',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h3>Solutions for Haitian Refugees</h3><p>In March 2024, <a href="https://www.refworld.org/policy/countrypos/unhcr/2024/en/147710" target="_blank" rel="noopener noreferrer">UNHCR published International Protection Considerations with regard to people fleeing Haiti</a>, outlining certain profiles of Haitians who should be deemed eligible for refugee protection. These considerations provide guidance to assist states in assessing asylum claims in light of the extreme violence, human rights violations, and events that have seriously disturbed public order in Haiti.</p><p>The guidance outlines that asylum-seekers from Haiti falling within specific risk profiles may be in need of international refugee protection, under the 1951 Refugee Convention and may also be eligible under the 1984 Cartagena Declaration’s expanded refugee definition, which includes those impacted by the seriously disturbed public order and gang related violence.</p><p>Recognizing that states face challenges in managing large numbers of asylum requests, UNHCR encourages them to ensure that asylum-seekers can stay safely with safeguards, facilitating faster access to protection and services. Countries could consider granting other forms of protection for people from Haiti, including complementary protection, temporary protection, humanitarian admission, or other legal stay arrangements.</p><p>Seeking asylum is a human right, and UNHCR is committed to working with host countries to provide legal and humanitarian support to hosts and the asylum-seekers they protect. Several countries in the Americas are already offering these alternatives to displaced Haitians, enhancing their protection and allowing them to integrate into the communities that welcome.</p>',
+      location: {
+        center: [-73, 8],
+        zoom: 3,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
+    {
+      id: 'chap-13',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Chile</h5><p>The Haitian community's strong desire for long-term settlement is reflected in their high number of permanent residency (PR) applications, ranking second in 2023 with 25,799 applications.</p><p>The Backlog Program (Programa Rezago), launched in 2023, aims to address the issue of pending residency applications by resolving all applications submitted before December 31, 2022.</p>",
+      location: {
+        center: [-73, 8],
+        zoom: 2.75,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
+    {
+      id: 'chap-14',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Brazil</h5><p>The government launched, with the support of UNHCR, an action plan to strengthen protection and integration for the Haitian population, which foresees support with documentation, access to employment and assistance to community structures.</p>",
+      location: {
+        center: [-73, 8],
+        zoom: 2.75,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
+    {
+      id: 'chap-15',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Canada</h5><p>A family-based humanitarian program directed by the federal government working to support vulnerable individuals from Haiti by providing them withs safe and regular migration pathways.</p>",
+      location: {
+        center: [-73, 8],
+        zoom: 2.75,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
+    {
+      id: 'chap-16',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Mexico</h5><p>The Mexican Commission for Refugee Assistance (COMAR) began applying a Cartagena definition analysis to Haitian asylum seekers following a successful training of COMAR eligibility staff in July supported by UNHCR. This application is expected to help COMAR with their efficiency in responding to Haitian asylum applications, as well as providing broader protections to those accepted under a Cartagena definition.</p><p>Notably, acceptance under Cartagena would help Haitians request family reunification in Mexico, something not easily available to those who received either complementary protection or a migratory status. The number of Haitians applying for asylum has been greatly reduced thus far in 2024 in Mexico, with xx applying.</p>",
+      location: {
+        center: [-73, 8],
+        zoom: 2.75,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
+    {
+      id: 'chap-17',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>Despite the severity of the crisis, funding for the humanitarian response in Haiti remains critically low. The <a href="https://fts.unocha.org/plans/1178/summary" target="_blank" rel="noopener noreferrer">Humanitarian Response Plan</a> is currently <strong>less than 25 percent funded</strong>, which is grossly insufficient to address the severe needs. There is an urgent need for increased humanitarian aid, including food, water, medical supplies, menstrual and maternal health products, and shelter.<p class="text-danger">Should we put a chart about funding?</p><p><a class="btn btn-primary" href="#">Donate</a></p></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: .7
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: .7
+        // },
+      ],
+      onChapterExit: [
+        // {
+        //   layer: 'hti-route-region',
+        //   opacity: 0
+        // },
+        // {
+        //   layer: 'hti-route-arrow',
+        //   opacity: 0
+        // },
+      ]
+    },
   ]]
 };
