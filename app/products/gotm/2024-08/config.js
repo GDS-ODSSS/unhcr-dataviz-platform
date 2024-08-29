@@ -570,6 +570,10 @@ var config1 = {
           opacity: 1
         },
         {
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
           layer: 'CAN-Mask',
           opacity: 1
         },
