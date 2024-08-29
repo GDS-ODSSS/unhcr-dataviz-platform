@@ -427,7 +427,16 @@ var config1 = {
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [],
+      onChapterEnter: [
+        {
+          layer: 'country-labels',
+          opacity: 1
+        },
+        {
+          layer: 'territory-label',
+          opacity: 1
+        }
+      ],
       onChapterExit: []
     },
     {
@@ -453,17 +462,29 @@ var config1 = {
           opacity: 1
         },
         {
-          layer: 'CHL-Mask',
-          opacity: 1
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: 'CHL-Labels',
+          layer: 'BRA-Labels',
           opacity: 0
         },
         {
           layer: 'CHL-Mask',
+          opacity: 1
+        },
+        {
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
+        }
+      ],
+      onChapterExit: [
+        {
+          layer: 'CHL-Mask',
+          opacity: 0
+        },
+        {
+          layer: 'CHL-Labels',
           opacity: 0
         },
       ]
@@ -489,6 +510,10 @@ var config1 = {
         {
           layer: 'BRA-Labels',
           opacity: 1
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 0
         },
         {
           layer: 'BRA-Mask',
@@ -599,8 +624,26 @@ var config1 = {
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [],
-      onChapterExit: []
+      onChapterEnter: [
+        {
+          layer: 'country-labels',
+          opacity: 1
+        },
+        {
+          layer: 'territory-label',
+          opacity: 1
+        }
+      ],
+      onChapterExit: [
+        {
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
+        }
+      ]
     },
   ]]
 };
