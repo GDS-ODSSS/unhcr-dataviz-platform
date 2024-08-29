@@ -301,8 +301,8 @@ var config1 = {
       image: '',
       description: '<p>The situation in Haiti has led to different waves of mixed movements from the country in the past decade, marked by a significant rise in maritime voyages as indicated by increased interceptions at sea. In 2024, the primary destinations for these movements have been the Bahamas, the United States, and the Turks and Caicos Islands, with additional, smaller-scale occurrences observed across other northern Caribbean islands.</p><iframe title="Number of boats encountered at sea" aria-label="Bar Chart" id="datawrapper-chart-fEfPT" src="https://datawrapper.dwcdn.net/fEfPT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
-        center: [-76, 22.24875],
-        zoom: 5.69,
+        center: [-74, 21],
+        zoom: 5.3,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -330,8 +330,8 @@ var config1 = {
       image: '',
       description: '<p>In the Americas, onward movements are primarily towards Brazil, Chile, and Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
-        center: [-73, 8],
-        zoom: 3,
+        center: [-67, 0],
+        zoom: 3.2,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -359,8 +359,8 @@ var config1 = {
       image: '',
       description: '<p>Those who continue their journey often move onwards through South and Central America, where they may spend at least 6 months, and in many cases over a year, before heading further north. This northbound movement mainly passes towards Ecuador and Colombia, before leading to the dangerous crossing of the Darién jungle into Panama.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
-        center: [-72, -9],
-        zoom: 4,
+        center: [-72, -7],
+        zoom: 3.8,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -388,7 +388,7 @@ var config1 = {
       image: '',
       description: '<p>The Darien land route is especially dangerous. In 2023, over 43,000 Haitians nationals crossed the Darien, making Haiti the third most common nationality following Venezuela and Ecuador. This trend has continued into 2024, with over 9,800 irregular crossings reported up to the end of May. Through this land route many reach central American countries, Mexico and the United States.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
-        center: [-79, 7],
+        center: [-81, 8],
         zoom: 6,
         mobileZoom: 0.1,
         pitch: 0.00,
@@ -438,8 +438,8 @@ var config1 = {
       image: '',
       description: "<h5>Chile</h5><p>The Haitian community's strong desire for long-term settlement is reflected in their high number of permanent residency (PR) applications, ranking second in 2023 with 25,799 applications.</p><p>The Backlog Program (Programa Rezago), launched in 2023, aims to address the issue of pending residency applications by resolving all applications submitted before December 31, 2022.</p>",
       location: {
-        center: [-70.71225, -33.12501],
-        zoom: 3.8,
+        center: [-70, -34],
+        zoom: 3.5,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -476,7 +476,7 @@ var config1 = {
       image: '',
       description: "<h5>Brazil</h5><p>The government launched, with the support of UNHCR, an action plan to strengthen protection and integration for the Haitian population, which foresees support with documentation, access to employment and assistance to community structures.</p>",
       location: {
-        center: [-55.56836, -9.57597],
+        center: [-55, -13],
         zoom: 3.5,
         mobileZoom: 0.1,
         pitch: 0.00,
@@ -514,7 +514,7 @@ var config1 = {
       image: '',
       description: "<h5>Canada</h5><p>A family-based humanitarian program directed by the federal government working to support vulnerable individuals from Haiti by providing them withs safe and regular migration pathways.</p>",
       location: {
-        center: [-98.14424, 52.97938],
+        center: [-98, 60],
         zoom: 3.2,
         mobileZoom: 0.1,
         pitch: 0.00,
