@@ -435,7 +435,23 @@ var config1 = {
         {
           layer: 'territory-label',
           opacity: 1
-        }
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'BRA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 1
+        },
       ],
       onChapterExit: []
     },
