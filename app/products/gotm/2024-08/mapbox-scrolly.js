@@ -393,11 +393,6 @@ function mapInit(mapId, storyId, config) {
                 };
             });
         }
-
-        // function setupBubbleAnimation(bubbleConfig){
-
-        // }
-        
         
 
         let currentDashAnimation = null;

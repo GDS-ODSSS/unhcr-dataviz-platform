@@ -115,14 +115,6 @@ var config1 = {
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      triggerBubbleAnimation: true,
-      dashAnimationConfig: {
-        geojson: ["hti_acled_event.json"],
-        bubbleColor: "'#EF4A60'",
-        bubbleRadius: 5,
-        bubbleOpacity: 0.6,
-        animationSpeed: 120,
-      },
       onChapterEnter: [
         {
           layer: 'hti-acled-event',
@@ -320,10 +312,10 @@ var config1 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['sea_route_1.json'],
-        lineColor: ['#EF4A60'],
+        geojson: ['land_routes_3.json','sea_routes_1.json'],
+        lineColor: ['#EF4A60','#00B398'],
         lineWidth: 2,
-        iconImage: ['boat'],
+        iconImage: ['dot-red','dot-green'],
         iconSize: 1
       },
       animationSpeed: 100,
@@ -350,9 +342,9 @@ var config1 = {
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['air_route_1.json'],
-        lineColor: ['#EF4A60'],
+        lineColor: ['#18375F'],
         lineWidth: 2,
-        iconImage: ['plane'],
+        iconImage: ['dot-navy'],
         iconSize: 1
       },
       animationSpeed: 100,
@@ -378,10 +370,10 @@ var config1 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['land_route_1.json'],
+        geojson: ['land_routes_1.json'],
         lineColor: ['#EF4A60'],
         lineWidth: 2,
-        iconImage: ['bus'],
+        iconImage: ['dot-red'],
         iconSize: 1
       },
       animationSpeed: 100,
@@ -410,10 +402,10 @@ var config1 = {
       onChapterExit: [],
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['walking_route_1.json'],
+        geojson: ['land_routes_2.json'],
         lineColor: ['#EF4A60'],
         lineWidth: 2,
-        iconImage: ['walking'],
+        iconImage: ['dot-red'],
         iconSize: 1
       },
       animationSpeed: 50,
