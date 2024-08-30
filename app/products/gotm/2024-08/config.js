@@ -316,7 +316,7 @@ var config1 = {
         lineColor: ['#EF4A60','#00B398'],
         lineWidth: 2,
         iconImage: ['dot-red','dot-green'],
-        iconSize: 0.5
+        iconSize: 0.7
       },
       animationSpeed: 100,
       onChapterEnter: [],
@@ -345,7 +345,7 @@ var config1 = {
         lineColor: ['#18375F'],
         lineWidth: 2,
         iconImage: ['dot-navy'],
-        iconSize: 0.5
+        iconSize: 0.7
       },
       animationSpeed: 100,
       onChapterEnter: [],
@@ -374,7 +374,7 @@ var config1 = {
         lineColor: ['#EF4A60'],
         lineWidth: 2,
         iconImage: ['dot-red'],
-        iconSize: 0.5
+        iconSize: 0.7
       },
       animationSpeed: 100,
       onChapterEnter: [],
@@ -406,9 +406,9 @@ var config1 = {
         lineColor: ['#EF4A60'],
         lineWidth: 2,
         iconImage: ['dot-red'],
-        iconSize: 0.5
+        iconSize: 0.7
       },
-      animationSpeed: 50,
+      animationSpeed: 100,
     },
     {
       id: 'chap-12',
