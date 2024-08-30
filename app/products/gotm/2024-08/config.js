@@ -134,7 +134,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Displaced women and girls, particularly those in IDP sites, are <a href="https://reliefweb.int/report/haiti/crisis-haiti-gbv-situation-brief-update-26th-april-2024" target="_blank" rel="noopener noreferrer">disproportionately affected by the insecurity and violence</a>. Gender-based violence has surged amidst the ongoing crisis. From January to March 2024, nearly 1,800 incidents of gender-based violence were recorded, with the number of incidents in March alone being five times higher than in January and February combined. The majority (75 percent) of these incidents involved sexual violence, with the remainder comprising physical and psychological/emotional violence. The number of reported GBV incidents per 1,000 people is highest in Artibonite, and Ouest provinces.</p><div class="legend mb-3"><h5 class="legend-title">Number of GBV incidents per 1,000 IDP</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>1</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>15</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>65</div></div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>Displaced women and girls, particularly those in IDP sites, are <a href="https://reliefweb.int/report/haiti/crisis-haiti-gbv-situation-brief-update-26th-april-2024" target="_blank" rel="noopener noreferrer">disproportionately affected by the insecurity and violence</a>. Gender-based violence has surged amidst the ongoing crisis. From January to May 2024, 3,949 incidents of GBV, including 72% sexual violence, 14% physical assault and 14% psychological/emotional violence, were reported to GBV service providers.  Simultaneously, GBV risks have increased due to the rise in displaced people and the insecurity in IDP sites. There has been a significant increase in the number of GBV incidents reported among those living in displacement sites: in March 2024, this number was almost four times higher than in the first two months (44 in January and February compared to 172 in March).</p><div class="legend mb-3"><h5 class="legend-title">Number of GBV incidents per 1,000 IDP</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>1</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>15</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>65</div></div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -165,7 +165,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Health and food security in Haiti are also at critical levels. Nearly half of the population suffers from <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">severe food insecurity, with 18% in a state of emergency</a>. The resurgence of cholera and tuberculosis, compounded by fuel shortages, has pushed the health system to the brink of collapse. Many displaced individuals lack access to medical care and basic hygiene, increasing the risk of disease outbreaks.</p><div class="legend mb-3"><h5 class="legend-title">IPC Acute Food Insecurity Phase Classification</h5><div class="legend-category"><span style="background-color: #e67700;"></span>Crisis - 3</div><div class="legend-category"><span style="background-color: #c70000;"></span>Emergency - 4</div></div><p class="text-secondary"><small>Source: <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">IPC</a></small></p>',
+      description: '<p>Health and food security in Haiti are also at critical levels. Nearly half of the population suffers from <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">severe food insecurity, with 18% in a state of emergency</a>. The updated IPC projection from March 2024 shows a worsening of food insecurity, with about 532,000 additional people facing acute food insecurity compared to previous estimates. Of this total, nearly 243,500 people have moved into an emergency situation. </p><div class="legend mb-3"><h5 class="legend-title">IPC Acute Food Insecurity Phase Classification</h5><div class="legend-category"><span style="background-color: #e67700;"></span>Crisis - 3</div><div class="legend-category"><span style="background-color: #c70000;"></span>Emergency - 4</div></div><p class="text-secondary"><small>Source: <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">IPC</a></small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -198,7 +198,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>The living conditions of displaced populations are increasingly dire. Around Port-au-Prince, approximately 60 percent of displaced individuals reside in designated IDP sites, while in rural areas, 97 percent stay with host families. IDP sites are often overcrowded and lack adequate facilities, including lighting and latrines. Many face severe shortages of food, water, shelter, and medical care. Host families, who accommodate 80 percent of all IDPs in Haiti, often struggle with limited resources, exacerbating humanitarian challenges. Constraints in Humanitarian access make it more difficult to deliver assistance to those in need.</p><div class="legend mb-3"><h5 class="legend-title">Humanitarian access severity</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>Low</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>Medium</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>High</div></div><p class="text-secondary"><small>Source: <a href="https://data.humdata.org/dataset/haiti-humanitarian-access-severity" target="_blank" rel="noopener noreferrer">OCHA</a></small></p>',
+      description: '<p>The living conditions of displaced populations are increasingly dire. Around Port-au-Prince, approximately 60 percent of displaced individuals reside in designated IDP sites, while in rural areas, 97 percent stay with host families. IDP sites are often overcrowded and lack adequate facilities, including lighting and latrines. Many face severe shortages of food, water, shelter, and medical care. Host families, who accommodate 80 percent of all IDPs in Haiti, often struggle with limited resources, exacerbating humanitarian challenges. Constraints in Humanitarian access make it more difficult to deliver assistance to those in need.</p><p>Additionally, the massive movements of IDPs to the departments have directly resulted in an increased number of sites in the provinces (18 sites – DTM round 7), but the vast majority of IDPs are hosted within communities. Grand Sud, now hosting nearly half of the country&#39;s IDPs (268,000 individuals), is under significant pressure.</p><div class="legend mb-3"><h5 class="legend-title">Humanitarian access severity</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>Low</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>Medium</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>High</div></div><p class="text-secondary"><small>Source: <a href="https://data.humdata.org/dataset/haiti-humanitarian-access-severity" target="_blank" rel="noopener noreferrer">OCHA</a></small></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
@@ -237,7 +237,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<h3>Outside Haiti</h3><p>The dire humanitarian situation in Haiti has increasingly forced Haitians to flee their country in search of safety. As of December 2023, over 350,000 Haitians have sought protection abroad, with the vast majority remaining within the Americas.</p><iframe title="Top 10 country of asylum for Haitians | 2023" aria-label="Stacked Bars" id="datawrapper-chart-WDZ6F" src="https://datawrapper.dwcdn.net/WDZ6F/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="412" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p>Among those fleeing Haiti are people with different protection needs, profiles, and motivations, including unaccompanied and separated children, victims of trafficking, and survivors of gender-based violence. Some may have well-founded grounds to request international refugee protection, while others may have other protection needs. The diverse profiles of those fleeing underscore the urgent need for protection and support for Haitians seeking safety in the region and beyond.</p><h5 class="mt-5">Haitians displaced in the Americas</h5><p>The most common destinations for Haitians fleeing the country include countries in the Caribbean, Central and South America. The journey from Haiti to other parts of the Americas often involves perilous routes, including dangerous sea voyages and treacherous land crossings.</p>',
+      description: '<h3>Outside Haiti</h3><p>The dire humanitarian situation in Haiti has increasingly forced Haitians to flee their country in search of safety. As of December 2023, over 350,000 Haitians have sought protection abroad, with the vast majority remaining within the Americas.</p><iframe title="Top 10 country of asylum for Haitians | 2023" aria-label="Stacked Bars" id="datawrapper-chart-WDZ6F" src="https://datawrapper.dwcdn.net/WDZ6F/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="412" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p>Among those fleeing Haiti are people with different protection needs, profiles, and motivations, including unaccompanied and separated children, victims of trafficking, and survivors of gender-based violence. Some may have well-founded grounds to request international refugee protection according to UNHCR’s International Protection Considerations with regard to people fleeing Haiti while others may have other protection needs. The diverse profiles of those fleeing underscore the urgent need for protection and support for Haitians seeking safety in the region and beyond.</p>',
       location: {
         center: [-73, 8],
         zoom: 3,
@@ -299,7 +299,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>The situation in Haiti has led to different waves of mixed movements from the country in the past decade, marked by a significant rise in maritime voyages as indicated by increased interceptions at sea. In 2024, the primary destinations for these movements have been the Bahamas, the United States, and the Turks and Caicos Islands, with additional, smaller-scale occurrences observed across other northern Caribbean islands.</p><iframe title="Number of boats encountered at sea" aria-label="Bar Chart" id="datawrapper-chart-fEfPT" src="https://datawrapper.dwcdn.net/fEfPT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<h5 class="mt-5">Haitians displaced in the Americas</h5><p>The most common destinations for Haitians fleeing the country include countries in the Caribbean, North, Central and South America. The journey from Haiti to other parts of the Americas can often involves perilous routes, including dangerous sea voyages and treacherous land crossings.</p><p>The situation in Haiti has led to different waves of movements from the country in the past decade, including a rise in maritime voyages as indicated by increased interceptions at sea. In 2024, the primary intended destinations for these movements have been the Bahamas, the United States, and the Turks and Caicos Islands, with additional, smaller-scale occurrences observed across other northern Caribbean islands.</p><iframe title="Number of boats encountered at sea" aria-label="Bar Chart" id="datawrapper-chart-fEfPT" src="https://datawrapper.dwcdn.net/fEfPT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-74, 21],
         zoom: 5.3,
@@ -328,7 +328,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>In the Americas, onward movements are primarily towards Brazil, Chile, and Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>In the Americas, onward movements include arrivals to Brazil, Chile, and French Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-67, 0],
         zoom: 3.2,
@@ -357,7 +357,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Those who continue their journey often move onwards through South and Central America, where they may spend at least 6 months, and in many cases over a year, before heading further north. This northbound movement mainly passes towards Ecuador and Colombia, before leading to the dangerous crossing of the Darién jungle into Panama.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>While some stay in countries of first arrival others continue their journey onwards through South and Central America, where they may spend at least 6 months, and in many cases over a year, before heading further north. This northbound movement mainly passes towards Ecuador and Colombia, before leading to the dangerous crossing of the Darién jungle into Panama.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-72, -7],
         zoom: 3.8,
@@ -386,7 +386,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>The Darien land route is especially dangerous. In 2023, over 43,000 Haitians nationals crossed the Darien, making Haiti the third most common nationality following Venezuela and Ecuador. This trend has continued into 2024, with over 9,800 irregular crossings reported up to the end of May. Through this land route many reach central American countries, Mexico and the United States.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>The Darien land route is especially dangerous. In 2023, over 43,000 Haitians nationals crossed the Darien, making Haiti the third most common nationality following Venezuela and Ecuador. This trend has continued into 2024, with over 9,800 irregular crossings reported up to the end of May. Through this land route many reach central American countries, Mexico and the United States.</p><p>In addition to the challenges posed for people moving in mixed flows, as predominantly Kreyol speakers and Black, Haitian asylum-seekers and migrants in the Americas often face compounded barriers to accessing protection and solutions, including discrimination and lack of access to information.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-81, 8],
         zoom: 6,
@@ -416,7 +416,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<h3>Solutions for Haitian Refugees</h3><p>In March 2024, <a href="https://www.refworld.org/policy/countrypos/unhcr/2024/en/147710" target="_blank" rel="noopener noreferrer">UNHCR published International Protection Considerations with regard to people fleeing Haiti</a>, outlining certain profiles of Haitians who should be deemed eligible for refugee protection. These considerations provide guidance to assist states in assessing asylum claims in light of the extreme violence, human rights violations, and events that have seriously disturbed public order in Haiti.</p><p>The guidance outlines that asylum-seekers from Haiti falling within specific risk profiles may be in need of international refugee protection, under the 1951 Refugee Convention and may also be eligible under the 1984 Cartagena Declaration’s expanded refugee definition, which includes those impacted by the seriously disturbed public order and gang related violence.</p><p>Recognizing that states face challenges in managing large numbers of asylum requests, UNHCR encourages them to ensure that asylum-seekers can stay safely with safeguards, facilitating faster access to protection and services. Countries could consider granting other forms of protection for people from Haiti, including complementary protection, temporary protection, humanitarian admission, or other legal stay arrangements.</p><p>Seeking asylum is a human right, and UNHCR is committed to working with host countries to provide legal and humanitarian support to hosts and the asylum-seekers they protect. Several countries in the Americas are already offering these alternatives to displaced Haitians, enhancing their protection and allowing them to integrate into the communities that welcome.</p>',
+      description: '<h3>Solutions for Haitian Refugees</h3><p>In March 2024, <a href="https://www.refworld.org/policy/countrypos/unhcr/2024/en/147710" target="_blank" rel="noopener noreferrer">UNHCR published International Protection Considerations with regard to people fleeing Haiti</a>, outlining certain profiles of Haitians who might be eligible for refugee protection under the 1951 Refugee Convention orunder the expanded definition in the 1984 Cartagena Declaration. These considerations provide guidance to assist States in assessing asylum claims in light of the extreme violence, human rights violations, and events that have seriously disturbed public order in Haiti. Seeking asylum is a human right, and UNHCR is committed to working with host countries to provide legal and humanitarian support to hosts and the asylum-seekers they protect.</p><p>Recognizing that challenges states face in managing large numbers of asylum requests, UNHCR encourages them to ensure that asylum-seekers can stay safely with safeguards, facilitating faster access to protection and services. Countries could consider granting other forms of protection for people from Haiti, including complementary protection, temporary protection, humanitarian admission, or other legal stay arrangements. Several countries in the Americas are already offering these alternatives to displaced Haitians, enhancing their protection and allowing them to integrate into the communities has welcomed them, some examples include:</p>',
       location: {
         center: [-73, 8],
         zoom: 3,
@@ -456,12 +456,50 @@ var config1 = {
       onChapterExit: []
     },
     {
+      id: 'chap-16',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Mexico</h5><p>Mexico became the first country in Latin America to apply the Cartagena definition to Haitian asylum-seekers, following successful training sessions for the Mexican Commission for Refugee Assistance (COMAR) staff in July, supported by UNHCR. This application of the Cartagena definition is expected to enhance COMAR's ability to efficiently process asylum claims from Haitians and offer them comprehensive protection, including the possibility of family reunification in Mexico—a benefit they would not receive under complementary protection or standard migratory status.</p>",
+      location: {
+        center: [-104.43053, 22.64543],
+        zoom: 3.7,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Mask',
+          opacity: 1
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'MEX-Mask',
+          opacity: 0
+        },
+      ]
+    },
+    {
       id: 'chap-13',
       alignment: 'left',
       hidden: false,
       title: '',
       image: '',
-      description: "<h5>Chile</h5><p>The Haitian community's strong desire for long-term settlement is reflected in their high number of permanent residency (PR) applications, ranking second in 2023 with 25,799 applications.</p><p>The Backlog Program (Programa Rezago), launched in 2023, aims to address the issue of pending residency applications by resolving all applications submitted before December 31, 2022.</p>",
+      description: "<h5>Chile</h5><p>Following the 2010 devastating earthquake severely affecting Haiti, Chile endorsed strategies to facilitate the regularization of Haitian nationals already living in the country and aid family reunification efforts. The number of Haitian nationals in Chile have increased sharply since, with 125,000 visas issued in 2018 alone. In 2023, the number of permanent residency (PR) applications form Haitians ranked second with 25,799 applications. The Backlog Program (Programa Rezago), launched in 2023, aims to address the issue of pending residency applications by resolving all applications submitted before December 31, 2022.</p>",
       location: {
         center: [-70, -34],
         zoom: 3.5,
@@ -511,7 +549,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: "<h5>Brazil</h5><p>The government launched, with the support of UNHCR, an action plan to strengthen protection and integration for the Haitian population, which foresees support with documentation, access to employment and assistance to community structures.</p>",
+      description: "<h5>Brazil</h5><p>Brazil has historically been a welcoming country for the Haitian population. Haitians can apply for a permanent visa based on humanitarian grounds, which has been reaffirmed in 2023. In June 2023, the government launched the Action Plan for Strengthening the Protection and Local Integration of the Haitian Population in Brazil, an initiative jointly built with UNHCR.</p><p>The Plan targets both Haitians already residing in Brazil, to support their integration process and try to address and prevent risky, secondary movements, as well as those arriving more recently who need timely access to information, protection, and livelihood opportunities.</p>",
       location: {
         center: [-55, -13],
         zoom: 3.5,
@@ -553,7 +591,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: "<h5>Canada</h5><p>A family-based humanitarian program directed by the federal government working to support vulnerable individuals from Haiti by providing them withs safe and regular migration pathways.</p>",
+      description: "<h5>Canada</h5><p>The federal government launched a family-based humanitarian pathway to provide permanent residence to Haitian, Colombian, and Venezuelan nationals with family members residing in Canada.</p>",
       location: {
         center: [-98, 60],
         zoom: 3.2,
@@ -590,15 +628,15 @@ var config1 = {
       ]
     },
     {
-      id: 'chap-16',
+      id: 'chap-usa',
       alignment: 'left',
       hidden: false,
       title: '',
       image: '',
-      description: "<h5>Mexico</h5><p>The Mexican Commission for Refugee Assistance (COMAR) began applying a Cartagena definition analysis to Haitian asylum seekers following a successful training of COMAR eligibility staff in July supported by UNHCR. This application is expected to help COMAR with their efficiency in responding to Haitian asylum applications, as well as providing broader protections to those accepted under a Cartagena definition.</p><p>Notably, acceptance under Cartagena would help Haitians request family reunification in Mexico, something not easily available to those who received either complementary protection or a migratory status. The number of Haitians applying for asylum has been greatly reduced thus far in 2024 in Mexico, with xx applying.</p>",
+      description: "<h5>United States</h5><p>Among the examples from the US, on June 28, 2024, the United States announced the extension and redesignation of Haiti for Temporary Protected Status (TPS) for 18 months, until 3 February, 2026. The redesignation of Haiti for TPS allows an estimated 309,000 additional Haitian nationals to file an application for TPS.</p>",
       location: {
-        center: [-104.43053, 22.64543],
-        zoom: 3.7,
+        center: [-98, 60],
+        zoom: 3.2,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -608,32 +646,82 @@ var config1 = {
       callback: '',
       onChapterEnter: [
         {
-          layer: 'MEX-Labels',
+          layer: 'CAN-Labels',
           opacity: 1
         },
         {
-          layer: 'MEX-Mask',
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CAN-Mask',
           opacity: 1
         },
       ],
       onChapterExit: [
         {
-          layer: 'MEX-Labels',
+          layer: 'CAN-Labels',
           opacity: 0
         },
         {
-          layer: 'MEX-Mask',
+          layer: 'CAN-Mask',
           opacity: 0
         },
       ]
     },
+    {
+      id: 'chap-other-sol',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h5>Other Solutions</h5><p>Several countries in the Americas and beyond are extending various forms of protection and legal stay arrangements to Haitian refugees, including temporary protection, family reunification, humanitarian visas, and access to documentation.</p><p>For example, France has introduced an education program specifically supporting high school-aged Haitian refugees, and The Bahamas passed a law to prevent statelessness among children born to mothers with irregular migratory status.</p>',
+      location: {
+        center: [-73, 8],
+        zoom: 3,
+        mobileZoom: 0.1,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'country-labels',
+          opacity: 1
+        },
+        {
+          layer: 'territory-label',
+          opacity: 1
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'BRA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 1
+        },
+      ],
+      onChapterExit: []
+    },
+    
     {
       id: 'chap-17',
       alignment: 'center',
       hidden: false,
       title: '',
       image: '',
-      description: '<p>Despite the severity of the crisis, funding for the humanitarian response in Haiti remains critically low. The <a href="https://fts.unocha.org/plans/1178/summary" target="_blank" rel="noopener noreferrer">Humanitarian Response Plan</a> is currently <strong>less than 25 percent funded</strong>, which is grossly insufficient to address the severe needs. There is an urgent need for increased humanitarian aid, including food, water, medical supplies, menstrual and maternal health products, and shelter.<p class="text-danger">Should we put a chart about funding?</p><p><a class="btn btn-primary" href="#">Donate</a></p></p>',
+      description: '<p>Despite the severity of the crisis, funding for the humanitarian response in Haiti remains critically low. The <a href="https://fts.unocha.org/plans/1178/summary" target="_blank" rel="noopener noreferrer">Humanitarian Response Plan</a> is currently <strong>less than 33 percent funded</strong>.<p class="text-danger">Should we put a chart about funding?</p><p><a class="btn btn-primary" href="#">Donate</a></p></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
