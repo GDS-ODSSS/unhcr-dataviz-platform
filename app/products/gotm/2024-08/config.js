@@ -452,11 +452,15 @@ var config1 = {
           layer: 'CAN-Labels',
           opacity: 1
         },
+        {
+          layer: 'USA-Labels',
+          opacity: 1
+        },
       ],
       onChapterExit: []
     },
     {
-      id: 'chap-16',
+      id: 'chap-13',
       alignment: 'left',
       hidden: false,
       title: '',
@@ -481,6 +485,22 @@ var config1 = {
           layer: 'MEX-Mask',
           opacity: 1
         },
+        {
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
+        },
+        {
+          layer: 'USA-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 0
+        },
       ],
       onChapterExit: [
         {
@@ -494,7 +514,7 @@ var config1 = {
       ]
     },
     {
-      id: 'chap-13',
+      id: 'chap-14',
       alignment: 'left',
       hidden: false,
       title: '',
@@ -522,14 +542,6 @@ var config1 = {
         {
           layer: 'CHL-Mask',
           opacity: 1
-        },
-        {
-          layer: 'country-labels',
-          opacity: 0
-        },
-        {
-          layer: 'territory-label',
-          opacity: 0
         }
       ],
       onChapterExit: [
@@ -544,7 +556,7 @@ var config1 = {
       ]
     },
     {
-      id: 'chap-14',
+      id: 'chap-15',
       alignment: 'left',
       hidden: false,
       title: '',
@@ -586,7 +598,7 @@ var config1 = {
       ]
     },
     {
-      id: 'chap-15',
+      id: 'chap-16',
       alignment: 'left',
       hidden: false,
       title: '',
@@ -628,15 +640,15 @@ var config1 = {
       ]
     },
     {
-      id: 'chap-usa',
+      id: 'chap-17',
       alignment: 'left',
       hidden: false,
       title: '',
       image: '',
       description: "<h5>United States</h5><p>Among the examples from the US, on June 28, 2024, the United States announced the extension and redesignation of Haiti for Temporary Protected Status (TPS) for 18 months, until 3 February, 2026. The redesignation of Haiti for TPS allows an estimated 309,000 additional Haitian nationals to file an application for TPS.</p>",
       location: {
-        center: [-98, 60],
-        zoom: 3.2,
+        center: [-98, 38],
+        zoom: 3.8,
         mobileZoom: 0.1,
         pitch: 0.00,
         bearing: 0.00
@@ -646,31 +658,43 @@ var config1 = {
       callback: '',
       onChapterEnter: [
         {
-          layer: 'CAN-Labels',
+          layer: 'USA-Labels',
           opacity: 1
+        },
+        {
+          layer: 'USA-Mask',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 0
         },
         {
           layer: 'MEX-Labels',
           opacity: 0
         },
         {
-          layer: 'CAN-Mask',
-          opacity: 1
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
         },
       ],
       onChapterExit: [
         {
-          layer: 'CAN-Labels',
+          layer: 'USA-Labels',
           opacity: 0
         },
         {
-          layer: 'CAN-Mask',
+          layer: 'USA-Mask',
           opacity: 0
         },
       ]
     },
     {
-      id: 'chap-other-sol',
+      id: 'chap-18',
       alignment: 'center',
       hidden: false,
       title: '',
@@ -711,12 +735,16 @@ var config1 = {
           layer: 'CAN-Labels',
           opacity: 1
         },
+        {
+          layer: 'USA-Labels',
+          opacity: 1
+        },
       ],
       onChapterExit: []
     },
     
     {
-      id: 'chap-17',
+      id: 'chap-19',
       alignment: 'center',
       hidden: false,
       title: '',
@@ -732,26 +760,8 @@ var config1 = {
       mapAnimation: 'flyTo',
       rotateAnimation: false,
       callback: '',
-      onChapterEnter: [
-        {
-          layer: 'country-labels',
-          opacity: 1
-        },
-        {
-          layer: 'territory-label',
-          opacity: 1
-        }
-      ],
-      onChapterExit: [
-        {
-          layer: 'country-labels',
-          opacity: 0
-        },
-        {
-          layer: 'territory-label',
-          opacity: 0
-        }
-      ]
+      onChapterEnter: [],
+      onChapterExit: []
     },
   ]]
 };
