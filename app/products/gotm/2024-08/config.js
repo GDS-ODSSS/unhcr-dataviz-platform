@@ -5,7 +5,7 @@ var config1 = {
   markerColor: '',
   inset: false,
   theme: 'light',
-  projection: 'naturalEarth',
+  projection: '',
   use3dTerrain: false,
   auto: false,
   title: 'This is a long title',
@@ -23,7 +23,7 @@ var config1 = {
       location: {
         center: [-72.35958, 18.84720],
         zoom: 5,
-        mobileZoom: 0.1,
+        mobileZoom: 3.5,
         pitch: 0.00,
         bearing: 0.00
         // flyTo additional controls-
@@ -68,7 +68,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -108,7 +108,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -138,7 +138,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -169,7 +169,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -202,7 +202,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -241,7 +241,7 @@ var config1 = {
       location: {
         center: [-73, 8],
         zoom: 3,
-        mobileZoom: 0.1,
+        mobileZoom: 2.5,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -303,7 +303,7 @@ var config1 = {
       location: {
         center: [-74, 21],
         zoom: 5.3,
-        mobileZoom: 0.1,
+        mobileZoom: 4,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -332,7 +332,7 @@ var config1 = {
       location: {
         center: [-67, 0],
         zoom: 3.2,
-        mobileZoom: 0.1,
+        mobileZoom: 2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -361,7 +361,7 @@ var config1 = {
       location: {
         center: [-72, -7],
         zoom: 3.8,
-        mobileZoom: 0.1,
+        mobileZoom: 2.5,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -390,7 +390,7 @@ var config1 = {
       location: {
         center: [-81, 8],
         zoom: 6,
-        mobileZoom: 0.1,
+        mobileZoom: 4.5,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -420,7 +420,7 @@ var config1 = {
       location: {
         center: [-73, 8],
         zoom: 3,
-        mobileZoom: 0.1,
+        mobileZoom: 2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -469,7 +469,7 @@ var config1 = {
       location: {
         center: [-104.43053, 22.64543],
         zoom: 3.7,
-        mobileZoom: 0.1,
+        mobileZoom: 2.5,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -523,7 +523,7 @@ var config1 = {
       location: {
         center: [-70, -34],
         zoom: 3.5,
-        mobileZoom: 0.1,
+        mobileZoom: 2.2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -565,7 +565,7 @@ var config1 = {
       location: {
         center: [-55, -13],
         zoom: 3.5,
-        mobileZoom: 0.1,
+        mobileZoom: 2.2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -607,7 +607,7 @@ var config1 = {
       location: {
         center: [-98, 60],
         zoom: 3.2,
-        mobileZoom: 0.1,
+        mobileZoom: 2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -649,7 +649,7 @@ var config1 = {
       location: {
         center: [-98, 38],
         zoom: 3.8,
-        mobileZoom: 0.1,
+        mobileZoom: 2.5,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -703,7 +703,7 @@ var config1 = {
       location: {
         center: [-73, 8],
         zoom: 3,
-        mobileZoom: 0.1,
+        mobileZoom: 2,
         pitch: 0.00,
         bearing: 0.00
       },
@@ -753,7 +753,7 @@ var config1 = {
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,
-        mobileZoom: 0.1,
+        mobileZoom: 6,
         pitch: 0.00,
         bearing: 0.00
       },

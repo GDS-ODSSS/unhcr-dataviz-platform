@@ -504,6 +504,8 @@ function mapInit(mapId, storyId, config) {
         projection: config.projection,
     });
 
+    console.log('Screen width:', window.innerWidth);
+
     const marker = config.showMarkers ? new mapboxgl.Marker().setLngLat(config.chapters[0][0].location.center).addTo(mapInstance) : null;
 
     const mapScroller = scrollama();
