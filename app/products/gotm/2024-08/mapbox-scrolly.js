@@ -257,7 +257,7 @@ function mapInit(mapId, storyId, config) {
             const cleanupFunctions = [];
             const colors = pointConfig.lineColor || ['#000000'];
             const icons = pointConfig.iconImage || ['circle'];
-            const animationSpeed = pointConfig.animationSpeed || 4000; // Speed in milliseconds
+            const animationSpeed = pointConfig.animationSpeed || 2500; // Speed in milliseconds
         
             const points = [];
         
@@ -309,7 +309,7 @@ function mapInit(mapId, storyId, config) {
                                     'icon-allow-overlap': true,
                                     'icon-ignore-placement': true
                                 }
-                            });
+                            }, firstSymbolId);
         
                             // Animate the point along the route and extend the line dynamically
                             const route = feature.geometry.coordinates;

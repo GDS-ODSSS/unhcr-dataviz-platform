@@ -341,10 +341,10 @@ var config1 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['air_route_1.json'],
-        lineColor: ['#18375F'],
+        geojson: ['air_routes_1.json','land_routes_4.json'],
+        lineColor: ['#18375F','#EF4A60'],
         lineWidth: 2,
-        iconImage: ['dot-navy'],
+        iconImage: ['dot-navy','dot-red'],
         iconSize: 0.7
       },
       animationSpeed: 100,
