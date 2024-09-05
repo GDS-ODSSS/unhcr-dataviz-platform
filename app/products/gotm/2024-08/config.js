@@ -299,7 +299,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<h5 class="mt-5">Haitians displaced in the Americas</h5><p>The most common destinations for Haitians fleeing the country include countries in the Caribbean, North, Central and South America. The journey from Haiti to other parts of the Americas can often involves perilous routes, including dangerous sea voyages and treacherous land crossings.</p><p>The situation in Haiti has led to different waves of movements from the country in the past decade, including a rise in maritime voyages as indicated by increased interceptions at sea. In 2024, the primary intended destinations for these movements have been the Bahamas, the United States, and the Turks and Caicos Islands, with additional, smaller-scale occurrences observed across other northern Caribbean islands.</p><iframe title="Number of boats encountered at sea" aria-label="Bar Chart" id="datawrapper-chart-fEfPT" src="https://datawrapper.dwcdn.net/fEfPT" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<h5 class="mt-5">Haitians displaced in the Americas</h5><p>The most common destinations for Haitians fleeing the country include countries in the Caribbean, North, Central and South America. The journey from Haiti to other parts of the Americas can often involves perilous routes, including dangerous sea voyages and treacherous land crossings.</p><p>The situation in Haiti has led to different waves of movements from the country in the past decade, including a rise in maritime voyages as indicated by increased interceptions at sea. In 2024, the primary intended destinations for these movements have been the Bahamas, the United States, and the Turks and Caicos Islands, with additional, smaller-scale occurrences observed across other northern Caribbean islands.</p><iframe title="Number of boats encountered at sea" aria-label="Bar Chart" id="datawrapper-chart-fEfPT" src="https://datawrapper.dwcdn.net/fEfPT" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-74, 21],
         zoom: 5.3,
@@ -313,9 +313,9 @@ var config1 = {
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['land_routes_3.json','sea_routes_1.json'],
-        lineColor: ['#EF4A60','#00B398'],
+        lineColor: ['#0072BC','#00B398'],
         lineWidth: 2,
-        iconImage: ['dot-red','dot-green'],
+        iconImage: ['dot-blue','dot-green'],
         iconSize: 0.7
       },
       animationSpeed: 100,
@@ -328,7 +328,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>In the Americas, onward movements include arrivals to Brazil, Chile, and French Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>In the Americas, onward movements include arrivals to Brazil, Chile, and French Guyana. Individuals involved in these mixed movements face exceptionally perilous conditions in their search for safety.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-67, 0],
         zoom: 3.2,
@@ -342,9 +342,9 @@ var config1 = {
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['air_routes_1.json','land_routes_4.json'],
-        lineColor: ['#18375F','#EF4A60'],
+        lineColor: ['#18375F','#0072BC'],
         lineWidth: 2,
-        iconImage: ['dot-navy','dot-red'],
+        iconImage: ['dot-navy','dot-blue'],
         iconSize: 0.7
       },
       animationSpeed: 100,
@@ -357,7 +357,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>While some stay in countries of first arrival others continue their journey onwards through South and Central America, where they may spend at least 6 months, and in many cases over a year, before heading further north. This northbound movement mainly passes towards Ecuador and Colombia, before leading to the dangerous crossing of the Darién jungle into Panama.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>While some stay in countries of first arrival others continue their journey onwards through South and Central America, where they may spend at least 6 months, and in many cases over a year, before heading further north. This northbound movement mainly passes towards Ecuador and Colombia, before leading to the dangerous crossing of the Darién jungle into Panama.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-72, -7],
         zoom: 3.8,
@@ -371,9 +371,9 @@ var config1 = {
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['land_routes_1.json'],
-        lineColor: ['#EF4A60'],
+        lineColor: ['#0072BC'],
         lineWidth: 2,
-        iconImage: ['dot-red'],
+        iconImage: ['dot-blue'],
         iconSize: 0.7
       },
       animationSpeed: 100,
@@ -386,7 +386,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<p>The Darien land route is especially dangerous. In 2023, over 43,000 Haitians nationals crossed the Darien, making Haiti the third most common nationality following Venezuela and Ecuador. This trend has continued into 2024, with over 9,800 irregular crossings reported up to the end of May. Through this land route many reach central American countries, Mexico and the United States.</p><figure class="figure my-4"><img src="RF1338890_67.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Panama. Over 70,000 people have crossed the Darien in the first months of 2024.<br>©UNHCR/Melissa Pinel</figcaption></figure><p>In addition to the challenges posed for people moving in mixed flows, as predominantly Kreyol speakers and Black, Haitian asylum-seekers and migrants in the Americas often face compounded barriers to accessing protection and solutions, including discrimination and lack of access to information.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #EF4A60;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+      description: '<p>The Darien land route is especially dangerous. In 2023, over 43,000 Haitians nationals crossed the Darien, making Haiti the third most common nationality following Venezuela and Ecuador. This trend has continued into 2024, with over 9,800 irregular crossings reported up to the end of May. Through this land route many reach central American countries, Mexico and the United States.</p><figure class="figure my-4"><img src="RF1338890_67.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Panama. Over 70,000 people have crossed the Darien in the first months of 2024.<br>©UNHCR/Melissa Pinel</figcaption></figure><p>In addition to the challenges posed for people moving in mixed flows, as predominantly Kreyol speakers and Black, Haitian asylum-seekers and migrants in the Americas often face compounded barriers to accessing protection and solutions, including discrimination and lack of access to information.</p><div class="legend mb-3"><h5 class="legend-title">Main displacement routes by type</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Land</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Sea</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Air</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
       location: {
         center: [-81, 8],
         zoom: 6,
@@ -403,9 +403,9 @@ var config1 = {
       triggerPointAnimation: true,
       pointAnimationConfig: {
         geojson: ['land_routes_2.json'],
-        lineColor: ['#EF4A60'],
+        lineColor: ['#0072BC'],
         lineWidth: 2,
-        iconImage: ['dot-red'],
+        iconImage: ['dot-blue'],
         iconSize: 0.7
       },
       animationSpeed: 100,
