@@ -411,6 +411,9 @@ function mapInit(mapId, storyId, config) {
         })
         .onStepEnter(async ({ element }) => {
             const currentChapter = config.chapters[0].find(chap => chap.id === element.id);
+
+            // Set zoom level based on device width
+            currentChapter.location.zoom = window.innerWidth < 960 ? currentChapter.location.mobileZoom : currentChapter.location.zoom;
     
             // Prevent animations from starting on initial load before scrolling
             if (!hasScrolled) {
