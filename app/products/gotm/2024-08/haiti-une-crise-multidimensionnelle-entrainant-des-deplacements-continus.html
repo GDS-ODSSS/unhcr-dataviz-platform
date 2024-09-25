@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Haïti - Une crise multidimensionnelle entraînant des déplacements continus</title>
+  <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="timeline.css">
+  <link rel="stylesheet" href="map-scrolly.css">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-EGKK4QPCNL');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <h1 class="title">Haïti - Une crise multidimensionnelle entraînant des déplacements continus</h1>
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-5">
+          <li class="breadcrumb-item"><a href="../../../">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../">Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data Story</li>
+        </ol>
+      </nav>
+      <div class="row justify-content-md-center mb-0">
+        <div class="col col-lg-8">
+          <h2>Haïti - Une crise multidimensionnelle entraînant des déplacements continus</h2>
+          <p class="lead">Haïti est confronté à une crise multidimensionnelle caractérisée par la violence des gangs, un phénomène de déplacement massif et des besoins humanitaires importants. Malgré des efforts visant à rétablir la stabilité du pays, la situation reste extrêmement préoccupante et exige la solidarité de la communauté internationale.</p>
+          <p>xx septembre 2024<span class="text-secondary"> | Egalement disponible en&nbsp;: <a href="#">English</a> | <a href="#">Español</a></span></p>
+          <hr>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <figure class="figure my-4">
+            <img src="RF1374152_IMG_20240619_121116.jpg" class="figure-img img-fluid" alt="">
+            <figcaption class="figure-caption">Mexique. Jessica (à gauche) et Jessie (à droite) sont des sœurs jumelles réfugiées au Mexique. Elles sont nées à Port-au-Prince, en Haïti, et ont rejoint le Mexique pour retrouver leur mère, Julie, qui a quitté son pays en raison de menaces et de violences.<br>©HCR/Aurora Herrera</figcaption>
+          </figure>
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>La violence généralisée des gangs en Haïti a conduit à une inquiétante augmentation des violations des droits humains et à des déplacements internes à grande échelle. La violence des gangs à l'encontre de la population haïtienne s'est étendue de la capitale, Port-au-Prince, aux zones rurales isolées. Cette violence omniprésente se traduit par des violences sexuelles, des enlèvements, des pillages, des barrages routiers et des recrutements forcés par les bandes armées, ainsi que par un nombre croissant d'attaques contre les hôpitaux, les écoles, les lieux de culte et d'autres infrastructures sociales essentielles.</p>
+        </div>
+      </div>
+      <div class="row justify-content-md-center my-5">
+        <div class="col col-lg-8">
+          <div class="timeline-section px-3 py-4">
+            <div class="timeline-title mb-4">
+              <h3>L'escalade de la violence et ses conséquences</h3>
+            </div>
+            <div class="timeline">
+              
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2010</h4>
+                <p>Un violent tremblement de terre de magnitude 7 a frappé Haïti, faisant plus de 200 000 morts et des millions de déplacés. Plus tard dans l'année, une épidémie de choléra a entraîné la mort de près de 10 000 personnes et a contaminé des centaines de milliers d'autres.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2016</h4>
+                <p>Lorsque Jovenel Moïse a accédé à la présidence en 2016, son élection a fait l'objet d'accusations de fraude, ce qui a entraîné des manifestations et une instabilité politique. Les troubles se sont poursuivis jusqu'en juillet 2018, avec de grandes manifestations contre Jovenel Moïse pour dénoncer la corruption, les problèmes économiques et les pénuries de carburant.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2021</h4>
+                <h5>Juillet</h5>
+                <p>Le président Jovenel Moïse est assassiné, plongeant le pays dans une profonde crise politique.</p>
+                <h5>Août</h5>
+                <p>Haïti est frappé par un tremblement de terre de magnitude 7,2.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2021-2022</h4>
+                <p>L'assassinat du président Moïse laisse un vide politique, aggravant une situation sécuritaire déjà instable. La violence des gangs, les enlèvements et l'insécurité générale montent en flèche, tandis que le Premier ministre par intérim, Ariel Henry, peine à organiser des élections.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2023</h4>
+                <h5>Janvier</h5>
+                <p>Le gouvernement haïtien ne parvient pas à organiser des élections, invoquant des niveaux de violence sans précédent de la part des gangs, et Haïti perd ses derniers représentants démocratiquement élus.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2024</h4>
+                <h5>Février</h5>
+                <p>Des gangs haïtiens, menés par Jimmy « Barbecue » Chérizier, lancent des attaques coordonnées à Port-au-Prince pour détenir des fonctionnaires et entraver les efforts du Premier ministre par intérim Ariel Henry pour obtenir une mission internationale de sécurité soutenue par l'ONU et menée par le Kenya pour lutter contre les gangs dans le pays.</p>
+                <h5>Mars</h5>
+                <p>Ariel Henry signe un accord avec le Kenya pour le déploiement de 1000 policiers afin de lutter contre la violence des gangs, mais le processus est retardé par une décision de justice qui juge le déploiement anticonstitutionnel.</p>
+                <p>Les gangs haïtiens continuent d'intensifier leurs attaques, prenant d'assaut deux des plus grandes prisons du pays et libérant plus de 4000 détenus. Ils ont également pris le contrôle de la zone entourant l'aéroport international, entraînant sa fermeture pendant plusieurs mois. En réaction, le gouvernement haïtien déclare l'état d'urgence.</p>
+                <p>Alors que les appels à sa démission se multiplient, Ariel Henry se rend à Porto Rico et annonce son intention de quitter le pouvoir une fois qu'un conseil de transition aura été mis en place.</p>
+                <h5>Avril</h5>
+                <p>Le gouvernement kenyan suspend son déploiement en Haïti jusqu'à la formation d'un nouveau gouvernement. Un accord pour un gouvernement temporaire, qui durerait jusqu'en février 2026, est proposé le 7 avril. Le 25 avril, Ariel Henry démissionne et est remplacé par le Conseil présidentiel de transition.</p>
+                <h5>Mai</h5>
+                <p>Les affrontements entre les gangs et les forces de sécurité se poursuivent, mais commencent à diminuer à la fin du mois de mai. Le 28 mai, le Conseil de transition nomme Garry Conille au poste de Premier ministre.</p>
+                <h5>Juin</h5>
+                <p>Le Conseil de transition d'Haïti nomme un nouveau cabinet le 11 juin. Le 26 juin, le premier contingent kenyan de 400 policiers d'élite atterrit à l'aéroport international de Port-au-Prince après des mois de retard.</p>
+                <h5>Septembre</h5>
+                <p>Le gouvernement haïtien crée un conseil électoral provisoire le 18 septembre, ouvrant la voie à la tenue d'élections d'ici 2026.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>L'ampleur de la crise est impressionnante : près de la moitié des 11,9 millions de civils haïtiens <a href="https://www.unocha.org/publications/report/haiti/haiti-humanitarian-needs-and-response-plan-executive-summary-january-2024" target="_blank" rel="noopener noreferrer">ont besoin d'une aide humanitaire</a> (lien en anglais). La violence des gangs et l'instabilité politique ont entraîné le déplacement d'un nombre record de <a href="https://dtm.iom.int/haiti" target="_blank" rel="noopener noreferrer">702 973 personnes à l'intérieur du pays</a> (lien en anglais), faisant d'Haïti le pays présentant le taux le plus élevé de déplacements dans le monde en raison de la <a href="https://www.ohchr.org/fr/press-releases/2024/06/haiti-soaring-number-displaced-desperately-need-protection-and-aid-priority" target="_blank" rel="noopener noreferrer">violence liée à la criminalité</a>. En 2024, le HCR a recensé <a href="https://www.unhcr.org/fr/tendances-mondiales#:~:text=L'augmentation%20%C3%A0%20117%2C3,cours%20des%2012%20derni%C3%A8res%20ann%C3%A9es." target="_blank" rel="noopener noreferrer">plus de 350 000 réfugiés et demandeurs d'asile haïtiens</a> dans le monde, dont beaucoup entreprennent des périples dangereux à travers les Amériques et les Caraïbes.</p>
+          <p>L'élection du Conseil présidentiel de transition et l'arrivée récente du premier contingent de policiers kenyans dans le cadre de la mission multinationale d'appui à la sécurité ont permis de progresser lentement vers la stabilité, ce qui représente une lueur d'espoir pour les Haïtiens.</p>
+          <p>Une stratégie sur le long terme devrait être mise en place pour protéger et soutenir les populations vulnérables, fournir des services essentiels, renforcer la capacité des Haïtiens à investir dans l'éducation, promouvoir une croissance économique inclusive et la création d'emplois, et renforcer l'état de droit. L'aide humanitaire est essentielle pour sauver des vies, et cette réponse humanitaire doit servir de tremplin à des actions de relèvement durables.</p>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <div style="background-color:rgb(220, 233, 255)" id="map-2"></div>
+      <div id="story-2"></div>
+    </div>
+    <div class="container my-0">
+
+    </div>
+
+
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrfilter.js"></script>
+  <!-- other JS files -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/scrollama.min.js"></script>
+  <script src="config.js"></script>
+  <script src="mapbox-scrolly-fr.js"></script>
+  <script>
+      AOS.init();
+  </script>
+
+
+ 
+</body>
+
+</html>

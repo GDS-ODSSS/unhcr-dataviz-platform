@@ -522,4 +522,4 @@ function mapInit(mapId, storyId, config) {
 
 
 // Initialize the map
-mapInit('map-1', 'story-1', config1);
+mapInit('map-2', 'story-2', config2);
