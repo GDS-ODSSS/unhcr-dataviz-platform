@@ -522,4 +522,14 @@ function mapInit(mapId, storyId, config) {
 
 
 // Initialize the map
-mapInit('map-1', 'story-1', config1);
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('map-1') && document.getElementById('story-1')) {
+        mapInit('map-1', 'story-1', config1);
+    }
+    if (document.getElementById('map-2') && document.getElementById('story-2')) {
+        mapInit('map-2', 'story-2', config2);
+    }
+});
+
+
+
