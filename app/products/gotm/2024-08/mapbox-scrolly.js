@@ -130,128 +130,6 @@ function mapInit(mapId, storyId, config) {
             };
         }
 
-        // function setupPointAnimation(pointConfig) {
-        //     const cleanupFunctions = [];
-        //     const colors = pointConfig.lineColor || ['#000000'];
-        //     const icons = pointConfig.iconImage || ['circle'];
-        //     const animationSpeed = pointConfig.animationSpeed || 4000; // Speed in milliseconds
-        
-        //     const points = [];
-        
-        //     const loadAndAnimatePoints = (geojsonUrl, index) => {
-        //         return fetch(geojsonUrl)
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 data.features.forEach((feature, idx) => {
-        //                     const routeSourceId = `route${index}-${idx}`;
-        //                     const pointSourceId = `point${index}-${idx}`;
-        //                     const color = colors[index % colors.length];
-        //                     const icon = icons[index % icons.length];
-        
-        //                     // Add route line source and layer
-        //                     mapInstance.addSource(routeSourceId, { type: 'geojson', data: feature });
-        //                     mapInstance.addLayer({
-        //                         id: routeSourceId,
-        //                         source: routeSourceId,
-        //                         type: 'line',
-        //                         paint: {
-        //                             'line-width': pointConfig.lineWidth || 2,
-        //                             'line-color': color
-        //                         }
-        //                     }, firstSymbolId);
-        
-        //                     // Initialize point at the first coordinate of the route
-        //                     const pointFeature = {
-        //                         type: 'FeatureCollection',
-        //                         features: [{
-        //                             type: 'Feature',
-        //                             properties: { bearing: 0 },
-        //                             geometry: { type: 'Point', coordinates: feature.geometry.coordinates[0] }
-        //                         }]
-        //                     };
-        
-        //                     points.push(pointFeature);
-        
-        //                     // Add point source and layer
-        //                     mapInstance.addSource(pointSourceId, { type: 'geojson', data: pointFeature });
-        //                     mapInstance.addLayer({
-        //                         id: pointSourceId,
-        //                         source: pointSourceId,
-        //                         type: 'symbol',
-        //                         layout: {
-        //                             'icon-image': icon,
-        //                             'icon-size': pointConfig.iconSize || 1,
-        //                             'icon-rotate': ['get', 'bearing'],
-        //                             'icon-rotation-alignment': 'map',
-        //                             'icon-allow-overlap': true,
-        //                             'icon-ignore-placement': true
-        //                         }
-        //                     });
-        
-        //                     // Animate the point along the route
-        //                     const route = feature.geometry.coordinates;
-        //                     let counter = 0;
-        
-        //                     const segmentDuration = animationSpeed / (route.length - 1); // Duration for each segment
-        
-        //                     function animatePoint() {
-        //                         if (counter >= route.length - 1) {
-        //                             return; // Stop animation if end of route
-        //                         }
-        
-        //                         const start = route[counter];
-        //                         const end = route[counter + 1];
-        //                         if (!start || !end) {
-        //                             return; // Ensure valid coordinates
-        //                         }
-        
-        //                         const startTime = performance.now(); // Start time of the animation for this segment
-        
-        //                         function animateSegment(time) {
-        //                             const elapsed = time - startTime;
-        //                             const progress = Math.min(elapsed / segmentDuration, 1);
-        
-        //                             const lng = start[0] + (end[0] - start[0]) * progress;
-        //                             const lat = start[1] + (end[1] - start[1]) * progress;
-        
-        //                             pointFeature.features[0].geometry.coordinates = [lng, lat];
-        //                             pointFeature.features[0].properties.bearing = turf.bearing(turf.point(start), turf.point(end));
-        //                             mapInstance.getSource(pointSourceId).setData(pointFeature);
-        
-        //                             if (progress < 1) {
-        //                                 requestAnimationFrame(animateSegment);
-        //                             } else {
-        //                                 counter += 1;
-        //                                 if (counter < route.length - 1) {
-        //                                     animatePoint(); // Continue to next segment
-        //                                 }
-        //                             }
-        //                         }
-        
-        //                         requestAnimationFrame(animateSegment);
-        //                     }
-        
-        //                     animatePoint();
-        
-        //                     // Cleanup function to remove sources and layers
-        //                     cleanupFunctions.push(() => {
-        //                         mapInstance.removeLayer(routeSourceId);
-        //                         mapInstance.removeSource(routeSourceId);
-        //                         mapInstance.removeLayer(pointSourceId);
-        //                         mapInstance.removeSource(pointSourceId);
-        //                     });
-        //                 });
-        //             })
-        //             .catch(error => console.error('Error loading GeoJSON:', error));
-        //     };
-        
-        //     // Load and animate points for each geojson
-        //     return Promise.all(pointConfig.geojson.map(loadAndAnimatePoints)).then(() => {
-        //         return () => {
-        //             cleanupFunctions.forEach(cleanup => cleanup());
-        //         };
-        //     });
-        // }
 
         function setupPointAnimation(pointConfig) {
             const cleanupFunctions = [];
@@ -263,58 +141,83 @@ function mapInit(mapId, storyId, config) {
         
             const loadAndAnimatePoints = (geojsonUrl, index) => {
                 return fetch(geojsonUrl)
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                        return response.json();
+                    })
                     .then(data => {
+                        if (!data.features || data.features.length === 0) {
+                            console.error('No features found in GeoJSON:', data);
+                            return;
+                        }
+            
                         data.features.forEach((feature, idx) => {
                             const routeSourceId = `route${index}-${idx}`;
                             const pointSourceId = `point${index}-${idx}`;
                             const color = colors[index % colors.length];
                             const icon = icons[index % icons.length];
-        
-                            // Add route line source and layer
-                            mapInstance.addSource(routeSourceId, { type: 'geojson', data: feature });
-                            mapInstance.addLayer({
-                                id: routeSourceId,
-                                source: routeSourceId,
-                                type: 'line',
-                                paint: {
-                                    'line-width': pointConfig.lineWidth || 2,
-                                    'line-color': color
-                                }
-                            }, firstSymbolId);
-        
+            
+                            // Check if the route source already exists before adding
+                            if (!mapInstance.getSource(routeSourceId)) {
+                                // Add route line source and layer
+                                mapInstance.addSource(routeSourceId, { type: 'geojson', data: feature });
+                                mapInstance.addLayer({
+                                    id: routeSourceId,
+                                    source: routeSourceId,
+                                    type: 'line',
+                                    paint: {
+                                        'line-width': pointConfig.lineWidth || 2,
+                                        'line-color': color
+                                    }
+                                }, firstSymbolId);
+                            } else {
+                                // console.warn(`Source with ID "${routeSourceId}" already exists. Skipping addition.`);
+                            }
+            
                             // Initialize point at the first coordinate of the route
+                            const coordinates = feature.geometry.coordinates;
+                            if (!coordinates || coordinates.length === 0) {
+                                // console.error(`Feature has no coordinates:`, feature);
+                                return;
+                            }
+            
                             const pointFeature = {
                                 type: 'FeatureCollection',
                                 features: [{
                                     type: 'Feature',
                                     properties: { bearing: 0 },
-                                    geometry: { type: 'Point', coordinates: feature.geometry.coordinates[0] }
+                                    geometry: { type: 'Point', coordinates: coordinates[0] }
                                 }]
                             };
-        
+            
                             points.push(pointFeature);
-        
-                            // Add point source and layer
-                            mapInstance.addSource(pointSourceId, { type: 'geojson', data: pointFeature });
-                            mapInstance.addLayer({
-                                id: pointSourceId,
-                                source: pointSourceId,
-                                type: 'symbol',
-                                layout: {
-                                    'icon-image': icon,
-                                    'icon-size': pointConfig.iconSize || 1,
-                                    'icon-rotate': ['get', 'bearing'],
-                                    'icon-rotation-alignment': 'map',
-                                    'icon-allow-overlap': true,
-                                    'icon-ignore-placement': true
-                                }
-                            }, firstSymbolId);
-        
+            
+                            // Check if the point source already exists before adding
+                            if (!mapInstance.getSource(pointSourceId)) {
+                                // Add point source and layer
+                                // console.log(`Adding point source: ${pointSourceId}`);
+                                mapInstance.addSource(pointSourceId, { type: 'geojson', data: pointFeature });
+                                mapInstance.addLayer({
+                                    id: pointSourceId,
+                                    source: pointSourceId,
+                                    type: 'symbol',
+                                    layout: {
+                                        'icon-image': icon,
+                                        'icon-size': pointConfig.iconSize || 1,
+                                        'icon-rotate': ['get', 'bearing'],
+                                        'icon-rotation-alignment': 'map',
+                                        'icon-allow-overlap': true,
+                                        'icon-ignore-placement': true
+                                    }
+                                }, firstSymbolId);
+                            } else {
+                                // console.warn(`Point source with ID "${pointSourceId}" already exists. Skipping addition.`);
+                            }
+            
                             // Animate the point along the route and extend the line dynamically
                             const route = feature.geometry.coordinates;
                             let counter = 0;
-        
+            
                             // Initialize an empty line feature for dynamic extension
                             const animatedLine = {
                                 type: 'FeatureCollection',
@@ -323,42 +226,56 @@ function mapInit(mapId, storyId, config) {
                                     geometry: { type: 'LineString', coordinates: [route[0]] }
                                 }]
                             };
-        
-                            // Update the source data for the animated line
-                            mapInstance.getSource(routeSourceId).setData(animatedLine);
-        
+            
+                            const routeSource = mapInstance.getSource(routeSourceId);
+                            if (routeSource) {
+                                routeSource.setData(animatedLine);
+                            } else {
+                                console.error('Route source not found:', routeSourceId);
+                                return;
+                            }
+            
                             const segmentDuration = animationSpeed / (route.length - 1); // Duration for each segment
-        
+            
                             function animatePoint() {
                                 if (counter >= route.length - 1) {
                                     return; // Stop animation if end of route
                                 }
-        
+            
                                 const start = route[counter];
                                 const end = route[counter + 1];
                                 if (!start || !end) {
+                                    console.error(`Invalid coordinates at counter ${counter}:`, { start, end });
                                     return; // Ensure valid coordinates
                                 }
-        
+            
                                 const startTime = performance.now(); // Start time of the animation for this segment
-        
+            
                                 function animateSegment(time) {
                                     const elapsed = time - startTime;
                                     const progress = Math.min(elapsed / segmentDuration, 1);
-        
+            
                                     const lng = start[0] + (end[0] - start[0]) * progress;
                                     const lat = start[1] + (end[1] - start[1]) * progress;
-        
+            
                                     pointFeature.features[0].geometry.coordinates = [lng, lat];
                                     pointFeature.features[0].properties.bearing = turf.bearing(turf.point(start), turf.point(end));
-        
+            
                                     // Update the point's position
-                                    mapInstance.getSource(pointSourceId).setData(pointFeature);
-        
+                                    const pointSource = mapInstance.getSource(pointSourceId);
+                                    if (pointSource) {
+                                        pointSource.setData(pointFeature);
+                                    } else {
+                                        // console.error('Point source not found:', pointSourceId);
+                                        return; // Early exit if source is not found
+                                    }
+            
                                     // Extend the animated line with the new point
                                     animatedLine.features[0].geometry.coordinates.push([lng, lat]);
-                                    mapInstance.getSource(routeSourceId).setData(animatedLine);
-        
+                                    if (routeSource) {
+                                        routeSource.setData(animatedLine);
+                                    }
+            
                                     if (progress < 1) {
                                         requestAnimationFrame(animateSegment);
                                     } else {
@@ -368,14 +285,15 @@ function mapInit(mapId, storyId, config) {
                                         }
                                     }
                                 }
-        
+            
                                 requestAnimationFrame(animateSegment);
                             }
-        
+            
                             animatePoint();
-        
+            
                             // Cleanup function to remove sources and layers
                             cleanupFunctions.push(() => {
+                                // console.log(`Removing sources and layers for: ${pointSourceId}`);
                                 mapInstance.removeLayer(routeSourceId);
                                 mapInstance.removeSource(routeSourceId);
                                 mapInstance.removeLayer(pointSourceId);
@@ -385,6 +303,7 @@ function mapInit(mapId, storyId, config) {
                     })
                     .catch(error => console.error('Error loading GeoJSON:', error));
             };
+            
         
             // Load and animate points for each geojson
             return Promise.all(pointConfig.geojson.map(loadAndAnimatePoints)).then(() => {
@@ -394,7 +313,6 @@ function mapInit(mapId, storyId, config) {
             });
         }
         
-
         let currentDashAnimation = null;
         let currentPointAnimation = null;
         let hasScrolled = false; // Track if the user has scrolled
@@ -506,6 +424,7 @@ function mapInit(mapId, storyId, config) {
         }),
         projection: config.projection,
     });
+
 
     const marker = config.showMarkers ? new mapboxgl.Marker().setLngLat(config.chapters[0][0].location.center).addTo(mapInstance) : null;
 
