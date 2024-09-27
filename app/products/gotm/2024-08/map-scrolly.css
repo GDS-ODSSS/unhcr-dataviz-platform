@@ -1,12 +1,5 @@
 /* mapbox-scrolly */
-#map-1 {
-	top:0;
-	position: sticky;
-	z-index: -5;
-	height: 100vh;
-  }
-
- #map-2 {
+  #map-1, #map-2, #map-3 {
     top:0;
     position: sticky;
     z-index: -5;

@@ -416,7 +416,7 @@ var config1 = {
       hidden: false,
       title: '',
       image: '',
-      description: '<h3>Solutions for Haitian Refugees</h3><p></p>The crisis in Haiti is driven by multiple factors, including political instability, economic hardship, violence, and natural disasters. Addressing this complex situation requires a comprehensive, multi-dimensional response from those in the region and beyond that integrates sustainable solutions.<p>In March 2024, <a href="https://www.refworld.org/policy/countrypos/unhcr/2024/en/147710" target="_blank" rel="noopener noreferrer">UNHCR published International Protection Considerations with regard to people fleeing Haiti</a>, outlining certain profiles of Haitians who might be eligible for refugee protection under the 1951 Refugee Convention or under the expanded definition in the 1984 Cartagena Declaration. These considerations provide guidance to assist States in assessing asylum claims in light of the extreme violence, human rights violations, and events that have seriously disturbed public order in Haiti.  Seeking asylum is a human right, and UNHCR is committed to working with host countries to provide legal and humanitarian support to hosts and the asylum-seekers they protect.</p><p>Countries could also consider granting other forms of protection for people from Haiti, including complementary protection, temporary protection, humanitarian admission, or other legal stay arrangements. Several countries in the Americas are already offering these alternatives to displaced Haitians, enhancing their protection and allowing them to integrate into the communities has welcomed them, some examples include:</p>',
+      description: '<h3>Solutions for Haitian Refugees</h3><p>The crisis in Haiti is driven by multiple factors, including political instability, economic hardship, violence, and natural disasters. Addressing this complex situation requires a comprehensive, multi-dimensional response from those in the region and beyond that integrates sustainable solutions.</p><p>In March 2024, <a href="https://www.refworld.org/policy/countrypos/unhcr/2024/en/147710" target="_blank" rel="noopener noreferrer">UNHCR published International Protection Considerations with regard to people fleeing Haiti</a>, outlining certain profiles of Haitians who might be eligible for refugee protection under the 1951 Refugee Convention or under the expanded definition in the 1984 Cartagena Declaration. These considerations provide guidance to assist States in assessing asylum claims in light of the extreme violence, human rights violations, and events that have seriously disturbed public order in Haiti.  Seeking asylum is a human right, and UNHCR is committed to working with host countries to provide legal and humanitarian support to hosts and the asylum-seekers they protect.</p><p>Countries could also consider granting other forms of protection for people from Haiti, including complementary protection, temporary protection, humanitarian admission, or other legal stay arrangements. Several countries in the Americas are already offering these alternatives to displaced Haitians, enhancing their protection and allowing them to integrate into the communities has welcomed them, some examples include:</p>',
       location: {
         center: [-73, 8],
         zoom: 3,
@@ -1518,6 +1518,774 @@ var config2 = {
       title: '',
       image: '',
       description: '<p>Sur l\'ensemble du continent américain, le HCR travaille avec ses partenaires pour apporter une protection et des solutions aux Haïtiens en situation de déplacement forcé. En Haïti, le HCR travaille aux côtés d\'agences des Nations Unies et de partenaires de protection pour renforcer la protection des personnes déplacées internes et leur fournir un accès aux documents d\'identité afin de prévenir l\'apatridie et d\'assurer le respect de leurs droits.</p><p>Malgré la gravité de la crise, le financement de la réponse humanitaire en Haïti reste extrêmement faible. Le <a href="https://fts.unocha.org/plans/1178/summary" target="_blank" rel="noopener noreferrer">plan de réponse humanitaire</a> est actuellement financé à 39 %.<p><a href="https://reliefweb.int/report/haiti/haiti-advocacy-note-immediate-mobilisation-resources-august-2024">Note de plaidoyer pour la mobilisation immédiate de ressources.</a></p><iframe title="Financement du plan de réponse humanitaire pour Haïti" aria-label="Barres empilées" id="datawrapper-chart-DqWCE" src="https://datawrapper.dwcdn.net/DqWCE/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="129" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p><a class="btn btn-primary" href="#">Faire un don</a></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [],
+      onChapterExit: []
+    },
+  ]]
+};
+
+var config3 = {
+  style: ['mapbox://styles/unhcr/cm14utntw01i101pbbpmcdzbu'],
+  accessToken: 'pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw',
+  showMarkers: false,
+  markerColor: '',
+  inset: false,
+  theme: 'light',
+  projection: '',
+  use3dTerrain: false,
+  auto: false,
+  title: 'This is a long title',
+  subtitle: '',
+  byline: '',
+  footer: '',
+  chapters: [[
+    {
+      id: 'chap-0',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<div><h3>Dentro de Haití</h3><p>Esta crisis multidimensional representa una amenaza crítica para la vida, la salud, la seguridad y el bienestar de la población haitiana. Esto ha provocado importantes desplazamientos internos, exacerbando las vulnerabilidades existentes ya presentes en la población.</p><iframe title="Evolución de las PDI en Haití | 2022 a 2024" aria-label="Interactive line chart" id="datawrapper-chart-UQKmZ" src="https://datawrapper.dwcdn.net/UQKmZ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="419" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script></div>',
+      location: {
+        center: [-72.35958, 18.84720],
+        zoom: 5,
+        mobileZoom: 3.5,
+        pitch: 0.00,
+        bearing: 0.00
+        // flyTo additional controls-
+        // These options control the flight curve, making it move
+        // slowly and zoom out almost completely before starting
+        // to pan.
+        //speed: 2, // make the flying slow
+        //curve: 1, // change the speed at which it zooms out
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-adm-line',
+          opacity: 0
+        },
+        {
+          layer: 'hti-adm1-labels',
+          opacity: 0
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-adm-line',
+          opacity: 0
+        },
+        {
+          layer: 'hti-adm1-labels',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-1',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>Hasta septiembre de 2024, aproximadamente <strong class="text-primary">703.000 personas</strong> se han visto forzadas a huir de sus hogares debido a la violencia de las pandillas y a la inseguridad en general, y el número de personas desplazadas internas (PDI) se ha duplicado entre 2022 y 2023. En los primeros nueve meses de 2024, más de 390.000 personas se vieron desplazadas. Este desplazamiento se ha producido en todo el país, pero la mayoría de las PDI se concentran en el departamento del Oeste, que incluye la capital, Puerto Príncipe.</p><div class="legend mb-3"><h5 class="legend-title">Número de PDI por provincia</h5><div class="legend-category"><img src="bubble_legend_sp.svg" height="80" alt=""></div></div><p class="text-secondary"><small>Fuente: <a href="https://dtm.iom.int/haiti" target="_blank" rel="noopener noreferrer">OIM-DTM</a></small></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-adm-line',
+          opacity: 0.8
+        },
+        {
+          layer: 'hti-adm1-labels',
+          opacity: 1
+        },
+        {
+          layer: 'hti-adm1-idp',
+          opacity: 1
+        },
+
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-adm1-idp',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-2',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>La niñez es particularmente vulnerable en esta crisis. Más de medio millón de niñas y niños viven en barrios controlados por grupos armados, lo que les expone a la violencia y al riesgo de reclutamiento. La violencia actual ha forzado el cierre de casi 900 escuelas, lo que afecta a casi <strong class="text-primary">200.000 niñas y niños</strong>, y aumenta su vulnerabilidad a la explotación por parte de las pandillas. La situación se ve agravada por la falta de espacios seguros y privados de apoyo psicológico, lo que aumenta el riesgo de que sufran abuso y trata</p><div class="legend mb-3"><h5 class="legend-title">Incidentes de seguridad</h5><div class="legend-category"><span style="background-color: #ef485e;width:.75rem;height:.75rem;border-radius:50%; vertical-align:baseline;"></span>Lugar del incidente</div></div><p class="text-secondary"><small>Fuente: <a href="https://acleddata.com/" target="_blank" rel="noopener noreferrer">ACLED</a></small></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-acled-event',
+          opacity: .8
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-acled-event',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-3',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>Las mujeres y niñas desplazadas, en particular las que viven en asentamientos de desplazados internos, se ven desproporcionadamente afectadas por la inseguridad y la violencia. La violencia basada en género (VBG) ha aumentado en medio de la crisis actual. De enero a mayo de 2024, 3.949 incidentes de violencia de género, entre ellas violencia sexual, agresión física y violencia psicológica/emocional, fueron denunciados a los prestadores de servicios de VBG. El aumento de la población desplazada y el empeoramiento de las condiciones de seguridad en los asentamientos de desplazados internos han incrementado aún más los riesgos de VBG. En marzo de 2024, los incidentes de VBG fueron casi cuatro veces superiores a los de los dos primeros meses (44 en enero y febrero en comparación con 172 en marzo), y algunos proveedores informaron de hasta 40 casos de violación al día.</p><div class="legend mb-3"><h5 class="legend-title">Número de incidentes de VBG por cada 1.000 PDI</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>1</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>15</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>65</div></div></div><p class="text-secondary"><small>Fuente: ACNUR</small></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-gbv-idp',
+          opacity: .5
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-gbv-idp',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-4',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>La salud y la seguridad alimentaria en Haití también se encuentran en niveles críticos. Casi la mitad de la población adolece de inseguridad alimentaria grave, y el 18 por ciento se encuentra en estado de emergencia. La proyección actualizada de la Clasificación Integrada de las Fases de la Seguridad Alimentaria (CIF) de marzo de 2024 muestra un empeoramiento de la inseguridad alimentaria, con unas 532.000 personas más que se enfrentan a una inseguridad alimentaria aguda en comparación con las estimaciones anteriores. De este total, casi 243.500 personas han pasado a una situación de emergencia.</p><div class="legend mb-3"><h5 class="legend-title">Clasificación de la fase de inseguridad alimentaria aguda de la CIF</h5><div class="legend-category"><span style="background-color: #e67700;"></span>Crisis - 3</div><div class="legend-category"><span style="background-color: #c70000;"></span>Emergencia - 4</div></div><p class="text-secondary"><small>Fuente: <a href="https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156884/?iso3=HTI" target="_blank" rel="noopener noreferrer">CIF</a></small></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-ipc-phase',
+          opacity: 0.4
+        },
+        
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-ipc-phase',
+          opacity: 0
+        },
+
+      ]
+    },
+    {
+      id: 'chap-5',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>Las condiciones de vida de las poblaciones desplazadas son cada vez más terribles. Aunque la mayoría de los asentamientos de PDI se concentran alrededor de Puerto Príncipe, se ha producido un desplazamiento gradual a distintos departamentos del país y particularmente a la región del sur, donde residen cerca de 268.000 personas desplazadas. Muchas se enfrentan a una grave escasez de alimentos, agua, alojamiento y atención médica. Aproximadamente el 83 por ciento de las PDI se alojan con familias de acogida, que a menudo luchan con recursos limitados. Las restricciones en el acceso humanitario dificultan la prestación de asistencia a quienes la necesitan. </p><p>Para la población haitiana retornada por la fuerza, volver a un país en crisis, a menudo tras años de vivir fuera de él, combinado con las condiciones en las que se producen los retornos forzados, incluida la detención, hacen que la reintegración sea aún más difícil. Las necesidades humanitarias de las personas retornadas siguen aumentando.</p><p>En Haití, las agencias de la ONU, la sociedad civil y los socios internacionales y locales están trabajando para hacer frente a las necesidades humanitarias. Estos esfuerzos incluyen el apoyo de emergencia a millones de personas en situación de inseguridad alimentaria, la prestación de servicios básicos a un número creciente de familias desplazadas en los asentamientos y comunidades de acogida, la prevención y respuesta a los riesgos de protección, incluida la violencia de género desenfrenada. Paralelamente a estos esfuerzos, los socios humanitarios se centran en mejorar la capacidad del gobierno y reforzar la preparación ante las catástrofes naturales, incluso con acciones preventivas.</p><div class="legend mb-3"><h5 class="legend-title">Gravedad del acceso humanitario</h5><div class="legend-category"><span style="background-color: #FBDADF;"></span>Baja</div><div class="legend-category"><span style="background-color: #EF4A60;"></span>Media</div><div class="legend-category"><span style="background-color: #8F2C39;"></span>Alta</div></div><p class="text-secondary"><small>Fuente: <a href="https://reliefweb.int/report/haiti/haiti-apercu-de-la-severite-de-lacces-humanitaire-janvier-juin-2024-26-juillet-2024" target="_blank" rel="noopener noreferrer">OCHA</a></small></p>',
+      location: {
+        center: [-72.8, 18.88663],
+        zoom: 7.5,
+        mobileZoom: 6,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+        {
+          layer: 'hti-hum-access',
+          opacity: .5
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'hti-hum-access',
+          opacity: 0
+        },
+        {
+          layer: 'hti-adm-line',
+          opacity: 0
+        },
+        {
+          layer: 'hti-adm1-labels',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-6',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h3>Fuera de Haití</h3><p>La grave situación humanitaria en Haití ha forzado cada vez más a la población haitiana a huir del país en busca de protección. En diciembre de 2023, más de 350.000 haitianos habían buscado protección en el extranjero, y la gran mayoría permanecía en las Américas.</p><iframe title="Principales 10 países de asilo para la población haitiana | 2023" aria-label="Barras apiladas" id="datawrapper-chart-J6LVy" src="https://datawrapper.dwcdn.net/J6LVy/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="463" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p>Entre quienes huyen de Haití hay personas con diferentes necesidades de protección, perfiles y motivaciones, entre ellas niñas y niños no acompañados y separados de sus familias, víctimas de trata y supervivientes de violencia de género. Algunas pueden tener motivos fundados para solicitar protección internacional como refugiados de acuerdo con las Consideraciones de Protección Internacional de ACNUR (disponible en inglés) con respecto a las personas que huyen de Haití, mientras que otras pueden tener otras necesidades de protección. Los diversos perfiles de quienes huyen evidencian la urgente necesidad de protección y apoyo para las personas haitianas que buscan protección en la región y fuera de ella.</p>',
+      location: {
+        center: [-73, 8],
+        zoom: 3,
+        mobileZoom: 2.5,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [
+
+      ],
+      onChapterExit: [
+
+      ]
+    },
+    // {
+    //   id: 'chap-7',
+    //   alignment: 'left',
+    //   hidden: false,
+    //   title: '',
+    //   image: '',
+    //   description: '<h5>Haitians displaced in the Americas</h5><p>The most common destinations for Haitians fleeing the country include countries in the Caribbean, Central and South America. The journey from Haiti to other parts of the Americas often involves perilous routes, including dangerous sea voyages and treacherous land crossings.</p><div class="legend mb-3"><h5 class="legend-title">Key transit and destination countries by movement type</h5><div class="legend-category"><span style="background-color: #0072bc;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Primary movement</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Onward movement</div></div><p class="text-secondary"><small>Source: UNHCR</small></p>',
+    //   location: {
+    //     center: [-73, 8],
+    //     zoom: 3,
+    //     mobileZoom: 0.1,
+    //     pitch: 0.00,
+    //     bearing: 0.00
+    //   },
+    //   mapAnimation: 'flyTo',
+    //   rotateAnimation: false,
+    //   callback: '',
+    //   triggerDashAnimation: true,
+    //   dashAnimationConfig: {
+    //     geojson: ["hti_route_bezier.json"],
+    //     lineColor: "#18375F",
+    //     lineWidth: 2.5,
+    //     lineDasharray: [0, 4, 3],
+    //     dashArraySequence: [
+    //         [0, 4, 3], [0.5, 4, 2.5], [1, 4, 2],
+    //         [1.5, 4, 1.5], [2, 4, 1], [2.5, 4, 0.5],
+    //         [3, 4, 0], [0, 0.5, 3, 3.5], [0, 1, 3, 3],
+    //         [0, 1.5, 3, 2.5], [0, 2, 3, 2], [0, 2.5, 3, 1.5],
+    //         [0, 3, 3, 1], [0, 3.5, 3, 0.5]
+    //     ],
+    //     animationSpeed: 120 
+    //   },
+    //   onChapterEnter: [
+    //   ],
+    //   onChapterExit: [
+    //   ]
+    // },
+    {
+      id: 'chap-8',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h5>Población haitiana desplazada en las Américas</h5><p>Los destinos más comunes de las personas haitianas que huyen del país incluyen países del Caribe, Norteamérica, Centroamérica y Sudamérica.</p><p>La situación en Haití ha provocado diferentes oleadas de movimientos desde el país en la última década, incluido un aumento de los viajes marítimos como indica el aumento de las intercepciones en el mar. En 2024, los principales destinos previstos para estos movimientos han sido las Bahamas, Estados Unidos, y las Islas Turcas y Caicos, con otros sucesos a menor escala observados en otras islas del norte del Caribe.</p><iframe title="Número de embarcaciones encontradas en el mar" aria-label="Gráfico de barras" id="datawrapper-chart-er8pK" src="https://datawrapper.dwcdn.net/er8pK/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="215" class="my-4" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><div class="legend mb-3"><h5 class="legend-title">Principales rutas de desplazamiento por tipo</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Terrestre</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Marítima</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Aérea</div></div><p class="text-secondary"><small>Fuente: ACNUR</small></p>',
+      location: {
+        center: [-74, 21],
+        zoom: 5.3,
+        mobileZoom: 4,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      triggerPointAnimation: true,
+      pointAnimationConfig: {
+        geojson: ['land_routes_3.json','sea_routes_1.json'],
+        lineColor: ['#0072BC','#00B398'],
+        lineWidth: 2,
+        iconImage: ['dot-blue','dot-green'],
+        iconSize: 0.7
+      },
+      animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
+    },
+    {
+      id: 'chap-9',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>En las Américas, otros movimientos de haitianos incluyen llegadas a Brasil, Chile y la Guayana Francesa, pero estas rutas son de acceso costoso para la mayoría de la población haitiana, ya que implican viajes aéreos. Además, la falta de acceso a la documentación supone un reto adicional para los haitianos que desean viajar de manera regular.</p><div class="legend mb-3"><h5 class="legend-title">Principales rutas de desplazamiento por tipo</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Terrestre</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Marítima</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Aérea</div></div><p class="text-secondary"><small>Fuente: ACNUR</small></p>',
+      location: {
+        center: [-67, 0],
+        zoom: 3.2,
+        mobileZoom: 2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      triggerPointAnimation: true,
+      pointAnimationConfig: {
+        geojson: ['air_routes_1.json','land_routes_4.json'],
+        lineColor: ['#18375F','#0072BC'],
+        lineWidth: 2,
+        iconImage: ['dot-navy','dot-blue'],
+        iconSize: 0.7
+      },
+      animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
+    },
+    {
+      id: 'chap-10',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>Mientras que algunas personas permanecen en los países de primera llegada, otras continúan su viaje hacia el norte a través de América del Sur y Central, donde pueden pasar al menos 6 meses, y en muchos casos más de un año, antes de dirigirse hacia el norte. Este desplazamiento hacia el norte pasa principalmente por Ecuador y Colombia, antes de desembocar en la peligrosa travesía de la selva del Darién hacia Panamá.</p><div class="legend mb-3"><h5 class="legend-title">Principales rutas de desplazamiento por tipo</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Terrestre</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Marítima</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Aérea</div></div><p class="text-secondary"><small>Fuente: ACNUR</small></p>',
+      location: {
+        center: [-72, -7],
+        zoom: 3.8,
+        mobileZoom: 2.5,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      triggerPointAnimation: true,
+      pointAnimationConfig: {
+        geojson: ['land_routes_1.json'],
+        lineColor: ['#0072BC'],
+        lineWidth: 2,
+        iconImage: ['dot-blue'],
+        iconSize: 0.7
+      },
+      animationSpeed: 100,
+      onChapterEnter: [],
+      onChapterExit: [],
+    },
+    {
+      id: 'chap-11',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>La ruta terrestre del Darién es particularmente peligrosa. En 2023, más de 46.000 personas de nacionalidad haitiana cruzaron el Darién, convirtiendo a Haití en la tercera nacionalidad más común, después de Venezuela y Ecuador. Esta tendencia ha continuado en 2024, con más de 11.000 cruces irregulares registrados a principios de septiembre. Muchos llegan a países centroamericanos, México y Estados Unidos a través de esta ruta terrestre.</p><iframe title="Haitianos cruzando el Darién | 2022 a 2024" aria-label="Barras apiladas" id="datawrapper-chart-oSFh0" src="https://datawrapper.dwcdn.net/oSFh0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="196" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><figure class="figure my-4"><img src="RF1338890_67.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Panamá. Más de 70.000 personas han cruzado el Darién en los primeros meses de 2024<br>©ACNUR/Melissa Pinel</figcaption></figure><p>Además de los retos que se plantean para las personas que se desplazan en flujos mixtos, como hablantes predominantes de criollo, los haitianos a menudo tienen barreras lingüísticas y los solicitantes de asilo y migrantes haitianos en las Américas a menudo se enfrentan a obstáculos agravados para acceder a la protección y a las soluciones, como la discriminación, la xenofobia y la falta de acceso a la información.</p><div class="legend mb-3"><h5 class="legend-title">Principales rutas de desplazamiento por tipo</h5><div class="legend-category"><span style="background-color: #0072BC;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Terrestre</div><div class="legend-category"><span style="background-color: #00B398;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Marítima</div><div class="legend-category"><span style="background-color: #18375F;height:.5rem;border-radius:.25rem; vertical-align:baseline;"></span>Aérea</div></div><p class="text-secondary"><small>Fuente: ACNUR</small></p>',
+      location: {
+        center: [-81, 8],
+        zoom: 6,
+        mobileZoom: 4.5,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      route: '',
+      onChapterEnter: [],
+      onChapterExit: [],
+      triggerPointAnimation: true,
+      pointAnimationConfig: {
+        geojson: ['land_routes_2.json'],
+        lineColor: ['#0072BC'],
+        lineWidth: 2,
+        iconImage: ['dot-blue'],
+        iconSize: 0.7
+      },
+      animationSpeed: 100,
+    },
+    {
+      id: 'chap-12',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h3>Soluciones para las personas refugiadas haitianas</h3><p>La crisis de Haití se debe a múltiples factores, como la inestabilidad política, las dificultades económicas, la violencia y las catástrofes naturales. Abordar esta compleja situación requiere una respuesta global y multidimensional por parte de los actores de la región y de fuera de ella, que integre soluciones sostenibles. </p><p>En marzo de 2024, ACNUR publicó unas Consideraciones de Protección Internacional de las personas que huyen de Haití, en las que se esbozan ciertos perfiles de haitianos que podrían optar a la protección de refugiados en virtud de la Convención sobre el Estatuto de los Refugiados de 1951 o de la definición ampliada de la Declaración de Cartagena de 1984. Estas consideraciones ofrecen orientación para asistir a los Estados en la evaluación de las solicitudes de asilo a la luz de la extrema violencia, las violaciones de los derechos humanos y los acontecimientos que han perturbado gravemente el orden público en Haití.  Solicitar asilo es un derecho humano, y ACNUR se compromete a trabajar con los países de acogida para proporcionar apoyo legal y humanitario a los países de acogida y a los solicitantes de asilo que protegen.</p><p>Los países también podrían considerar la posibilidad de conceder otras formas de protección a las personas procedentes de Haití, como protección complementaria, protección temporal, admisión humanitaria u otros acuerdos de estancia legal. Varios países de las Américas ya están ofreciendo estas alternativas a las personas haitianas desplazadas, mejorando su protección y permitiéndoles integrarse en las comunidades que los han acogido, algunos ejemplos son:</p>',
+      location: {
+        center: [-73, 8],
+        zoom: 3,
+        mobileZoom: 2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'country-labels',
+          opacity: 1
+        },
+        {
+          layer: 'territory-label',
+          opacity: 1
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'BRA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'USA-Labels',
+          opacity: 1
+        },
+      ],
+      onChapterExit: []
+    },
+    {
+      id: 'chap-13',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h5>México</h5><p>Se convirtió en el primer país de América Latina en aplicar la definición de Cartagena a las personas solicitantes de asilo haitianas, tras el éxito de las sesiones de formación impartidas en julio al personal de la Comisión Mexicana de Ayuda a Refugiados (COMAR), con el apoyo de ACNUR. Se espera que esta aplicación de la definición de Cartagena mejore la capacidad de la COMAR para procesar eficazmente las solicitudes de asilo de los haitianos y ofrecerles una protección integral, incluida la posibilidad de reunificación familiar en México, un beneficio que no recibirían bajo la protección complementaria o el estatus migratorio estándar.</p><figure class="figure my-4"><img src="RF1336943_202311211848_DSCF3995_jg.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">México. Personas refugiadas pueden rehacer sus vidas en Aguascalientes a través de un programa de reubicación e integración.<br>©ACNUR/Jeoffrey Guillemard</figcaption></figure>',
+      location: {
+        center: [-104.43053, 22.64543],
+        zoom: 3.7,
+        mobileZoom: 2.5,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Mask',
+          opacity: 1
+        },
+        {
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
+        },
+        {
+          layer: 'USA-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 0
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'MEX-Mask',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-14',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Chile</h5><p>Tras el devastador terremoto de 2010 que afectó gravemente a Haití, Chile adoptó diferentes medidas para facilitar la regularización de las personas haitianas en su territorio, incluidos visados temporales y medidas para facilitar la reagrupación familiar. El número de nacionales haitianos en Chile ha aumentado considerablemente desde entonces, con un total de 184.721 haitianos en Chile, de acuerdo con las cifras oficiales de diciembre de 2022. A pesar de enfrentar desafíos con el cumplimiento de los requisitos para solicitar visas de residencia permanente, en 2023, los haitianos representaron el segundo mayor número de solicitudes de residencia permanente, con 25.799 solicitudes.</p>",
+      location: {
+        center: [-70, -34],
+        zoom: 3.5,
+        mobileZoom: 2.2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'CHL-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'BRA-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CHL-Mask',
+          opacity: 1
+        }
+      ],
+      onChapterExit: [
+        {
+          layer: 'CHL-Mask',
+          opacity: 0
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-15',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h5>Brasil</h5><p>Ha sido históricamente un país de acogida para la población haitiana. Los haitianos pueden solicitar un visado permanente por motivos humanitarios. En junio de 2023, el gobierno lanzó el Plan de Acción para el Fortalecimiento de la Protección y la Integración Local de la Población Haitiana en Brasil, una iniciativa construida juntamente con ACNUR.</p><p>El Plan se dirige tanto a la población haitiana que ya reside en Brasil, para apoyar su proceso de integración y tratar de abordar y prevenir movimientos secundarios de riesgo, como a quienes han llegado más recientemente y necesitan acceso oportuno a información, protección y oportunidades de medios de vida.</p><figure class="figure my-4"><img src="RF1369329_20240806-lajeado.jpg" class="figure-img img-fluid" alt=""><figcaption class="figure-caption">Brasil. Respuesta de ACNUR a las inundaciones en Rio Grande do Sul. Claudia es de Haití, es una residente con necesidad de protección internacional.<br>©ACNUR/Joana Lopes</figcaption></figure>',
+      location: {
+        center: [-55, -13],
+        zoom: 3.5,
+        mobileZoom: 2.2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'BRA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'BRA-Mask',
+          opacity: 1
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'BRA-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'BRA-Mask',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-16',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Canadá</h5><p>El gobierno federal puso en marcha una vía humanitaria basada en la familia para ofrecer residencia permanente a ciudadanos haitianos, colombianos y venezolanos con familiares residentes en Canadá, de la que se están beneficiando 11.000 personas.</p><p>En reconocimiento a su excepcional contribución a Canadá durante la pandemia de COVID-19, en 2021, este país implementó una medida especial para proporcionar una vía de residencia permanente a las personas solicitantes de asilo – entre ellas muchas haitianas – de todo el país que trabajan en el sector de la salud.</p>",
+      location: {
+        center: [-98, 60],
+        zoom: 3.2,
+        mobileZoom: 2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'CAN-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CAN-Mask',
+          opacity: 1
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'CAN-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'CAN-Mask',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-17',
+      alignment: 'left',
+      hidden: false,
+      title: '',
+      image: '',
+      description: "<h5>Estados Unidos</h5><p>Entre los ejemplos de EE. UU., el 28 de junio de 2024, este país anunció la prórroga y la nueva designación de Haití para el Estatus de Protección Temporal (TPS, por sus siglas en inglés) durante 18 meses, hasta el 3 de febrero de 2026. La nueva designación de Haití para el TPS permite que unos 309.000 nacionales haitianos adicionales presenten una solicitud de TPS.</p>",
+      location: {
+        center: [-98, 38],
+        zoom: 3.8,
+        mobileZoom: 2.5,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'USA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'USA-Mask',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'country-labels',
+          opacity: 0
+        },
+        {
+          layer: 'territory-label',
+          opacity: 0
+        },
+      ],
+      onChapterExit: [
+        {
+          layer: 'USA-Labels',
+          opacity: 0
+        },
+        {
+          layer: 'USA-Mask',
+          opacity: 0
+        },
+      ]
+    },
+    {
+      id: 'chap-18',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<h5>Otras soluciones</h5><p>Varios países de las Américas y de otros continentes están ampliando diversas formas de protección y acuerdos de estancia legal a las personas refugiadas haitianas, incluida la protección temporal, la reunificación familiar, los visados humanitarios y el acceso a la documentación.</p><p>Por ejemplo, Francia ha introducido un programa de educación que apoya específicamente a personas refugiadas haitianas en edad escolar, y las Bahamas modificó la Ley de Pasaportes para establecer protocolos que permitan obtener la nacionalidad a los hijos de bahameños nacidos de mujeres extranjeras en las Bahamas. El principal perfil de personas afectadas por la nueva legislación son los hijos de madres haitianas nacidos en las Bahamas.</p>',
+      location: {
+        center: [-73, 8],
+        zoom: 3,
+        mobileZoom: 2,
+        pitch: 0.00,
+        bearing: 0.00
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      callback: '',
+      onChapterEnter: [
+        {
+          layer: 'country-labels',
+          opacity: 1
+        },
+        {
+          layer: 'territory-label',
+          opacity: 1
+        },
+        {
+          layer: 'CHL-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'BRA-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'MEX-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'CAN-Labels',
+          opacity: 1
+        },
+        {
+          layer: 'USA-Labels',
+          opacity: 1
+        },
+      ],
+      onChapterExit: []
+    },
+    
+    {
+      id: 'chap-19',
+      alignment: 'center',
+      hidden: false,
+      title: '',
+      image: '',
+      description: '<p>En las Américas, ACNUR está trabajando con sus socios para proporcionar protección y soluciones a las personas haitianas en situación de desplazamiento forzado. Dentro de Haití, ACNUR está trabajando junto con agencias de la ONU y socios de protección para mejorar la protección de las personas desplazadas internas y proveer acceso a documentación para prevenir la apatridia y asegurar el acceso a derechos.</p><p>A pesar de la gravedad de la crisis, la financiación para la respuesta humanitaria en Haití sigue siendo críticamente baja. El Plan de Respuesta Humanitaria cuenta actualmente con un 39 por ciento de financiación.</p><p><a href="https://reliefweb.int/report/haiti/haiti-advocacy-note-immediate-mobilisation-resources-august-2024">Nota de defensa para la movilización inmediata de recursos.</a></p><iframe title="Financiación del Plan de Respuesta Humanitaria para Haití" aria-label="Stacked Bars" id="datawrapper-chart-OXLw1" src="https://datawrapper.dwcdn.net/OXLw1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="129" class="mb-4" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script><p><a class="btn btn-primary" href="#">Donar</a></p>',
       location: {
         center: [-72.8, 18.88663],
         zoom: 7.5,

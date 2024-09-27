@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="IPDA/GDS">
+  <title>UNHCR Dataviz - Haiti: A multi-dimensional crisis leading to continued displacement</title>
+  <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="timeline.css">
+  <link rel="stylesheet" href="map-scrolly.css">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGKK4QPCNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-EGKK4QPCNL');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <h1 class="title">Haití: una crisis multidimensional continua</h1>
+  <!-- Navigation -->
+  <hcr-header></hcr-header>
+  <!-- End Navigation -->
+
+  <!-- Main -->
+  <main id="products" class="d-flex flex-column min-vh-100 flex-shrink-0">
+    <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-5">
+          <li class="breadcrumb-item"><a href="../../../">Home</a></li>
+          <li class="breadcrumb-item"><a href="../../">Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data Story</li>
+        </ol>
+      </nav>
+      <div class="row justify-content-md-center mb-0">
+        <div class="col col-lg-8">
+          <h2>Haiti: Haití: una crisis multidimensional continua</h2>
+          <p class="lead">Haití se enfrenta a una crisis multidimensional, con una escalada de la violencia de las pandillas, desplazamientos masivos y necesidades humanitarias graves. A pesar de los esfuerzos por lograr la estabilidad, la situación sigue siendo grave y requiere ayuda e intervención internacionales urgentes.</p>
+          <p>xx septiembre 2024 <span class="text-secondary">| Disponible también en: <a href="#">English</a> | <a href="#">Français</a></span></p>
+          <hr>
+        </div>
+      </div>  
+      <div class="row justify-content-md-center mt-0">
+        <div class="col">
+          <figure class="figure my-4">
+            <img src="RF1374152_IMG_20240619_121116.jpg" class="figure-img img-fluid" alt="">
+            <figcaption class="figure-caption">Mexico. Jessica (left) and Jessie (right) are twin sisters who are refugees in Mexico. They were born in Port-au-Prince, Haiti, and came to Mexico to reunite with their mother, Julie, who left their country due to threats and violence.<br>©UNHCR/Aurora Herrera</figcaption>
+          </figure>
+        </div>
+      </div> 
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>La violencia indiscriminada de las pandillas en Haití ha provocado una alarmante escalada de violaciones a los derechos humanos y desplazamientos internos a gran escala. La violencia de las pandillas contra la población haitiana se ha extendido desde la capital, Puerto Príncipe, a zonas rurales aisladas. La violencia generalizada incluye violencia sexual, secuestros, saqueos, bloqueos carreteros y reclutamientos forzados por pandillas armadas, junto con un número cada vez mayor de ataques contra hospitales, escuelas, centros religiosos y otras infraestructuras sociales críticas.</p>
+        </div>
+      </div>
+      <div class="row justify-content-md-center my-5">
+        <div class="col col-lg-8">
+          <div class="timeline-section px-3 py-4">
+            <div class="timeline-title mb-4">
+              <h3>La escalada de violencia y sus consecuencias de gran impacto</h3>
+            </div>
+            <div class="timeline">
+              
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2010</h4>
+                <p>Un terremoto de magnitud 7,0 sacudió Haití causando la muerte de más de 200.000 personas y desplazando a millones. Ese mismo año, un brote de cólera provocó casi 10.000 muertes y cientos de miles de infecciones.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2016</h4>
+                <p>Cuando Jovenel Moïse se convirtió en presidente en 2016, su elección se enfrentó a acusaciones de fraude, lo que provocó protestas e inestabilidad política. La agitación continuó hasta julio de 2018, con grandes protestas contra Moïse por corrupción, problemas económicos y escasez de combustible.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2021</h4>
+                <h5>Julio</h5>
+                <p>El presidente Jovenel Moïse es asesinado, sumiendo al país en una profunda crisis política.</p>
+                <h5>Agosto</h5>
+                <p>Haití sufre un terremoto de magnitud 7,2.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2021-2022</h4>
+                <p>El asesinato del Presidente Moïse deja un vacío político que exacerba una situación de seguridad ya inestable. La violencia de las pandillas, los secuestros y la inseguridad general se disparan, mientras que el Primer Ministro en funciones, Ariel Henry, se esfuerza por convocar elecciones.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2023</h4>
+                <h5>Enero</h5>
+                <p>Después de que el gobierno de Haití no celebrara elecciones, argumentando niveles sin precedentes de violencia de pandillas, Haití pierde a sus últimos funcionarios elegidos democráticamente.</p>
+              </div>
+              <div class="timeline-body" data-aos="fade-up" data-aos-duration="2000">
+                <h4>2024</h4>
+                <h5>Febrero</h5>
+                <p>Las pandillas bajo la alianza Viv Ansamn ejecutan asaltos coordinados en Puerto Príncipe para detener a funcionarios y obstruir los esfuerzos del primer ministro en funciones Ariel Henry para conseguir una misión internacional de seguridad apoyada por la ONU y liderada por Kenia para combatir las pandillas en el país.</p>
+                <h5>Marzo</h5>
+                <p>Henry firma un acuerdo con Kenia para desplegar 1.000 agentes policiales para combatir la violencia de las pandillas. Sin embargo, el proceso se retrasa por una sentencia judicial que considera que el despliegue es inconstitucional.</p>
+                <p>Las pandillas de Haití continúan intensificando sus ataques, asaltando dos de las mayores prisiones del país y liberando a más de 4.000 reclusos. También tomaron el control de los alrededores del aeropuerto internacional, lo que provocó su cierre durante varios meses. En respuesta, el gobierno haitiano declara estado de emergencia</p>
+                <p>En medio de las crecientes peticiones de dimisión, Henry viaja a Puerto Rico de regreso de Kenia y anuncia su intención de dimitir cuando se establezca un consejo de transición. El avión de Henry permanece bloqueado en Puerto Rico y no puede regresar a Haití por motivos de seguridad.</p>
+                <h5>Abril</h5>
+                <p>El gobierno de Kenia suspende el despliegue en Haití hasta que se constituya un nuevo gobierno. El 7 de abril se propone un acuerdo para un gobierno temporal, que duraría hasta febrero de 2026. El 25 de abril, Ariel Henry dimite y es sustituido por el Consejo Presidencial de Transición.</p>
+                <h5>Mayo</h5>
+                <p>Los enfrentamientos entre pandillas y fuerzas de seguridad continúan, pero comienzan a disminuir a finales de mayo. El 28 de mayo, el Consejo de Transición nombra a Garry Conille nuevo Primer Ministro.</p>
+                <h5>Junio</h5>
+                <p>El Consejo de Transición de Haití nombra un nuevo gabinete el 11 de junio. El 26 de junio, el primer contingente de 400 policías de élite aterriza en el aeropuerto internacional de Puerto Príncipe tras meses de retraso.</p>
+                <h5>Septiembre</h5>
+                <p>El gobierno de Haití creó el 18 de septiembre un consejo electoral provisional que allana el camino para la celebración del proceso electoral en 2026.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-8">
+          <p>La magnitud de la crisis es desoladora: casi la mitad de los 11,4 millones de habitantes de Haití necesitan asistencia humanitaria. La violencia de las pandillas y la inestabilidad política han provocado la cifra récord de 702.973 personas desplazadas internas, lo que convierte a Haití en el país con el mayor número de desplazamientos a nivel mundial debido a la violencia relacionada con la delincuencia. En 2024, ACNUR informó de más de 350.000 personas haitianas refugiadas y solicitantes de asilo en todo el mundo, muchas de las cuales emprendieron peligrosos viajes por las Américas y el Caribe.</p>
+          <p>Se ha avanzado lentamente hacia la estabilidad con la elección del Consejo Presidencial de Transición y la reciente llegada del primer contingente de agentes de policía kenianos como parte de la Misión Multinacional de Apoyo a la Seguridad, hay un destello de esperanza de cierta estabilidad para la población haitiana.</p>
+          <p>Una estrategia integral y sostenible a largo plazo ayudará a proteger y a apoyar a las poblaciones vulnerables, prestar servicios esenciales, reforzar la capacidad de Haití para invertir en educación, promover el crecimiento económico inclusivo y la creación de empleo, y fortalecer el Estado de derecho. La ayuda humanitaria es fundamental para salvar vidas, y la respuesta humanitaria debe servir de trampolín hacia acciones de recuperación duraderas y sostenibles.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map-container" style="background-color:rgb(220, 233, 255)" id="map-3"></div>
+      <div class="story-container" id="story-3"></div>
+    </div>
+    <div class="container my-0">
+
+    </div>
+
+
+  </main>
+  <!-- End Main -->
+
+  <!-- Footer -->
+  <hcr-footer></hcr-footer>
+  <!-- End footer -->
+
+
+  <!-- Scripts -->
+  <!-- bs/popper bundle -->
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <!-- UNHCR includes header/footer JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrincludes.js"></script>
+  <!-- UNHCR main JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrmain.js"></script>
+  <!-- UNHCR filter JS file -->
+  <script type="module" src="https://dataviz.unhcr.org/assets/js/unhcrfilter.js"></script>
+  <!-- other JS files -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://dataviz.unhcr.org/assets/js/vendor/scrollama.min.js"></script>
+  <script src="config.js"></script>
+  <script src="mapbox-scrolly.js"></script>
+  <script>
+      AOS.init();
+  </script>
+
+
+ 
+</body>
+
+</html>

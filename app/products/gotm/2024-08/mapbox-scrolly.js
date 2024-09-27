@@ -446,6 +446,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('map-2') && document.getElementById('story-2')) {
         mapInit('map-2', 'story-2', config2);
     }
+    if (document.getElementById('map-3') && document.getElementById('story-3')) {
+        mapInit('map-3', 'story-3', config3);
+    }
 });
 
 
