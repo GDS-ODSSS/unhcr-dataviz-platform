@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="IPDA/GDS">
-  <title>UNHCR Dataviz - Haiti: A multi-dimensional crisis leading to continued displacement</title>
+  <title>UNHCR Dataviz - Haití: una crisis multidimensional continua</title>
   <link href="https://dataviz.unhcr.org/assets/css/unhcrmain.min.css" rel="stylesheet" />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
@@ -160,6 +160,24 @@
   <script>
       AOS.init();
   </script>
+  <script type="text/javascript">
+    !function() {
+        "use strict";
+        window.addEventListener("message", function(a) {
+            if (void 0 !== a.data["datawrapper-height"]) {
+                var e = document.querySelectorAll("iframe");
+                for (var t in a.data["datawrapper-height"]) {
+                    for (var r = 0; r < e.length; r++) {
+                        if (e[r].contentWindow === a.source) {
+                            var i = a.data["datawrapper-height"][t] + "px";
+                            e[r].style.height = i;
+                        }
+                    }
+                }
+            }
+        });
+    }();
+    </script>
 
 
  
