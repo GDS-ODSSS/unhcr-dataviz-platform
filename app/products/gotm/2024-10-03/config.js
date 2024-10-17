@@ -341,10 +341,10 @@ var config1 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['air_routes_1.json','land_routes_4.json'],
-        lineColor: ['#18375F','#0072BC'],
+        geojson: ['land_routes_4.json','air_routes_1.json'],
+        lineColor: ['#0072BC','#18375F'],
         lineWidth: 2,
-        iconImage: ['dot-navy','dot-blue'],
+        iconImage: ['dot-blue','dot-navy'],
         iconSize: 0.7
       },
       animationSpeed: 100,
@@ -1109,10 +1109,10 @@ var config2 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['air_routes_1.json','land_routes_4.json'],
-        lineColor: ['#18375F','#0072BC'],
+        geojson: ['land_routes_4.json','air_routes_1.json'],
+        lineColor: ['#0072BC','#18375F'],
         lineWidth: 2,
-        iconImage: ['dot-navy','dot-blue'],
+        iconImage: ['dot-blue','dot-navy'],
         iconSize: 0.7
       },
       animationSpeed: 100,
@@ -1877,10 +1877,10 @@ var config3 = {
       callback: '',
       triggerPointAnimation: true,
       pointAnimationConfig: {
-        geojson: ['air_routes_1.json','land_routes_4.json'],
-        lineColor: ['#18375F','#0072BC'],
+        geojson: ['land_routes_4.json','air_routes_1.json'],
+        lineColor: ['#0072BC','#18375F'],
         lineWidth: 2,
-        iconImage: ['dot-navy','dot-blue'],
+        iconImage: ['dot-blue','dot-navy'],
         iconSize: 0.7
       },
       animationSpeed: 100,
