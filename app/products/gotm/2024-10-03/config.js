@@ -8,7 +8,7 @@ var config1 = {
   projection: '',
   use3dTerrain: false,
   auto: false,
-  title: 'This is a long title',
+  title: '',
   subtitle: '',
   byline: '',
   footer: '',
